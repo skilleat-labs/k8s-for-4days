@@ -10,13 +10,11 @@
       
       
       
-        <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day2/challenge-debug/">
+        <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day2/2-4-namespace/">
       
       
-        <link rel="prev" href="../2-2-service/">
+        <link rel="prev" href="../2-3-configmap-secret/">
       
-      
-        <link rel="next" href="../2-3-configmap-secret/">
       
       
         
@@ -27,7 +25,7 @@
     
     
       
-        <title>🔧 디버깅 도전 과제 - K8s for 4 Days</title>
+        <title>4. Namespace 실습 - K8s for 4 Days</title>
       
     
     
@@ -78,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#2-4-namespace" class="md-skip">
           콘텐츠로 이동
         </a>
       
@@ -112,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              🔧 디버깅 도전 과제
+              4. Namespace 실습
             
           </span>
         </div>
@@ -758,37 +756,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    🔧 디버깅 도전 과제
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../challenge-debug/" class="md-nav__link">
         
   
   
@@ -804,81 +775,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="목차">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      목차
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        시나리오
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        실습 목표
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        준비 — 고장난 앱 배포
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        성공 조건
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        정리
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -916,10 +812,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../2-4-namespace/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Namespace 실습
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -935,6 +858,136 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        실습 목표
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespace란?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1) 기본 Namespace 확인
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) 명령어로 Namespace 생성
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-yaml-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3) YAML로 Namespace 생성
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) 기본 Namespace 전환
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) Namespace 삭제 — 내부 리소스 함께 삭제
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정리
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#namespace_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespace 명령어 정리
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        트러블슈팅
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -974,18 +1027,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        시나리오
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         실습 목표
@@ -996,10 +1038,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#namespace" class="md-nav__link">
     <span class="md-ellipsis">
       
-        준비 — 고장난 앱 배포
+        Namespace란?
       
     </span>
   </a>
@@ -1007,10 +1049,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#1-namespace" class="md-nav__link">
     <span class="md-ellipsis">
       
-        성공 조건
+        1) 기본 Namespace 확인
       
     </span>
   </a>
@@ -1018,10 +1060,76 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#2-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) 명령어로 Namespace 생성
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-yaml-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3) YAML로 Namespace 생성
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) 기본 Namespace 전환
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) Namespace 삭제 — 내부 리소스 함께 삭제
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         정리
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#namespace_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespace 명령어 정리
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        트러블슈팅
       
     </span>
   </a>
@@ -1045,74 +1153,206 @@
 
 
 
-<h1 id="_1">디버깅 도전 과제 — 고장난 앱을 고쳐라<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="_2">시나리오<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>당신은 오늘 온콜 당번입니다.</p>
-<p>팀원이 퇴근 직전에 <code>broken-app</code>을 배포하고 갔는데, 앱이 정상적으로 동작하지 않습니다.
-<code>http://localhost:30090</code>에 접속하면 아무 응답이 없는 상태입니다.</p>
-<p><strong>YAML 파일 어딘가에 버그가 3개 있습니다. 모두 찾아서 고쳐야 페이지가 보입니다.</strong></p>
-<hr />
-<h2 id="_3">실습 목표<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h1 id="2-4-namespace">2-4. Namespace 실습<a class="headerlink" href="#2-4-namespace" title="Permanent link">&para;</a></h1>
+<h2 id="_1">실습 목표<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>kubectl get</code>, <code>kubectl describe</code>, <code>kubectl logs</code>로 문제를 스스로 추적한다.</li>
-<li>Deployment / Service 의 관계를 이해하고 버그를 수정한다.</li>
-<li>3개의 버그를 모두 고쳐 <code>http://localhost:30090</code>에서 정상 페이지를 확인한다.</li>
+<li>Namespace의 역할과 필요성을 이해한다.</li>
+<li>명령어와 YAML로 Namespace를 생성하고 관리한다.</li>
+<li>기본 컨텍스트 Namespace를 변경하는 방법을 익힌다.</li>
+<li>Namespace 삭제 시 내부 리소스가 함께 삭제됨을 확인한다.</li>
 </ul>
 <hr />
-<h2 id="_4">준비 — 고장난 앱 배포<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>아래 내용을 <code>broken-app.yaml</code>로 저장하고 배포합니다.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">broken-app</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">skilleat/rollout-demo:v999</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="nn">---</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">broken-svc</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NodePort</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wrong-app</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9999</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30090</span>
+<h2 id="namespace">Namespace란?<a class="headerlink" href="#namespace" title="Permanent link">&para;</a></h2>
+<p>Kubernetes 클러스터 안에서 리소스를 <strong>논리적으로 격리</strong>하는 단위입니다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>클러스터
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── default          ← 아무 설정 없이 배포하면 여기 들어감
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── kube-system      ← K8s 시스템 컴포넌트
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── dev              ← 개발 환경
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>└── prod             ← 운영 환경
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>broken-app.yaml
+<ul>
+<li>같은 Namespace 안에서는 Service 이름으로 서로 통신 가능</li>
+<li>다른 Namespace의 리소스는 기본적으로 격리됨</li>
+<li>Namespace를 삭제하면 그 안의 <strong>모든 리소스가 함께 삭제</strong>됨</li>
+</ul>
+<hr />
+<h2 id="1-namespace">1) 기본 Namespace 확인<a class="headerlink" href="#1-namespace" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>namespaces<span class="w">    </span><span class="c1"># 약어: kubectl get ns</span>
+</span></code></pre></div>
+<p>출력 예시:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>NAME              STATUS   AGE
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>default           Active   5d
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>kube-system       Active   5d
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>kube-public       Active   5d
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>kube-node-lease   Active   5d
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Namespace</th>
+<th>용도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>default</code></td>
+<td>아무 Namespace 지정 없이 생성하면 여기 배포됨</td>
+</tr>
+<tr>
+<td><code>kube-system</code></td>
+<td>CoreDNS, metrics-server 등 시스템 컴포넌트</td>
+</tr>
+<tr>
+<td><code>kube-public</code></td>
+<td>인증 없이 읽을 수 있는 공개 리소스</td>
+</tr>
+<tr>
+<td><code>kube-node-lease</code></td>
+<td>노드 heartbeat 리소스</td>
+</tr>
+</tbody>
+</table>
+<p>특정 Namespace의 리소스를 보려면 <code>-n</code> 플래그를 사용합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
 </span></code></pre></div>
 <hr />
-<h2 id="_5">성공 조건<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>3개의 버그를 모두 수정하고 아래를 확인하세요.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 1. 모든 Pod가 Running 상태</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>myapp
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 2. Endpoints에 Pod IP가 들어와 있음</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>endpoints<span class="w"> </span>broken-svc
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># 3. 브라우저 또는 curl로 페이지 확인</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>curl<span class="w"> </span>http://localhost:30090
+<h2 id="2-namespace">2) 명령어로 Namespace 생성<a class="headerlink" href="#2-namespace" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>dev
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>ns<span class="w">              </span><span class="c1"># dev 생성 확인</span>
 </span></code></pre></div>
-<p><code>http://localhost:30090</code>에서 페이지가 보이면 성공입니다.</p>
+<p>Namespace 안에 Pod를 배포하려면 <code>-n</code> 플래그를 사용합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>run<span class="w"> </span>nginx-dev<span class="w"> </span>--image<span class="o">=</span>nginx:1.25<span class="w"> </span>-n<span class="w"> </span>dev
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>dev
+</span></code></pre></div>
+<p>모든 Namespace의 Pod를 한꺼번에 보려면 <code>--all-namespaces</code>(약어 <code>-A</code>)를 사용합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+</span></code></pre></div>
 <hr />
-<h2 id="_6">정리<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>broken-app.yaml
+<h2 id="3-yaml-namespace">3) YAML로 Namespace 생성<a class="headerlink" href="#3-yaml-namespace" title="Permanent link">&para;</a></h2>
+<p><code>namespace-prod.yaml</code> 파일을 만듭니다.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Namespace</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prod</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">production</span>
 </span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>namespace-prod.yaml
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>ns<span class="w"> </span>prod
+</span></code></pre></div>
+<p>Pod도 YAML 안에 <code>namespace</code>를 명시해서 배포할 수 있습니다.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-prod</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prod</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx:1.25</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>namespace-prod.yaml<span class="w">   </span><span class="c1"># 이미 있어도 오류 없음</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>prod
+</span></code></pre></div>
+<hr />
+<h2 id="4-namespace">4) 기본 Namespace 전환<a class="headerlink" href="#4-namespace" title="Permanent link">&para;</a></h2>
+<p>매번 <code>-n dev</code>를 붙이는 대신 기본 Namespace를 바꿀 수 있습니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>set-context<span class="w"> </span>--current<span class="w"> </span>--namespace<span class="o">=</span>dev
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>kubectl<span class="w"> </span>config<span class="w"> </span>view<span class="w"> </span>--minify<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>namespace<span class="w">    </span><span class="c1"># 현재 기본 Namespace 확인</span>
+</span></code></pre></div>
+<p>전환 후에는 <code>-n</code> 없이도 <code>dev</code> Namespace에 명령이 적용됩니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w">    </span><span class="c1"># dev Namespace의 Pod가 출력됨</span>
+</span></code></pre></div>
+<p>실습이 끝나면 <strong>반드시 <code>default</code>로 복원</strong>합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>set-context<span class="w"> </span>--current<span class="w"> </span>--namespace<span class="o">=</span>default
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w">    </span><span class="c1"># default Namespace의 Pod가 출력됨</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Namespace 전환 후 꼭 복원하세요</p>
+<p>기본 Namespace를 바꾼 채로 두면 이후 실습에서 리소스가 엉뚱한 Namespace에 배포될 수 있습니다.
+실습 후 반드시 <code>default</code>로 되돌리세요.</p>
+</div>
+<hr />
+<h2 id="5-namespace">5) Namespace 삭제 — 내부 리소스 함께 삭제<a class="headerlink" href="#5-namespace" title="Permanent link">&para;</a></h2>
+<p>Namespace를 삭제하면 그 안의 <strong>모든 리소스(Pod, Service, Deployment 등)가 함께 삭제</strong>됩니다.</p>
+<p>먼저 dev Namespace 안의 리소스를 확인합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>all<span class="w"> </span>-n<span class="w"> </span>dev
+</span></code></pre></div>
+<p>Namespace를 삭제합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>dev
+</span></code></pre></div>
+<p>삭제 후 리소스가 사라졌는지 확인합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>dev<span class="w">    </span><span class="c1"># Error from server (NotFound) 출력</span>
+</span></code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">Namespace 삭제는 되돌릴 수 없습니다</p>
+<p>Namespace 삭제 시 내부의 모든 리소스가 즉시 삭제됩니다.
+운영 환경에서 실수로 삭제하지 않도록 주의하세요.</p>
+</div>
+<hr />
+<h2 id="_2">정리<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>prod
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>ns<span class="w">    </span><span class="c1"># dev, prod 모두 삭제 확인</span>
+</span></code></pre></div>
+<hr />
+<h2 id="namespace_1">Namespace 명령어 정리<a class="headerlink" href="#namespace_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get ns</code></td>
+<td>Namespace 목록 조회</td>
+</tr>
+<tr>
+<td><code>kubectl create ns &lt;이름&gt;</code></td>
+<td>Namespace 생성</td>
+</tr>
+<tr>
+<td><code>kubectl get pods -n &lt;이름&gt;</code></td>
+<td>특정 Namespace의 Pod 조회</td>
+</tr>
+<tr>
+<td><code>kubectl get pods -A</code></td>
+<td>전체 Namespace의 Pod 조회</td>
+</tr>
+<tr>
+<td><code>kubectl config set-context --current --namespace=&lt;이름&gt;</code></td>
+<td>기본 Namespace 변경</td>
+</tr>
+<tr>
+<td><code>kubectl delete namespace &lt;이름&gt;</code></td>
+<td>Namespace 삭제 (내부 리소스 포함)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">트러블슈팅<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>증상</th>
+<th>확인 사항</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pod가 보이지 않음</td>
+<td>현재 기본 Namespace 확인 (<code>kubectl config view --minify</code>)</td>
+</tr>
+<tr>
+<td>Service 이름으로 통신 안 됨</td>
+<td>같은 Namespace인지 확인</td>
+</tr>
+<tr>
+<td>Namespace 삭제 후 <code>Terminating</code> 상태 지속</td>
+<td>finalizer가 걸린 리소스 존재 — <code>kubectl get all -n &lt;이름&gt;</code> 으로 확인</td>
+</tr>
+</tbody>
+</table>
 
 
 
