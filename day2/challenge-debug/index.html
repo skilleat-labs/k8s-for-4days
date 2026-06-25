@@ -855,7 +855,7 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        지금 상태 확인
+        성공 조건
       
     </span>
   </a>
@@ -864,28 +864,6 @@
       
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🔍 단서 — 어디서부터 볼까?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ✅ 성공 조건
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         정리
@@ -974,7 +952,7 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        지금 상태 확인
+        성공 조건
       
     </span>
   </a>
@@ -983,28 +961,6 @@
       
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🔍 단서 — 어디서부터 볼까?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ✅ 성공 조건
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         정리
@@ -1031,7 +987,7 @@
 
 
 
-<h1 id="_1">🔧 디버깅 도전 과제 — 고장난 앱을 고쳐라<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h1 id="_1">디버깅 도전 과제 — 고장난 앱을 고쳐라<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="_2">시나리오<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>당신은 오늘 온콜 당번입니다.</p>
 <p>팀원이 퇴근 직전에 <code>broken-app</code>을 배포하고 갔는데, 앱이 정상적으로 동작하지 않습니다.
@@ -1063,7 +1019,7 @@
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
 </span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">skilleat/rollout-demo:v999</span><span class="w">   </span><span class="c1"># 🐛</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">skilleat/rollout-demo:v999</span>
 </span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="nn">---</span>
@@ -1074,78 +1030,31 @@
 </span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NodePort</span>
 </span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wrong-app</span><span class="w">   </span><span class="c1"># 🐛</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wrong-app</span>
 </span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
 </span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9999</span><span class="w">   </span><span class="c1"># 🐛</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9999</span>
 </span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30090</span>
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>broken-app.yaml
 </span></code></pre></div>
 <hr />
-<h2 id="_5">지금 상태 확인<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>broken-svc
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>kubectl<span class="w"> </span>get<span class="w"> </span>endpoints<span class="w"> </span>broken-svc
-</span></code></pre></div>
-<p><code>http://localhost:30090</code>에 접속해보세요. 응답이 없습니다.</p>
-<hr />
-<h2 id="_6">🔍 단서 — 어디서부터 볼까?<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>아래 명령어들로 문제를 추적해보세요.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Pod 상태 확인</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Pod 상세 이벤트 확인</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod이름&gt;
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Service 상세 확인</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>svc<span class="w"> </span>broken-svc
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># Endpoints 확인 (비어있으면 Service가 Pod를 못 찾는 것)</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>kubectl<span class="w"> </span>get<span class="w"> </span>endpoints<span class="w"> </span>broken-svc
-</span></code></pre></div>
-<hr />
-<h2 id="_7">✅ 성공 조건<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h2 id="_5">성공 조건<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>3개의 버그를 모두 수정하고 아래를 확인하세요.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 1. 모든 Pod가 Running 상태</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>myapp
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># 2. Endpoints에 Pod IP가 들어와 있음</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>endpoints<span class="w"> </span>broken-svc
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># 3. 브라우저 또는 curl로 페이지 확인</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>curl<span class="w"> </span>http://localhost:30090
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 1. 모든 Pod가 Running 상태</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>myapp
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 2. Endpoints에 Pod IP가 들어와 있음</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>endpoints<span class="w"> </span>broken-svc
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># 3. 브라우저 또는 curl로 페이지 확인</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>curl<span class="w"> </span>http://localhost:30090
 </span></code></pre></div>
 <p><code>http://localhost:30090</code>에서 페이지가 보이면 성공입니다.</p>
 <hr />
-<h2 id="_8">정리<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>broken-app.yaml
+<h2 id="_6">정리<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>broken-app.yaml
 </span></code></pre></div>
-<hr />
-<details class="hint">
-<summary>힌트 1 — Bug 1 위치</summary>
-<p><code>kubectl get pods</code> 실행 후 STATUS 컬럼을 확인하세요.
-<code>ImagePullBackOff</code> 또는 <code>ErrImagePull</code>이 보인다면 이미지 이름이나 태그에 문제가 있습니다.
-<code>kubectl describe pod &lt;pod이름&gt;</code> 의 Events 섹션에서 정확한 오류를 확인하세요.</p>
-</details>
-<details class="hint">
-<summary>힌트 2 — Bug 2 위치</summary>
-<p><code>kubectl get endpoints broken-svc</code> 결과가 <code>&lt;none&gt;</code>이면
-Service의 <code>selector</code>가 Pod의 <code>labels</code>와 일치하지 않는 것입니다.
-<code>kubectl get pods --show-labels</code>로 실제 Pod label을 확인하고 Service selector와 비교하세요.</p>
-</details>
-<details class="hint">
-<summary>힌트 3 — Bug 3 위치</summary>
-<p>Endpoints에 Pod IP가 들어왔는데도 <code>curl http://localhost:30090</code>이 실패한다면
-Service의 <code>targetPort</code>가 컨테이너가 실제로 열고 있는 포트와 다른 것입니다.
-<code>kubectl describe pod &lt;pod이름&gt;</code>에서 <code>Containers &gt; Ports</code> 항목을 확인하세요.</p>
-</details>
-<details class="hint">
-<summary>정답</summary>
-<p><strong>Bug 1</strong>: <code>image: skilleat/rollout-demo:v999</code> → <code>skilleat/rollout-demo:v1.0.0</code></p>
-<p><strong>Bug 2</strong>: Service <code>selector: app: wrong-app</code> → <code>app: myapp</code></p>
-<p><strong>Bug 3</strong>: Service <code>targetPort: 9999</code> → <code>8080</code></p>
-</details>
 
 
 
