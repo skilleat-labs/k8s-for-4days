@@ -17,27 +17,27 @@
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/1-3-1-acr/</loc>
-         <lastmod>2026-06-25</lastmod>
-    </url>
-    <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/1-3-registry/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/1-6-network/</loc>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/1-3-1-acr/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/1-env-setup/</loc>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/1-6-network/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/1-kubectl-basics/</loc>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/1-env-setup/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
     <url>
-         <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/2-1-pod/</loc>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/1-kubectl-basics/</loc>
+         <lastmod>2026-06-25</lastmod>
+    </url>
+    <url>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/2-1-pod/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
 </urlset>
