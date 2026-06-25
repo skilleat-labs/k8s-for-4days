@@ -43,6 +43,8 @@ nav:
       - 7. 실습 환경 설치 (VS Code / Rancher / Docker Desktop): day1/1-env-setup.md
       - 8. kubectl 기본 명령어 & 클러스터 구조 탐색: day1/1-kubectl-basics.md
       - 9. 파드 실습: day1/2-1-pod.md
+  - 2일차:
+      - 1. ReplicaSet & Deployment 실습: day2/2-1-replicaset-deployment.md
 
 markdown_extensions:
   - admonition
