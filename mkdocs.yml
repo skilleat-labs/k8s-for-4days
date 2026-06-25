@@ -1,0 +1,67 @@
+site_name: K8s for 4 Days
+site_description: 4일 완성 컨테이너 & 쿠버네티스 실습 가이드
+site_url: "https://skilleat-labs.github.io/k8s-for-4days/"
+
+theme:
+  name: material
+  language: ko
+  font:
+    text: Pretendard
+    code: JetBrains Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: 다크 모드로 전환
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: 라이트 모드로 전환
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+
+nav:
+  - 홈: index.md
+  - 1일차 — Docker & K8s 기초:
+      - 1. VM 직접 구축하기: day1/1-1-vm-setup.md
+      - 2. 컨테이너 실습: day1/1-2-container.md
+      - 3. 스스로 하기 과제: day1/1-2-1-practice.md
+      - 4. 레지스트리와 이미지 실습: day1/1-3-registry.md
+      - 5. 나만의 이미지 만들고 ACR에 올리기: day1/1-3-1-acr.md
+      - 6. 도커 네트워크 실습: day1/1-6-network.md
+      - 7. 실습 환경 설치 (VS Code / Rancher / Docker Desktop): day1/1-env-setup.md
+      - 8. kubectl 기본 명령어 & 클러스터 구조 탐색: day1/1-kubectl-basics.md
+      - 9. 파드 실습: day1/2-1-pod.md
+
+markdown_extensions:
+  - admonition
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
