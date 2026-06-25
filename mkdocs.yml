@@ -48,6 +48,7 @@ nav:
       - 2. Service 실습 (ClusterIP · NodePort · port-forward): day2/2-2-service.md
       - 🔧 디버깅 도전 과제: day2/challenge-debug.md
       - 3. ConfigMap & Secret 실습: day2/2-3-configmap-secret.md
+      - 4. Namespace 실습: day2/2-4-namespace.md
 
 markdown_extensions:
   - admonition
