@@ -44,4 +44,8 @@
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/2-1-replicaset-deployment/</loc>
          <lastmod>2026-06-25</lastmod>
     </url>
+    <url>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/2-2-service/</loc>
+         <lastmod>2026-06-25</lastmod>
+    </url>
 </urlset>
