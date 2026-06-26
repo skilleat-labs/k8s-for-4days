@@ -76,4 +76,8 @@
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day3/3-3-1-emptydir/</loc>
          <lastmod>2026-06-26</lastmod>
     </url>
+    <url>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day3/3-3-2-pv-pvc/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
 </urlset>
