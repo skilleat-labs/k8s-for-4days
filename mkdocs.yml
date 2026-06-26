@@ -53,6 +53,7 @@ nav:
       - 6. Ingress TLS & Redirect 실습: day2/3-1-1-ingress-tls.md
   - 3일차:
       - 1. Gateway API 실습: day3/3-2-gateway.md
+      - 2. 볼륨 실습 — emptyDir: day3/3-3-1-emptydir.md
 
 markdown_extensions:
   - admonition
