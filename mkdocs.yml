@@ -55,6 +55,7 @@ nav:
       - 1. Gateway API 실습: day3/3-2-gateway.md
       - 2. 볼륨 실습 — emptyDir: day3/3-3-1-emptydir.md
       - 3. 볼륨 실습 — PV/PVC: day3/3-3-2-pv-pvc.md
+      - 🔧 도전 과제 — 미니 블로그 (Gateway API + PVC): day3/challenge-miniblog.md
 
 markdown_extensions:
   - admonition
