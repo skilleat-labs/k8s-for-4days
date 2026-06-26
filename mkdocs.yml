@@ -49,6 +49,7 @@ nav:
       - 🔧 디버깅 도전 과제: day2/challenge-debug.md
       - 3. Namespace 실습: day2/2-4-namespace.md
       - 4. ConfigMap & Secret 실습: day2/2-3-configmap-secret.md
+      - 5. Ingress 실습: day2/3-1-ingress.md
 
 markdown_extensions:
   - admonition
