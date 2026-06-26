@@ -1,4 +1,4 @@
-# Probe 2 · Readiness Probe
+# Readiness & Startup Probe 실습
 
 !!! info "예상 소요 30분"
 

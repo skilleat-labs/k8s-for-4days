@@ -1,4 +1,4 @@
-# 3-3-2. 볼륨 실습 — PersistentVolume / PVC
+# 볼륨 실습 — PersistentVolume / PVC
 
 ## 실습 목표
 

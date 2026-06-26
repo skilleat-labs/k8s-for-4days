@@ -1,4 +1,4 @@
-# 3-2. Gateway API 실습
+# Gateway API 실습
 
 ## 실습 목표
 

@@ -1,4 +1,4 @@
-# K8s 2 · Resource requests & limits
+# Resource Requests & Limits 실습
 
 !!! info "예상 소요 40분"
 

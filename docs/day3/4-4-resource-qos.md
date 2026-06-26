@@ -1,4 +1,4 @@
-# K8s 2-2 · QoS Class & ResourceQuota
+# Resource QoS 실습
 
 !!! info "예상 소요 40분"
 
