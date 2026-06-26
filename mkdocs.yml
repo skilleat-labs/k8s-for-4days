@@ -33,7 +33,7 @@ theme:
 
 nav:
   - 홈: index.md
-  - 1일차 — Docker & K8s 기초:
+  - 1일차:
       - 1. VM 직접 구축하기: day1/1-1-vm-setup.md
       - 2. 컨테이너 실습: day1/1-2-container.md
       - 3. 스스로 하기 과제: day1/1-2-1-practice.md
