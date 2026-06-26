@@ -81,6 +81,14 @@
          <lastmod>2026-06-26</lastmod>
     </url>
     <url>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day3/4-1-probe-liveness/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day3/4-2-probe-readiness/</loc>
+         <lastmod>2026-06-26</lastmod>
+    </url>
+    <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day3/challenge-miniblog/</loc>
          <lastmod>2026-06-26</lastmod>
     </url>
