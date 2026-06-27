@@ -2,102 +2,106 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/1-1-vm-setup/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/1-2-1-practice/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/1-2-container/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/1-3-1-acr/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/1-3-registry/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/1-6-network/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/1-env-setup/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/1-kubectl-basics/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day1/2-1-pod/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/2-1-replicaset-deployment/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/2-2-service/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/2-3-configmap-secret/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/2-4-namespace/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/3-1-1-ingress-tls/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/3-1-ingress/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day2/challenge-debug/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day3/3-2-gateway/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day3/3-3-1-emptydir/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day3/3-3-2-pv-pvc/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day3/4-1-probe-liveness/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day3/4-2-probe-readiness/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day3/4-3-resource-requests-limits/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day3/4-4-resource-qos/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
     </url>
     <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day3/challenge-miniblog/</loc>
-         <lastmod>2026-06-26</lastmod>
+         <lastmod>2026-06-27</lastmod>
+    </url>
+    <url>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day4/vbox-k8s-setup/</loc>
+         <lastmod>2026-06-27</lastmod>
     </url>
 </urlset>
