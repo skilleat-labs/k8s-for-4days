@@ -60,6 +60,8 @@ nav:
       - 6. Resource Requests & Limits 실습: day3/4-3-resource-requests-limits.md
       - 7. Resource QoS 실습: day3/4-4-resource-qos.md
       - 🔧 도전 과제 — 미니 블로그 (Gateway API + PVC): day3/challenge-miniblog.md
+  - 4일차:
+      - 1. VirtualBox + 쿠버네티스 구축하기: day4/vbox-k8s-setup.md
 
 markdown_extensions:
   - admonition
