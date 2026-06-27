@@ -62,6 +62,7 @@ nav:
       - 🔧 도전 과제 — 미니 블로그 (Gateway API + PVC): day3/challenge-miniblog.md
   - 4일차:
       - 1. VirtualBox + 쿠버네티스 구축하기: day4/vbox-k8s-setup.md
+      - 2. Private Registry — ACR 이미지 Pull Secret: day4/acr-pull-secret.md
 
 markdown_extensions:
   - admonition
