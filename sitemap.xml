@@ -109,6 +109,26 @@
          <lastmod>2026-06-27</lastmod>
     </url>
     <url>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day4/rbac-01-serviceaccount/</loc>
+         <lastmod>2026-06-27</lastmod>
+    </url>
+    <url>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day4/rbac-02-role-rolebinding/</loc>
+         <lastmod>2026-06-27</lastmod>
+    </url>
+    <url>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day4/rbac-03-clusterrole/</loc>
+         <lastmod>2026-06-27</lastmod>
+    </url>
+    <url>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day4/rbac-04-least-privilege/</loc>
+         <lastmod>2026-06-27</lastmod>
+    </url>
+    <url>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day4/rbac-05-sa-token/</loc>
+         <lastmod>2026-06-27</lastmod>
+    </url>
+    <url>
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day4/vbox-k8s-setup/</loc>
          <lastmod>2026-06-27</lastmod>
     </url>
