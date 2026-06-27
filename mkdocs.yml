@@ -63,6 +63,7 @@ nav:
   - 4일차:
       - 1. VirtualBox + 쿠버네티스 구축하기: day4/vbox-k8s-setup.md
       - 2. Private Registry — ACR 이미지 Pull Secret: day4/acr-pull-secret.md
+      - 3. 노드 스케줄링 — 배치 제어 실습: day4/node-scheduling.md
 
 markdown_extensions:
   - admonition
