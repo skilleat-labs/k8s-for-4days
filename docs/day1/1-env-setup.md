@@ -147,6 +147,7 @@ lima-rancher-desktop   Ready    control-plane,master   2m    v1.29.x
 **PowerShell:**
 
 ```powershell
+New-Item -ItemType File -Force -Path $PROFILE
 kubectl completion powershell | Out-String | Invoke-Expression
 kubectl completion powershell >> $PROFILE
 ```
