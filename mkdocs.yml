@@ -49,6 +49,7 @@ nav:
       - 2. Service 실습 (ClusterIP · NodePort · port-forward): day2/2-2-service.md
       - 🔧 디버깅 도전 과제: day2/challenge-debug.md
       - 3. Namespace 실습: day2/2-4-namespace.md
+      - 🔧 도전 과제 — Namespace에 앱 배포하고 관찰하기: day2/challenge-namespace.md
       - 4. ConfigMap & Secret 실습: day2/2-3-configmap-secret.md
       - 5. Ingress 실습: day2/3-1-ingress.md
       - 6. Ingress TLS & Redirect 실습: day2/3-1-1-ingress-tls.md
