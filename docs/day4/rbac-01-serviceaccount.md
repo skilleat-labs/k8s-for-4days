@@ -137,9 +137,18 @@ kubectl apply -f pod-default-sa.yaml
 kubectl apply -f pod-custom-sa.yaml
 
 kubectl get pods
-kubectl describe pod pod-default-sa | grep "Service Account"
-kubectl describe pod pod-custom-sa  | grep "Service Account"
 ```
+
+=== "macOS/Linux"
+    ```bash
+    kubectl describe pod pod-default-sa | grep "Service Account"
+    kubectl describe pod pod-custom-sa  | grep "Service Account"
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl describe pod pod-default-sa | Select-String "Service Account"
+    kubectl describe pod pod-custom-sa  | Select-String "Service Account"
+    ```
 
 출력:
 ```

@@ -112,9 +112,15 @@ Data
 
 실제 저장된 값 확인 (학습 목적):
 
-```bash
-kubectl get secret acr-secret -o jsonpath='{.data.\.dockerconfigjson}' | base64 -d
-```
+=== "macOS/Linux"
+    ```bash
+    kubectl get secret acr-secret -o jsonpath='{.data.\.dockerconfigjson}' | base64 -d
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    $encoded = kubectl get secret acr-secret -o jsonpath='{.data.\.dockerconfigjson}'
+    [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($encoded))
+    ```
 
 ---
 

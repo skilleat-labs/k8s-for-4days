@@ -53,10 +53,16 @@ kubectl exec pod-default -- ls /var/run/secrets/kubernetes.io/serviceaccount/
 ca.crt  namespace  token
 ```
 
-```bash
-# 마운트 경로 확인
-kubectl describe pod pod-default | grep -A5 "Mounts:"
-```
+=== "macOS/Linux"
+    ```bash
+    # 마운트 경로 확인
+    kubectl describe pod pod-default | grep -A5 "Mounts:"
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    # 마운트 경로 확인
+    kubectl describe pod pod-default | Select-String -Pattern "Mounts:" -Context 0,5
+    ```
 
 출력:
 ```
@@ -243,13 +249,25 @@ kubectl exec pod-projected-token -- cat /var/run/secrets/tokens/token
 
 ## Step 5. 토큰 내용 디코딩 (확인용)
 
-```bash
-# 토큰 추출
-TOKEN=$(kubectl exec pod-projected-token -- cat /var/run/secrets/tokens/token)
+=== "macOS/Linux"
+    ```bash
+    # 토큰 추출
+    TOKEN=$(kubectl exec pod-projected-token -- cat /var/run/secrets/tokens/token)
 
-# JWT 구조 확인 (중간 payload 부분 디코딩)
-echo $TOKEN | cut -d. -f2 | base64 -d 2>/dev/null | python3 -m json.tool
-```
+    # JWT 구조 확인 (중간 payload 부분 디코딩)
+    echo $TOKEN | cut -d. -f2 | base64 -d 2>/dev/null | python3 -m json.tool
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    # 토큰 추출
+    $env:TOKEN = kubectl exec pod-projected-token -- cat /var/run/secrets/tokens/token
+
+    # JWT 구조 확인 (중간 payload 부분 디코딩)
+    $payload = $env:TOKEN.Split('.')[1]
+    # base64 패딩 보정 후 디코딩
+    $padded = $payload + ('=' * ((4 - $payload.Length % 4) % 4))
+    [System.Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($padded)) | python3 -m json.tool
+    ```
 
 출력 예시:
 ```json

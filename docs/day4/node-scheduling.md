@@ -37,9 +37,16 @@ kubectl get nodes --show-labels
 ```bash
 kubectl label node worker-1 role=web
 kubectl label node worker-2 role=db
-
-kubectl get nodes --show-labels | grep role
 ```
+
+=== "macOS/Linux"
+    ```bash
+    kubectl get nodes --show-labels | grep role
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl get nodes --show-labels | Select-String "role"
+    ```
 
 ### 1-2. nodeSelector로 특정 노드에 배포
 
@@ -216,10 +223,18 @@ Affinity는 Pod가 특정 노드를 "선호"하는 방식이지만,
 
 ```bash
 kubectl taint node worker-2 dedicated=gpu:NoSchedule
-
-# 확인
-kubectl describe node worker-2 | grep Taints
 ```
+
+=== "macOS/Linux"
+    ```bash
+    # 확인
+    kubectl describe node worker-2 | grep Taints
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    # 확인
+    kubectl describe node worker-2 | Select-String "Taints"
+    ```
 
 출력:
 ```
@@ -311,10 +326,18 @@ kubectl get pod pod-gpu-dedicated -o wide
 ```bash
 kubectl taint node worker-2 dedicated=gpu:NoSchedule-
 # 마지막에 - 를 붙이면 제거
-
-kubectl describe node worker-2 | grep Taints
-# Taints: <none> 확인
 ```
+
+=== "macOS/Linux"
+    ```bash
+    kubectl describe node worker-2 | grep Taints
+    # Taints: <none> 확인
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl describe node worker-2 | Select-String "Taints"
+    # Taints: <none> 확인
+    ```
 
 ### 정리
 

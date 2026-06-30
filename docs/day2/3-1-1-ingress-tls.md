@@ -137,18 +137,19 @@ kubectl get ingress echo-ingress-nginx
 
 ### 동작 확인
 
-```bash
-# HTTPS 접속 (자체 서명 인증서이므로 -k 옵션 사용)
-curl -k https://localhost
-```
-
 === "macOS/Linux"
     ```bash
+    # HTTPS 접속 (자체 서명 인증서이므로 -k 옵션 사용)
+    curl -k https://localhost
+
     # HTTP → HTTPS 리다이렉트 확인
     curl -v http://localhost 2>&1 | grep -E "< HTTP|Location"
     ```
 === "Windows PowerShell"
     ```powershell
+    # HTTPS 접속 (자체 서명 인증서이므로 -k 옵션 사용)
+    curl.exe -k https://localhost
+
     # HTTP → HTTPS 리다이렉트 확인
     curl.exe -v http://localhost 2>&1 | Select-String "< HTTP|Location"
     ```
@@ -231,18 +232,19 @@ kubectl get ingress echo-ingress-cilium
 
 ### 동작 확인
 
-```bash
-# HTTPS 접속
-curl -k https://localhost
-```
-
 === "macOS/Linux"
     ```bash
+    # HTTPS 접속
+    curl -k https://localhost
+
     # HTTP → HTTPS 리다이렉트 확인
     curl -v http://localhost 2>&1 | grep -E "< HTTP|Location"
     ```
 === "Windows PowerShell"
     ```powershell
+    # HTTPS 접속
+    curl.exe -k https://localhost
+
     # HTTP → HTTPS 리다이렉트 확인
     curl.exe -v http://localhost 2>&1 | Select-String "< HTTP|Location"
     ```

@@ -170,22 +170,46 @@ docker search redis
 
 ```bash
 docker run -d --name nginx-web -p 8081:80 skilleatlab.azurecr.io/lab/nginx:latest
-curl -I http://localhost:8081
 ```
+
+=== "macOS/Linux"
+    ```bash
+    curl -I http://localhost:8081
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    curl.exe -I http://localhost:8081
+    ```
 
 ### 4-2. Apache(httpd) 실행
 
 ```bash
 docker run -d --name httpd-web -p 8082:80 skilleatlab.azurecr.io/lab/httpd:latest
-curl -I http://localhost:8082
 ```
+
+=== "macOS/Linux"
+    ```bash
+    curl -I http://localhost:8082
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    curl.exe -I http://localhost:8082
+    ```
 
 ### 4-3. Redis 실행
 
 ```bash
 docker run -d --name redis-db -p 6379:6379 skilleatlab.azurecr.io/lab/redis:latest
-docker logs redis-db | head
 ```
+
+=== "macOS/Linux"
+    ```bash
+    docker logs redis-db | head
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    docker logs redis-db | Select-Object -First 10
+    ```
 
 ### 4-4. Alpine 실행
 

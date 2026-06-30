@@ -118,22 +118,40 @@ kubectl get pods --all-namespaces  # 위와 동일
 
 ## 7) 실습 — API Server에 직접 요청
 
-```bash
-kubectl proxy &
-```
+=== "macOS/Linux"
+    ```bash
+    kubectl proxy &
+    ```
 
-새 터미널에서:
+    새 터미널에서:
 
-```bash
-curl http://localhost:8001/api/v1/pods
-```
+    ```bash
+    curl http://localhost:8001/api/v1/pods
+    ```
 
-프록시 종료:
+    프록시 종료:
 
-```bash
-fg
-# Ctrl+C
-```
+    ```bash
+    fg
+    # Ctrl+C
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    Start-Job { kubectl proxy }
+    ```
+
+    새 터미널에서:
+
+    ```powershell
+    curl.exe http://localhost:8001/api/v1/pods
+    ```
+
+    프록시 종료:
+
+    ```powershell
+    Get-Job | Stop-Job
+    Get-Job | Remove-Job
+    ```
 
 ---
 

@@ -160,17 +160,30 @@ kubectl get nodes -o wide
 
 ### 세 가지 방법으로 모두 접근
 
-```bash
-# 1. 로컬에서 localhost:nodePort (Docker Desktop/Rancher Desktop)
-curl http://localhost:30080
+=== "macOS/Linux"
+    ```bash
+    # 1. 로컬에서 localhost:nodePort (Docker Desktop/Rancher Desktop)
+    curl http://localhost:30080
 
-# 2. 노드 IP:nodePort
-curl http://<노드 INTERNAL-IP>:30080
+    # 2. 노드 IP:nodePort
+    curl http://<노드 INTERNAL-IP>:30080
 
-# 3. ClusterIP (클러스터 내부 Pod에서)
-kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm \
-  -- curl http://rollout-nodeport
-```
+    # 3. ClusterIP (클러스터 내부 Pod에서)
+    kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm \
+      -- curl http://rollout-nodeport
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    # 1. 로컬에서 localhost:nodePort (Docker Desktop/Rancher Desktop)
+    curl.exe http://localhost:30080
+
+    # 2. 노드 IP:nodePort
+    curl.exe http://<노드 INTERNAL-IP>:30080
+
+    # 3. ClusterIP (클러스터 내부 Pod에서)
+    kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm `
+      -- curl http://rollout-nodeport
+    ```
 
 ---
 
@@ -182,9 +195,14 @@ kubectl port-forward svc/rollout-svc 8080:80
 
 새 터미널에서:
 
-```bash
-curl http://localhost:8080
-```
+=== "macOS/Linux"
+    ```bash
+    curl http://localhost:8080
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    curl.exe http://localhost:8080
+    ```
 
 `Ctrl+C`로 종료.
 
@@ -194,15 +212,14 @@ curl http://localhost:8080
 
 **터미널 1 — 반복 요청:**
 
-```bash
-# macOS / Linux
-while true; do curl -s -o /dev/null -w "%{http_code}\n" http://localhost:30080; sleep 1; done
-```
-
-```powershell
-# Windows (PowerShell)
-while ($true) { (curl.exe -s -o NUL -w "%{http_code}" http://localhost:30080); Start-Sleep 1 }
-```
+=== "macOS/Linux"
+    ```bash
+    while true; do curl -s -o /dev/null -w "%{http_code}\n" http://localhost:30080; sleep 1; done
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    while ($true) { (curl.exe -s -o NUL -w "%{http_code}" http://localhost:30080); Start-Sleep 1 }
+    ```
 
 **터미널 2 — Pod 강제 삭제:**
 

@@ -253,10 +253,16 @@ kubectl describe ingress lab-ingress
 
 **성공 조건:**
 
-```bash
-curl http://lab.local/shop
-# Hello from Shop service
-```
+=== "macOS/Linux"
+    ```bash
+    curl http://lab.local/shop
+    # Hello from Shop service
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    curl.exe http://lab.local/shop
+    # Hello from Shop service
+    ```
 
 ---
 
@@ -289,13 +295,22 @@ curl http://lab.local/shop
 
 **성공 조건:**
 
-```bash
-curl http://api.lab.local
-# Hello from API service
+=== "macOS/Linux"
+    ```bash
+    curl http://api.lab.local
+    # Hello from API service
 
-curl http://web.lab.local
-# Hello from Web service
-```
+    curl http://web.lab.local
+    # Hello from Web service
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    curl.exe http://api.lab.local
+    # Hello from API service
+
+    curl.exe http://web.lab.local
+    # Hello from Web service
+    ```
 
 > Kubernetes 공식 문서에서 호스트 기반 라우팅 방법을 찾아 직접 구현해보세요.
 > 🔗 [Ingress — kubernetes.io](https://kubernetes.io/docs/concepts/services-networking/ingress/#name-based-virtual-hosting)

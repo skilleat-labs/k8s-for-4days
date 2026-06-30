@@ -184,9 +184,14 @@ kubectl auth can-i list nodes \
 
 쿠버네티스에는 기본 제공 ClusterRole이 있습니다. 직접 만들지 않고 재사용할 수 있습니다.
 
-```bash
-kubectl get clusterrole | grep -E "^view|^edit|^admin|^cluster-admin"
-```
+=== "macOS/Linux"
+    ```bash
+    kubectl get clusterrole | grep -E "^view|^edit|^admin|^cluster-admin"
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl get clusterrole | Select-String "^view|^edit|^admin|^cluster-admin"
+    ```
 
 | 내장 ClusterRole | 설명 |
 |-----------------|------|

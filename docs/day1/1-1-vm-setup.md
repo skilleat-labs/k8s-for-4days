@@ -230,11 +230,16 @@ ip addr show enp0s9
 
 ### 접속 확인
 
-```bash
-# Mac 터미널에서
-ssh vboxuser@192.168.56.10
-curl http://192.168.56.10
-```
+=== "macOS/Linux"
+    ```bash
+    ssh vboxuser@192.168.56.10
+    curl http://192.168.56.10
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    ssh vboxuser@192.168.56.10
+    curl.exe http://192.168.56.10
+    ```
 
 !!! info "이후 실습에서는 `192.168.56.10` 을 VM 주소로 사용합니다."
 

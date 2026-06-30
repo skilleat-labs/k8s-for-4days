@@ -110,22 +110,19 @@ kubectl get configmap app-config -o yaml
 
 ### base64 인코딩 이해
 
-**macOS / Linux:**
+=== "macOS/Linux"
+    ```bash
+    echo -n "supersecret123" | base64           # 인코딩: c3VwZXJzZWNyZXQxMjM=
+    echo -n "c3VwZXJzZWNyZXQxMjM=" | base64 -d # 디코딩: supersecret123
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    # 인코딩
+    [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("supersecret123"))
 
-```bash
-echo -n "supersecret123" | base64           # 인코딩: c3VwZXJzZWNyZXQxMjM=
-echo -n "c3VwZXJzZWNyZXQxMjM=" | base64 -d # 디코딩: supersecret123
-```
-
-**Windows (PowerShell):**
-
-```powershell
-# 인코딩
-[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("supersecret123"))
-
-# 디코딩
-[Text.Encoding]::UTF8.GetString([Convert]::FromBase64String("c3VwZXJzZWNyZXQxMjM="))
-```
+    # 디코딩
+    [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String("c3VwZXJzZWNyZXQxMjM="))
+    ```
 
 ### 방법 A — kubectl 명령어 (자동 base64 인코딩)
 
@@ -170,18 +167,15 @@ stringData:
 
 ### Secret 값 확인
 
-**macOS / Linux:**
-
-```bash
-kubectl get secret app-secret -o jsonpath='{.data.DB_PASSWORD}' | base64 -d
-```
-
-**Windows (PowerShell):**
-
-```powershell
-$encoded = kubectl get secret app-secret -o jsonpath='{.data.DB_PASSWORD}'
-[Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($encoded))
-```
+=== "macOS/Linux"
+    ```bash
+    kubectl get secret app-secret -o jsonpath='{.data.DB_PASSWORD}' | base64 -d
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    $encoded = kubectl get secret app-secret -o jsonpath='{.data.DB_PASSWORD}'
+    [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($encoded))
+    ```
 
 ---
 
@@ -214,17 +208,14 @@ kubectl apply -f pod-envfrom.yaml
 kubectl logs pod-envfrom
 ```
 
-**macOS / Linux:**
-
-```bash
-kubectl exec pod-envfrom -- env | grep -E "DB_|APP_|API_"
-```
-
-**Windows (PowerShell):**
-
-```powershell
-kubectl exec pod-envfrom -- env | Select-String "DB_|APP_|API_"
-```
+=== "macOS/Linux"
+    ```bash
+    kubectl exec pod-envfrom -- env | grep -E "DB_|APP_|API_"
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl exec pod-envfrom -- env | Select-String "DB_|APP_|API_"
+    ```
 
 !!! warning "환경변수 방식의 보안 한계"
     Secret을 환경변수로 주입하면 `kubectl exec`로 접속한 누구든 `env` 명령어로 값을 평문으로 읽을 수 있습니다.

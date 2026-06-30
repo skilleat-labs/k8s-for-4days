@@ -74,10 +74,18 @@ kubectl get pods -l app=myapp
 
 # 2. Endpoints에 Pod IP가 들어와 있음
 kubectl get endpoints broken-svc
-
-# 3. 브라우저 또는 curl로 페이지 확인
-curl http://localhost:30090
 ```
+
+=== "macOS/Linux"
+    ```bash
+    # 3. 브라우저 또는 curl로 페이지 확인
+    curl http://localhost:30090
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    # 3. 브라우저 또는 curl로 페이지 확인
+    curl.exe http://localhost:30090
+    ```
 
 `http://localhost:30090`에서 페이지가 보이면 성공입니다.
 
