@@ -1316,14 +1316,25 @@
 <h2 id="4-namespace">4) 기본 Namespace 전환<a class="headerlink" href="#4-namespace" title="Permanent link">&para;</a></h2>
 <p>매번 <code>-n dev</code>를 붙이는 대신 기본 Namespace를 바꿀 수 있습니다.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>set-context<span class="w"> </span>--current<span class="w"> </span>--namespace<span class="o">=</span>dev
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>kubectl<span class="w"> </span>config<span class="w"> </span>view<span class="w"> </span>--minify<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>namespace<span class="w">    </span><span class="c1"># 현재 기본 Namespace 확인</span>
 </span></code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">macOS/Linux</label><label for="__tabbed_1_2">Windows PowerShell</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>view<span class="w"> </span>--minify<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>namespace<span class="w">    </span><span class="c1"># 현재 기본 Namespace 확인</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="n">view</span> <span class="p">-</span><span class="n">-minify</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">&quot;namespace&quot;</span>    <span class="c"># 현재 기본 Namespace 확인</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
 <p>전환 후에는 <code>-n</code> 없이도 <code>dev</code> Namespace에 명령이 적용됩니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w">    </span><span class="c1"># dev Namespace의 Pod가 출력됨</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w">    </span><span class="c1"># dev Namespace의 Pod가 출력됨</span>
 </span></code></pre></div>
 <p>실습이 끝나면 <strong>반드시 <code>default</code>로 복원</strong>합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>set-context<span class="w"> </span>--current<span class="w"> </span>--namespace<span class="o">=</span>default
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w">    </span><span class="c1"># default Namespace의 Pod가 출력됨</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>set-context<span class="w"> </span>--current<span class="w"> </span>--namespace<span class="o">=</span>default
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w">    </span><span class="c1"># default Namespace의 Pod가 출력됨</span>
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Namespace 전환 후 꼭 복원하세요</p>
@@ -1334,13 +1345,13 @@
 <h2 id="5-namespace">5) Namespace 삭제 — 내부 리소스 함께 삭제<a class="headerlink" href="#5-namespace" title="Permanent link">&para;</a></h2>
 <p>Namespace를 삭제하면 그 안의 <strong>모든 리소스(Pod, Service, Deployment 등)가 함께 삭제</strong>됩니다.</p>
 <p>먼저 dev Namespace 안의 리소스를 확인합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>all<span class="w"> </span>-n<span class="w"> </span>dev
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>all<span class="w"> </span>-n<span class="w"> </span>dev
 </span></code></pre></div>
 <p>Namespace를 삭제합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>dev
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>dev
 </span></code></pre></div>
 <p>삭제 후 리소스가 사라졌는지 확인합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>dev<span class="w">    </span><span class="c1"># Error from server (NotFound) 출력</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>dev<span class="w">    </span><span class="c1"># Error from server (NotFound) 출력</span>
 </span></code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Namespace 삭제는 되돌릴 수 없습니다</p>
@@ -1349,8 +1360,8 @@
 </div>
 <hr />
 <h2 id="_2">정리<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>prod
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>ns<span class="w">    </span><span class="c1"># dev, prod 모두 삭제 확인</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>prod
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>ns<span class="w">    </span><span class="c1"># dev, prod 모두 삭제 확인</span>
 </span></code></pre></div>
 <hr />
 <h2 id="namespace_1">Namespace 명령어 정리<a class="headerlink" href="#namespace_1" title="Permanent link">&para;</a></h2>
