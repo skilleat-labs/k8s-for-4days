@@ -88,8 +88,10 @@ kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm \
 
 ### 방법 C — 실행 중인 Pod 내부에서 접근
 
+`rollout-demo` 이미지에는 curl이 없으므로 curl이 포함된 임시 Pod를 띄워서 접근합니다.
+
 ```bash
-kubectl exec -it deployment/rollout-deploy -- sh
+kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm -- sh
 
 # Pod 내부에서:
 curl http://rollout-svc
