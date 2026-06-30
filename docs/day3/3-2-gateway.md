@@ -2,6 +2,28 @@
 
 ## 실습 환경 — AKS 클러스터 연결
 
+### 0) Azure CLI 설치 (PowerShell)
+
+```powershell
+winget install --exact --id Microsoft.AzureCLI
+```
+
+설치 후 **PowerShell을 재시작**하고 버전을 확인합니다.
+
+```powershell
+az version
+```
+
+로그인:
+
+```powershell
+az login
+```
+
+브라우저가 열리면 Azure 계정으로 로그인합니다. 로그인 완료 후 터미널에 구독 목록이 출력되면 정상입니다.
+
+---
+
 ### 1) AKS 클러스터 생성 (강사와 함께)
 
 강사가 아래 명령어로 AKS 클러스터를 생성합니다. 수강생은 화면을 보며 따라갑니다.
