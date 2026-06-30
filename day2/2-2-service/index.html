@@ -1567,7 +1567,8 @@
 <p><code>&lt;service이름&gt;.&lt;namespace&gt;.svc.cluster.local</code></p>
 </div>
 <h3 id="c-pod">방법 C — 실행 중인 Pod 내부에서 접근<a class="headerlink" href="#c-pod" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>deployment/rollout-deploy<span class="w"> </span>--<span class="w"> </span>sh
+<p><code>rollout-demo</code> 이미지에는 curl이 없으므로 curl이 포함된 임시 Pod를 띄워서 접근합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>run<span class="w"> </span>curl-test<span class="w"> </span>--image<span class="o">=</span>curlimages/curl:latest<span class="w"> </span>--restart<span class="o">=</span>Never<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--<span class="w"> </span>sh
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># Pod 내부에서:</span>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>curl<span class="w"> </span>http://rollout-svc
