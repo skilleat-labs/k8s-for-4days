@@ -45,6 +45,7 @@ nav:
       - 9. 파드 실습: day1/2-1-pod.md
   - 2일차:
       - 1. ReplicaSet & Deployment 실습: day2/2-1-replicaset-deployment.md
+      - 🔧 도전 과제 — Deployment 만들기: day2/challenge-deployment.md
       - 2. Service 실습 (ClusterIP · NodePort · port-forward): day2/2-2-service.md
       - 🔧 디버깅 도전 과제: day2/challenge-debug.md
       - 3. Namespace 실습: day2/2-4-namespace.md
