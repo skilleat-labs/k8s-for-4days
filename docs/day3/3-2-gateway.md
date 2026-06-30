@@ -4,9 +4,26 @@
 
 ### 0) Azure CLI 설치 (PowerShell)
 
-```powershell
-winget install --exact --id Microsoft.AzureCLI
-```
+=== "방법 1 — winget"
+    ```powershell
+    winget install --exact --id Microsoft.AzureCLI
+    ```
+
+    !!! warning "원본을 업데이트하지 못했습니다 오류 발생 시"
+        winget 소스가 최신 상태가 아닐 때 발생합니다. 아래 명령어로 소스를 초기화 후 재시도하세요.
+        ```powershell
+        winget source reset --force
+        winget install --exact --id Microsoft.AzureCLI
+        ```
+        그래도 안 되면 **방법 2**로 설치하세요.
+
+=== "방법 2 — MSI 직접 설치 (권장)"
+    winget 오류 시 MSI를 직접 다운로드해서 설치합니다.
+    ```powershell
+    Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile AzureCLI.msi
+    Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'
+    Remove-Item AzureCLI.msi
+    ```
 
 설치 후 **PowerShell을 재시작**하고 버전을 확인합니다.
 
