@@ -1616,6 +1616,11 @@
 <h3 id="ip">노드 IP 확인<a class="headerlink" href="#ip" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
 </span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Rancher Desktop / Docker Desktop 사용자</p>
+<p>노드 IP(<code>INTERNAL-IP</code>)로 접근이 <strong>안 됩니다.</strong> <code>localhost</code>를 사용하세요.
+Rancher Desktop과 Docker Desktop은 쿠버네티스 노드가 VM 내부에 있어 호스트에서 노드 IP로 직접 라우팅이 되지 않기 때문입니다.</p>
+</div>
 <h3 id="_3">세 가지 방법으로 모두 접근<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">macOS/Linux</label><label for="__tabbed_1_2">Windows PowerShell</label></div>
 <div class="tabbed-content">
