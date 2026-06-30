@@ -89,7 +89,7 @@ spec:
         - name: app
           image: skilleat/rollout-demo:v1.0.0
           ports:
-            - containerPort: 80
+            - containerPort: 8080
 ```
 
 ```bash
@@ -102,7 +102,7 @@ kubectl get pods --show-labels
 port-forward로 현재 버전 확인 (**파란색** 페이지):
 
 ```bash
-kubectl port-forward deployment/rollout-deploy 8080:80
+kubectl port-forward deployment/rollout-deploy 8080:8080
 ```
 
 `http://localhost:8080` 접속 후 `Ctrl+C`로 종료.
@@ -122,7 +122,7 @@ kubectl get pods -w
 완료 후 확인:
 
 ```bash
-kubectl port-forward deployment/rollout-deploy 8080:80
+kubectl port-forward deployment/rollout-deploy 8080:8080
 kubectl describe deployment rollout-deploy | grep Image
 ```
 
