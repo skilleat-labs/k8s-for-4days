@@ -38,6 +38,22 @@ kubectl get nodes
 
 `k8s-4days-aks` 컨텍스트로 노드 목록이 출력되면 정상입니다.
 
+**kubeconfig 파일 위치**
+
+| OS | 경로 |
+|----|------|
+| macOS / Linux | `~/.kube/config` |
+| Windows | `C:\Users\<사용자명>\.kube\config` |
+
+=== "macOS/Linux"
+    ```bash
+    cat ~/.kube/config
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    Get-Content "$env:USERPROFILE\.kube\config"
+    ```
+
 !!! warning "컨텍스트 주의"
     이후 실습은 모두 이 AKS 클러스터 위에서 진행됩니다.
     Rancher Desktop 등 로컬 클러스터가 함께 있는 경우 컨텍스트가 섞이지 않도록 주의하세요.
