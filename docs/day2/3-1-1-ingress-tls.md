@@ -183,17 +183,27 @@ annotations:
 
 ---
 
-## Case 2 — Cilium Ingress Controller
+## Case 2 — Cilium Ingress Controller (AKS 전용)
 
-### Ingress Controller 활성화 확인
+!!! warning "AKS 환경에서만 진행"
+    Rancher Desktop의 기본 CNI는 Flannel이며 Cilium이 설치되어 있지 않습니다.
+    이 섹션은 **3일차 AKS 클러스터**에 접속한 상태에서 진행하세요.
+
+### Cilium Ingress Controller 활성화 확인
 
 ```bash
 kubectl get pods -n kube-system -l app.kubernetes.io/name=cilium
 kubectl get ingressclass
 ```
 
-Cilium이 설치된 경우 IngressClass `cilium`이 존재합니다.
-Rancher Desktop에서는 기본적으로 Cilium을 사용합니다.
+IngressClass 목록에 `cilium`이 있으면 사용 가능합니다. 없는 경우 아래 명령어로 활성화합니다.
+
+```bash
+az aks update \
+  --resource-group k8s-4days-rg \
+  --name k8s-4days-aks \
+  --enable-cilium-dataplane
+```
 
 ### TLS Ingress 생성
 
@@ -270,7 +280,7 @@ kubectl get ingress echo-ingress-cilium
 | HTTP→HTTPS 리다이렉트 | `nginx.ingress.kubernetes.io/ssl-redirect: "true"` | `ingress.cilium.io/force-https: "enabled"` |
 | 기본 리다이렉트 코드 | `308` | `301` |
 | IngressClass 이름 | `nginx` | `cilium` |
-| Rancher Desktop 기본 제공 | X | O |
+| 실습 환경 | Rancher Desktop | AKS |
 
 ---
 
