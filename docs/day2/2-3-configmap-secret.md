@@ -338,15 +338,32 @@ kubectl edit configmap app-config
 
 ### 환경변수 방식 — Pod 재시작 전까지 반영 안됨
 
-```bash
-kubectl exec pod-envfrom -- env | grep APP_ENV
-# APP_ENV=development  (변경 전 값 그대로)
+=== "macOS/Linux"
+    ```bash
+    kubectl exec pod-envfrom -- env | grep APP_ENV
+    # APP_ENV=development  (변경 전 값 그대로)
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl exec pod-envfrom -- env | Select-String "APP_ENV"
+    # APP_ENV=development  (변경 전 값 그대로)
+    ```
 
+```bash
 kubectl delete pod pod-envfrom
 kubectl apply -f pod-envfrom.yaml
-kubectl logs pod-envfrom | grep APP_ENV
-# APP_ENV=production  (변경 후 값 반영됨)
 ```
+
+=== "macOS/Linux"
+    ```bash
+    kubectl logs pod-envfrom | grep APP_ENV
+    # APP_ENV=production  (변경 후 값 반영됨)
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl logs pod-envfrom | Select-String "APP_ENV"
+    # APP_ENV=production  (변경 후 값 반영됨)
+    ```
 
 ### 볼륨 마운트 방식 — 약 1분 내 자동 갱신
 

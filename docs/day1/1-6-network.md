@@ -249,8 +249,16 @@ docker exec web curl http://isolated  # 실패 (서로 다른 네트워크)
 ```bash
 docker network ls
 docker network inspect my-network
-docker inspect web | grep -A 20 "NetworkSettings"
 ```
+
+=== "macOS/Linux"
+    ```bash
+    docker inspect web | grep -A 20 "NetworkSettings"
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    docker inspect web | Select-String -Pattern "NetworkSettings" -Context 0,20
+    ```
 
 ### 7-2. 컨테이너 상태 점검
 
@@ -282,8 +290,16 @@ docker network connect my-network container-name
 
 ```bash
 netstat -tulpn | grep :8080
-docker ps | grep 8080
 ```
+
+=== "macOS/Linux"
+    ```bash
+    docker ps | grep 8080
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    docker ps | Select-String "8080"
+    ```
 
 **문제 3: DNS 해석 실패**
 

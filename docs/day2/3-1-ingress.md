@@ -23,10 +23,16 @@
 
 **비활성화 확인**
 
-```bash
-kubectl get pods -n kube-system | grep traefik
-# 아무것도 출력되지 않으면 정상
-```
+=== "macOS/Linux"
+    ```bash
+    kubectl get pods -n kube-system | grep traefik
+    # 아무것도 출력되지 않으면 정상
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl get pods -n kube-system | Select-String "traefik"
+    # 아무것도 출력되지 않으면 정상
+    ```
 
 ---
 

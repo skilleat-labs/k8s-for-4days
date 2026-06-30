@@ -125,8 +125,16 @@ kubectl get pods -n prod
 
 ```bash
 kubectl config set-context --current --namespace=dev
-kubectl config view --minify | grep namespace    # 현재 기본 Namespace 확인
 ```
+
+=== "macOS/Linux"
+    ```bash
+    kubectl config view --minify | grep namespace    # 현재 기본 Namespace 확인
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl config view --minify | Select-String "namespace"    # 현재 기본 Namespace 확인
+    ```
 
 전환 후에는 `-n` 없이도 `dev` Namespace에 명령이 적용됩니다.
 

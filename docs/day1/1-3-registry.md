@@ -208,31 +208,64 @@ docker ps -a
 
 ```bash
 docker run --name exit-now skilleatlab.azurecr.io/lab/alpine:latest echo "bye"
-docker ps -a | grep exit-now
 ```
+
+=== "macOS/Linux"
+    ```bash
+    docker ps -a | grep exit-now
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    docker ps -a | Select-String "exit-now"
+    ```
 
 ### 5-2. 살아있게 유지하기 (`sleep`)
 
 ```bash
 docker run -d --name keep-alive skilleatlab.azurecr.io/lab/alpine:latest sleep 600
-docker ps | grep keep-alive
 ```
+
+=== "macOS/Linux"
+    ```bash
+    docker ps | grep keep-alive
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    docker ps | Select-String "keep-alive"
+    ```
 
 ### 5-3. 종료/재시작으로 동작 확인
 
 ```bash
 docker stop keep-alive
-docker ps -a | grep keep-alive
 docker start keep-alive
-docker ps | grep keep-alive
 ```
+
+=== "macOS/Linux"
+    ```bash
+    docker ps -a | grep keep-alive
+    docker ps | grep keep-alive
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    docker ps -a | Select-String "keep-alive"
+    docker ps | Select-String "keep-alive"
+    ```
 
 ### 5-4. 무한 유지 패턴
 
 ```bash
 docker run -d --name keep-forever skilleatlab.azurecr.io/lab/alpine:latest sh -c "while true; do sleep 60; done"
-docker ps | grep keep-forever
 ```
+
+=== "macOS/Linux"
+    ```bash
+    docker ps | grep keep-forever
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    docker ps | Select-String "keep-forever"
+    ```
 
 ---
 
@@ -242,9 +275,14 @@ docker ps | grep keep-forever
     Docker Engine v29 이후 또는 Docker Desktop 4.34 이후 신규 설치는 기본 이미지 저장소가 **containerd image store**로 바뀌었습니다.
 
     내 환경 확인:
-    ```bash
-    docker info | grep "Storage Driver"
-    ```
+    === "macOS/Linux"
+        ```bash
+        docker info | grep "Storage Driver"
+        ```
+    === "Windows PowerShell"
+        ```powershell
+        docker info | Select-String "Storage Driver"
+        ```
     - `overlay2` → 이전 방식 (`Already exists` 보임)
     - `overlayfs` → 새 방식 (라인 자체가 사라짐)
 
