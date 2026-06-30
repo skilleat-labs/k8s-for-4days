@@ -160,6 +160,10 @@ rollout-nodeport   NodePort   10.96.78.200    <none>        80:30080/TCP   10s
 kubectl get nodes -o wide
 ```
 
+!!! warning "Rancher Desktop / Docker Desktop 사용자"
+    노드 IP(`INTERNAL-IP`)로 접근이 **안 됩니다.** `localhost`를 사용하세요.
+    Rancher Desktop과 Docker Desktop은 쿠버네티스 노드가 VM 내부에 있어 호스트에서 노드 IP로 직접 라우팅이 되지 않기 때문입니다.
+
 ### 세 가지 방법으로 모두 접근
 
 === "macOS/Linux"
