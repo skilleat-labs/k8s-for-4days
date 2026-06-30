@@ -1,5 +1,49 @@
 # Gateway API 실습
 
+## 실습 환경 — AKS 클러스터 연결
+
+### 1) AKS 클러스터 생성 (강사와 함께)
+
+강사가 아래 명령어로 AKS 클러스터를 생성합니다. 수강생은 화면을 보며 따라갑니다.
+
+```powershell
+# 리소스 그룹 생성
+az group create --name k8s-4days-rg --location koreacentral
+
+# AKS 클러스터 생성 (약 3~5분 소요)
+az aks create `
+  --resource-group k8s-4days-rg `
+  --name k8s-4days-aks `
+  --node-count 2 `
+  --node-vm-size Standard_B2s `
+  --generate-ssh-keys
+```
+
+---
+
+### 2) 개별 작업 — kubeconfig 가져오기
+
+클러스터 생성이 완료되면 각자 아래 명령어를 실행해 kubeconfig를 로컬에 가져옵니다.
+
+```powershell
+az aks get-credentials --resource-group k8s-4days-rg --name k8s-4days-aks
+```
+
+연결 확인:
+
+```powershell
+kubectl config current-context
+kubectl get nodes
+```
+
+`k8s-4days-aks` 컨텍스트로 노드 목록이 출력되면 정상입니다.
+
+!!! warning "컨텍스트 주의"
+    이후 실습은 모두 이 AKS 클러스터 위에서 진행됩니다.
+    Rancher Desktop 등 로컬 클러스터가 함께 있는 경우 컨텍스트가 섞이지 않도록 주의하세요.
+
+---
+
 ## 실습 목표
 
 - Gateway API의 3계층 구조(GatewayClass / Gateway / HTTPRoute)를 이해하고 직접 배포한다.
