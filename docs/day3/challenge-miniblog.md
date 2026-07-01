@@ -1,128 +1,68 @@
-# 도전 과제 — Gateway API + PVC 미니 블로그
+# 🔧 도전 과제 — 미니 블로그 배포
+
+**난이도 ★★★**
+
+> 명령어와 YAML은 직접 작성하세요 · 아래 조건만 보고 완료합니다
+
+---
 
 ## 시나리오
 
-미니 블로그 애플리케이션을 클라우드 매니지드 쿠버네티스 클러스터에 배포합니다.
-
-Backend Replica 2개가 **서로 다른 노드**에 분산 배포되면서도 **동일한 데이터(data.json)**를 공유해야 합니다.
-Gateway API를 통해 외부에서 접속할 수 있도록 전체 구조를 직접 설계하고 구현하세요.
-
----
-
-## 전체 아키텍처
-
-```
-사용자
-  ↓
-Gateway (External IP)
-  ↓
-HTTPRoute
-  ↓
-frontend-service → frontend Pods (1개)
-  ↓
-backend-service → backend Pods (2개, 노드 분산)
-  ↓
-PVC → PV → StorageClass
-     (data.json 공유 저장)
-```
+미니 블로그 애플리케이션을 AKS 클러스터에 배포합니다.
+Frontend와 Backend로 구성되며, Backend 2개가 **동일한 데이터 파일을 공유**해야 합니다.
+외부에서 Gateway API를 통해 접속할 수 있어야 합니다.
 
 ---
 
-## 구현 조건
+## 조건
 
-### Namespace
+### 1 · Namespace
 
 - 이름: `webapp`
-- 모든 리소스는 이 namespace 안에서 생성
+- 모든 리소스는 이 Namespace 안에 생성
 
-### StorageClass / PVC
+---
 
-!!! warning "RWX가 필요한 이유"
-    Backend Pod 2개가 서로 다른 노드에 배포될 경우 `ReadWriteOnce(RWO)` PVC는 단일 노드에서만 마운트 가능합니다.
-    여러 노드에 걸쳐 데이터를 공유하려면 반드시 **ReadWriteMany(RWX)** 를 지원하는 StorageClass가 필요합니다.
+### 2 · 스토리지
 
-| 클라우드 | RWX 지원 StorageClass 예시 |
-|---------|--------------------------|
-| AKS (Azure) | `azurefile`, `azurefile-csi` |
-| GKE (Google) | `filestore` (별도 프로비저너 설치) |
-| EKS (AWS) | `efs-sc` (EFS CSI Driver 설치 필요) |
+- Backend Pod 2개가 **서로 다른 노드**에서 동일한 파일을 공유할 수 있어야 합니다.
+- 어떤 StorageClass와 accessMode를 써야 할지 스스로 판단하세요.
+- PVC 이름: `blog-pvc`, 용량: `1Gi`
 
-| 항목 | 값 |
-|------|---|
-| PVC 이름 | `blog-pvc` |
-| StorageClassName | 클러스터에서 직접 확인 후 RWX 지원 클래스 기재 |
-| accessModes | `ReadWriteMany` |
-| 용량 | `1Gi` |
+---
 
-### Backend
+### 3 · Backend
 
-| 항목 | 값 |
-|------|---|
-| Deployment 이름 | `backend` |
-| replicas | `2` |
-| image | `skilleat/backend:v3-kb5` |
-| containerPort | `5000` |
-| volumeMount 경로 | `/app/data` — PVC `blog-pvc` 마운트 |
-| label | `app=backend` |
-| Service 이름 | `backend-service` |
-| port → targetPort | `5000 → 5000` |
+- 이미지: `skilleat/backend:v3-kb5`
+- 2개 replicas, **서로 다른 노드**에 분산 배포
+- `/app/data` 경로에 `blog-pvc` 마운트
+- Service로 노출 (포트는 컨테이너를 보고 판단)
 
-### Frontend
+---
 
-| 항목 | 값 |
-|------|---|
-| Deployment 이름 | `frontend` |
-| replicas | `1` |
-| image | `skilleat/frontend:v3-kb5` |
-| containerPort | `80` |
-| label | `app=frontend` |
-| Service 이름 | `frontend-service` |
-| port → targetPort | `80 → 80` |
+### 4 · Frontend
 
-### Envoy Gateway 설치
+- 이미지: `skilleat/frontend:v3-kb5`
+- 1개 replica
+- Service로 노출
 
-GatewayClass를 만들기 전에 Envoy Gateway가 클러스터에 설치되어 있어야 합니다.
+---
 
-!!! tip "설치 방법은 Gateway API 실습 페이지를 참고하세요"
-    [3일차 1번 — Gateway API 실습](3-2-gateway.md) 페이지의 **Envoy Gateway 설치** 섹션을 참고하여 먼저 설치를 완료하세요.
+### 5 · Gateway API
 
-### GatewayClass
-
-| 항목 | 값 |
-|------|---|
-| 이름 | `blog-gw-class` |
-| controllerName | `gateway.envoyproxy.io/gatewayclass-controller` |
-
-### Gateway
-
-| 항목 | 값 |
-|------|---|
-| 이름 | `blog-gw` |
-| gatewayClassName | `blog-gw-class` |
-| Listener 이름 | `http` |
-| port | `80` |
-| protocol | `HTTP` |
-
-### HTTPRoute
-
-| 항목 | 값 |
-|------|---|
-| 이름 | `frontend-route` |
-| parentRefs | Gateway `blog-gw` (webapp namespace) |
-| pathPrefix | `/` |
-| backendRef | `frontend-service` port `80` |
+- Envoy Gateway 설치 방법은 [Gateway API 실습](3-2-gateway.md) 참고
+- GatewayClass → Gateway → HTTPRoute 순서로 구성
+- `/` 경로로 들어오는 요청이 Frontend로 라우팅되어야 함
 
 ---
 
 ## 성공 조건
 
-- [ ] `webapp` namespace에 모든 리소스가 생성됨
 - [ ] `blog-pvc` STATUS가 `Bound`
-- [ ] Backend Pod 2개가 **서로 다른 노드**에 배포됨
-- [ ] `backend-service` Endpoints에 2개 IP 등록됨
-- [ ] Gateway External IP가 할당됨
+- [ ] Backend Pod 2개가 서로 다른 노드에서 Running
+- [ ] Gateway에 External IP가 할당됨
 - [ ] 브라우저에서 블로그 페이지 접속 성공
-- [ ] 게시글 작성 후 두 Backend Pod 모두 동일한 `data.json` 보유
+- [ ] 게시글 작성 후 두 Backend Pod가 동일한 데이터를 가짐
 
 ---
 
