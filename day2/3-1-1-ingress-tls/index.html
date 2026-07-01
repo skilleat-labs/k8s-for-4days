@@ -1035,6 +1035,17 @@
   <a href="#openssl" class="md-nav__link">
     <span class="md-ellipsis">
       
+        openssl이란?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openssl_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         openssl 준비
       
     </span>
@@ -1567,6 +1578,17 @@
   <a href="#openssl" class="md-nav__link">
     <span class="md-ellipsis">
       
+        openssl이란?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openssl_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         openssl 준비
       
     </span>
@@ -1772,7 +1794,38 @@
 <hr />
 <h2 id="_2">사전 준비 — 테스트용 인증서 생성<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>실습에서는 자체 서명(Self-signed) 인증서를 사용합니다.</p>
-<h3 id="openssl">openssl 준비<a class="headerlink" href="#openssl" title="Permanent link">&para;</a></h3>
+<h3 id="openssl">openssl이란?<a class="headerlink" href="#openssl" title="Permanent link">&para;</a></h3>
+<p><strong>openssl</strong>은 암호화·인증서·TLS 통신을 다루는 오픈소스 라이브러리이자 CLI 도구입니다.</p>
+<p>주요 역할:</p>
+<table>
+<thead>
+<tr>
+<th>역할</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>인증서 생성</td>
+<td>개인키(<code>.key</code>)와 공개 인증서(<code>.crt</code>) 생성</td>
+</tr>
+<tr>
+<td>인증서 서명</td>
+<td>CSR을 CA가 서명하거나 self-signed로 직접 서명</td>
+</tr>
+<tr>
+<td>인증서 검증</td>
+<td>인증서 유효기간·CN·발급자 확인</td>
+</tr>
+<tr>
+<td>TLS 테스트</td>
+<td>서버와 TLS 핸드셰이크 테스트</td>
+</tr>
+</tbody>
+</table>
+<p>HTTPS가 동작하려면 서버에 <strong>개인키 + 인증서</strong> 한 쌍이 필요합니다. openssl은 이 키 쌍을 만들어주는 도구입니다. 실제 운영에서는 Let's Encrypt 같은 공인 CA가 인증서를 발급하지만, 실습에서는 openssl로 직접 만들어 씁니다.</p>
+<hr />
+<h3 id="openssl_1">openssl 준비<a class="headerlink" href="#openssl_1" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">macOS/Linux</label><label for="__tabbed_1_2">Windows PowerShell</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
