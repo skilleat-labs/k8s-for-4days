@@ -140,4 +140,12 @@
          <loc>https://skilleat-labs.github.io/k8s-for-4days/day4/vbox-k8s-setup/</loc>
          <lastmod>2026-07-01</lastmod>
     </url>
+    <url>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day5/5-1-daemonset/</loc>
+         <lastmod>2026-07-01</lastmod>
+    </url>
+    <url>
+         <loc>https://skilleat-labs.github.io/k8s-for-4days/day5/5-2-statefulset/</loc>
+         <lastmod>2026-07-01</lastmod>
+    </url>
 </urlset>
