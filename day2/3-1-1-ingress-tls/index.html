@@ -2052,7 +2052,7 @@
 <div class="admonition info">
 <p class="admonition-title">308 vs 301</p>
 <p>Nginx Ingress는 기본적으로 <code>308 Permanent Redirect</code>를 사용합니다.
-<code>301</code>로 변경하려면 annotation에 <code>nginx.ingress.kubernetes.io/use-regex: "true"</code>를 추가합니다.</p>
+<code>301 Moved Permanently</code>로 변경하려면 ConfigMap에서 <code>use-forwarded-headers: "true"</code>를 설정하거나, 커스텀 nginx 설정이 필요합니다. 일반적인 실습에서는 308도 브라우저/curl에서 동일하게 동작합니다.</p>
 </div>
 <h3 id="redirect">Redirect 경로 별도 제어<a class="headerlink" href="#redirect" title="Permanent link">&para;</a></h3>
 <p>HTTP는 허용하고 HTTPS도 받으려면 <code>ssl-redirect</code>를 끄면 됩니다:</p>
@@ -2179,12 +2179,26 @@ HTTP 요청이 들어올 때 자동으로 <code>301 Redirect</code>를 반환합
 </table>
 <hr />
 <h2 id="_7">정리 (리소스 삭제)<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">macOS/Linux</label><label for="__tabbed_6_2">Windows PowerShell</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>ingress-nginx-tls.yaml
 </span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>ingress-cilium-tls.yaml
 </span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>echo-app.yaml
 </span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>secret<span class="w"> </span>my-tls-secret
 </span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>rm<span class="w"> </span>tls.crt<span class="w"> </span>tls.key
 </span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="o">-f</span> <span class="n">ingress-nginx-tls</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="o">-f</span> <span class="n">ingress-cilium-tls</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="o">-f</span> <span class="n">echo-app</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">secret</span> <span class="n">my-tls-secret</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="nb">Remove-Item</span> <span class="n">tls</span><span class="p">.</span><span class="n">crt</span><span class="p">,</span> <span class="n">tls</span><span class="p">.</span><span class="n">key</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
 <hr />
 <h2 id="_8">트러블슈팅<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <table>
