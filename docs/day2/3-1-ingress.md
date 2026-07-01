@@ -177,6 +177,55 @@ kubectl describe ingress lab-ingress
 
 ### 4) /etc/hosts 설정
 
+#### hosts 파일이란?
+
+브라우저가 `lab.local` 같은 도메인에 접속하려면 먼저 DNS 서버에 IP 주소를 물어봅니다. **hosts 파일**은 DNS 서버에 묻기 전에 운영체제가 가장 먼저 확인하는 로컬 주소록입니다.
+
+```
+도메인 요청 → hosts 파일 확인 → (없으면) DNS 서버 조회
+```
+
+실습에서 `lab.local`은 실제 존재하는 도메인이 아니므로, hosts 파일에 직접 `127.0.0.1 lab.local`을 등록해서 로컬 클러스터로 연결되도록 설정합니다.
+
+**파일 위치**
+
+| OS | 경로 |
+|----|------|
+| macOS / Linux | `/etc/hosts` |
+| Windows | `C:\Windows\System32\drivers\etc\hosts` |
+
+#### Windows에서 수정하는 방법
+
+!!! warning "관리자 권한 필요"
+    hosts 파일은 시스템 파일이므로 반드시 **관리자 권한**으로 실행해야 합니다.
+
+**방법 1 — PowerShell (관리자 권한)**
+
+시작 메뉴에서 `PowerShell` 검색 → 우클릭 → **관리자 권한으로 실행** 후 아래 명령어 실행:
+
+```powershell
+Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "127.0.0.1 lab.local"
+```
+
+등록 확인:
+
+```powershell
+Get-Content "C:\Windows\System32\drivers\etc\hosts" | Select-String "lab.local"
+```
+
+**방법 2 — 메모장으로 직접 편집**
+
+1. 시작 메뉴에서 `메모장` 검색 → 우클릭 → **관리자 권한으로 실행**
+2. 메모장에서 `파일 → 열기` → 경로에 `C:\Windows\System32\drivers\etc\hosts` 입력
+3. 파일 형식을 **모든 파일 (\*.\*)** 로 변경 후 `hosts` 파일 선택
+4. 맨 아래에 추가:
+    ```
+    127.0.0.1 lab.local
+    ```
+5. 저장 (`Ctrl+S`)
+
+---
+
 === "macOS / Linux"
 
     ```bash
@@ -188,9 +237,6 @@ kubectl describe ingress lab-ingress
     ```powershell
     Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "127.0.0.1 lab.local"
     ```
-
-    > PowerShell을 **관리자 권한으로 실행**해야 합니다.
-    > 시작 메뉴에서 `PowerShell` 검색 → 우클릭 → **관리자 권한으로 실행**
 
 ### 5) 접속 확인
 
