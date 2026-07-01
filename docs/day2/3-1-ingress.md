@@ -485,3 +485,114 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/con
         - port: 80
           targetPort: 5678
     ```
+
+??? note "미션 1 정답 — 서비스 추가 + 경로 라우팅"
+
+    **shop-app.yaml**
+
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: shop-app
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: shop-app
+      template:
+        metadata:
+          labels:
+            app: shop-app
+        spec:
+          containers:
+            - name: shop-app
+              image: hashicorp/http-echo:latest
+              args:
+                - "-text=Hello from Shop service"
+              ports:
+                - containerPort: 5678
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: shop-svc
+    spec:
+      selector:
+        app: shop-app
+      ports:
+        - port: 80
+          targetPort: 5678
+    ```
+
+    **ingress-path.yaml** (`/shop` 경로 추가)
+
+    ```yaml
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: ingress-path
+      annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /
+    spec:
+      ingressClassName: nginx
+      rules:
+        - host: lab.local
+          http:
+            paths:
+              - path: /api
+                pathType: Prefix
+                backend:
+                  service:
+                    name: api-svc
+                    port:
+                      number: 80
+              - path: /web
+                pathType: Prefix
+                backend:
+                  service:
+                    name: web-svc
+                    port:
+                      number: 80
+              - path: /shop
+                pathType: Prefix
+                backend:
+                  service:
+                    name: shop-svc
+                    port:
+                      number: 80
+    ```
+
+??? note "미션 2 정답 — 호스트 기반 라우팅"
+
+    **ingress-host.yaml**
+
+    ```yaml
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: ingress-host
+    spec:
+      ingressClassName: nginx
+      rules:
+        - host: api.lab.local
+          http:
+            paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: api-svc
+                    port:
+                      number: 80
+        - host: web.lab.local
+          http:
+            paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: web-svc
+                    port:
+                      number: 80
+    ```
