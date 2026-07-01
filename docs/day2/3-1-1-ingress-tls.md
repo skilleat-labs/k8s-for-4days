@@ -12,21 +12,76 @@
 
 실습에서는 자체 서명(Self-signed) 인증서를 사용합니다.
 
+### openssl 준비
+
+=== "macOS/Linux"
+    openssl이 기본 내장되어 있습니다. 별도 설치 불필요합니다.
+
+=== "Windows PowerShell"
+    PowerShell에는 openssl이 없으므로 **Git Bash**를 사용합니다.
+
+    **Git 설치 (없는 경우)**
+
+    브라우저에서 `https://git-scm.com/download/win` 접속 → **64-bit Git for Windows Setup** 다운로드 → 설치 (기본 옵션으로 Next 계속)
+
+    또는 winget:
+    ```powershell
+    winget install --id Git.Git
+    ```
+
+    설치 후 시작 메뉴에서 **Git Bash** 실행 — 이후 인증서 생성은 Git Bash에서 진행합니다.
+
+### 인증서 생성
+
 ```bash
-# 개인키 + 인증서 생성 (localhost 용)
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
   -keyout tls.key \
   -out tls.crt \
   -subj "/CN=localhost/O=local"
 ```
 
-TLS Secret으로 등록:
+??? info "명령어 옵션 설명"
+    **`req -x509`**
 
-```bash
-kubectl create secret tls my-tls-secret \
-  --cert=tls.crt \
-  --key=tls.key
-```
+    - `req` — 인증서 서명 요청(CSR)을 처리하는 명령어
+    - `-x509` — CA에 보내지 않고 **자기 자신이 서명**한 인증서를 바로 생성 (Self-signed)
+
+    실제 운영에서는 Let's Encrypt, DigiCert 같은 CA에 CSR을 보내서 서명을 받지만, 실습에서는 `-x509`로 직접 서명합니다.
+
+    **나머지 옵션**
+
+    | 옵션 | 의미 |
+    |------|------|
+    | `-nodes` | 개인키에 암호를 걸지 않음. kubectl이 자동으로 읽을 수 있어야 하므로 필수 |
+    | `-days 365` | 인증서 유효기간 365일 |
+    | `-newkey rsa:2048` | 2048비트 RSA 키를 새로 생성 |
+    | `-keyout tls.key` | 생성된 개인키 저장 파일명 |
+    | `-out tls.crt` | 생성된 인증서 저장 파일명 |
+
+    **`-subj "/CN=localhost/O=local"`**
+
+    | 필드 | 풀네임 | 의미 |
+    |------|--------|------|
+    | `CN` | Common Name | 인증서가 적용될 **도메인 이름**. 브라우저가 접속 주소와 CN을 비교해서 일치 여부 확인 |
+    | `O` | Organization | 조직명. 실습이라 `local`로 지정했지만 실제론 회사명 |
+
+    `CN=localhost`로 설정했기 때문에 `https://localhost`로 접속할 때만 유효합니다.
+    실습에서 `curl -k` 옵션을 쓰는 이유가 바로 Self-signed 인증서의 CN 검증을 무시하기 위해서입니다.
+
+TLS Secret으로 등록 (PowerShell로 돌아와서 실행):
+
+=== "macOS/Linux"
+    ```bash
+    kubectl create secret tls my-tls-secret \
+      --cert=tls.crt \
+      --key=tls.key
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl create secret tls my-tls-secret `
+      --cert=tls.crt `
+      --key=tls.key
+    ```
 
 확인:
 
