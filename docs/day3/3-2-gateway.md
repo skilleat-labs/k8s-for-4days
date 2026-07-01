@@ -180,16 +180,28 @@ kubectl get pods -n envoy-gateway-system
 
 Helm 차트는 Controller와 CRD만 설치합니다. GatewayClass 오브젝트는 별도로 생성해야 합니다.
 
-```bash
-cat <<EOF | kubectl apply -f -
-apiVersion: gateway.networking.k8s.io/v1
-kind: GatewayClass
-metadata:
-  name: eg
-spec:
-  controllerName: gateway.envoyproxy.io/gatewayclass-controller
-EOF
-```
+=== "macOS/Linux"
+    ```bash
+    cat <<EOF | kubectl apply -f -
+    apiVersion: gateway.networking.k8s.io/v1
+    kind: GatewayClass
+    metadata:
+      name: eg
+    spec:
+      controllerName: gateway.envoyproxy.io/gatewayclass-controller
+    EOF
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    @"
+    apiVersion: gateway.networking.k8s.io/v1
+    kind: GatewayClass
+    metadata:
+      name: eg
+    spec:
+      controllerName: gateway.envoyproxy.io/gatewayclass-controller
+    "@ | kubectl apply -f -
+    ```
 
 확인:
 
