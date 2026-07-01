@@ -241,7 +241,7 @@ kubectl get ingress echo-ingress-nginx
 
 !!! info "308 vs 301"
     Nginx Ingress는 기본적으로 `308 Permanent Redirect`를 사용합니다.
-    `301`로 변경하려면 annotation에 `nginx.ingress.kubernetes.io/use-regex: "true"`를 추가합니다.
+    `301 Moved Permanently`로 변경하려면 ConfigMap에서 `use-forwarded-headers: "true"`를 설정하거나, 커스텀 nginx 설정이 필요합니다. 일반적인 실습에서는 308도 브라우저/curl에서 동일하게 동작합니다.
 
 ### Redirect 경로 별도 제어
 
@@ -364,13 +364,22 @@ kubectl get ingress echo-ingress-cilium
 
 ## 정리 (리소스 삭제)
 
-```bash
-kubectl delete -f ingress-nginx-tls.yaml
-kubectl delete -f ingress-cilium-tls.yaml
-kubectl delete -f echo-app.yaml
-kubectl delete secret my-tls-secret
-rm tls.crt tls.key
-```
+=== "macOS/Linux"
+    ```bash
+    kubectl delete -f ingress-nginx-tls.yaml
+    kubectl delete -f ingress-cilium-tls.yaml
+    kubectl delete -f echo-app.yaml
+    kubectl delete secret my-tls-secret
+    rm tls.crt tls.key
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl delete -f ingress-nginx-tls.yaml
+    kubectl delete -f ingress-cilium-tls.yaml
+    kubectl delete -f echo-app.yaml
+    kubectl delete secret my-tls-secret
+    Remove-Item tls.crt, tls.key
+    ```
 
 ---
 
