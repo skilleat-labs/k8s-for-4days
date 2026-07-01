@@ -10,13 +10,26 @@
 
 ## 1) StorageClass 확인
 
-로컬 클러스터에서 기본 제공되는 StorageClass를 확인합니다.
+클러스터에서 사용 가능한 StorageClass를 확인합니다.
 
 ```bash
 kubectl get storageclass
 ```
 
 환경에 따라 출력이 다릅니다.
+
+=== "AKS"
+
+    ```
+    NAME                    PROVISIONER          RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+    azurefile               file.csi.azure.com   Delete          Immediate              true                   Xd
+    azurefile-csi           file.csi.azure.com   Delete          Immediate              true                   Xd
+    azurefile-csi-premium   file.csi.azure.com   Delete          Immediate              true                   Xd
+    default (default)       disk.csi.azure.com   Delete          WaitForFirstConsumer   true                   Xd
+    managed                 disk.csi.azure.com   Delete          WaitForFirstConsumer   true                   Xd
+    managed-csi             disk.csi.azure.com   Delete          WaitForFirstConsumer   true                   Xd
+    managed-csi-premium     disk.csi.azure.com   Delete          WaitForFirstConsumer   true                   Xd
+    ```
 
 === "Docker Desktop"
 
@@ -33,6 +46,13 @@ kubectl get storageclass
     ```
 
 기본 StorageClass(`(default)` 표시)가 있으면 동적 프로비저닝을 사용할 수 있습니다.
+
+!!! info "AKS StorageClass 종류"
+    | StorageClass | 백엔드 | 특징 |
+    |---|---|---|
+    | `managed-csi` | Azure Disk (Standard SSD) | 단일 노드 RWO, DB에 적합 |
+    | `managed-csi-premium` | Azure Disk (Premium SSD) | 고성능, 운영 DB용 |
+    | `azurefile-csi` | Azure Files (SMB) | 여러 노드 RWX 지원, 공유 파일용 |
 
 ---
 
@@ -109,9 +129,9 @@ local-pvc   Bound    local-pv   1Gi        RWO            manual
 
 ---
 
-## 3) 방법 B — 동적 프로비저닝 (StorageClass 자동 PV 생성)
+## 3) 방법 B — 동적 프로비저닝 (Azure Disk 자동 생성)
 
-기본 StorageClass가 있는 경우 PV 없이 PVC만 생성합니다.
+AKS에서는 PVC만 선언하면 Azure Disk가 자동으로 생성되고 PV로 연결됩니다. PV를 수동으로 만들 필요가 없습니다.
 
 `pvc-dynamic.yaml` 파일을 만듭니다.
 
@@ -123,22 +143,33 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: managed-csi    # Azure Disk (Standard SSD)
   resources:
     requests:
-      storage: 500Mi
-  # storageClassName 생략 시 기본 StorageClass 사용
+      storage: 5Gi
 ```
 
 ```bash
 kubectl apply -f pvc-dynamic.yaml
 kubectl get pvc dynamic-pvc
-kubectl get pv    # PV가 자동 생성됨
+kubectl get pv    # PV(Azure Disk)가 자동 생성됨
 ```
 
-!!! warning "Rancher Desktop — PVC가 Pending 상태로 머무는 경우"
-    `local-path` StorageClass는 `WaitForFirstConsumer` 모드입니다.
-    **PVC만 생성한 시점에서는 PV가 만들어지지 않으며, PVC 상태가 `Pending`으로 유지되는 것이 정상입니다.**
-    다음 단계(4)에서 Pod를 배포하면 그때 비로소 PV가 생성되고 PVC가 `Bound`로 바뀝니다.
+PVC가 바인딩되면 아래와 같이 출력됩니다:
+
+```
+NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+dynamic-pvc   Bound    pvc-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx   5Gi        RWO            managed-csi    30s
+```
+
+!!! warning "AKS — PVC가 Pending 상태로 머무는 경우"
+    `managed-csi`는 `WaitForFirstConsumer` 모드입니다.
+    **PVC만 생성한 시점에서는 Azure Disk가 만들어지지 않으며, PVC 상태가 `Pending`으로 유지되는 것이 정상입니다.**
+    다음 단계(4)에서 Pod를 배포하면 Pod가 스케줄된 노드 위치에 맞춰 Azure Disk가 생성되고 PVC가 `Bound`로 바뀝니다.
+
+!!! tip "Azure Portal에서 확인"
+    PVC가 Bound되면 Azure Portal → 리소스 그룹 → **MC_** 로 시작하는 노드 리소스 그룹 안에
+    `kubernetes-dynamic-pvc-xxx` 형태의 **Managed Disk**가 자동 생성된 것을 확인할 수 있습니다.
 
 ---
 
@@ -175,8 +206,8 @@ kubectl logs data-pod
 Hello K8s Storage!
 ```
 
-!!! note "Rancher Desktop — 이 단계에서 dynamic-pvc는 아직 Pending"
-    이 Pod는 `local-pvc`를 사용합니다. `dynamic-pvc`는 해당 PVC를 사용하는 Pod가 실제로 배포되어야 PV가 생성되고 `Bound`로 바뀝니다.
+!!! note "이 단계에서 dynamic-pvc는 아직 Pending"
+    이 Pod는 `local-pvc`를 사용합니다. `dynamic-pvc`는 해당 PVC를 사용하는 Pod가 실제로 배포되어야 Azure Disk가 생성되고 PVC가 `Bound`로 바뀝니다.
 
     `dynamic-pvc`가 `Pending` 상태로 유지되는 것은 **정상**입니다. 다음 6단계에서 MySQL Deployment를 배포하면 그때 `Bound`로 전환됩니다.
 
@@ -237,7 +268,7 @@ Hello K8s Storage!
 
 실제로는 Deployment에서 PVC를 사용합니다.
 
-MySQL은 `/var/lib/mysql`이 **빈 디렉토리**여야 초기화됩니다. 앞 단계에서 데이터가 기록된 `local-pvc`를 재사용하면 실패하므로, 동적 프로비저닝으로 새 PVC를 사용합니다.
+MySQL은 `/var/lib/mysql`이 **빈 디렉토리**여야 초기화됩니다. 앞 단계에서 데이터가 기록된 `local-pvc`를 재사용하면 실패하므로, 3단계에서 생성한 `dynamic-pvc`(Azure Disk, 빈 상태)를 사용합니다.
 
 `deploy-with-pvc.yaml` 파일을 만듭니다.
 
@@ -268,13 +299,17 @@ spec:
       volumes:
         - name: mysql-data
           persistentVolumeClaim:
-            claimName: dynamic-pvc   # 앞 단계에서 생성한 빈 PVC 사용
+            claimName: dynamic-pvc   # 3단계에서 생성한 Azure Disk PVC
 ```
 
 ```bash
 kubectl apply -f deploy-with-pvc.yaml
 kubectl get pods -l app=mysql-storage
+kubectl get pvc dynamic-pvc   # 이 시점에서 Pending → Bound로 전환됨
 ```
+
+Pod가 정상 기동되면 Azure Disk가 해당 노드에 마운트되고 MySQL 데이터가 영속적으로 저장됩니다.
+Pod가 재시작되거나 다른 노드로 이동해도 동일한 Azure Disk가 자동으로 재연결됩니다.
 
 ---
 
