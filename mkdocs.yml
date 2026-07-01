@@ -70,7 +70,6 @@ nav:
       - 5. RBAC 03 — ClusterRole & ClusterRoleBinding: day4/rbac-03-clusterrole.md
       - 6. RBAC 04 — 최소 권한 설계: day4/rbac-04-least-privilege.md
       - 7. RBAC 05 — SA 토큰 관리: day4/rbac-05-sa-token.md
-      - 8. VirtualBox + 쿠버네티스 구축: day4/vbox-k8s-setup.md
 
 markdown_extensions:
   - admonition
