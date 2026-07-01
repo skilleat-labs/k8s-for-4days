@@ -171,6 +171,50 @@ dynamic-pvc   Bound    pvc-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx   5Gi        RWO
     PVC가 Bound되면 Azure Portal → 리소스 그룹 → **MC_** 로 시작하는 노드 리소스 그룹 안에
     `kubernetes-dynamic-pvc-xxx` 형태의 **Managed Disk**가 자동 생성된 것을 확인할 수 있습니다.
 
+### Azure Files PVC (RWX — 여러 Pod가 동시에 마운트)
+
+Azure Disk는 하나의 노드에서만 마운트할 수 있습니다(RWO). 여러 Pod가 동시에 같은 볼륨을 공유해야 한다면 **Azure Files**를 사용합니다.
+
+`pvc-files.yaml` 파일을 만듭니다.
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: files-pvc
+spec:
+  accessModes:
+    - ReadWriteMany          # 여러 노드/Pod에서 동시 마운트 가능
+  storageClassName: azurefile-csi  # Azure Files (SMB)
+  resources:
+    requests:
+      storage: 5Gi
+```
+
+```bash
+kubectl apply -f pvc-files.yaml
+kubectl get pvc files-pvc
+```
+
+Azure Files는 `Immediate` 모드이므로 Pod 없이도 PVC가 즉시 `Bound`로 바뀝니다:
+
+```
+NAME        STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS    AGE
+files-pvc   Bound    pvc-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx   5Gi        RWX            azurefile-csi   10s
+```
+
+!!! info "Azure Disk vs Azure Files 선택 기준"
+    | 항목 | Azure Disk (`managed-csi`) | Azure Files (`azurefile-csi`) |
+    |---|---|---|
+    | 접근 모드 | RWO (단일 노드) | RWX (여러 노드 동시) |
+    | 바인딩 시점 | WaitForFirstConsumer (Pod 배포 후) | Immediate (PVC 생성 즉시) |
+    | 성능 | 고성능 (로컬 디스크 수준) | 상대적으로 낮음 (네트워크 파일시스템) |
+    | 적합한 워크로드 | DB, 단일 인스턴스 앱 | 로그 집계, 공유 설정 파일, 멀티 레플리카 앱 |
+
+!!! tip "Azure Portal에서 확인"
+    PVC가 Bound되면 Azure Portal → 스토리지 계정 안에 **파일 공유(File Share)** 가 자동 생성됩니다.
+    스토리지 계정은 `MC_` 리소스 그룹 안에서 확인할 수 있습니다.
+
 ---
 
 ## 4) PVC를 사용하는 Pod 배포
