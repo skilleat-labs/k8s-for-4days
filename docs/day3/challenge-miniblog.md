@@ -79,6 +79,13 @@ PVC → PV → StorageClass
 | Service 이름 | `frontend-service` |
 | port → targetPort | `80 → 80` |
 
+### Envoy Gateway 설치
+
+GatewayClass를 만들기 전에 Envoy Gateway가 클러스터에 설치되어 있어야 합니다.
+
+!!! tip "설치 방법은 Gateway API 실습 페이지를 참고하세요"
+    [3일차 1번 — Gateway API 실습](3-2-gateway.md) 페이지의 **Envoy Gateway 설치** 섹션을 참고하여 먼저 설치를 완료하세요.
+
 ### GatewayClass
 
 | 항목 | 값 |
