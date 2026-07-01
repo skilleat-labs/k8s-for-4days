@@ -495,3 +495,44 @@ kubectl get pvc files-pvc   # Bound 확인
 
 > `replicas: 2`이므로 Pod 2개가 모두 같은 `files-pvc` (Azure Files)를 동시에 마운트합니다.
 > Azure Disk(`managed-csi`)였다면 RWO 제한으로 두 번째 Pod가 `Pending` 상태에 빠집니다.
+
+---
+
+## AKS 클러스터 삭제 (실습 종료 후)
+
+실습이 완전히 끝나면 AKS 클러스터를 삭제해 Azure 비용이 발생하지 않도록 합니다.
+
+=== "macOS/Linux"
+    ```bash
+    az aks delete \
+      --resource-group k8s-4days-rg \
+      --name k8s-4days-aks \
+      --yes \
+      --no-wait
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    az aks delete `
+      --resource-group k8s-4days-rg `
+      --name k8s-4days-aks `
+      --yes `
+      --no-wait
+    ```
+
+삭제 진행 상태 확인:
+
+```bash
+az aks show --resource-group k8s-4days-rg --name k8s-4days-aks
+```
+
+리소스가 없으면 `ResourceNotFound` 오류가 출력되며 삭제 완료입니다.
+
+!!! info "옵션 설명"
+    | 옵션 | 설명 |
+    |---|---|
+    | `--yes` | 삭제 확인 프롬프트 생략 |
+    | `--no-wait` | 삭제 완료를 기다리지 않고 즉시 반환 (백그라운드 진행) |
+
+!!! warning "노드 리소스 그룹도 자동 삭제됨"
+    AKS를 삭제하면 `MC_` 로 시작하는 노드 리소스 그룹(VM, Disk, NIC, PublicIP 등)도 함께 삭제됩니다.
+    단, PVC의 Reclaim Policy가 `Retain`인 경우 Azure Disk는 수동으로 별도 삭제해야 합니다.
