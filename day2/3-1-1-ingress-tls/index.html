@@ -1793,7 +1793,7 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> </span>-nodes<span class="w"> </span>-days<span class="w"> </span><span class="m">365</span><span class="w"> </span>-newkey<span class="w"> </span>rsa:2048<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-keyout<span class="w"> </span>tls.key<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>-out<span class="w"> </span>tls.crt<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>-subj<span class="w"> </span><span class="s2">&quot;/CN=localhost/O=local&quot;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>-subj<span class="w"> </span><span class="s2">&quot;/CN=lab.local/O=local&quot;</span>
 </span></code></pre></div>
 <details class="info">
 <summary>명령어 옵션 설명</summary>
@@ -1834,7 +1834,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong><code>-subj "/CN=localhost/O=local"</code></strong></p>
+<p><strong><code>-subj "/CN=lab.local/O=local"</code></strong></p>
 <table>
 <thead>
 <tr>
@@ -1856,7 +1856,7 @@
 </tr>
 </tbody>
 </table>
-<p><code>CN=localhost</code>로 설정했기 때문에 <code>https://localhost</code>로 접속할 때만 유효합니다.
+<p><code>CN=lab.local</code>로 설정했기 때문에 <code>https://localhost</code>로 접속할 때만 유효합니다.
 실습에서 <code>curl -k</code> 옵션을 쓰는 이유가 바로 Self-signed 인증서의 CN 검증을 무시하기 위해서입니다.</p>
 </details>
 <p>TLS Secret으로 등록 (PowerShell로 돌아와서 실행):</p>
@@ -1943,10 +1943,10 @@
 </span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span><span class="nt">ingressClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
 </span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span><span class="nt">tls</span><span class="p">:</span>
 </span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab.local</span>
 </span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">      </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-tls-secret</span>
 </span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab.local</span>
 </span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">      </span><span class="nt">http</span><span class="p">:</span>
 </span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">        </span><span class="nt">paths</span><span class="p">:</span>
 </span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
@@ -1965,25 +1965,25 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># HTTPS 접속 (자체 서명 인증서이므로 -k 옵션 사용)</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>curl<span class="w"> </span>-k<span class="w"> </span>https://localhost
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>curl<span class="w"> </span>-k<span class="w"> </span>https://lab.local
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
 </span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># HTTP → HTTPS 리다이렉트 확인</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>curl<span class="w"> </span>-v<span class="w"> </span>http://localhost<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;&lt; HTTP|Location&quot;</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>curl<span class="w"> </span>-v<span class="w"> </span>http://lab.local<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;&lt; HTTP|Location&quot;</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c"># HTTPS 접속 (자체 서명 인증서이므로 -k 옵션 사용)</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">-k</span> <span class="n">https</span><span class="p">://</span><span class="n">localhost</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">-k</span> <span class="n">https</span><span class="p">://</span><span class="n">lab</span><span class="p">.</span><span class="n">local</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c"># HTTP → HTTPS 리다이렉트 확인</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">-v</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span> <span class="n">2</span><span class="p">&gt;&amp;</span><span class="n">1</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">&quot;&lt; HTTP|Location&quot;</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">-v</span> <span class="n">http</span><span class="p">://</span><span class="n">lab</span><span class="p">.</span><span class="n">local</span> <span class="n">2</span><span class="p">&gt;&amp;</span><span class="n">1</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">&quot;&lt; HTTP|Location&quot;</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <p>예상 출력:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>&lt; HTTP/1.1 308 Permanent Redirect
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>&lt; Location: https://localhost/
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>&lt; Location: https://lab.local/
 </span></code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">308 vs 301</p>
@@ -2028,10 +2028,10 @@
 </span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">  </span><span class="nt">ingressClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cilium</span>
 </span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">  </span><span class="nt">tls</span><span class="p">:</span>
 </span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span>
-</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab.local</span>
 </span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">      </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-tls-secret</span>
 </span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
-</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab.local</span>
 </span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">      </span><span class="nt">http</span><span class="p">:</span>
 </span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">        </span><span class="nt">paths</span><span class="p">:</span>
 </span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
@@ -2050,25 +2050,25 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># HTTPS 접속</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>curl<span class="w"> </span>-k<span class="w"> </span>https://localhost
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>curl<span class="w"> </span>-k<span class="w"> </span>https://lab.local
 </span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
 </span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># HTTP → HTTPS 리다이렉트 확인</span>
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>curl<span class="w"> </span>-v<span class="w"> </span>http://localhost<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;&lt; HTTP|Location&quot;</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>curl<span class="w"> </span>-v<span class="w"> </span>http://lab.local<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;&lt; HTTP|Location&quot;</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c"># HTTPS 접속</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">-k</span> <span class="n">https</span><span class="p">://</span><span class="n">localhost</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">-k</span> <span class="n">https</span><span class="p">://</span><span class="n">lab</span><span class="p">.</span><span class="n">local</span>
 </span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
 </span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c"># HTTP → HTTPS 리다이렉트 확인</span>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">-v</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span> <span class="n">2</span><span class="p">&gt;&amp;</span><span class="n">1</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">&quot;&lt; HTTP|Location&quot;</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">-v</span> <span class="n">http</span><span class="p">://</span><span class="n">lab</span><span class="p">.</span><span class="n">local</span> <span class="n">2</span><span class="p">&gt;&amp;</span><span class="n">1</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">&quot;&lt; HTTP|Location&quot;</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <p>예상 출력:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>&lt; HTTP/1.1 301 Moved Permanently
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>&lt; Location: https://localhost/
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>&lt; Location: https://lab.local/
 </span></code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Cilium의 force-https</p>
