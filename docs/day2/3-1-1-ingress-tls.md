@@ -37,7 +37,7 @@
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
   -keyout tls.key \
   -out tls.crt \
-  -subj "/CN=localhost/O=local"
+  -subj "/CN=lab.local/O=local"
 ```
 
 ??? info "명령어 옵션 설명"
@@ -58,14 +58,14 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     | `-keyout tls.key` | 생성된 개인키 저장 파일명 |
     | `-out tls.crt` | 생성된 인증서 저장 파일명 |
 
-    **`-subj "/CN=localhost/O=local"`**
+    **`-subj "/CN=lab.local/O=local"`**
 
     | 필드 | 풀네임 | 의미 |
     |------|--------|------|
     | `CN` | Common Name | 인증서가 적용될 **도메인 이름**. 브라우저가 접속 주소와 CN을 비교해서 일치 여부 확인 |
     | `O` | Organization | 조직명. 실습이라 `local`로 지정했지만 실제론 회사명 |
 
-    `CN=localhost`로 설정했기 때문에 `https://localhost`로 접속할 때만 유효합니다.
+    `CN=lab.local`로 설정했기 때문에 `https://localhost`로 접속할 때만 유효합니다.
     실습에서 `curl -k` 옵션을 쓰는 이유가 바로 Self-signed 인증서의 CN 검증을 무시하기 위해서입니다.
 
 TLS Secret으로 등록 (PowerShell로 돌아와서 실행):
@@ -170,10 +170,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - localhost
+        - lab.local
       secretName: my-tls-secret
   rules:
-    - host: localhost
+    - host: lab.local
       http:
         paths:
           - path: /
@@ -195,25 +195,25 @@ kubectl get ingress echo-ingress-nginx
 === "macOS/Linux"
     ```bash
     # HTTPS 접속 (자체 서명 인증서이므로 -k 옵션 사용)
-    curl -k https://localhost
+    curl -k https://lab.local
 
     # HTTP → HTTPS 리다이렉트 확인
-    curl -v http://localhost 2>&1 | grep -E "< HTTP|Location"
+    curl -v http://lab.local 2>&1 | grep -E "< HTTP|Location"
     ```
 === "Windows PowerShell"
     ```powershell
     # HTTPS 접속 (자체 서명 인증서이므로 -k 옵션 사용)
-    curl.exe -k https://localhost
+    curl.exe -k https://lab.local
 
     # HTTP → HTTPS 리다이렉트 확인
-    curl.exe -v http://localhost 2>&1 | Select-String "< HTTP|Location"
+    curl.exe -v http://lab.local 2>&1 | Select-String "< HTTP|Location"
     ```
 
 예상 출력:
 
 ```
 < HTTP/1.1 308 Permanent Redirect
-< Location: https://localhost/
+< Location: https://lab.local/
 ```
 
 !!! info "308 vs 301"
@@ -275,10 +275,10 @@ spec:
   ingressClassName: cilium
   tls:
     - hosts:
-        - localhost
+        - lab.local
       secretName: my-tls-secret
   rules:
-    - host: localhost
+    - host: lab.local
       http:
         paths:
           - path: /
@@ -300,25 +300,25 @@ kubectl get ingress echo-ingress-cilium
 === "macOS/Linux"
     ```bash
     # HTTPS 접속
-    curl -k https://localhost
+    curl -k https://lab.local
 
     # HTTP → HTTPS 리다이렉트 확인
-    curl -v http://localhost 2>&1 | grep -E "< HTTP|Location"
+    curl -v http://lab.local 2>&1 | grep -E "< HTTP|Location"
     ```
 === "Windows PowerShell"
     ```powershell
     # HTTPS 접속
-    curl.exe -k https://localhost
+    curl.exe -k https://lab.local
 
     # HTTP → HTTPS 리다이렉트 확인
-    curl.exe -v http://localhost 2>&1 | Select-String "< HTTP|Location"
+    curl.exe -v http://lab.local 2>&1 | Select-String "< HTTP|Location"
     ```
 
 예상 출력:
 
 ```
 < HTTP/1.1 301 Moved Permanently
-< Location: https://localhost/
+< Location: https://lab.local/
 ```
 
 !!! info "Cilium의 force-https"
