@@ -120,6 +120,82 @@ containers:
 
 > `http-echo`의 기본 리슨 포트는 `:5678`입니다. `-listen` 옵션은 생략 가능합니다.
 
+??? note "정답 보기 (먼저 직접 작성해보세요!)"
+
+    **api-app.yaml**
+
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: api-app
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: api-app
+      template:
+        metadata:
+          labels:
+            app: api-app
+        spec:
+          containers:
+            - name: api-app
+              image: hashicorp/http-echo:latest
+              args:
+                - "-text=Hello from API service"
+              ports:
+                - containerPort: 5678
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: api-svc
+    spec:
+      selector:
+        app: api-app
+      ports:
+        - port: 80
+          targetPort: 5678
+    ```
+
+    **web-app.yaml**
+
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: web-app
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: web-app
+      template:
+        metadata:
+          labels:
+            app: web-app
+        spec:
+          containers:
+            - name: web-app
+              image: hashicorp/http-echo:latest
+              args:
+                - "-text=Hello from Web service"
+              ports:
+                - containerPort: 5678
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: web-svc
+    spec:
+      selector:
+        app: web-app
+      ports:
+        - port: 80
+          targetPort: 5678
+    ```
+
 작성이 끝나면 아래 명령으로 배포하고 확인합니다.
 
 ```bash
