@@ -312,3 +312,50 @@ kubectl delete pv local-pv
 | 데이터 유실 | PV의 `Reclaim Policy`가 `Delete`이면 PVC 삭제 시 데이터 삭제됨 |
 | MySQL Pod `Error` / `CrashLoopBackOff` | 마운트 경로(`/var/lib/mysql`)에 기존 파일이 있으면 초기화 실패 — 빈 PVC를 새로 생성해서 사용 |
 | Rancher Desktop에서 PVC `Pending` 유지 | `local-path` StorageClass는 `WaitForFirstConsumer` 모드 — Pod를 배포해야 PV가 생성됨 |
+
+---
+
+## AKS 실습 후 리소스 일괄 정리
+
+AKS 환경에서 실습이 끝난 뒤 생성한 모든 리소스를 한 번에 삭제합니다.
+`--wait=false` 옵션을 사용하면 삭제 완료를 기다리지 않고 백그라운드로 진행됩니다.
+
+=== "macOS/Linux"
+    ```bash
+    # 실습 리소스 일괄 삭제 (백그라운드)
+    kubectl delete pod data-pod data-pod-2 --ignore-not-found --wait=false
+    kubectl delete deployment mysql-with-storage --ignore-not-found --wait=false
+    kubectl delete pvc local-pvc dynamic-pvc --ignore-not-found --wait=false
+    kubectl delete pv local-pv --ignore-not-found --wait=false
+
+    # 삭제 진행 상태 확인
+    kubectl get pods,pvc,pv
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    # 실습 리소스 일괄 삭제 (백그라운드)
+    kubectl delete pod data-pod data-pod-2 --ignore-not-found --wait=false
+    kubectl delete deployment mysql-with-storage --ignore-not-found --wait=false
+    kubectl delete pvc local-pvc dynamic-pvc --ignore-not-found --wait=false
+    kubectl delete pv local-pv --ignore-not-found --wait=false
+
+    # 삭제 진행 상태 확인
+    kubectl get pods,pvc,pv
+    ```
+
+!!! info "AKS에서 PVC 삭제 시 Azure Disk도 함께 삭제됨"
+    AKS의 기본 StorageClass(`managed-csi`)는 Reclaim Policy가 `Delete`입니다.
+    PVC를 삭제하면 연결된 **Azure Disk(PV)도 자동으로 삭제**됩니다. 별도로 Azure Portal에서 디스크를 정리할 필요가 없습니다.
+
+    PV가 `Released` 상태로 남아있는 경우 (Retain Policy) 수동 삭제가 필요합니다:
+
+    ```bash
+    kubectl delete pv $(kubectl get pv --no-headers | awk '{print $1}')
+    ```
+
+!!! tip "네임스페이스 전체 삭제로 한 번에 정리"
+    실습을 별도 네임스페이스에서 진행했다면 네임스페이스를 통째로 삭제하는 것이 가장 빠릅니다:
+
+    ```bash
+    kubectl delete namespace <실습-네임스페이스> --wait=false
+    ```
