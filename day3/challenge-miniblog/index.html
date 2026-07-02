@@ -1869,7 +1869,7 @@ Frontend와 Backend로 구성되며, Backend 2개가 <strong>동일한 데이터
 <li>이미지: <code>skilleat/backend:v3-kb5</code></li>
 <li>2개 replicas, <strong>서로 다른 노드</strong>에 분산 배포</li>
 <li><code>/app/data</code> 경로에 <code>blog-pvc</code> 마운트</li>
-<li>Service 이름: <code>backend-service</code> (Frontend 이미지에 하드코딩되어 있으므로 반드시 일치해야 함)</li>
+<li>Service 이름: <code>backend-service</code>, 포트: <code>5000</code> (Frontend 이미지에 하드코딩되어 있으므로 반드시 일치해야 함)</li>
 </ul>
 <hr />
 <h3 id="4-frontend">4 · Frontend<a class="headerlink" href="#4-frontend" title="Permanent link">&para;</a></h3>
