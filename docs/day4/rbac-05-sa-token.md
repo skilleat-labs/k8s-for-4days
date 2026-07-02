@@ -82,7 +82,7 @@ kubectl delete pod pod-default
 
 ```bash
 # curl이 있는 Pod 생성
-kubectl run api-test --image=curlimages/curl:latest --restart=Never -- sleep 3600
+kubectl run api-test --image=curlimages/curl:latest --restart=Never --command -- sleep 3600
 kubectl get pod api-test
 ```
 
