@@ -58,7 +58,7 @@ nav:
       - 2. 볼륨 실습 — emptyDir: day3/3-3-1-emptydir.md
       - 3. 볼륨 실습 — PV/PVC: day3/3-3-2-pv-pvc.md
       - 4. Probe 실습 (Liveness · Readiness · Startup): day3/4-probe-quick.md
-      - 5. Resource Requests & Limits 실습: day3/4-3-resource-requests-limits.md
+      - 5. Resource Requests & Limits 실습: day3/4-3-resource-quick.md
       - 6. Resource QoS 실습: day3/4-4-resource-qos.md
       - 🔧 도전 과제 — 미니 블로그 (Gateway API + PVC): day3/challenge-miniblog.md
   - 4일차:
