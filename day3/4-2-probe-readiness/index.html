@@ -13,10 +13,6 @@
         <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day3/4-2-probe-readiness/">
       
       
-        <link rel="prev" href="../4-1-probe-liveness/">
-      
-      
-        <link rel="next" href="../4-3-resource-requests-limits/">
       
       
         
@@ -27,7 +23,7 @@
     
     
       
-        <title>5. Readiness & Startup Probe 실습 - K8s for 4 Days</title>
+        <title>Readiness & Startup Probe 실습 - K8s for 4 Days</title>
       
     
     
@@ -112,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5. Readiness & Startup Probe 실습
+              Readiness &amp; Startup Probe 실습
             
           </span>
         </div>
@@ -270,12 +266,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../3-2-gateway/" class="md-tabs__link">
           
   
@@ -998,31 +992,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -1040,7 +1031,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1142,14 +1133,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../4-1-probe-liveness/" class="md-nav__link">
+      <a href="../4-probe-quick/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    4. Liveness Probe 실습
+    4. Probe 실습 (Liveness · Readiness · Startup)
   
 
     
@@ -1158,236 +1149,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    5. Readiness & Startup Probe 실습
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    5. Readiness & Startup Probe 실습
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="목차">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      목차
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        이론
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="이론">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#readiness-probe" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Readiness Probe란?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#liveness" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Liveness와의 결정적 차이
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        동작 구조
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#readiness" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        롤링 업데이트와 Readiness의 관계
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        실습
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="실습">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-deployment-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1. Deployment + Service 작성 및 배포
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-readiness-probe" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2. Readiness Probe 추가
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-3-readiness-endpoint" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3. Readiness 실패 → Endpoint 제외 확인
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-4-readiness-endpoint" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 4. Readiness 회복 → Endpoint 자동 복귀
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 5. 롤링 업데이트 보호 체험
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        정리
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        트러블슈팅
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1407,7 +1168,7 @@
   <span class="md-ellipsis">
     
   
-    6. Resource Requests & Limits 실습
+    5. Resource Requests & Limits 실습
   
 
     
@@ -1435,7 +1196,7 @@
   <span class="md-ellipsis">
     
   
-    7. Resource QoS 실습
+    6. Resource QoS 실습
   
 
     
