@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day2/challenge-namespace/">
+        <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day3/4-3-resource-quick/">
       
       
-        <link rel="prev" href="../2-4-namespace/">
+        <link rel="prev" href="../4-probe-quick/">
       
       
-        <link rel="next" href="../2-3-configmap-secret/">
+        <link rel="next" href="../4-4-resource-qos/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>🔧 도전 과제 — Namespace에 앱 배포하고 관찰하기 - K8s for 4 Days</title>
+        <title>5. Resource Requests & Limits 실습 - K8s for 4 Days</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#namespace" class="md-skip">
+        <a href="#resource-requests-limits" class="md-skip">
           콘텐츠로 이동
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              🔧 도전 과제 — Namespace에 앱 배포하고 관찰하기
+              5. Resource Requests & Limits 실습
             
           </span>
         </div>
@@ -250,13 +250,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../2-1-replicaset-deployment/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../day2/2-1-replicaset-deployment/" class="md-tabs__link">
           
   
   
@@ -272,11 +270,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../day3/3-2-gateway/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../3-2-gateway/" class="md-tabs__link">
           
   
   
@@ -685,31 +685,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -727,7 +724,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -745,7 +742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../2-1-replicaset-deployment/" class="md-nav__link">
+      <a href="../../day2/2-1-replicaset-deployment/" class="md-nav__link">
         
   
   
@@ -773,7 +770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../challenge-deployment/" class="md-nav__link">
+      <a href="../../day2/challenge-deployment/" class="md-nav__link">
         
   
   
@@ -801,7 +798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../2-2-service/" class="md-nav__link">
+      <a href="../../day2/2-2-service/" class="md-nav__link">
         
   
   
@@ -829,7 +826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../challenge-debug/" class="md-nav__link">
+      <a href="../../day2/challenge-debug/" class="md-nav__link">
         
   
   
@@ -857,7 +854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../2-4-namespace/" class="md-nav__link">
+      <a href="../../day2/2-4-namespace/" class="md-nav__link">
         
   
   
@@ -865,6 +862,294 @@
     
   
     3. Namespace 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/challenge-namespace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 도전 과제 — Namespace에 앱 배포하고 관찰하기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/2-3-configmap-secret/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. ConfigMap & Secret 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/3-1-ingress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Ingress 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/3-1-1-ingress-tls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Ingress TLS & Redirect 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3일차
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3일차
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-2-gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Gateway API 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-3-1-emptydir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 볼륨 실습 — emptyDir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-3-2-pv-pvc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. 볼륨 실습 — PV/PVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-probe-quick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Probe 실습 (Liveness · Readiness · Startup)
   
 
     
@@ -901,7 +1186,7 @@
   <span class="md-ellipsis">
     
   
-    🔧 도전 과제 — Namespace에 앱 배포하고 관찰하기
+    5. Resource Requests & Limits 실습
   
 
     
@@ -919,7 +1204,7 @@
   <span class="md-ellipsis">
     
   
-    🔧 도전 과제 — Namespace에 앱 배포하고 관찰하기
+    5. Resource Requests & Limits 실습
   
 
     
@@ -945,85 +1230,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#1-requests-pending" class="md-nav__link">
     <span class="md-ellipsis">
       
-        조건
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="조건">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-namespace" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1 · Namespace 생성
+        1) requests — 노드에 자원이 없으면 Pending
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2-deployment-replicas-1" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#2-limits-cpu-throttling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2 · Deployment 배포 (replicas: 1)
+        2) limits CPU — Throttling (느려지지만 죽지 않음)
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#3-service-nodeport" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#3-limits-memory-oomkilled" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3 · Service 생성 (NodePort)
+        3) limits Memory — OOMKilled (즉시 강제 종료)
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-replicas-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4 · 접속 확인 (replicas: 1)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-replicas-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5 · replicas를 2로 변경
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6 · 관찰
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1043,292 +1278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../2-3-configmap-secret/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    4. ConfigMap & Secret 실습
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../3-1-ingress/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    5. Ingress 실습
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../3-1-1-ingress-tls/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    6. Ingress TLS & Redirect 실습
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    3일차
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    3일차
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day3/3-2-gateway/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    1. Gateway API 실습
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day3/3-3-1-emptydir/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    2. 볼륨 실습 — emptyDir
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day3/3-3-2-pv-pvc/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    3. 볼륨 실습 — PV/PVC
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day3/4-probe-quick/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    4. Probe 실습 (Liveness · Readiness · Startup)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day3/4-3-resource-quick/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    5. Resource Requests & Limits 실습
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day3/4-4-resource-qos/" class="md-nav__link">
+      <a href="../4-4-resource-qos/" class="md-nav__link">
         
   
   
@@ -1356,7 +1306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../day3/challenge-miniblog/" class="md-nav__link">
+      <a href="../challenge-miniblog/" class="md-nav__link">
         
   
   
@@ -1668,85 +1618,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#1-requests-pending" class="md-nav__link">
     <span class="md-ellipsis">
       
-        조건
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="조건">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-namespace" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1 · Namespace 생성
+        1) requests — 노드에 자원이 없으면 Pending
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2-deployment-replicas-1" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#2-limits-cpu-throttling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2 · Deployment 배포 (replicas: 1)
+        2) limits CPU — Throttling (느려지지만 죽지 않음)
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#3-service-nodeport" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#3-limits-memory-oomkilled" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3 · Service 생성 (NodePort)
+        3) limits Memory — OOMKilled (즉시 강제 종료)
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-replicas-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4 · 접속 확인 (replicas: 1)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-replicas-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5 · replicas를 2로 변경
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6 · 관찰
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1767,82 +1667,104 @@
 
 
 
-<h1 id="namespace">🔧 도전 과제 — Namespace에 앱 배포하고 관찰하기<a class="headerlink" href="#namespace" title="Permanent link">&para;</a></h1>
-<p><strong>난이도 ★★☆</strong></p>
-<blockquote>
-<p>명령어는 직접 찾아 해결하세요 · 아래 조건만 보고 완료합니다</p>
-</blockquote>
-<hr />
-<h2 id="_1">조건<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="1-namespace">1 · Namespace 생성<a class="headerlink" href="#1-namespace" title="Permanent link">&para;</a></h3>
-<ul>
-<li>이름: <code>guide-ns</code></li>
-</ul>
-<hr />
-<h3 id="2-deployment-replicas-1">2 · Deployment 배포 (replicas: 1)<a class="headerlink" href="#2-deployment-replicas-1" title="Permanent link">&para;</a></h3>
-<p><code>guide-ns</code> 네임스페이스 안에 아래 조건으로 Deployment를 배포하세요.</p>
+<h1 id="resource-requests-limits">Resource Requests &amp; Limits 실습<a class="headerlink" href="#resource-requests-limits" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
-<th>항목</th>
-<th>값</th>
+<th>설정</th>
+<th>누가 사용</th>
+<th>역할</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Deployment 이름</td>
-<td><code>guide</code></td>
+<td><code>requests</code></td>
+<td>스케줄러</td>
+<td>Pod 배치 시 노드 선택 기준</td>
 </tr>
 <tr>
-<td>이미지</td>
-<td><code>docker/getting-started</code></td>
-</tr>
-<tr>
-<td>복제본(replicas)</td>
-<td><strong>1</strong></td>
-</tr>
-<tr>
-<td>컨테이너 포트</td>
-<td><strong>80</strong></td>
-</tr>
-<tr>
-<td>배포 네임스페이스</td>
-<td><code>guide-ns</code></td>
+<td><code>limits</code></td>
+<td>컨테이너 런타임</td>
+<td>실행 중 자원 상한 강제</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h3 id="3-service-nodeport">3 · Service 생성 (NodePort)<a class="headerlink" href="#3-service-nodeport" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>guide-ns</code> 네임스페이스 안에 NodePort 타입으로 Service를 생성하세요.</li>
-<li>NodePort 번호: <strong>30088</strong></li>
-</ul>
+<h2 id="1-requests-pending">1) requests — 노드에 자원이 없으면 Pending<a class="headerlink" href="#1-requests-pending" title="Permanent link">&para;</a></h2>
+<p>감당할 수 없는 requests를 설정해 Pod가 배치되지 못하는 상황을 확인합니다.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># pod-pending.yaml</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pod-pending</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx:1.25</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="nt">requests</span><span class="p">:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">          </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100&quot;</span><span class="w">      </span><span class="c1"># 100 core — 노드가 감당 불가</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100Gi</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-pending.yaml
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>pod-pending
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>pod-pending<span class="w">   </span><span class="c1"># Events: Insufficient cpu 확인</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod-pending
+</span></code></pre></div>
 <hr />
-<h3 id="4-replicas-1">4 · 접속 확인 (replicas: 1)<a class="headerlink" href="#4-replicas-1" title="Permanent link">&para;</a></h3>
-<ul>
-<li>브라우저에서 <code>http://localhost:30088</code> 접속 → getting-started 페이지 확인</li>
-</ul>
+<h2 id="2-limits-cpu-throttling">2) limits CPU — Throttling (느려지지만 죽지 않음)<a class="headerlink" href="#2-limits-cpu-throttling" title="Permanent link">&para;</a></h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># pod-cpu-limit.yaml</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pod-cpu-limit</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">busybox:1.36-musl</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;sh&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;-c&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;while</span><span class="nv"> </span><span class="s">true;</span><span class="nv"> </span><span class="s">do</span><span class="nv"> </span><span class="s">:;</span><span class="nv"> </span><span class="s">done&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="nt">requests</span><span class="p">:</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">          </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100m</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="nt">limits</span><span class="p">:</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">          </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200m</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-cpu-limit.yaml
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>pod-cpu-limit<span class="w">      </span><span class="c1"># Running 유지 — CPU 초과해도 종료 안됨</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>pod-cpu-limit
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod-cpu-limit
+</span></code></pre></div>
 <hr />
-<h3 id="5-replicas-2">5 · replicas를 2로 변경<a class="headerlink" href="#5-replicas-2" title="Permanent link">&para;</a></h3>
+<h2 id="3-limits-memory-oomkilled">3) limits Memory — OOMKilled (즉시 강제 종료)<a class="headerlink" href="#3-limits-memory-oomkilled" title="Permanent link">&para;</a></h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># pod-oom.yaml</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pod-oom</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">busybox:1.36-musl</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">      </span><span class="nt">command</span><span class="p">:</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sh</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-c</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;dd</span><span class="nv"> </span><span class="s">if=/dev/zero</span><span class="nv"> </span><span class="s">of=/dev/shm/waste</span><span class="nv"> </span><span class="s">bs=1M</span><span class="nv"> </span><span class="s">count=50&quot;</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">        </span><span class="nt">requests</span><span class="p">:</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Mi</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">        </span><span class="nt">limits</span><span class="p">:</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20Mi</span><span class="w">     </span><span class="c1"># 20MB 제한, 50MB 시도 → OOMKilled</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-oom.yaml
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>pod-oom<span class="w"> </span>-w<span class="w">         </span><span class="c1"># OOMKilled 확인</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>pod-oom<span class="w">       </span><span class="c1"># Reason: OOMKilled, Exit Code: 137</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod-oom
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">CPU vs Memory limits 초과 동작 차이</p>
 <ul>
-<li>Deployment의 복제본을 <strong>2</strong>로 변경하세요.</li>
-<li>Pod 2개가 모두 <code>Running</code> 상태인지 확인하세요.</li>
-</ul>
-<hr />
-<h3 id="6">6 · 관찰<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>http://localhost:30088</code>에서 브라우저를 <strong>여러 번 새로고침</strong>해보세요.</li>
-<li>무언가 이상한 점을 발견할 수 있습니까?</li>
-<li><code>kubectl</code> 명령어로 두 Pod의 상태를 확인하면서 어떤 일이 벌어지는지 생각해보세요.</li>
-</ul>
-<hr />
-<div class="admonition note">
-<p class="admonition-title">아키텍처 주의사항</p>
-<ul>
-<li>Deployment와 Service는 <strong>같은 Namespace</strong> 안에 있어야 서로 연결됩니다.</li>
-<li>Service의 <code>selector</code>는 Deployment의 Pod <code>labels</code>와 <strong>정확히 일치</strong>해야 합니다.</li>
-<li>NodePort는 클러스터 전체 노드에서 동일한 포트로 열립니다. Rancher Desktop / Docker Desktop 환경에서는 노드 IP 대신 <code>localhost</code>를 사용하세요.</li>
-<li>replicas가 2 이상일 때 Service는 요청을 <strong>여러 Pod에 분산</strong>합니다.</li>
+<li>CPU 초과 → <strong>Throttling</strong> (속도 제한, 종료 없음)</li>
+<li>Memory 초과 → <strong>OOMKilled</strong> (즉시 강제 종료)</li>
 </ul>
 </div>
 

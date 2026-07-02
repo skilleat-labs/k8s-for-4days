@@ -13,10 +13,6 @@
         <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day3/4-3-resource-requests-limits/">
       
       
-        <link rel="prev" href="../4-probe-quick/">
-      
-      
-        <link rel="next" href="../4-4-resource-qos/">
       
       
         
@@ -27,7 +23,7 @@
     
     
       
-        <title>5. Resource Requests & Limits 실습 - K8s for 4 Days</title>
+        <title>Resource Requests & Limits 실습 - K8s for 4 Days</title>
       
     
     
@@ -112,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5. Resource Requests & Limits 실습
+              Resource Requests &amp; Limits 실습
             
           </span>
         </div>
@@ -270,12 +266,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../3-2-gateway/" class="md-tabs__link">
           
   
@@ -998,31 +992,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -1040,7 +1031,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1167,37 +1158,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    5. Resource Requests & Limits 실습
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../4-3-resource-quick/" class="md-nav__link">
         
   
   
@@ -1213,159 +1177,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="목차">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      목차
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        이론
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="이론">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        두 가지 다른 역할
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cpu-memory-limits" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CPU와 Memory — limits 초과 시 동작이 다릅니다
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        실습
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="실습">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-requests" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1. requests — 스케줄러의 배치 기준
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#metrics-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        사전 준비 — metrics-server 활성화
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-cpu-limits-throttling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2. CPU limits → Throttling (느려지지만 죽지 않음)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-3-memory-limits-oomkilled" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3. Memory limits → OOMKilled (즉시 강제 종료)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-4-limits" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 4. limits 없을 때의 위험
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        핵심 정리
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        다음 단계
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
