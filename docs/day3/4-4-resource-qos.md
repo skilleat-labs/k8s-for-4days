@@ -123,6 +123,21 @@ pod-guaranteed   Guaranteed   200m      200m      256Mi     256Mi
     QoS Class가 자동으로 부여된 것 확인.
     requests/limits 관계가 그대로 Class를 결정함을 확인하세요.
 
+`kubectl describe pod`에서도 QoS Class를 확인할 수 있습니다:
+
+=== "macOS/Linux"
+    ```bash
+    kubectl describe pod pod-guaranteed | grep "QoS Class"
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl describe pod pod-guaranteed | Select-String "QoS Class"
+    ```
+
+```
+QoS Class:  Guaranteed
+```
+
 ---
 
 ### Step 2. Eviction 위험도 — 노드 상태로 확인
