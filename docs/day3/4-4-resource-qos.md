@@ -427,9 +427,3 @@ kubectl delete limitrange lab-limitrange
 | resources 없는 Pod 생성 거부 | LimitRange 미설정 → `kubectl apply -f limitrange.yaml` |
 | `max cpu usage per Container is X` | LimitRange max 초과 → requests/limits 값 줄이기 |
 
----
-
-## 다음 단계
-
-[:material-arrow-left: K8s 2 · requests & limits](resource-requests-limits.md){ .md-button }
-[K8s 3 · HPA :material-arrow-right:](hpa.md){ .md-button .md-button--primary }
