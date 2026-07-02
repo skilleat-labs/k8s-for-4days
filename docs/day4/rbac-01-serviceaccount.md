@@ -128,7 +128,7 @@ spec:
   serviceAccountName: my-app-sa   # 사용자 정의 SA 지정
   containers:
     - name: app
-      image: busybox:1.36-musl
+      image: curlimages/curl:latest
       command: ["sleep", "3600"]
 ```
 
