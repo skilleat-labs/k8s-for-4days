@@ -88,17 +88,24 @@ kubectl get pod api-test
 
 Pod 안에서 토큰을 꺼내 API 서버에 직접 요청합니다:
 
-```bash
-kubectl exec api-test -- sh -c '
-  TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-  CACERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-  NAMESPACE=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
+=== "macOS/Linux"
+    ```bash
+    kubectl exec api-test -- sh -c '
+      TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+      CACERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      NAMESPACE=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
+      curl -s --cacert $CACERT \
+        -H "Authorization: Bearer $TOKEN" \
+        https://kubernetes.default.svc/api/v1/namespaces/$NAMESPACE/pods
+    '
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl exec api-test -- sh -c 'TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token); CACERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt; NAMESPACE=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace); curl -s --cacert $CACERT -H "Authorization: Bearer $TOKEN" https://kubernetes.default.svc/api/v1/namespaces/$NAMESPACE/pods'
+    ```
 
-  curl -s --cacert $CACERT \
-    -H "Authorization: Bearer $TOKEN" \
-    https://kubernetes.default.svc/api/v1/namespaces/$NAMESPACE/pods
-'
-```
+    !!! info "PowerShell single quote 사용 이유"
+        PowerShell에서 single quote(`'`)로 감싸면 `$TOKEN` 같은 변수를 PowerShell이 먼저 해석하지 않고 그대로 컨테이너 안의 sh에 전달합니다.
 
 ```bash
 kubectl delete pod api-test
