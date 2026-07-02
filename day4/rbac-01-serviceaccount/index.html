@@ -1995,6 +1995,9 @@ SA를 지정하지 않은 Pod는 이 <code>default</code> SA를 사용합니다.
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>eyJhbGciOiJSUzI1NiIsImtpZCI6Ii...  (JWT 토큰)
 </span></code></pre></div></p>
 <p>토큰을 API Server 호출에 직접 사용해봅니다:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">macOS/Linux</label><label for="__tabbed_2_2">Windows PowerShell</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>pod-custom-sa<span class="w"> </span>--<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="s1">  TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)</span>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="s1">  CACERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt</span>
@@ -2003,6 +2006,13 @@ SA를 지정하지 않은 Pod는 이 <code>default</code> SA를 사용합니다.
 </span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="s1">    https://kubernetes.default.svc/api/v1/namespaces/default/pods</span>
 </span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="s1">&#39;</span>
 </span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">kubectl</span> <span class="n">exec</span> <span class="n">pod-custom-sa</span> <span class="p">--</span> <span class="n">sh</span> <span class="n">-c</span> <span class="s1">&#39;TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token); CACERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt; curl -s --cacert $CACERT -H &quot;Authorization: Bearer $TOKEN&quot; https://kubernetes.default.svc/api/v1/namespaces/default/pods&#39;</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Forbidden 응답이 정상입니다</p>
 <p><code>403 Forbidden</code>은 <strong>인증은 성공</strong>했지만 <strong>권한이 없다</strong>는 뜻입니다.
@@ -2011,8 +2021,8 @@ SA를 지정하지 않은 Pod는 이 <code>default</code> SA를 사용합니다.
 </div>
 <hr />
 <h2 id="_4">정리<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod-default-sa<span class="w"> </span>pod-custom-sa
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>sa<span class="w"> </span>my-app-sa
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod-default-sa<span class="w"> </span>pod-custom-sa
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>sa<span class="w"> </span>my-app-sa
 </span></code></pre></div>
 <hr />
 <h2 id="_5">핵심 정리<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
