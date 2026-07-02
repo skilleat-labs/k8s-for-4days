@@ -76,6 +76,40 @@ kubectl delete pod pod-default
 
 ---
 
+## Step 1-1. 토큰으로 API 서버 직접 호출
+
+토큰이 실제로 API 서버 접근에 사용될 수 있음을 확인합니다.
+
+```bash
+# curl이 있는 Pod 생성
+kubectl run api-test --image=curlimages/curl:latest --restart=Never -- sleep 3600
+kubectl get pod api-test
+```
+
+Pod 안에서 토큰을 꺼내 API 서버에 직접 요청합니다:
+
+```bash
+kubectl exec api-test -- sh -c '
+  TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+  CACERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+  NAMESPACE=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
+
+  curl -s --cacert $CACERT \
+    -H "Authorization: Bearer $TOKEN" \
+    https://kubernetes.default.svc/api/v1/namespaces/$NAMESPACE/pods
+'
+```
+
+```bash
+kubectl delete pod api-test
+```
+
+!!! warning "이것이 보안 위협인 이유"
+    컨테이너가 탈취되면 공격자가 이 토큰으로 `curl` 한 줄로 클러스터 정보를 가져올 수 있습니다.
+    API 접근이 필요 없는 Pod라면 토큰 자동 마운트를 반드시 비활성화해야 합니다.
+
+---
+
 ## Step 2. SA 레벨에서 자동 마운트 비활성화
 
 `sa-no-automount.yaml`:
