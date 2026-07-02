@@ -153,19 +153,43 @@ QoS Class:  Guaranteed
     kubectl describe node | Select-String -Pattern "Allocated resources" -Context 0,10
     ```
 
-```text title="출력 예시"
-Allocated resources:
-  (Total limits may be over 100 percent, i.e., overcommitted.)
-  Resource           Requests    Limits
-  --------           --------    ------
-  cpu                530m (26%)  700m (35%)
-  memory             394Mi (10%) 768Mi (20%)
+AKS 실제 출력 예시 (2 vCPU / 4GB 노드 2개 기준):
+
+```
+Allocated resources:                             ← 노드 1
+  Resource   Requests       Limits
+  cpu        1043m (54%)    18792m (989%)
+  memory     1862Mi (66%)   41472Mi (1486%)
+
+--
+Allocated resources:                             ← 노드 2
+  Resource   Requests       Limits
+  cpu        1425m (75%)    18740m (986%)
+  memory     2466Mi (88%)   29167904Ki (1021%)
 ```
 
-!!! note "Overcommit — 약속 초과"
-    Requests 합계가 노드 총 자원을 넘으면 **Overcommit** 상태입니다.
-    평소엔 문제없지만, 여러 Pod가 동시에 limits까지 치솟으면 노드가 압박받습니다.
-    이때 BestEffort → Burstable 순서로 Eviction이 발생합니다.
+**Requests % — 스케줄러가 실제로 보는 수치**
+
+| | 노드 1 | 노드 2 |
+|---|---|---|
+| CPU | 1043m (54%) | 1425m (75%) |
+| Memory | 1862Mi (66%) | 2466Mi (88%) ⚠️ |
+
+- Requests %가 100%를 넘으면 새 Pod가 **Pending**
+- 노드 2 메모리 **88%** — 새 Pod를 더 띄우면 곧 꽉 찰 수 있어 모니터링 필요
+
+**Limits % — 오버커밋 (989%, 1486%)**
+
+Limits 합계가 100%를 크게 넘어도 정상입니다.
+모든 Pod가 동시에 limits까지 사용하지 않는다는 전제로 K8s가 오버커밋을 허용합니다.
+
+Limits가 극단적으로 높은 이유는 **limits를 설정하지 않은 Pod** 때문입니다.
+limits 미설정 시 노드 전체 용량이 limit으로 잡혀서 수치가 폭발적으로 늘어납니다.
+
+!!! warning "노드 2 메모리 88% — Eviction 위험 신호"
+    Requests 기준으로 88%가 예약된 상태에서 노드 메모리 압박이 오면
+    K8s는 BestEffort → Burstable 순서로 Pod를 퇴출합니다.
+    Guaranteed Pod를 DB처럼 절대 죽으면 안 되는 앱에 설정해야 하는 이유입니다.
 
 현재 Pod들의 실제 메모리 사용량도 확인합니다:
 
