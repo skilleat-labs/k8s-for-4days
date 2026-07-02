@@ -2009,18 +2009,54 @@ requests/limits 관계가 그대로 Class를 결정함을 확인하세요.</p>
 </div>
 </div>
 </div>
-<div class="language-text highlight"><span class="filename">출력 예시</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Allocated resources:
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>  (Total limits may be over 100 percent, i.e., overcommitted.)
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  Resource           Requests    Limits
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>  --------           --------    ------
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>  cpu                530m (26%)  700m (35%)
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>  memory             394Mi (10%) 768Mi (20%)
+<p>AKS 실제 출력 예시 (2 vCPU / 4GB 노드 2개 기준):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Allocated resources:                             ← 노드 1
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>  Resource   Requests       Limits
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  cpu        1043m (54%)    18792m (989%)
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>  memory     1862Mi (66%)   41472Mi (1486%)
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>--
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>Allocated resources:                             ← 노드 2
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>  Resource   Requests       Limits
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>  cpu        1425m (75%)    18740m (986%)
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>  memory     2466Mi (88%)   29167904Ki (1021%)
 </span></code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Overcommit — 약속 초과</p>
-<p>Requests 합계가 노드 총 자원을 넘으면 <strong>Overcommit</strong> 상태입니다.
-평소엔 문제없지만, 여러 Pod가 동시에 limits까지 치솟으면 노드가 압박받습니다.
-이때 BestEffort → Burstable 순서로 Eviction이 발생합니다.</p>
+<p><strong>Requests % — 스케줄러가 실제로 보는 수치</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>노드 1</th>
+<th>노드 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>1043m (54%)</td>
+<td>1425m (75%)</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>1862Mi (66%)</td>
+<td>2466Mi (88%) ⚠️</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Requests %가 100%를 넘으면 새 Pod가 <strong>Pending</strong></li>
+<li>노드 2 메모리 <strong>88%</strong> — 새 Pod를 더 띄우면 곧 꽉 찰 수 있어 모니터링 필요</li>
+</ul>
+<p><strong>Limits % — 오버커밋 (989%, 1486%)</strong></p>
+<p>Limits 합계가 100%를 크게 넘어도 정상입니다.
+모든 Pod가 동시에 limits까지 사용하지 않는다는 전제로 K8s가 오버커밋을 허용합니다.</p>
+<p>Limits가 극단적으로 높은 이유는 <strong>limits를 설정하지 않은 Pod</strong> 때문입니다.
+limits 미설정 시 노드 전체 용량이 limit으로 잡혀서 수치가 폭발적으로 늘어납니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">노드 2 메모리 88% — Eviction 위험 신호</p>
+<p>Requests 기준으로 88%가 예약된 상태에서 노드 메모리 압박이 오면
+K8s는 BestEffort → Burstable 순서로 Pod를 퇴출합니다.
+Guaranteed Pod를 DB처럼 절대 죽으면 안 되는 앱에 설정해야 하는 이유입니다.</p>
 </div>
 <p>현재 Pod들의 실제 메모리 사용량도 확인합니다:</p>
 <div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>top<span class="w"> </span>pod
