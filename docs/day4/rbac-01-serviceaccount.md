@@ -180,15 +180,20 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6Ii...  (JWT 토큰)
 
 토큰을 API Server 호출에 직접 사용해봅니다:
 
-```bash
-kubectl exec pod-custom-sa -- sh -c '
-  TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-  CACERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-  curl -s --cacert $CACERT \
-    -H "Authorization: Bearer $TOKEN" \
-    https://kubernetes.default.svc/api/v1/namespaces/default/pods
-'
-```
+=== "macOS/Linux"
+    ```bash
+    kubectl exec pod-custom-sa -- sh -c '
+      TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+      CACERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      curl -s --cacert $CACERT \
+        -H "Authorization: Bearer $TOKEN" \
+        https://kubernetes.default.svc/api/v1/namespaces/default/pods
+    '
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl exec pod-custom-sa -- sh -c 'TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token); CACERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt; curl -s --cacert $CACERT -H "Authorization: Bearer $TOKEN" https://kubernetes.default.svc/api/v1/namespaces/default/pods'
+    ```
 
 !!! info "Forbidden 응답이 정상입니다"
     `403 Forbidden`은 **인증은 성공**했지만 **권한이 없다**는 뜻입니다.
