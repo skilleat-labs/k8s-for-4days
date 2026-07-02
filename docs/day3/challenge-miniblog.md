@@ -71,3 +71,161 @@ Frontend와 Backend로 구성되며, Backend 2개가 **동일한 데이터 파�
 ```bash
 kubectl delete namespace webapp
 ```
+
+---
+
+## 정답
+
+??? success "정답 보기"
+
+    ### namespace.yaml
+
+    ```yaml
+    apiVersion: v1
+    kind: Namespace
+    metadata:
+      name: webapp
+    ```
+
+    ### backend.yaml
+
+    ```yaml
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: blog-pvc
+      namespace: webapp
+    spec:
+      accessModes:
+        - ReadWriteMany
+      storageClassName: azurefile-csi
+      resources:
+        requests:
+          storage: 1Gi
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: backend
+      namespace: webapp
+    spec:
+      replicas: 2
+      selector:
+        matchLabels:
+          app: backend
+      template:
+        metadata:
+          labels:
+            app: backend
+        spec:
+          containers:
+            - name: backend
+              image: skilleat/backend:v3-kb5
+              ports:
+                - containerPort: 5000
+              volumeMounts:
+                - name: data
+                  mountPath: /app/data
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: blog-pvc
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: backend-service
+      namespace: webapp
+    spec:
+      selector:
+        app: backend
+      ports:
+        - port: 5000
+          targetPort: 5000
+    ```
+
+    ### frontend.yaml
+
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: frontend
+      namespace: webapp
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: frontend
+      template:
+        metadata:
+          labels:
+            app: frontend
+        spec:
+          containers:
+            - name: frontend
+              image: skilleat/frontend:v3-kb5
+              ports:
+                - containerPort: 80
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: frontend-service
+      namespace: webapp
+    spec:
+      selector:
+        app: frontend
+      ports:
+        - port: 80
+          targetPort: 80
+    ```
+
+    ### gateway.yaml
+
+    ```yaml
+    apiVersion: gateway.networking.k8s.io/v1
+    kind: GatewayClass
+    metadata:
+      name: blog-gw-class
+    spec:
+      controllerName: gateway.envoyproxy.io/gatewayclass-controller
+    ---
+    apiVersion: gateway.networking.k8s.io/v1
+    kind: Gateway
+    metadata:
+      name: blog-gw
+      namespace: webapp
+    spec:
+      gatewayClassName: blog-gw-class
+      listeners:
+        - name: http
+          port: 80
+          protocol: HTTP
+    ---
+    apiVersion: gateway.networking.k8s.io/v1
+    kind: HTTPRoute
+    metadata:
+      name: frontend-route
+      namespace: webapp
+    spec:
+      parentRefs:
+        - name: blog-gw
+      rules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /
+          backendRefs:
+            - name: frontend-service
+              port: 80
+    ```
+
+    ### 적용 순서
+
+    ```bash
+    kubectl apply -f namespace.yaml
+    kubectl apply -f backend.yaml
+    kubectl apply -f frontend.yaml
+    kubectl apply -f gateway.yaml
+    ```
