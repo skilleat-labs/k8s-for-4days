@@ -310,5 +310,4 @@ kubectl delete pod liveness-ok liveness-fail liveness-http crashloop-app
 
 ## 다음 단계
 
-[:material-arrow-left: 환경 세팅](environment-setup.md){ .md-button }
-[Probe 2 · Readiness :material-arrow-right:](probe-readiness.md){ .md-button .md-button--primary }
+[Readiness & Startup Probe :material-arrow-right:](4-2-probe-readiness.md){ .md-button .md-button--primary }
