@@ -13,10 +13,6 @@
         <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day4/acr-pull-secret/">
       
       
-        <link rel="prev" href="../../day3/challenge-miniblog/">
-      
-      
-        <link rel="next" href="../node-scheduling/">
       
       
         
@@ -27,7 +23,7 @@
     
     
       
-        <title>1. Private Registry — ACR Pull Secret - K8s for 4 Days</title>
+        <title>Private Registry — ACR 이미지 Pull Secret - K8s for 4 Days</title>
       
     
     
@@ -112,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1. Private Registry — ACR Pull Secret
+              Private Registry — ACR 이미지 Pull Secret
             
           </span>
         </div>
@@ -290,13 +286,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../node-scheduling/" class="md-tabs__link">
           
   
   
@@ -1255,31 +1249,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -1297,7 +1288,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1307,191 +1298,6 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    1. Private Registry — ACR Pull Secret
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    1. Private Registry — ACR Pull Secret
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="목차">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      목차
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        실습 목표
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#secret" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        왜 Secret이 필요한가?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-secret" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        실습 1 — Secret 없이 배포 (실패 확인)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-imagepullsecret" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        실습 2 — imagePullSecret 생성
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-imagepullsecrets-pod" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        실습 3 — imagePullSecrets로 Pod 배포
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-deployment-imagepullsecrets" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        실습 4 — Deployment에 imagePullSecrets 적용
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        정리 (리소스 삭제)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#secret-vs-imagepullsecrets" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Secret vs imagePullSecrets 구조 정리
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        비교 정리
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        트러블슈팅
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
             
               
                 
@@ -1507,7 +1313,7 @@
   <span class="md-ellipsis">
     
   
-    2. 노드 스케줄링
+    1. 노드 스케줄링
   
 
     
@@ -1535,7 +1341,7 @@
   <span class="md-ellipsis">
     
   
-    3. RBAC 01 — ServiceAccount 기초
+    2. RBAC 01 — ServiceAccount 기초
   
 
     
@@ -1563,7 +1369,7 @@
   <span class="md-ellipsis">
     
   
-    4. RBAC 02 — Role & RoleBinding
+    3. RBAC 02 — Role & RoleBinding
   
 
     
@@ -1591,7 +1397,7 @@
   <span class="md-ellipsis">
     
   
-    5. RBAC 03 — ClusterRole & ClusterRoleBinding
+    4. RBAC 03 — ClusterRole & ClusterRoleBinding
   
 
     
@@ -1619,7 +1425,7 @@
   <span class="md-ellipsis">
     
   
-    6. RBAC 04 — 최소 권한 설계
+    5. RBAC 04 — 최소 권한 설계
   
 
     
@@ -1647,7 +1453,7 @@
   <span class="md-ellipsis">
     
   
-    7. RBAC 05 — SA 토큰 관리
+    6. RBAC 05 — SA 토큰 관리
   
 
     
