@@ -62,7 +62,7 @@ nav:
       - 6. Resource QoS 실습: day3/4-4-resource-qos.md
       - 🔧 도전 과제 — 미니 블로그 (Gateway API + PVC): day3/challenge-miniblog.md
   - 4일차:
-      - 1. 노드 스케줄링: day4/node-scheduling.md
+      - 1. 노드 스케줄링: day4/node-scheduling-quick.md
       - 2. RBAC 01 — ServiceAccount 기초: day4/rbac-01-serviceaccount.md
       - 3. RBAC 02 — Role & RoleBinding: day4/rbac-02-role-rolebinding.md
       - 4. RBAC 03 — ClusterRole & ClusterRoleBinding: day4/rbac-03-clusterrole.md
