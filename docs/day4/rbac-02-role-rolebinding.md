@@ -54,27 +54,36 @@ kubectl create serviceaccount pod-reader -n rbac-test
 
 `auth can-i`로 특정 SA가 특정 동작을 할 수 있는지 확인합니다.
 
-```bash
-# pod-reader SA가 pods를 get할 수 있는가?
-kubectl auth can-i get pods \
-  --as=system:serviceaccount:rbac-test:pod-reader \
-  -n rbac-test
-```
+=== "macOS/Linux"
+    ```bash
+    # pod-reader SA가 pods를 get할 수 있는가?
+    kubectl auth can-i get pods \
+      --as=system:serviceaccount:rbac-test:pod-reader \
+      -n rbac-test
+
+    # 여러 동작 한번에 확인
+    kubectl auth can-i list pods \
+      --as=system:serviceaccount:rbac-test:pod-reader \
+      -n rbac-test
+
+    kubectl auth can-i create pods \
+      --as=system:serviceaccount:rbac-test:pod-reader \
+      -n rbac-test
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    # pod-reader SA가 pods를 get할 수 있는가?
+    kubectl auth can-i get pods --as=system:serviceaccount:rbac-test:pod-reader -n rbac-test
+
+    # 여러 동작 한번에 확인
+    kubectl auth can-i list pods --as=system:serviceaccount:rbac-test:pod-reader -n rbac-test
+
+    kubectl auth can-i create pods --as=system:serviceaccount:rbac-test:pod-reader -n rbac-test
+    ```
 
 출력:
 ```
 no
-```
-
-```bash
-# 여러 동작 한번에 확인
-kubectl auth can-i list pods \
-  --as=system:serviceaccount:rbac-test:pod-reader \
-  -n rbac-test
-
-kubectl auth can-i create pods \
-  --as=system:serviceaccount:rbac-test:pod-reader \
-  -n rbac-test
 ```
 
 모두 `no`가 나오는 것을 확인합니다.
@@ -160,27 +169,37 @@ RoleRef:
 
 ## Step 4. 권한 부여 후 재확인
 
-```bash
-kubectl auth can-i get pods \
-  --as=system:serviceaccount:rbac-test:pod-reader \
-  -n rbac-test
-```
+=== "macOS/Linux"
+    ```bash
+    kubectl auth can-i get pods \
+      --as=system:serviceaccount:rbac-test:pod-reader \
+      -n rbac-test
+
+    kubectl auth can-i list pods \
+      --as=system:serviceaccount:rbac-test:pod-reader \
+      -n rbac-test
+    # yes
+
+    kubectl auth can-i delete pods \
+      --as=system:serviceaccount:rbac-test:pod-reader \
+      -n rbac-test
+    # no  ← delete는 Role에 없으므로 여전히 거부
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl auth can-i get pods --as=system:serviceaccount:rbac-test:pod-reader -n rbac-test
+    # yes
+
+    kubectl auth can-i list pods --as=system:serviceaccount:rbac-test:pod-reader -n rbac-test
+    # yes
+
+    kubectl auth can-i delete pods --as=system:serviceaccount:rbac-test:pod-reader -n rbac-test
+    # no  ← delete는 Role에 없으므로 여전히 거부
+    ```
 
 출력:
 ```
 yes
-```
-
-```bash
-kubectl auth can-i list pods \
-  --as=system:serviceaccount:rbac-test:pod-reader \
-  -n rbac-test
-# yes
-
-kubectl auth can-i delete pods \
-  --as=system:serviceaccount:rbac-test:pod-reader \
-  -n rbac-test
-# no  ← delete는 Role에 없으므로 여전히 거부
 ```
 
 ---
@@ -210,15 +229,24 @@ kubectl get pod -n rbac-test
 
 Pod 안에서 직접 API 호출:
 
-```bash
-kubectl exec -n rbac-test pod-rbac-test -- \
-  kubectl get pods -n rbac-test
-# 성공 — pods 조회 허용
+=== "macOS/Linux"
+    ```bash
+    kubectl exec -n rbac-test pod-rbac-test -- \
+      kubectl get pods -n rbac-test
+    # 성공 — pods 조회 허용
 
-kubectl exec -n rbac-test pod-rbac-test -- \
-  kubectl delete pod pod-rbac-test -n rbac-test
-# Error — delete 권한 없음
-```
+    kubectl exec -n rbac-test pod-rbac-test -- \
+      kubectl delete pod pod-rbac-test -n rbac-test
+    # Error — delete 권한 없음
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl exec -n rbac-test pod-rbac-test -- kubectl get pods -n rbac-test
+    # 성공 — pods 조회 허용
+
+    kubectl exec -n rbac-test pod-rbac-test -- kubectl delete pod pod-rbac-test -n rbac-test
+    # Error — delete 권한 없음
+    ```
 
 ---
 
