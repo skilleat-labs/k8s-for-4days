@@ -416,6 +416,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        일차별 상세 내용
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1573,6 +1584,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        일차별 상세 내용
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1592,33 +1614,252 @@
 
 <h1 id="k8s-for-4-days">K8s for 4 Days<a class="headerlink" href="#k8s-for-4-days" title="Permanent link">&para;</a></h1>
 <p>4일 완성 컨테이너 &amp; 쿠버네티스 실습 가이드입니다.</p>
+<hr />
 <h2 id="_1">커리큘럼<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>일차</th>
 <th>주제</th>
+<th>핵심 키워드</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1일차</td>
+<td><strong>1일차</strong></td>
 <td>Docker 기초 · VM vs 컨테이너 · K8s 환경 구축 · Pod 실습</td>
+<td>VM, Docker, 컨테이너 이미지, ACR, kubectl, Pod</td>
 </tr>
 <tr>
-<td>2일차</td>
-<td>(예정)</td>
+<td><strong>2일차</strong></td>
+<td>워크로드 컨트롤러 · 네트워크 · 설정 관리</td>
+<td>ReplicaSet, Deployment, Service, Namespace, ConfigMap, Secret, Ingress</td>
 </tr>
 <tr>
-<td>3일차</td>
-<td>(예정)</td>
+<td><strong>3일차</strong></td>
+<td>트래픽 · 스토리지 · 안정성 · 자원 관리</td>
+<td>Gateway API, emptyDir, PV/PVC, Probe, Requests/Limits, QoS</td>
 </tr>
 <tr>
-<td>4일차</td>
-<td>(예정)</td>
+<td><strong>4일차</strong></td>
+<td>노드 스케줄링 · 보안 (RBAC)</td>
+<td>nodeSelector, Taint/Toleration, ServiceAccount, Role, ClusterRole, SA 토큰</td>
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="_2">일차별 상세 내용<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">1일차</label><label for="__tabbed_1_2">2일차</label><label for="__tabbed_1_3">3일차</label><label for="__tabbed_1_4">4일차</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>실습</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>VM 직접 구축하기</td>
+<td>VirtualBox로 Ubuntu VM 설치 및 초기 설정</td>
+</tr>
+<tr>
+<td>2</td>
+<td>컨테이너 실습</td>
+<td>Docker 설치 · 이미지 pull/run · 포트 바인딩</td>
+</tr>
+<tr>
+<td>3</td>
+<td>스스로 하기 과제</td>
+<td>컨테이너 실습 자체 도전</td>
+</tr>
+<tr>
+<td>4</td>
+<td>레지스트리와 이미지 실습</td>
+<td>Docker Hub / ACR 활용, 이미지 push/pull</td>
+</tr>
+<tr>
+<td>5</td>
+<td>나만의 이미지 만들고 ACR에 올리기</td>
+<td>Dockerfile 작성 → 빌드 → ACR push</td>
+</tr>
+<tr>
+<td>6</td>
+<td>도커 네트워크 실습</td>
+<td>bridge · host · none 네트워크 비교</td>
+</tr>
+<tr>
+<td>7</td>
+<td>실습 환경 설치</td>
+<td>VS Code / Rancher Desktop / Docker Desktop</td>
+</tr>
+<tr>
+<td>8</td>
+<td>kubectl 기본 명령어</td>
+<td>cluster-info, get, describe, logs, exec</td>
+</tr>
+<tr>
+<td>9</td>
+<td>파드 실습</td>
+<td>Pod YAML 작성, 멀티 컨테이너, 라벨/셀렉터</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>실습</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>ReplicaSet &amp; Deployment</td>
+<td>replicas 조정, rolling update, rollback</td>
+</tr>
+<tr>
+<td>🔧</td>
+<td>도전 과제 — Deployment</td>
+<td>Deployment 직접 만들어보기</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Service</td>
+<td>ClusterIP · NodePort · port-forward</td>
+</tr>
+<tr>
+<td>🔧</td>
+<td>디버깅 도전 과제</td>
+<td>의도적으로 망가진 리소스 수정하기</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Namespace</td>
+<td>네임스페이스 분리 · 격리 실습</td>
+</tr>
+<tr>
+<td>🔧</td>
+<td>도전 과제 — Namespace</td>
+<td>네임스페이스에 앱 배포하고 관찰하기</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ConfigMap &amp; Secret</td>
+<td>환경변수 주입 · 볼륨 마운트</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Ingress</td>
+<td>nginx ingress controller, 경로 기반 라우팅</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Ingress TLS &amp; Redirect</td>
+<td>cert-manager, HTTPS 강제 리다이렉트</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>실습</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Gateway API</td>
+<td>GatewayClass · Gateway · HTTPRoute</td>
+</tr>
+<tr>
+<td>2</td>
+<td>볼륨 — emptyDir</td>
+<td>Pod 내 컨테이너 간 파일 공유</td>
+</tr>
+<tr>
+<td>3</td>
+<td>볼륨 — PV/PVC</td>
+<td>정적/동적 프로비저닝, Azure Disk/Files</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Probe 실습</td>
+<td>Liveness · Readiness · Startup</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Resource Requests &amp; Limits</td>
+<td>Pending, CPU throttling, OOMKilled</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Resource QoS</td>
+<td>BestEffort · Burstable · Guaranteed, Eviction</td>
+</tr>
+<tr>
+<td>🔧</td>
+<td>도전 과제 — 미니 블로그</td>
+<td>Gateway API + PVC + 멀티 Deployment</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>실습</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>노드 스케줄링</td>
+<td>nodeSelector, Taint/Toleration, cordon/drain</td>
+</tr>
+<tr>
+<td>2</td>
+<td>RBAC 01 — ServiceAccount</td>
+<td>SA 개념, 토큰 자동 마운트 확인</td>
+</tr>
+<tr>
+<td>3</td>
+<td>RBAC 02 — Role &amp; RoleBinding</td>
+<td>네임스페이스 권한 제어</td>
+</tr>
+<tr>
+<td>4</td>
+<td>RBAC 03 — ClusterRole</td>
+<td>클러스터 전체 범위 권한</td>
+</tr>
+<tr>
+<td>5</td>
+<td>RBAC 04 — 최소 권한 설계</td>
+<td>실무 보안 설계 패턴</td>
+</tr>
+<tr>
+<td>6</td>
+<td>RBAC 05 — SA 토큰 관리</td>
+<td>automount 제어, Projected Volume</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 
 
 
