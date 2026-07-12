@@ -68,6 +68,13 @@ nav:
       - 4. RBAC 03 — ClusterRole & ClusterRoleBinding: day4/rbac-03-clusterrole.md
       - 5. RBAC 04 — 최소 권한 설계: day4/rbac-04-least-privilege.md
       - 6. RBAC 05 — SA 토큰 관리: day4/rbac-05-sa-token.md
+  - 6일차:
+      - 1. NetworkPolicy 01 — 개념과 Deny-All: day6/netpol-01-intro.md
+      - 2. NetworkPolicy 02 — PodSelector: day6/netpol-02-podselector.md
+      - 3. NetworkPolicy 03 — NamespaceSelector: day6/netpol-03-namespaceselector.md
+      - 4. NetworkPolicy 04 — Egress & ipBlock: day6/netpol-04-egress.md
+      - 5. NetworkPolicy 05 — Cilium L7 정책: day6/netpol-05-cilium.md
+      - 6. NetworkPolicy 06 — Cilium mTLS: day6/netpol-06-mtls.md
 
 markdown_extensions:
   - admonition

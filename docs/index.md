@@ -12,6 +12,7 @@
 | **2일차** | 워크로드 컨트롤러 · 네트워크 · 설정 관리 | ReplicaSet, Deployment, Service, Namespace, ConfigMap, Secret, Ingress |
 | **3일차** | 트래픽 · 스토리지 · 안정성 · 자원 관리 | Gateway API, emptyDir, PV/PVC, Probe, Requests/Limits, QoS |
 | **4일차** | 노드 스케줄링 · 보안 (RBAC) | nodeSelector, Taint/Toleration, ServiceAccount, Role, ClusterRole, SA 토큰 |
+| **6일차** | 네트워크 정책 · Cilium mTLS | NetworkPolicy, PodSelector, NamespaceSelector, Egress, ipBlock, CiliumNetworkPolicy, WireGuard, mTLS |
 
 ---
 
@@ -63,3 +64,13 @@
     | 4 | RBAC 03 — ClusterRole | 클러스터 전체 범위 권한 |
     | 5 | RBAC 04 — 최소 권한 설계 | 실무 보안 설계 패턴 |
     | 6 | RBAC 05 — SA 토큰 관리 | automount 제어, Projected Volume |
+
+=== "6일차"
+    | # | 실습 | 내용 |
+    |---|------|------|
+    | 1 | NetworkPolicy 01 — 개념 & Deny-All | NetworkPolicy 기초, 기본 통신 허용 확인, Ingress/Egress Deny-All |
+    | 2 | NetworkPolicy 02 — PodSelector | 라벨로 특정 Pod 허용, matchExpressions, OR/AND 조건 |
+    | 3 | NetworkPolicy 03 — NamespaceSelector | NS 라벨 기반 허용, AND/OR 조합, kubernetes.io/metadata.name |
+    | 4 | NetworkPolicy 04 — Egress & ipBlock | 아웃바운드 제어, CIDR 허용/차단, DNS(53) 예외 |
+    | 5 | NetworkPolicy 05 — Cilium L7 정책 | HTTP 경로/메서드 필터링, toFQDNs, Hubble 관찰 |
+    | 6 | NetworkPolicy 06 — Cilium mTLS | WireGuard 암호화, SPIFFE Identity, authentication.mode: required |
