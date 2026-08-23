@@ -168,7 +168,67 @@ ssh -p 2222 vboxuser@localhost
 !!! tip
     SSH 접속 후에는 터미널에서 복사·붙여넣기가 자유롭게 됩니다. 이후 실습부터는 SSH로 접속해서 진행하세요.
 
-## 9) 호스트 전용 네트워크 설정 (Host-Only)
+## 9) VM 네트워크 구조 이해
+
+VirtualBox에서 VM에 어댑터를 **두 개** 붙이는 이유를 먼저 이해하고 넘어갑니다.
+
+```mermaid
+graph TB
+    subgraph HOST["💻 내 PC (Host)"]
+        direction TB
+        BROWSER["🌐 브라우저\nlocalhost:8080"]
+        TERMINAL["🖥️ 터미널\nssh -p 2222 localhost"]
+        HOST_ETH["물리 NIC\n(인터넷 연결)"]
+        HOST_VNIC["가상 NIC\nvboxnet0\n192.168.56.1"]
+    end
+
+    subgraph VM["🖥️ VM (docker-lab)"]
+        direction TB
+        subgraph NAT_ADAPTER["어댑터 1 — NAT (enp0s3)"]
+            NAT_IP["IP: 10.0.2.15 (자동)\nDHCP"]
+        end
+        subgraph HO_ADAPTER["어댑터 2 — 호스트 전용 (enp0s9)"]
+            HO_IP["IP: 192.168.56.10 (고정)"]
+        end
+        NGINX["Nginx :80"]
+        SSH["SSH :22"]
+    end
+
+    INTERNET(("🌍 인터넷"))
+
+    %% NAT 경로: 포트포워딩
+    BROWSER -- "포트포워딩\n:8080 → :80" --> NGINX
+    TERMINAL -- "포트포워딩\n:2222 → :22" --> SSH
+    NAT_IP -- "NAT 변환" --> HOST_ETH
+    HOST_ETH --> INTERNET
+
+    %% Host-Only 경로: 직접 통신
+    HOST_VNIC <-- "직접 통신\n192.168.56.x 대역" --> HO_IP
+
+    style NAT_ADAPTER fill:#fff3cd,stroke:#ffc107
+    style HO_ADAPTER fill:#d1ecf1,stroke:#17a2b8
+    style HOST fill:#f8f9fa,stroke:#6c757d
+    style VM fill:#f8f9fa,stroke:#6c757d
+```
+
+### 어댑터 역할 요약
+
+| | 어댑터 1 — NAT | 어댑터 2 — 호스트 전용 |
+|---|---|---|
+| **목적** | VM → 인터넷 접속 | Host ↔ VM 직접 통신 |
+| **IP 방식** | DHCP 자동 (10.0.2.x) | 고정 IP (192.168.56.10) |
+| **Host에서 VM 접근** | 포트포워딩 필요 | IP로 바로 접근 가능 |
+| **인터넷 연결** | ✅ 가능 | ❌ 불가 |
+| **쓰는 이유** | `apt install`, Docker pull 등 | SSH, curl 등 실습 편의 |
+
+!!! info "왜 두 개 다 필요한가?"
+    - **NAT만 있으면**: 인터넷은 되지만 Host → VM 접근 시 매번 포트포워딩 규칙을 추가해야 해서 번거롭습니다.
+    - **호스트 전용만 있으면**: `apt install` 같은 인터넷 요청이 전혀 안 됩니다.
+    - **둘 다 사용**: NAT로 인터넷, 호스트 전용으로 고정 IP 접속 — 실습에 가장 편한 구성입니다.
+
+---
+
+## 10) 호스트 전용 네트워크 설정 (Host-Only)
 
 ### VirtualBox 어댑터 추가
 
@@ -243,7 +303,7 @@ ip addr show enp0s9
 
 !!! info "이후 실습에서는 `192.168.56.10` 을 VM 주소로 사용합니다."
 
-## 10) Docker 설치
+## 11) Docker 설치
 
 이제 VM 위에 Docker를 설치합니다. VM 터미널(또는 SSH 접속 후)에서 아래 명령어를 순서대로 실행하세요.
 
