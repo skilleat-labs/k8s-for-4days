@@ -57,17 +57,26 @@ nav:
       - 1. Gateway API 실습: day3/3-2-gateway.md
       - 2. 볼륨 실습 — emptyDir: day3/3-3-1-emptydir.md
       - 3. 볼륨 실습 — PV/PVC: day3/3-3-2-pv-pvc.md
-      - 4. Probe 실습 (Liveness · Readiness · Startup): day3/4-probe-quick.md
-      - 5. Resource Requests & Limits 실습: day3/4-3-resource-quick.md
-      - 6. Resource QoS 실습: day3/4-4-resource-qos.md
+      - 4. Probe 빠른 실습: day3/4-probe-quick.md
+      - 5. Probe 상세 — Liveness: day3/4-1-probe-liveness.md
+      - 6. Probe 상세 — Readiness: day3/4-2-probe-readiness.md
+      - 7. Resource 빠른 실습: day3/4-3-resource-quick.md
+      - 8. Resource Requests & Limits 상세: day3/4-3-resource-requests-limits.md
+      - 9. Resource QoS 실습: day3/4-4-resource-qos.md
       - 🔧 도전 과제 — 미니 블로그 (Gateway API + PVC): day3/challenge-miniblog.md
   - 4일차:
-      - 1. 노드 스케줄링: day4/node-scheduling-quick.md
-      - 2. RBAC 01 — ServiceAccount 기초: day4/rbac-01-serviceaccount.md
-      - 3. RBAC 02 — Role & RoleBinding: day4/rbac-02-role-rolebinding.md
-      - 4. RBAC 03 — ClusterRole & ClusterRoleBinding: day4/rbac-03-clusterrole.md
-      - 5. RBAC 04 — 최소 권한 설계: day4/rbac-04-least-privilege.md
-      - 6. RBAC 05 — SA 토큰 관리: day4/rbac-05-sa-token.md
+      - 1. 노드 스케줄링 빠른 실습: day4/node-scheduling-quick.md
+      - 2. 노드 스케줄링 상세: day4/node-scheduling.md
+      - 3. ACR Pull Secret: day4/acr-pull-secret.md
+      - 4. VirtualBox K8s 클러스터 구축: day4/vbox-k8s-setup.md
+      - 5. RBAC 01 — ServiceAccount 기초: day4/rbac-01-serviceaccount.md
+      - 6. RBAC 02 — Role & RoleBinding: day4/rbac-02-role-rolebinding.md
+      - 7. RBAC 03 — ClusterRole & ClusterRoleBinding: day4/rbac-03-clusterrole.md
+      - 8. RBAC 04 — 최소 권한 설계: day4/rbac-04-least-privilege.md
+      - 9. RBAC 05 — SA 토큰 관리: day4/rbac-05-sa-token.md
+  - 5일차:
+      - 1. DaemonSet 실습: day5/5-1-daemonset.md
+      - 2. StatefulSet 실습: day5/5-2-statefulset.md
   - 6일차:
       - 1. NetworkPolicy 01 — 개념과 Deny-All: day6/netpol-01-intro.md
       - 2. NetworkPolicy 02 — PodSelector: day6/netpol-02-podselector.md
