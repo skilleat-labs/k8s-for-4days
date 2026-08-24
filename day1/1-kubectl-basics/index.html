@@ -727,6 +727,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#8-vs-code-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8) VS Code로 YAML 파일 다루기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8) VS Code로 YAML 파일 다루기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8-1. 권장 확장 설치
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-2-vs-code-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8-2. VS Code에서 YAML 파일 작성 및 적용
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9) kubectl 자동완성 설정
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10) 공식 문서 &amp; 레퍼런스
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -900,6 +961,67 @@
     <span class="md-ellipsis">
       
         7) 실습 — API Server에 직접 요청
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-vs-code-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8) VS Code로 YAML 파일 다루기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8) VS Code로 YAML 파일 다루기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8-1. 권장 확장 설치
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-2-vs-code-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8-2. VS Code에서 YAML 파일 작성 및 적용
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9) kubectl 자동완성 설정
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10) 공식 문서 &amp; 레퍼런스
       
     </span>
   </a>
@@ -1099,6 +1221,157 @@
 </div>
 </div>
 <hr />
+<h2 id="8-vs-code-yaml">8) VS Code로 YAML 파일 다루기<a class="headerlink" href="#8-vs-code-yaml" title="Permanent link">&para;</a></h2>
+<h3 id="8-1">8-1. 권장 확장 설치<a class="headerlink" href="#8-1" title="Permanent link">&para;</a></h3>
+<p>VS Code를 열고 아래 확장을 설치합니다.</p>
+<table>
+<thead>
+<tr>
+<th>확장 이름</th>
+<th>제공</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>YAML</strong></td>
+<td>Red Hat</td>
+<td>YAML 문법 검사 · 스키마 자동완성</td>
+</tr>
+<tr>
+<td><strong>Kubernetes</strong></td>
+<td>Microsoft</td>
+<td>kubectl 명령어 팔레트 · 클러스터 탐색기</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-2-vs-code-yaml">8-2. VS Code에서 YAML 파일 작성 및 적용<a class="headerlink" href="#8-2-vs-code-yaml" title="Permanent link">&para;</a></h3>
+<p>작업 폴더를 VS Code로 열기:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">macOS/Linux</label><label for="__tabbed_2_2">Windows PowerShell</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>mkdir<span class="w"> </span>~/k8s-lab<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/k8s-lab
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>code<span class="w"> </span>.
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">mkdir</span> <span class="p">~/</span><span class="n">k8s-lab</span><span class="p">;</span> <span class="nb">cd </span><span class="p">~/</span><span class="n">k8s-lab</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">code</span> <span class="p">.</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>VS Code 내 터미널(<code>Ctrl+``</code>)에서 YAML 파일 생성:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">macOS/Linux</label><label for="__tabbed_3_2">Windows PowerShell</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>my-pod.yaml<span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="s">apiVersion: v1</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="s">kind: Pod</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="s">metadata:</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="s">  name: my-pod</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="s">spec:</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="s">  containers:</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="s">  - name: nginx</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="s">    image: nginx:alpine</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="s">    ports:</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="s">    - containerPort: 80</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="s">EOF</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="sh">@'</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="sh">apiVersion: v1</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="sh">kind: Pod</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="sh">metadata:</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="sh">  name: my-pod</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="sh">spec:</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="sh">  containers:</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="sh">  - name: nginx</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="sh">    image: nginx:alpine</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="sh">    ports:</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="sh">    - containerPort: 80</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="sh">'@</span> <span class="p">|</span> <span class="nb">Set-Content</span> <span class="n">my-pod</span><span class="p">.</span><span class="n">yaml</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>적용 및 확인:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>my-pod.yaml
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>my-pod
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>my-pod.yaml
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">YAML 자동완성 활용</p>
+<p>VS Code에서 <code>.yaml</code> 파일을 열고 <code>apiVersion:</code> 입력 후 <code>Ctrl+Space</code>를 누르면 스키마 기반 자동완성이 동작합니다.</p>
+</div>
+<hr />
+<h2 id="9-kubectl">9) kubectl 자동완성 설정<a class="headerlink" href="#9-kubectl" title="Permanent link">&para;</a></h2>
+<p>터미널에서 <code>kubectl get po</code> 뒤에 <code>Tab</code>을 누르면 리소스 이름이 자동완성됩니다.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">macOS/Linux</label><label for="__tabbed_4_2">Windows PowerShell</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">source</span><span class="w"> </span>&lt;<span class="o">(</span>kubectl<span class="w"> </span>completion<span class="w"> </span>bash<span class="o">)</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'source &lt;(kubectl completion bash)'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>현재 세션에만 적용:
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">kubectl</span> <span class="n">completion</span> <span class="n">powershell</span> <span class="p">|</span> <span class="nb">Out-String</span> <span class="p">|</span> <span class="nb">Invoke-Expression</span>
+</span></code></pre></div></p>
+<p><strong>영구 적용</strong> (PowerShell 시작 시 자동 로드):
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">File</span> <span class="n">-Force</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">kubectl</span> <span class="n">completion</span> <span class="n">powershell</span> <span class="p">&gt;&gt;</span> <span class="nv">$PROFILE</span>
+</span></code></pre></div></p>
+<div class="admonition info">
+<p class="admonition-title">적용 확인</p>
+<p>새 PowerShell 창을 열고 <code>kubectl get po</code> 입력 후 <code>Tab</code>을 눌러보세요.</p>
+</div>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="10">10) 공식 문서 &amp; 레퍼런스<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>문서</th>
+<th>링크</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kubernetes 공식 문서</td>
+<td><a href="https://kubernetes.io/docs/home/" target="_blank">kubernetes.io/docs</a></td>
+<td>개념·가이드 전체</td>
+</tr>
+<tr>
+<td>kubectl 치트시트</td>
+<td><a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/" target="_blank">kubectl Cheat Sheet</a></td>
+<td>자주 쓰는 명령어 모음</td>
+</tr>
+<tr>
+<td>kubectl 명령어 레퍼런스</td>
+<td><a href="https://kubernetes.io/docs/reference/kubectl/" target="_blank">kubectl Reference</a></td>
+<td>전체 옵션 상세 설명</td>
+</tr>
+<tr>
+<td>API 레퍼런스</td>
+<td><a href="https://kubernetes.io/docs/reference/kubernetes-api/" target="_blank">Kubernetes API</a></td>
+<td>YAML 스펙 전체 필드 확인</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">모르는 YAML 필드가 있을 때</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>kubectl<span class="w"> </span>explain<span class="w"> </span>pod.spec.containers
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>kubectl<span class="w"> </span>explain<span class="w"> </span>deployment.spec.template
+</span></code></pre></div>
+공식 문서 없이도 터미널에서 바로 필드 설명을 확인할 수 있습니다.</p>
+</div>
+<hr />
 <h2 id="_3">정리<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1119,6 +1392,18 @@
 <tr>
 <td>모든 네임스페이스 Pod</td>
 <td><code>kubectl get pods -A</code></td>
+</tr>
+<tr>
+<td>YAML 적용</td>
+<td><code>kubectl apply -f 파일명.yaml</code></td>
+</tr>
+<tr>
+<td>자동완성 (macOS/Linux)</td>
+<td><code>source &lt;(kubectl completion bash)</code></td>
+</tr>
+<tr>
+<td>자동완성 (PowerShell 영구)</td>
+<td><code>kubectl completion powershell &gt;&gt; $PROFILE</code></td>
 </tr>
 </tbody>
 </table>
