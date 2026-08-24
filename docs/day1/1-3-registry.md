@@ -342,8 +342,8 @@ docker pull python:3.12-slim
     ```
 === "Windows PowerShell"
     ```powershell
-    docker image inspect python:3.11-slim | ConvertFrom-Json | Select-Object -ExpandProperty RootFS | Select-Object -ExpandProperty Layers
-    docker image inspect python:3.12-slim | ConvertFrom-Json | Select-Object -ExpandProperty RootFS | Select-Object -ExpandProperty Layers
+    (docker image inspect python:3.11-slim | ConvertFrom-Json)[0].RootFS.Layers
+    (docker image inspect python:3.12-slim | ConvertFrom-Json)[0].RootFS.Layers
     ```
 
 ### 6-3. 같은 이미지로 새 컨테이너 추가 실행
