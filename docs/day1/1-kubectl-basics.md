@@ -155,6 +155,123 @@ kubectl get pods --all-namespaces  # 위와 동일
 
 ---
 
+## 8) VS Code로 YAML 파일 다루기
+
+### 8-1. 권장 확장 설치
+
+VS Code를 열고 아래 확장을 설치합니다.
+
+| 확장 이름 | 제공 | 역할 |
+|-----------|------|------|
+| **YAML** | Red Hat | YAML 문법 검사 · 스키마 자동완성 |
+| **Kubernetes** | Microsoft | kubectl 명령어 팔레트 · 클러스터 탐색기 |
+
+### 8-2. VS Code에서 YAML 파일 작성 및 적용
+
+작업 폴더를 VS Code로 열기:
+
+=== "macOS/Linux"
+    ```bash
+    mkdir ~/k8s-lab && cd ~/k8s-lab
+    code .
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    mkdir ~/k8s-lab; cd ~/k8s-lab
+    code .
+    ```
+
+VS Code 내 터미널(`Ctrl+`` `)에서 YAML 파일 생성:
+
+=== "macOS/Linux"
+    ```bash
+    cat > my-pod.yaml <<'EOF'
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: my-pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+    EOF
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    @'
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: my-pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+    '@ | Set-Content my-pod.yaml
+    ```
+
+적용 및 확인:
+
+```bash
+kubectl apply -f my-pod.yaml
+kubectl get pod my-pod
+kubectl delete -f my-pod.yaml
+```
+
+!!! tip "YAML 자동완성 활용"
+    VS Code에서 `.yaml` 파일을 열고 `apiVersion:` 입력 후 `Ctrl+Space`를 누르면 스키마 기반 자동완성이 동작합니다.
+
+---
+
+## 9) kubectl 자동완성 설정
+
+터미널에서 `kubectl get po` 뒤에 `Tab`을 누르면 리소스 이름이 자동완성됩니다.
+
+=== "macOS/Linux"
+    ```bash
+    source <(kubectl completion bash)
+    echo 'source <(kubectl completion bash)' >> ~/.bashrc
+    source ~/.bashrc
+    ```
+=== "Windows PowerShell"
+    현재 세션에만 적용:
+    ```powershell
+    kubectl completion powershell | Out-String | Invoke-Expression
+    ```
+
+    **영구 적용** (PowerShell 시작 시 자동 로드):
+    ```powershell
+    New-Item -ItemType File -Force -Path $PROFILE
+    kubectl completion powershell >> $PROFILE
+    ```
+
+    !!! info "적용 확인"
+        새 PowerShell 창을 열고 `kubectl get po` 입력 후 `Tab`을 눌러보세요.
+
+---
+
+## 10) 공식 문서 & 레퍼런스
+
+| 문서 | 링크 | 설명 |
+|------|------|------|
+| Kubernetes 공식 문서 | [kubernetes.io/docs](https://kubernetes.io/docs/home/){target=_blank} | 개념·가이드 전체 |
+| kubectl 치트시트 | [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/){target=_blank} | 자주 쓰는 명령어 모음 |
+| kubectl 명령어 레퍼런스 | [kubectl Reference](https://kubernetes.io/docs/reference/kubectl/){target=_blank} | 전체 옵션 상세 설명 |
+| API 레퍼런스 | [Kubernetes API](https://kubernetes.io/docs/reference/kubernetes-api/){target=_blank} | YAML 스펙 전체 필드 확인 |
+
+!!! tip "모르는 YAML 필드가 있을 때"
+    ```bash
+    kubectl explain pod.spec.containers
+    kubectl explain deployment.spec.template
+    ```
+    공식 문서 없이도 터미널에서 바로 필드 설명을 확인할 수 있습니다.
+
+---
+
 ## 정리
 
 | 확인 항목 | 명령어 |
@@ -162,3 +279,6 @@ kubectl get pods --all-namespaces  # 위와 동일
 | 노드 상태 | `kubectl get nodes -o wide` |
 | Control Plane Pod 목록 | `kubectl get pods -n kube-system` |
 | 모든 네임스페이스 Pod | `kubectl get pods -A` |
+| YAML 적용 | `kubectl apply -f 파일명.yaml` |
+| 자동완성 (macOS/Linux) | `source <(kubectl completion bash)` |
+| 자동완성 (PowerShell 영구) | `kubectl completion powershell >> $PROFILE` |
