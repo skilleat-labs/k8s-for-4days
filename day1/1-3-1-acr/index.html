@@ -1462,7 +1462,7 @@
 </span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
 </span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="s">@app.get("/orders")</span>
 </span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="s">def orders():</span>
-</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="s">    return [{"id": 1, "item": "노트북"}, {"id": 2, "item": "마우스"}]</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="s">    return [{"id": 1, "item": "Laptop"}, {"id": 2, "item": "Mouse"}]</span>
 </span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="s">EOF</span>
 </span></code></pre></div>
 <p><code>requirements.txt</code> 생성:</p>
@@ -1477,10 +1477,6 @@
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">mkdir</span> <span class="n">app</span>
 </span></code></pre></div>
 <p><code>app/main.py</code> 생성:</p>
-<div class="admonition warning">
-<p class="admonition-title">반드시 <code>-Encoding UTF8</code> 옵션을 붙여야 합니다</p>
-<p>PowerShell 기본 인코딩(ASCII)으로 저장하면 한글이 깨져서 Python이 모듈을 import하지 못합니다.</p>
-</div>
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="sh">@'</span>
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="sh">from fastapi import FastAPI</span>
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
@@ -1492,8 +1488,8 @@
 </span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
 </span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="sh">@app.get("/orders")</span>
 </span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="sh">def orders():</span>
-</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="sh">    return [{"id": 1, "item": "노트북"}, {"id": 2, "item": "마우스"}]</span>
-</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="sh">'@</span> <span class="p">|</span> <span class="nb">Set-Content</span> <span class="n">app</span><span class="p">/</span><span class="n">main</span><span class="p">.</span><span class="n">py</span> <span class="n">-Encoding</span> <span class="n">UTF8</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="sh">    return [{"id": 1, "item": "Laptop"}, {"id": 2, "item": "Mouse"}]</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="sh">'@</span> <span class="p">|</span> <span class="nb">Set-Content</span> <span class="n">app</span><span class="p">/</span><span class="n">main</span><span class="p">.</span><span class="n">py</span>
 </span></code></pre></div>
 <p><code>requirements.txt</code> 생성:</p>
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="sh">@'</span>
@@ -1561,7 +1557,7 @@
 </div>
 </div>
 <h3 id="2-4">2-4. ⭐ 도전과제<a class="headerlink" href="#2-4" title="Permanent link">&para;</a></h3>
-<p><code>/orders</code>에 <code>{"id": 3, "item": "스피커"}</code> 항목을 추가하고 <code>order-service:v2</code>로 다시 빌드 후 호스트 포트 <strong>8002</strong>로 실행해서 확인하세요.</p>
+<p><code>/orders</code>에 <code>{"id": 3, "item": "Speaker"}</code> 항목을 추가하고 <code>order-service:v2</code>로 다시 빌드 후 호스트 포트 <strong>8002</strong>로 실행해서 확인하세요.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">macOS/Linux</label><label for="__tabbed_9_2">Windows PowerShell</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
