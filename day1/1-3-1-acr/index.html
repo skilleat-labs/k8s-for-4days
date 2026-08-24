@@ -1477,6 +1477,10 @@
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">mkdir</span> <span class="n">app</span>
 </span></code></pre></div>
 <p><code>app/main.py</code> 생성:</p>
+<div class="admonition warning">
+<p class="admonition-title">반드시 <code>-Encoding UTF8</code> 옵션을 붙여야 합니다</p>
+<p>PowerShell 기본 인코딩(ASCII)으로 저장하면 한글이 깨져서 Python이 모듈을 import하지 못합니다.</p>
+</div>
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="sh">@'</span>
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="sh">from fastapi import FastAPI</span>
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
@@ -1489,7 +1493,7 @@
 </span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="sh">@app.get("/orders")</span>
 </span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="sh">def orders():</span>
 </span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="sh">    return [{"id": 1, "item": "노트북"}, {"id": 2, "item": "마우스"}]</span>
-</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="sh">'@</span> <span class="p">|</span> <span class="nb">Set-Content</span> <span class="n">app</span><span class="p">/</span><span class="n">main</span><span class="p">.</span><span class="n">py</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="sh">'@</span> <span class="p">|</span> <span class="nb">Set-Content</span> <span class="n">app</span><span class="p">/</span><span class="n">main</span><span class="p">.</span><span class="n">py</span> <span class="n">-Encoding</span> <span class="n">UTF8</span>
 </span></code></pre></div>
 <p><code>requirements.txt</code> 생성:</p>
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="sh">@'</span>
