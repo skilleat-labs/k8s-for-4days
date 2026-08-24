@@ -26,8 +26,20 @@
 
 !!! warning "Windows 사용자 — 설치 전 확인"
     Windows에서 **Hyper-V**가 활성화되어 있으면 VirtualBox가 정상적으로 실행되지 않을 수 있습니다.
-    설치 전에 PowerShell을 **관리자 권한**으로 열고 아래 명령어를 실행하세요.
+    설치 전에 PowerShell을 **관리자 권한**으로 열고 현재 상태를 먼저 확인하세요.
 
+    **① 현재 상태 확인**
+    ```powershell
+    bcdedit /enum | findstr -i hypervisor
+    ```
+
+    | 출력값 | 의미 |
+    |--------|------|
+    | `hypervisorlaunchtype    Auto` | Hyper-V 활성화 상태 → 아래 ②번 실행 필요 |
+    | `hypervisorlaunchtype    Off` | 이미 꺼져있음 → 그냥 넘어가세요 |
+    | _(아무 출력 없음)_ | Hyper-V 미설치 → 그냥 넘어가세요 |
+
+    **② Hyper-V 비활성화 (①에서 `Auto`로 나온 경우만)**
     ```powershell
     bcdedit /set hypervisorlaunchtype off
     ```
