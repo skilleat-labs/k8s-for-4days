@@ -29,19 +29,10 @@
 
 ### VS Code 터미널에서 kubectl 자동완성 설정
 
+**kubectl 자동완성**이란, 터미널에서 명령어를 입력하다가 `Tab` 키를 누르면 리소스 이름·옵션·서브커맨드가 자동으로 채워지는 기능입니다.
+예를 들어 `kubectl get po`까지 치고 `Tab`을 누르면 실행 중인 Pod 이름이 바로 나타납니다. 긴 이름을 외우거나 직접 타이핑할 필요 없이 빠르게 명령어를 완성할 수 있습니다.
+
 VS Code 내장 터미널(`Ctrl+`` `)을 열고 아래 명령어를 실행합니다.
-
-=== "macOS/Linux (bash)"
-    현재 세션 적용:
-    ```bash
-    source <(kubectl completion bash)
-    ```
-
-    영구 적용:
-    ```bash
-    echo 'source <(kubectl completion bash)' >> ~/.bashrc
-    source ~/.bashrc
-    ```
 
 === "Windows PowerShell"
     현재 세션 적용:
@@ -55,6 +46,18 @@ VS Code 내장 터미널(`Ctrl+`` `)을 열고 아래 명령어를 실행합니�
     kubectl completion powershell >> $PROFILE
     ```
 
+=== "macOS/Linux (bash)"
+    현재 세션 적용:
+    ```bash
+    source <(kubectl completion bash)
+    ```
+
+    영구 적용:
+    ```bash
+    echo 'source <(kubectl completion bash)' >> ~/.bashrc
+    source ~/.bashrc
+    ```
+
 !!! tip "자동완성 확인"
     `kubectl get po` 입력 후 `Tab`을 눌러 Pod 이름이 자동완성되면 성공입니다.
 
@@ -62,14 +65,14 @@ VS Code 내장 터미널(`Ctrl+`` `)을 열고 아래 명령어를 실행합니�
 
 이후 실습에서 YAML 파일을 작성할 때는 VS Code에서 열어 작업합니다.
 
-=== "macOS/Linux"
-    ```bash
-    mkdir ~/k8s-lab && cd ~/k8s-lab
-    code .
-    ```
 === "Windows PowerShell"
     ```powershell
     mkdir ~/k8s-lab; cd ~/k8s-lab
+    code .
+    ```
+=== "macOS/Linux"
+    ```bash
+    mkdir ~/k8s-lab && cd ~/k8s-lab
     code .
     ```
 
