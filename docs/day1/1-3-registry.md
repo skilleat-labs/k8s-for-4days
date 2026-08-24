@@ -22,23 +22,34 @@
 
 ### Azure CLI 설치 (미설치 시)
 
-**Ubuntu/Debian:**
+=== "Windows PowerShell"
+    ```powershell
+    winget install -e --id Microsoft.AzureCLI
+    ```
 
-```bash
-curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-```
+    !!! tip "winget이 없는 경우"
+        [Azure CLI 공식 MSI 설치 파일](https://aka.ms/installazurecliwindows)을 다운로드하여 실행하세요.
 
-**Mac:**
+=== "macOS"
+    ```bash
+    brew install azure-cli
+    ```
 
-```bash
-brew install azure-cli
-```
+=== "Ubuntu/Debian"
+    ```bash
+    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+    ```
 
 ### 설치 확인
 
-```bash
-az version
-```
+=== "Windows PowerShell"
+    ```powershell
+    az version
+    ```
+=== "macOS/Linux"
+    ```bash
+    az version
+    ```
 
 ---
 
