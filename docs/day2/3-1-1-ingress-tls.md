@@ -31,9 +31,6 @@ HTTPS가 동작하려면 서버에 **개인키 + 인증서** 한 쌍이 필요�
 
 ### openssl 준비
 
-=== "macOS/Linux"
-    openssl이 기본 내장되어 있습니다. 별도 설치 불필요합니다.
-
 === "Windows PowerShell"
     PowerShell에는 openssl이 없으므로 **Git Bash**를 사용합니다.
 
@@ -48,19 +45,22 @@ HTTPS가 동작하려면 서버에 **개인키 + 인증서** 한 쌍이 필요�
 
     설치 후 시작 메뉴에서 **Git Bash** 실행 — 이후 인증서 생성은 Git Bash에서 진행합니다.
 
+=== "macOS/Linux"
+    openssl이 기본 내장되어 있습니다. 별도 설치 불필요합니다.
+
 ### 인증서 생성
 
+=== "Windows (Git Bash)"
+    Git Bash는 `/CN=` 앞의 `/`를 Windows 경로로 해석하므로 `//`와 `\`를 사용합니다.
+    ```bash
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "//CN=lab.local\O=local"
+    ```
 === "macOS/Linux"
     ```bash
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
       -keyout tls.key \
       -out tls.crt \
       -subj "/CN=lab.local/O=local"
-    ```
-=== "Windows (Git Bash)"
-    Git Bash는 `/CN=` 앞의 `/`를 Windows 경로로 해석하므로 `//`와 `\`를 사용합니다.
-    ```bash
-    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "//CN=lab.local\O=local"
     ```
 
 ??? info "명령어 옵션 설명"
@@ -93,16 +93,16 @@ HTTPS가 동작하려면 서버에 **개인키 + 인증서** 한 쌍이 필요�
 
 TLS Secret으로 등록 (PowerShell로 돌아와서 실행):
 
-=== "macOS/Linux"
-    ```bash
-    kubectl create secret tls my-tls-secret \
-      --cert=tls.crt \
-      --key=tls.key
-    ```
 === "Windows PowerShell"
     ```powershell
     kubectl create secret tls my-tls-secret `
       --cert=tls.crt `
+      --key=tls.key
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl create secret tls my-tls-secret \
+      --cert=tls.crt \
       --key=tls.key
     ```
 
@@ -215,14 +215,6 @@ kubectl get ingress echo-ingress-nginx
 
 ### 동작 확인
 
-=== "macOS/Linux"
-    ```bash
-    # HTTPS 접속 (자체 서명 인증서이므로 -k 옵션 사용)
-    curl -k https://lab.local
-
-    # HTTP → HTTPS 리다이렉트 확인
-    curl -v http://lab.local 2>&1 | grep -E "< HTTP|Location"
-    ```
 === "Windows PowerShell"
     ```powershell
     # HTTPS 접속 (자체 서명 인증서이므로 -k 옵션 사용)
@@ -230,6 +222,14 @@ kubectl get ingress echo-ingress-nginx
 
     # HTTP → HTTPS 리다이렉트 확인
     curl.exe -v http://lab.local 2>&1 | Select-String "< HTTP|Location"
+    ```
+=== "macOS/Linux"
+    ```bash
+    # HTTPS 접속 (자체 서명 인증서이므로 -k 옵션 사용)
+    curl -k https://lab.local
+
+    # HTTP → HTTPS 리다이렉트 확인
+    curl -v http://lab.local 2>&1 | grep -E "< HTTP|Location"
     ```
 
 예상 출력:
@@ -320,14 +320,6 @@ kubectl get ingress echo-ingress-cilium
 
 ### 동작 확인
 
-=== "macOS/Linux"
-    ```bash
-    # HTTPS 접속
-    curl -k https://lab.local
-
-    # HTTP → HTTPS 리다이렉트 확인
-    curl -v http://lab.local 2>&1 | grep -E "< HTTP|Location"
-    ```
 === "Windows PowerShell"
     ```powershell
     # HTTPS 접속
@@ -335,6 +327,14 @@ kubectl get ingress echo-ingress-cilium
 
     # HTTP → HTTPS 리다이렉트 확인
     curl.exe -v http://lab.local 2>&1 | Select-String "< HTTP|Location"
+    ```
+=== "macOS/Linux"
+    ```bash
+    # HTTPS 접속
+    curl -k https://lab.local
+
+    # HTTP → HTTPS 리다이렉트 확인
+    curl -v http://lab.local 2>&1 | grep -E "< HTTP|Location"
     ```
 
 예상 출력:
@@ -364,14 +364,6 @@ kubectl get ingress echo-ingress-cilium
 
 ## 정리 (리소스 삭제)
 
-=== "macOS/Linux"
-    ```bash
-    kubectl delete -f ingress-nginx-tls.yaml
-    kubectl delete -f ingress-cilium-tls.yaml
-    kubectl delete -f echo-app.yaml
-    kubectl delete secret my-tls-secret
-    rm tls.crt tls.key
-    ```
 === "Windows PowerShell"
     ```powershell
     kubectl delete -f ingress-nginx-tls.yaml
@@ -379,6 +371,14 @@ kubectl get ingress echo-ingress-cilium
     kubectl delete -f echo-app.yaml
     kubectl delete secret my-tls-secret
     Remove-Item tls.crt, tls.key
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl delete -f ingress-nginx-tls.yaml
+    kubectl delete -f ingress-cilium-tls.yaml
+    kubectl delete -f echo-app.yaml
+    kubectl delete secret my-tls-secret
+    rm tls.crt tls.key
     ```
 
 ---

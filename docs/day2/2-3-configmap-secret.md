@@ -110,11 +110,6 @@ kubectl get configmap app-config -o yaml
 
 ### base64 인코딩 이해
 
-=== "macOS/Linux"
-    ```bash
-    echo -n "supersecret123" | base64           # 인코딩: c3VwZXJzZWNyZXQxMjM=
-    echo -n "c3VwZXJzZWNyZXQxMjM=" | base64 -d # 디코딩: supersecret123
-    ```
 === "Windows PowerShell"
     ```powershell
     # 인코딩
@@ -122,6 +117,11 @@ kubectl get configmap app-config -o yaml
 
     # 디코딩
     [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String("c3VwZXJzZWNyZXQxMjM="))
+    ```
+=== "macOS/Linux"
+    ```bash
+    echo -n "supersecret123" | base64           # 인코딩: c3VwZXJzZWNyZXQxMjM=
+    echo -n "c3VwZXJzZWNyZXQxMjM=" | base64 -d # 디코딩: supersecret123
     ```
 
 ### 방법 A — kubectl 명령어 (자동 base64 인코딩)
@@ -167,14 +167,14 @@ stringData:
 
 ### Secret 값 확인
 
-=== "macOS/Linux"
-    ```bash
-    kubectl get secret app-secret -o jsonpath='{.data.DB_PASSWORD}' | base64 -d
-    ```
 === "Windows PowerShell"
     ```powershell
     $encoded = kubectl get secret app-secret -o jsonpath='{.data.DB_PASSWORD}'
     [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($encoded))
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl get secret app-secret -o jsonpath='{.data.DB_PASSWORD}' | base64 -d
     ```
 
 ---
@@ -208,13 +208,13 @@ kubectl apply -f pod-envfrom.yaml
 kubectl logs pod-envfrom
 ```
 
-=== "macOS/Linux"
-    ```bash
-    kubectl exec pod-envfrom -- env | grep -E "DB_|APP_|API_"
-    ```
 === "Windows PowerShell"
     ```powershell
     kubectl exec pod-envfrom -- env | Select-String "DB_|APP_|API_"
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl exec pod-envfrom -- env | grep -E "DB_|APP_|API_"
     ```
 
 !!! warning "환경변수 방식의 보안 한계"
@@ -329,14 +329,14 @@ kubectl edit configmap app-config
 
 ### 환경변수 방식 — Pod 재시작 전까지 반영 안됨
 
-=== "macOS/Linux"
-    ```bash
-    kubectl exec pod-envfrom -- env | grep APP_ENV
-    # APP_ENV=development  (변경 전 값 그대로)
-    ```
 === "Windows PowerShell"
     ```powershell
     kubectl exec pod-envfrom -- env | Select-String "APP_ENV"
+    # APP_ENV=development  (변경 전 값 그대로)
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl exec pod-envfrom -- env | grep APP_ENV
     # APP_ENV=development  (변경 전 값 그대로)
     ```
 
@@ -345,14 +345,14 @@ kubectl delete pod pod-envfrom
 kubectl apply -f pod-envfrom.yaml
 ```
 
-=== "macOS/Linux"
-    ```bash
-    kubectl logs pod-envfrom | grep APP_ENV
-    # APP_ENV=production  (변경 후 값 반영됨)
-    ```
 === "Windows PowerShell"
     ```powershell
     kubectl logs pod-envfrom | Select-String "APP_ENV"
+    # APP_ENV=production  (변경 후 값 반영됨)
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl logs pod-envfrom | grep APP_ENV
     # APP_ENV=production  (변경 후 값 반영됨)
     ```
 

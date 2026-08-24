@@ -23,14 +23,14 @@
 
 **비활성화 확인**
 
-=== "macOS/Linux"
-    ```bash
-    kubectl get pods -n kube-system | grep traefik
-    # 아무것도 출력되지 않으면 정상
-    ```
 === "Windows PowerShell"
     ```powershell
     kubectl get pods -n kube-system | Select-String "traefik"
+    # 아무것도 출력되지 않으면 정상
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl get pods -n kube-system | grep traefik
     # 아무것도 출력되지 않으면 정상
     ```
 
@@ -226,29 +226,19 @@ Get-Content "C:\Windows\System32\drivers\etc\hosts" | Select-String "lab.local"
 
 ---
 
-=== "macOS / Linux"
-
-    ```bash
-    sudo sh -c 'echo "127.0.0.1 lab.local" >> /etc/hosts'
-    ```
-
 === "Windows (PowerShell — 관리자 권한)"
 
     ```powershell
     Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "127.0.0.1 lab.local"
     ```
 
-### 5) 접속 확인
-
 === "macOS / Linux"
 
     ```bash
-    curl http://lab.local/api
-    # Hello from API service
-
-    curl http://lab.local/web
-    # Hello from Web service
+    sudo sh -c 'echo "127.0.0.1 lab.local" >> /etc/hosts'
     ```
+
+### 5) 접속 확인
 
 === "Windows (PowerShell)"
 
@@ -261,18 +251,28 @@ Get-Content "C:\Windows\System32\drivers\etc\hosts" | Select-String "lab.local"
     > PowerShell의 `curl`은 `Invoke-WebRequest`의 별칭입니다.
     > `-UseBasicParsing`을 붙이면 본문만 깔끔하게 출력됩니다.
 
-### 6) Ingress Controller 로그 확인
-
 === "macOS / Linux"
 
     ```bash
-    kubectl logs -n ingress-nginx deployment/ingress-nginx-controller | tail -20
+    curl http://lab.local/api
+    # Hello from API service
+
+    curl http://lab.local/web
+    # Hello from Web service
     ```
+
+### 6) Ingress Controller 로그 확인
 
 === "Windows (PowerShell)"
 
     ```powershell
     kubectl logs -n ingress-nginx deployment/ingress-nginx-controller | Select-Object -Last 20
+    ```
+
+=== "macOS / Linux"
+
+    ```bash
+    kubectl logs -n ingress-nginx deployment/ingress-nginx-controller | tail -20
     ```
 
 접속할 때마다 어떤 경로가 어느 Service로 라우팅됐는지 로그로 확인합니다.
@@ -299,14 +299,14 @@ Get-Content "C:\Windows\System32\drivers\etc\hosts" | Select-String "lab.local"
 
 **성공 조건:**
 
-=== "macOS/Linux"
-    ```bash
-    curl http://lab.local/shop
-    # Hello from Shop service
-    ```
 === "Windows PowerShell"
     ```powershell
     curl.exe http://lab.local/shop
+    # Hello from Shop service
+    ```
+=== "macOS/Linux"
+    ```bash
+    curl http://lab.local/shop
     # Hello from Shop service
     ```
 
@@ -325,13 +325,6 @@ Get-Content "C:\Windows\System32\drivers\etc\hosts" | Select-String "lab.local"
 
 **`/etc/hosts` 등록** (테스트 전에 먼저 추가하세요)
 
-=== "macOS / Linux"
-
-    ```bash
-    sudo sh -c 'echo "127.0.0.1 api.lab.local" >> /etc/hosts'
-    sudo sh -c 'echo "127.0.0.1 web.lab.local" >> /etc/hosts'
-    ```
-
 === "Windows (PowerShell — 관리자 권한)"
 
     ```powershell
@@ -339,22 +332,29 @@ Get-Content "C:\Windows\System32\drivers\etc\hosts" | Select-String "lab.local"
     Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "127.0.0.1 web.lab.local"
     ```
 
+=== "macOS / Linux"
+
+    ```bash
+    sudo sh -c 'echo "127.0.0.1 api.lab.local" >> /etc/hosts'
+    sudo sh -c 'echo "127.0.0.1 web.lab.local" >> /etc/hosts'
+    ```
+
 **성공 조건:**
 
-=== "macOS/Linux"
-    ```bash
-    curl http://api.lab.local
-    # Hello from API service
-
-    curl http://web.lab.local
-    # Hello from Web service
-    ```
 === "Windows PowerShell"
     ```powershell
     curl.exe http://api.lab.local
     # Hello from API service
 
     curl.exe http://web.lab.local
+    # Hello from Web service
+    ```
+=== "macOS/Linux"
+    ```bash
+    curl http://api.lab.local
+    # Hello from API service
+
+    curl http://web.lab.local
     # Hello from Web service
     ```
 
@@ -378,15 +378,6 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/con
 
 실습 중 추가한 도메인을 삭제합니다.
 
-=== "macOS / Linux"
-
-    ```bash
-    sudo sed -i '' '/lab\.local/d' /etc/hosts
-
-    # 확인
-    cat /etc/hosts | grep lab.local
-    ```
-
 === "Windows (PowerShell — 관리자 권한)"
 
     ```powershell
@@ -395,6 +386,15 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/con
 
     # 확인
     Get-Content $hosts | Select-String "lab.local"
+    ```
+
+=== "macOS / Linux"
+
+    ```bash
+    sudo sed -i '' '/lab\.local/d' /etc/hosts
+
+    # 확인
+    cat /etc/hosts | grep lab.local
     ```
 
 ---

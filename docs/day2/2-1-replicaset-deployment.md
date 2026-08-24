@@ -125,13 +125,13 @@ kubectl get pods -w
 kubectl port-forward deployment/rollout-deploy 8080:8080
 ```
 
-=== "macOS/Linux"
-    ```bash
-    kubectl describe deployment rollout-deploy | grep Image
-    ```
 === "Windows PowerShell"
     ```powershell
     kubectl describe deployment rollout-deploy | Select-String "Image"
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl describe deployment rollout-deploy | grep Image
     ```
 
 ---
@@ -144,13 +144,13 @@ kubectl rollout undo deployment/rollout-deploy
 kubectl rollout status deployment/rollout-deploy
 ```
 
-=== "macOS/Linux"
-    ```bash
-    kubectl describe deployment rollout-deploy | grep Image
-    ```
 === "Windows PowerShell"
     ```powershell
     kubectl describe deployment rollout-deploy | Select-String "Image"
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl describe deployment rollout-deploy | grep Image
     ```
 
 ---
