@@ -107,13 +107,13 @@ wsl --set-default-version 2
 
 ### 2) kubeconfig 자동 설정 확인
 
-=== "macOS/Linux"
-    ```bash
-    cat ~/.kube/config
-    ```
 === "Windows PowerShell"
     ```powershell
     Get-Content "$env:USERPROFILE\.kube\config"
+    ```
+=== "macOS/Linux"
+    ```bash
+    cat ~/.kube/config
     ```
 
 → `rancher-desktop` 클러스터 항목이 포함되면 정상
@@ -141,17 +141,17 @@ lima-rancher-desktop   Ready    control-plane,master   2m    v1.29.x
 
 ### kubectl 자동완성 활성화
 
-=== "macOS/Linux"
-    ```bash
-    source <(kubectl completion bash)
-    echo 'source <(kubectl completion bash)' >> ~/.bashrc
-    source ~/.bashrc
-    ```
 === "Windows PowerShell"
     ```powershell
     New-Item -ItemType File -Force -Path $PROFILE
     kubectl completion powershell | Out-String | Invoke-Expression
     kubectl completion powershell >> $PROFILE
+    ```
+=== "macOS/Linux"
+    ```bash
+    source <(kubectl completion bash)
+    echo 'source <(kubectl completion bash)' >> ~/.bashrc
+    source ~/.bashrc
     ```
 
 ### 클러스터 전체 상태 확인

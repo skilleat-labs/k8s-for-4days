@@ -118,23 +118,6 @@ kubectl get pods --all-namespaces  # 위와 동일
 
 ## 7) 실습 — API Server에 직접 요청
 
-=== "macOS/Linux"
-    ```bash
-    kubectl proxy &
-    ```
-
-    새 터미널에서:
-
-    ```bash
-    curl http://localhost:8001/api/v1/pods
-    ```
-
-    프록시 종료:
-
-    ```bash
-    fg
-    # Ctrl+C
-    ```
 === "Windows PowerShell"
     ```powershell
     Start-Job { kubectl proxy }
@@ -151,6 +134,23 @@ kubectl get pods --all-namespaces  # 위와 동일
     ```powershell
     Get-Job | Stop-Job
     Get-Job | Remove-Job
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl proxy &
+    ```
+
+    새 터미널에서:
+
+    ```bash
+    curl http://localhost:8001/api/v1/pods
+    ```
+
+    프록시 종료:
+
+    ```bash
+    fg
+    # Ctrl+C
     ```
 
 ---
@@ -170,34 +170,19 @@ VS Code를 열고 아래 확장을 설치합니다.
 
 작업 폴더를 VS Code로 열기:
 
-=== "macOS/Linux"
-    ```bash
-    mkdir ~/k8s-lab && cd ~/k8s-lab
-    code .
-    ```
 === "Windows PowerShell"
     ```powershell
     mkdir ~/k8s-lab; cd ~/k8s-lab
     code .
     ```
+=== "macOS/Linux"
+    ```bash
+    mkdir ~/k8s-lab && cd ~/k8s-lab
+    code .
+    ```
 
 VS Code 내 터미널(`Ctrl+`` `)에서 YAML 파일 생성:
 
-=== "macOS/Linux"
-    ```bash
-    cat > my-pod.yaml <<'EOF'
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      name: my-pod
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:alpine
-        ports:
-        - containerPort: 80
-    EOF
-    ```
 === "Windows PowerShell"
     ```powershell
     @'
@@ -212,6 +197,21 @@ VS Code 내 터미널(`Ctrl+`` `)에서 YAML 파일 생성:
         ports:
         - containerPort: 80
     '@ | Set-Content my-pod.yaml
+    ```
+=== "macOS/Linux"
+    ```bash
+    cat > my-pod.yaml <<'EOF'
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: my-pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+    EOF
     ```
 
 적용 및 확인:
@@ -231,12 +231,6 @@ kubectl delete -f my-pod.yaml
 
 터미널에서 `kubectl get po` 뒤에 `Tab`을 누르면 리소스 이름이 자동완성됩니다.
 
-=== "macOS/Linux"
-    ```bash
-    source <(kubectl completion bash)
-    echo 'source <(kubectl completion bash)' >> ~/.bashrc
-    source ~/.bashrc
-    ```
 === "Windows PowerShell"
     현재 세션에만 적용:
     ```powershell
@@ -251,6 +245,12 @@ kubectl delete -f my-pod.yaml
 
     !!! info "적용 확인"
         새 PowerShell 창을 열고 `kubectl get po` 입력 후 `Tab`을 눌러보세요.
+=== "macOS/Linux"
+    ```bash
+    source <(kubectl completion bash)
+    echo 'source <(kubectl completion bash)' >> ~/.bashrc
+    source ~/.bashrc
+    ```
 
 ---
 

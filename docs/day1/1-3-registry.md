@@ -184,13 +184,13 @@ docker search redis
 docker run -d --name nginx-web -p 8081:80 skilleatlab.azurecr.io/lab/nginx:latest
 ```
 
-=== "macOS/Linux"
-    ```bash
-    curl -I http://localhost:8081
-    ```
 === "Windows PowerShell"
     ```powershell
     curl.exe -I http://localhost:8081
+    ```
+=== "macOS/Linux"
+    ```bash
+    curl -I http://localhost:8081
     ```
 
 ### 4-2. Apache(httpd) 실행
@@ -199,13 +199,13 @@ docker run -d --name nginx-web -p 8081:80 skilleatlab.azurecr.io/lab/nginx:lates
 docker run -d --name httpd-web -p 8082:80 skilleatlab.azurecr.io/lab/httpd:latest
 ```
 
-=== "macOS/Linux"
-    ```bash
-    curl -I http://localhost:8082
-    ```
 === "Windows PowerShell"
     ```powershell
     curl.exe -I http://localhost:8082
+    ```
+=== "macOS/Linux"
+    ```bash
+    curl -I http://localhost:8082
     ```
 
 ### 4-3. Redis 실행
@@ -214,13 +214,13 @@ docker run -d --name httpd-web -p 8082:80 skilleatlab.azurecr.io/lab/httpd:lates
 docker run -d --name redis-db -p 6379:6379 skilleatlab.azurecr.io/lab/redis:latest
 ```
 
-=== "macOS/Linux"
-    ```bash
-    docker logs redis-db | head
-    ```
 === "Windows PowerShell"
     ```powershell
     docker logs redis-db | Select-Object -First 10
+    ```
+=== "macOS/Linux"
+    ```bash
+    docker logs redis-db | head
     ```
 
 ### 4-4. Alpine 실행
@@ -246,13 +246,13 @@ docker ps -a
 docker run --name exit-now skilleatlab.azurecr.io/lab/alpine:latest echo "bye"
 ```
 
-=== "macOS/Linux"
-    ```bash
-    docker ps -a | grep exit-now
-    ```
 === "Windows PowerShell"
     ```powershell
     docker ps -a | Select-String "exit-now"
+    ```
+=== "macOS/Linux"
+    ```bash
+    docker ps -a | grep exit-now
     ```
 
 ### 5-2. 살아있게 유지하기 (`sleep`)
@@ -261,13 +261,13 @@ docker run --name exit-now skilleatlab.azurecr.io/lab/alpine:latest echo "bye"
 docker run -d --name keep-alive skilleatlab.azurecr.io/lab/alpine:latest sleep 600
 ```
 
-=== "macOS/Linux"
-    ```bash
-    docker ps | grep keep-alive
-    ```
 === "Windows PowerShell"
     ```powershell
     docker ps | Select-String "keep-alive"
+    ```
+=== "macOS/Linux"
+    ```bash
+    docker ps | grep keep-alive
     ```
 
 ### 5-3. 종료/재시작으로 동작 확인
@@ -277,15 +277,15 @@ docker stop keep-alive
 docker start keep-alive
 ```
 
-=== "macOS/Linux"
-    ```bash
-    docker ps -a | grep keep-alive
-    docker ps | grep keep-alive
-    ```
 === "Windows PowerShell"
     ```powershell
     docker ps -a | Select-String "keep-alive"
     docker ps | Select-String "keep-alive"
+    ```
+=== "macOS/Linux"
+    ```bash
+    docker ps -a | grep keep-alive
+    docker ps | grep keep-alive
     ```
 
 ### 5-4. 무한 유지 패턴
@@ -294,13 +294,13 @@ docker start keep-alive
 docker run -d --name keep-forever skilleatlab.azurecr.io/lab/alpine:latest sh -c "while true; do sleep 60; done"
 ```
 
-=== "macOS/Linux"
-    ```bash
-    docker ps | grep keep-forever
-    ```
 === "Windows PowerShell"
     ```powershell
     docker ps | Select-String "keep-forever"
+    ```
+=== "macOS/Linux"
+    ```bash
+    docker ps | grep keep-forever
     ```
 
 ---
@@ -311,13 +311,13 @@ docker run -d --name keep-forever skilleatlab.azurecr.io/lab/alpine:latest sh -c
     Docker Engine v29 이후 또는 Docker Desktop 4.34 이후 신규 설치는 기본 이미지 저장소가 **containerd image store**로 바뀌었습니다.
 
     내 환경 확인:
-    === "macOS/Linux"
-        ```bash
-        docker info | grep "Storage Driver"
-        ```
     === "Windows PowerShell"
         ```powershell
         docker info | Select-String "Storage Driver"
+        ```
+    === "macOS/Linux"
+        ```bash
+        docker info | grep "Storage Driver"
         ```
     - `overlay2` → 이전 방식 (`Already exists` 보임)
     - `overlayfs` → 새 방식 (라인 자체가 사라짐)
@@ -335,15 +335,15 @@ docker pull python:3.11-slim
 docker pull python:3.12-slim
 ```
 
-=== "macOS/Linux"
-    ```bash
-    docker image inspect python:3.11-slim | jq '.[0].RootFS.Layers'
-    docker image inspect python:3.12-slim | jq '.[0].RootFS.Layers'
-    ```
 === "Windows PowerShell"
     ```powershell
     (docker image inspect python:3.11-slim | ConvertFrom-Json)[0].RootFS.Layers
     (docker image inspect python:3.12-slim | ConvertFrom-Json)[0].RootFS.Layers
+    ```
+=== "macOS/Linux"
+    ```bash
+    docker image inspect python:3.11-slim | jq '.[0].RootFS.Layers'
+    docker image inspect python:3.12-slim | jq '.[0].RootFS.Layers'
     ```
 
 ### 6-3. 같은 이미지로 새 컨테이너 추가 실행

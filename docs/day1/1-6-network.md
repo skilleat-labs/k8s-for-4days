@@ -88,16 +88,16 @@ docker exec web1 ping -c 3 <web2_IP>
     sudo systemctl stop nginx
     ```
 
-=== "macOS/Linux"
-    ```bash
-    docker run -d --name host-test --network host nginx:alpine
-    curl http://localhost
-    docker exec host-test ip addr
-    ```
 === "Windows PowerShell"
     ```powershell
     docker run -d --name host-test --network host nginx:alpine
     curl.exe http://localhost
+    docker exec host-test ip addr
+    ```
+=== "macOS/Linux"
+    ```bash
+    docker run -d --name host-test --network host nginx:alpine
+    curl http://localhost
     docker exec host-test ip addr
     ```
 
@@ -134,14 +134,6 @@ docker run -d --name port-test1 -p 8083:80 nginx:alpine
 docker run -d --name port-test2 -p 127.0.0.1:8084:80 nginx:alpine
 ```
 
-=== "macOS/Linux"
-    ```bash
-    curl http://localhost:8083    # 성공
-    curl http://<VM_IP>:8083      # 성공 (외부 접근 가능)
-
-    curl http://localhost:8084    # 성공
-    curl http://<VM_IP>:8084      # 실패 (127.0.0.1만 바인딩)
-    ```
 === "Windows PowerShell"
     ```powershell
     curl.exe http://localhost:8083    # 성공
@@ -149,6 +141,14 @@ docker run -d --name port-test2 -p 127.0.0.1:8084:80 nginx:alpine
 
     curl.exe http://localhost:8084    # 성공
     curl.exe http://<VM_IP>:8084      # 실패 (127.0.0.1만 바인딩)
+    ```
+=== "macOS/Linux"
+    ```bash
+    curl http://localhost:8083    # 성공
+    curl http://<VM_IP>:8083      # 성공 (외부 접근 가능)
+
+    curl http://localhost:8084    # 성공
+    curl http://<VM_IP>:8084      # 실패 (127.0.0.1만 바인딩)
     ```
 
 ### 4-2. -P 옵션 (자동 포트 할당)
@@ -180,13 +180,13 @@ docker run -d --name test-no-p expose-test
 docker port test-no-p         # 아무것도 없음
 ```
 
-=== "macOS/Linux"
-    ```bash
-    curl http://localhost:80      # 실패
-    ```
 === "Windows PowerShell"
     ```powershell
     curl.exe http://localhost:80      # 실패
+    ```
+=== "macOS/Linux"
+    ```bash
+    curl http://localhost:80      # 실패
     ```
 
 ```bash
@@ -196,13 +196,13 @@ docker rm -f test-no-p
 docker run -d --name test-with-p -p 8085:80 expose-test
 ```
 
-=== "macOS/Linux"
-    ```bash
-    curl http://localhost:8085    # 성공
-    ```
 === "Windows PowerShell"
     ```powershell
     curl.exe http://localhost:8085    # 성공
+    ```
+=== "macOS/Linux"
+    ```bash
+    curl http://localhost:8085    # 성공
     ```
 
 ```bash
@@ -293,13 +293,13 @@ docker network ls
 docker network inspect my-network
 ```
 
-=== "macOS/Linux"
-    ```bash
-    docker inspect web | grep -A 20 "NetworkSettings"
-    ```
 === "Windows PowerShell"
     ```powershell
     docker inspect web | Select-String -Pattern "NetworkSettings" -Context 0,20
+    ```
+=== "macOS/Linux"
+    ```bash
+    docker inspect web | grep -A 20 "NetworkSettings"
     ```
 
 ### 7-2. 컨테이너 상태 점검
@@ -334,13 +334,13 @@ docker network connect my-network container-name
 netstat -tulpn | grep :8080
 ```
 
-=== "macOS/Linux"
-    ```bash
-    docker ps | grep 8080
-    ```
 === "Windows PowerShell"
     ```powershell
     docker ps | Select-String "8080"
+    ```
+=== "macOS/Linux"
+    ```bash
+    docker ps | grep 8080
     ```
 
 **문제 3: DNS 해석 실패**
@@ -354,16 +354,16 @@ docker network connect my-network container-name
 
 ## 8) 정리
 
-=== "macOS/Linux"
-    ```bash
-    docker rm -f $(docker ps -aq) 2>/dev/null || true
-    docker network rm my-network isolated-network 2>/dev/null || true
-    docker network ls
-    ```
 === "Windows PowerShell"
     ```powershell
     docker ps -aq | ForEach-Object { docker rm -f $_ }
     docker network rm my-network isolated-network
+    docker network ls
+    ```
+=== "macOS/Linux"
+    ```bash
+    docker rm -f $(docker ps -aq) 2>/dev/null || true
+    docker network rm my-network isolated-network 2>/dev/null || true
     docker network ls
     ```
 
