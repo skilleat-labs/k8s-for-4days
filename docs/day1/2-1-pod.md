@@ -16,7 +16,68 @@
 
 ---
 
-## 1) kubectl run으로 Pod 빠르게 생성
+## 1) 실습 환경 준비 — VS Code 설치 & 자동완성
+
+### VS Code 설치
+
+[VS Code 공식 다운로드 페이지](https://code.visualstudio.com/){target=_blank}에서 설치 후, 아래 확장을 설치합니다.
+
+| 확장 이름 | 제공 | 역할 |
+|-----------|------|------|
+| **YAML** | Red Hat | YAML 문법 검사 · 스키마 자동완성 |
+| **Kubernetes** | Microsoft | 클러스터 탐색기 · kubectl 팔레트 |
+
+### VS Code 터미널에서 kubectl 자동완성 설정
+
+VS Code 내장 터미널(`Ctrl+`` `)을 열고 아래 명령어를 실행합니다.
+
+=== "macOS/Linux (bash)"
+    현재 세션 적용:
+    ```bash
+    source <(kubectl completion bash)
+    ```
+
+    영구 적용:
+    ```bash
+    echo 'source <(kubectl completion bash)' >> ~/.bashrc
+    source ~/.bashrc
+    ```
+
+=== "Windows PowerShell"
+    현재 세션 적용:
+    ```powershell
+    kubectl completion powershell | Out-String | Invoke-Expression
+    ```
+
+    영구 적용 (VS Code 터미널 재시작 후에도 유지):
+    ```powershell
+    New-Item -ItemType File -Force -Path $PROFILE
+    kubectl completion powershell >> $PROFILE
+    ```
+
+!!! tip "자동완성 확인"
+    `kubectl get po` 입력 후 `Tab`을 눌러 Pod 이름이 자동완성되면 성공입니다.
+
+### VS Code에서 YAML 파일 작업
+
+이후 실습에서 YAML 파일을 작성할 때는 VS Code에서 열어 작업합니다.
+
+=== "macOS/Linux"
+    ```bash
+    mkdir ~/k8s-lab && cd ~/k8s-lab
+    code .
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    mkdir ~/k8s-lab; cd ~/k8s-lab
+    code .
+    ```
+
+VS Code 탐색기에서 파일을 생성하거나, 내장 터미널에서 명령어를 실행하며 실습합니다.
+
+---
+
+## 2) kubectl run으로 Pod 빠르게 생성
 
 ```bash
 kubectl run nginx-pod --image=nginx:1.25
@@ -33,7 +94,7 @@ kubectl run test --image=nginx --dry-run=client -o yaml > pod-test.yaml
 
 ---
 
-## 2) YAML로 Pod 생성
+## 3) YAML로 Pod 생성
 
 `pod-nginx.yaml` 파일:
 
@@ -99,7 +160,7 @@ kubectl get pods -o wide    # 새 IP가 할당됨을 확인
 
 ---
 
-## 3) 멀티 컨테이너 Pod
+## 4) 멀티 컨테이너 Pod
 
 `pod-multi.yaml` 파일:
 
@@ -134,7 +195,7 @@ kubectl exec -it multi-pod -c nginx -- bash
 
 ---
 
-## 4) Label과 --show-labels
+## 5) Label과 --show-labels
 
 ```bash
 kubectl get pods --show-labels
