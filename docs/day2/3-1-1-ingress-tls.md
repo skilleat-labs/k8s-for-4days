@@ -153,6 +153,8 @@ spec:
       targetPort: 5678
 ```
 
+`kubectl get pods,svc`처럼 콤마로 이어서 쓰면 여러 리소스 종류를 한 번에 조회할 수 있습니다.
+
 ```bash
 kubectl apply -f echo-app.yaml
 kubectl get pods,svc
@@ -169,6 +171,8 @@ kubectl get pods -n ingress-nginx
 ```
 
 설치되어 있지 않으면:
+
+`kubectl wait`는 지정한 조건(여기서는 Pod가 Ready 상태)이 될 때까지 최대 `--timeout` 시간만큼 기다립니다. 설치 직후 Controller가 완전히 준비되기 전에 다음 단계를 진행하는 실수를 방지합니다.
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml

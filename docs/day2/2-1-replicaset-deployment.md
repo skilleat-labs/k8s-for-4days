@@ -33,6 +33,8 @@ spec:
             - containerPort: 80
 ```
 
+`--show-labels`는 각 Pod에 붙은 라벨을 함께 출력합니다. ReplicaSet이 어떤 Pod를 관리하는지 selector와 비교할 때 유용합니다.
+
 ```bash
 kubectl apply -f replicaset.yaml
 kubectl get replicasets
@@ -40,6 +42,8 @@ kubectl get pods --show-labels
 ```
 
 ### Pod 삭제 후 자동 복구 확인
+
+`-l` 플래그(label selector)는 특정 라벨이 붙은 Pod만 필터링해서 출력합니다. 관리 대상 Pod만 골라 볼 때 사용합니다.
 
 ```bash
 kubectl get pods -l app=nginx-rs
@@ -60,6 +64,8 @@ kubectl delete pod -l app=orphan
 ---
 
 ## 2) Deployment 생성
+
+`--dry-run=client -o yaml`은 실제로 리소스를 생성하지 않고 YAML 형태로만 출력합니다. 이를 파일로 저장(`> deploy-rollout.yaml`)한 뒤 수정해서 사용하는 방식으로 YAML 작성 시간을 줄일 수 있습니다.
 
 ```bash
 kubectl create deployment rollout-deploy \
@@ -101,6 +107,8 @@ kubectl get pods --show-labels
 
 port-forward로 현재 버전 확인 (**파란색** 페이지):
 
+`kubectl port-forward`는 로컬 포트를 클러스터 내부 Pod 포트로 터널링합니다. 외부로 노출하지 않아도 개발 중 빠르게 접속 확인할 때 사용합니다.
+
 ```bash
 kubectl port-forward deployment/rollout-deploy 8080:8080
 ```
@@ -112,6 +120,8 @@ kubectl port-forward deployment/rollout-deploy 8080:8080
 ## 3) 롤링 업데이트
 
 v2.0.0으로 업데이트합니다 (**초록색** 페이지).
+
+`kubectl rollout status`는 업데이트가 완료될 때까지 진행 상황을 실시간으로 출력합니다. 롤링 업데이트가 성공적으로 끝났는지 확인하는 데 사용합니다.
 
 ```bash
 kubectl set image deployment/rollout-deploy app=skilleat/rollout-demo:v2.0.0
@@ -137,6 +147,8 @@ kubectl port-forward deployment/rollout-deploy 8080:8080
 ---
 
 ## 4) 롤백
+
+`kubectl rollout history`는 Deployment의 변경 이력(revision)을 보여주고, `rollout undo`는 이전 revision으로 되돌립니다.
 
 ```bash
 kubectl rollout history deployment/rollout-deploy

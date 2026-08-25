@@ -76,6 +76,8 @@ kubectl get pods -l app=myapp
 kubectl get endpoints broken-svc
 ```
 
+`kubectl get endpoints`는 Service가 실제로 연결된 Pod IP 목록을 보여줍니다. Endpoints가 비어 있으면(`<none>`) Service selector와 Pod label이 일치하지 않는다는 신호입니다.
+
 === "macOS/Linux"
     ```bash
     # 3. 브라우저 또는 curl로 페이지 확인

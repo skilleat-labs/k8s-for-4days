@@ -52,6 +52,8 @@ rollout-svc   ClusterIP   10.96.45.123   <none>        80/TCP    10s
 
 ### Endpoints 확인
 
+`-o wide`는 Pod의 IP 주소와 배치 노드 같은 추가 컬럼을 함께 출력합니다. Endpoints의 IP 목록과 Pod IP가 일치하는지 비교할 때 유용합니다.
+
 ```bash
 kubectl get endpoints rollout-svc
 kubectl get pods -o wide
@@ -102,6 +104,8 @@ exit
 ---
 
 ## 3) label selector 동작 확인
+
+`kubectl describe`는 리소스의 상세 정보와 이벤트를 출력합니다. Service가 어떤 Pod를 선택했는지, Endpoints가 올바르게 연결됐는지 확인할 때 사용합니다.
 
 ```bash
 kubectl describe svc rollout-svc
@@ -228,6 +232,8 @@ kubectl port-forward svc/rollout-svc 8080:80
     ```
 
 **터미널 2 — Pod 강제 삭제:**
+
+`--wait=false`를 붙이면 삭제 완료를 기다리지 않고 즉시 프롬프트를 반환합니다. 터미널 1에서 요청을 계속 보내는 동안 빠르게 다음 명령을 실행하기 위해 사용합니다.
 
 ```bash
 kubectl delete pod -l app=rollout --wait=false

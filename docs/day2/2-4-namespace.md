@@ -127,6 +127,8 @@ kubectl get pods -n prod
 kubectl config set-context --current --namespace=dev
 ```
 
+`kubectl config view --minify`는 현재 활성화된 컨텍스트 정보만 요약해서 출력합니다. 현재 기본 Namespace가 무엇으로 설정됐는지 확인하는 데 사용합니다.
+
 === "Windows PowerShell"
     ```powershell
     kubectl config view --minify | Select-String "namespace"    # 현재 기본 Namespace 확인
@@ -160,6 +162,8 @@ kubectl get pods    # default Namespace의 Pod가 출력됨
 Namespace를 삭제하면 그 안의 **모든 리소스(Pod, Service, Deployment 등)가 함께 삭제**됩니다.
 
 먼저 dev Namespace 안의 리소스를 확인합니다.
+
+`kubectl get all`은 Pod, Service, Deployment, ReplicaSet 등 주요 리소스를 한 번에 조회합니다. 삭제 전 어떤 리소스가 남아 있는지 확인하는 용도로 사용합니다.
 
 ```bash
 kubectl get all -n dev

@@ -164,6 +164,8 @@ spec:
                   number: 80
 ```
 
+`kubectl describe ingress`는 Ingress의 라우팅 규칙(host, path, backend Service 매핑)과 이벤트를 상세히 보여줍니다. 규칙이 의도대로 등록됐는지 확인할 때 사용합니다.
+
 ```bash
 kubectl apply -f ingress-path.yaml
 kubectl get ingress
@@ -262,6 +264,8 @@ Get-Content "C:\Windows\System32\drivers\etc\hosts" | Select-String "lab.local"
     ```
 
 ### 6) Ingress Controller 로그 확인
+
+`kubectl logs`는 Pod(또는 Deployment)의 표준 출력 로그를 조회합니다. 어떤 요청이 들어왔고 어느 Service로 라우팅됐는지 확인하는 데 사용합니다.
 
 === "Windows (PowerShell)"
 

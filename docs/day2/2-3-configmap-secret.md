@@ -94,6 +94,8 @@ data:
     timeout.seconds=30
 ```
 
+`-o yaml`은 리소스를 YAML 형식으로 출력합니다. ConfigMap의 전체 내용(data 항목 포함)을 확인하고 싶을 때 유용합니다.
+
 ```bash
 kubectl apply -f configmap.yaml
 kubectl get configmap app-config -o yaml
@@ -167,6 +169,8 @@ stringData:
 
 ### Secret 값 확인
 
+`-o jsonpath`는 리소스 JSON 중 특정 필드만 추출합니다. Secret 값은 `kubectl describe`로는 보이지 않으므로 이 방법으로 꺼낸 뒤 base64 디코딩해서 확인합니다.
+
 === "Windows PowerShell"
     ```powershell
     $encoded = kubectl get secret app-secret -o jsonpath='{.data.DB_PASSWORD}'
@@ -208,6 +212,8 @@ kubectl apply -f pod-envfrom.yaml
 kubectl logs pod-envfrom
 ```
 
+`kubectl exec`는 실행 중인 Pod 안에서 명령어를 직접 실행합니다. `--` 뒤에 오는 명령이 컨테이너 내부에서 실행됩니다.
+
 === "Windows PowerShell"
     ```powershell
     kubectl exec pod-envfrom -- env | Select-String "DB_|APP_|API_"
@@ -216,6 +222,7 @@ kubectl logs pod-envfrom
     ```bash
     kubectl exec pod-envfrom -- env | grep -E "DB_|APP_|API_"
     ```
+
 
 !!! warning "환경변수 방식의 보안 한계"
     Secret을 환경변수로 주입하면 `kubectl exec`로 접속한 누구든 `env` 명령어로 값을 평문으로 읽을 수 있습니다.
@@ -321,6 +328,8 @@ kubectl exec pod-volume -- cat /config/app.properties
 ---
 
 ## 6) ConfigMap 변경 — 반영 방식 차이
+
+`kubectl edit`은 리소스를 기본 텍스트 편집기(보통 vi)에서 바로 수정합니다. 파일을 저장하면 즉시 클러스터에 반영됩니다.
 
 ```bash
 kubectl edit configmap app-config
