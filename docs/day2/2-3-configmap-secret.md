@@ -63,12 +63,20 @@ DB 접속 주소, 포트, 환경 이름처럼 **노출돼도 괜찮은 설정값
 
 ### 방법 A — kubectl 명령어로 생성
 
-```bash
-kubectl create configmap app-config \
-  --from-literal=DB_HOST=mysql-svc \
-  --from-literal=DB_PORT=3306 \
-  --from-literal=APP_ENV=development
-```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl create configmap app-config `
+      --from-literal=DB_HOST=mysql-svc `
+      --from-literal=DB_PORT=3306 `
+      --from-literal=APP_ENV=development
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl create configmap app-config \
+      --from-literal=DB_HOST=mysql-svc \
+      --from-literal=DB_PORT=3306 \
+      --from-literal=APP_ENV=development
+    ```
 
 ```bash
 kubectl get configmaps
@@ -128,11 +136,18 @@ kubectl get configmap app-config -o yaml
 
 ### 방법 A — kubectl 명령어 (자동 base64 인코딩)
 
-```bash
-kubectl create secret generic app-secret \
-  --from-literal=DB_PASSWORD=supersecret123 \
-  --from-literal=API_KEY=abc-def-ghi
-```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl create secret generic app-secret `
+      --from-literal=DB_PASSWORD=supersecret123 `
+      --from-literal=API_KEY=abc-def-ghi
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl create secret generic app-secret \
+      --from-literal=DB_PASSWORD=supersecret123 \
+      --from-literal=API_KEY=abc-def-ghi
+    ```
 
 ```bash
 kubectl get secrets

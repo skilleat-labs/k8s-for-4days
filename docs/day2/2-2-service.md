@@ -67,23 +67,44 @@ kubectl get pods -o wide
 
 ```bash
 kubectl get svc rollout-svc
-kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm \
-  -- curl http://10.96.45.123
 ```
+
+=== "Windows PowerShell"
+    ```powershell
+    kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm `
+      -- curl http://10.96.45.123
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm \
+      -- curl http://10.96.45.123
+    ```
 
 ### 방법 B — Service 이름(DNS)으로 접근
 
-```bash
-kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm \
-  -- curl http://rollout-svc
-```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm `
+      -- curl http://rollout-svc
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm \
+      -- curl http://rollout-svc
+    ```
 
 FQDN 형식:
 
-```bash
-kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm \
-  -- curl http://rollout-svc.default.svc.cluster.local
-```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm `
+      -- curl http://rollout-svc.default.svc.cluster.local
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm \
+      -- curl http://rollout-svc.default.svc.cluster.local
+    ```
 
 !!! info "DNS 형식"
     `<service이름>.<namespace>.svc.cluster.local`
@@ -246,26 +267,47 @@ kubectl get pods -w
 
 ## 7) kubectl expose — 명령어로 Service 즉시 생성
 
-```bash
-kubectl expose deployment rollout-deploy \
-  --name=rollout-expose \
-  --type=NodePort \
-  --port=80 \
-  --target-port=8080
+=== "Windows PowerShell"
+    ```powershell
+    kubectl expose deployment rollout-deploy `
+      --name=rollout-expose `
+      --type=NodePort `
+      --port=80 `
+      --target-port=8080
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl expose deployment rollout-deploy \
+      --name=rollout-expose \
+      --type=NodePort \
+      --port=80 \
+      --target-port=8080
+    ```
 
+```bash
 kubectl get svc rollout-expose
 ```
 
 **dry-run으로 YAML 미리 확인:**
 
-```bash
-kubectl expose deployment rollout-deploy \
-  --name=rollout-expose \
-  --type=NodePort \
-  --port=80 \
-  --target-port=8080 \
-  --dry-run=client -o yaml
-```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl expose deployment rollout-deploy `
+      --name=rollout-expose `
+      --type=NodePort `
+      --port=80 `
+      --target-port=8080 `
+      --dry-run=client -o yaml
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl expose deployment rollout-deploy \
+      --name=rollout-expose \
+      --type=NodePort \
+      --port=80 \
+      --target-port=8080 \
+      --dry-run=client -o yaml
+    ```
 
 **YAML 파일 관리 권장:**
 

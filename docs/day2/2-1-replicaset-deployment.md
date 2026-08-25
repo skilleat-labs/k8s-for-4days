@@ -67,12 +67,20 @@ kubectl delete pod -l app=orphan
 
 `--dry-run=client -o yaml`은 실제로 리소스를 생성하지 않고 YAML 형태로만 출력합니다. 이를 파일로 저장(`> deploy-rollout.yaml`)한 뒤 수정해서 사용하는 방식으로 YAML 작성 시간을 줄일 수 있습니다.
 
-```bash
-kubectl create deployment rollout-deploy \
-  --image=skilleat/rollout-demo:v1.0.0 \
-  --replicas=3 \
-  --dry-run=client -o yaml > deploy-rollout.yaml
-```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl create deployment rollout-deploy `
+      --image=skilleat/rollout-demo:v1.0.0 `
+      --replicas=3 `
+      --dry-run=client -o yaml > deploy-rollout.yaml
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl create deployment rollout-deploy \
+      --image=skilleat/rollout-demo:v1.0.0 \
+      --replicas=3 \
+      --dry-run=client -o yaml > deploy-rollout.yaml
+    ```
 
 `deploy-rollout.yaml` 완성본:
 
