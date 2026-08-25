@@ -80,7 +80,23 @@ VS Code 탐색기에서 파일을 생성하거나, 내장 터미널에서 명령
 
 ---
 
-## 2) kubectl run으로 Pod 빠르게 생성
+## 2) Pod를 만드는 두 가지 방법
+
+Kubernetes에서 Pod를 만드는 방법은 크게 두 가지입니다.
+
+| 방식 | 특징 | 언제 쓰나 |
+|------|------|---------|
+| **명령형** (`kubectl run`) | 명령어 한 줄로 즉시 생성 | 빠른 테스트, 일회성 확인 |
+| **선언형** (`kubectl apply -f`) | YAML 파일로 상태를 정의 | 실제 운영, 버전 관리, 팀 공유 |
+
+!!! info "실무에서는 선언형을 씁니다"
+    명령형은 빠르지만 기록이 남지 않고 재현이 어렵습니다. 실무에서는 YAML 파일로 관리하는 선언형 방식을 사용합니다. 이 실습에서는 두 방식을 모두 경험해봅니다.
+
+---
+
+### 방법 1 — 명령형: `kubectl run`
+
+명령어 한 줄로 Pod를 바로 실행합니다.
 
 ```bash
 kubectl run nginx-pod --image=nginx:1.25
@@ -88,14 +104,22 @@ kubectl get pods
 kubectl get pods -o wide
 ```
 
-### dry-run으로 YAML 미리 보기
+### `--dry-run`으로 YAML 템플릿 뽑기
+
+`--dry-run=client`는 **실제로 리소스를 만들지 않고** 어떤 YAML이 생성될지 미리 보여주는 옵션입니다.
+직접 YAML을 처음부터 작성하기 어려울 때, 명령어로 템플릿을 뽑아 수정하는 방식으로 많이 사용합니다.
 
 ```bash
+# 화면에 YAML 출력 (실제 생성 없음)
 kubectl run test --image=nginx --dry-run=client -o yaml
+
+# 파일로 저장해서 수정 후 apply
 kubectl run test --image=nginx --dry-run=client -o yaml > pod-test.yaml
 ```
 
 ---
+
+### 방법 2 — 선언형: YAML 파일로 생성
 
 ## 3) YAML로 Pod 생성
 
