@@ -84,13 +84,13 @@ kubectl get nodes
 | macOS / Linux | `~/.kube/config` |
 | Windows | `C:\Users\<사용자명>\.kube\config` |
 
-=== "macOS/Linux"
-    ```bash
-    cat ~/.kube/config
-    ```
 === "Windows PowerShell"
     ```powershell
     Get-Content "$env:USERPROFILE\.kube\config"
+    ```
+=== "macOS/Linux"
+    ```bash
+    cat ~/.kube/config
     ```
 
 !!! warning "컨텍스트 주의"
@@ -152,21 +152,21 @@ helm upgrade <릴리즈 이름> <차트>
 
 **Controller + CRD 설치 (Helm)**
 
-=== "macOS / Linux"
-
-    ```bash
-    helm install eg oci://docker.io/envoyproxy/gateway-helm \
-      --version v1.1.0 \
-      -n envoy-gateway-system \
-      --create-namespace
-    ```
-
 === "Windows (PowerShell)"
 
     ```powershell
     helm install eg oci://docker.io/envoyproxy/gateway-helm `
       --version v1.1.0 `
       -n envoy-gateway-system `
+      --create-namespace
+    ```
+
+=== "macOS / Linux"
+
+    ```bash
+    helm install eg oci://docker.io/envoyproxy/gateway-helm \
+      --version v1.1.0 \
+      -n envoy-gateway-system \
       --create-namespace
     ```
 
@@ -180,17 +180,6 @@ kubectl get pods -n envoy-gateway-system
 
 Helm 차트는 Controller와 CRD만 설치합니다. GatewayClass 오브젝트는 별도로 생성해야 합니다.
 
-=== "macOS/Linux"
-    ```bash
-    cat <<EOF | kubectl apply -f -
-    apiVersion: gateway.networking.k8s.io/v1
-    kind: GatewayClass
-    metadata:
-      name: eg
-    spec:
-      controllerName: gateway.envoyproxy.io/gatewayclass-controller
-    EOF
-    ```
 === "Windows PowerShell"
     ```powershell
     @"
@@ -201,6 +190,17 @@ Helm 차트는 Controller와 CRD만 설치합니다. GatewayClass 오브젝트�
     spec:
       controllerName: gateway.envoyproxy.io/gatewayclass-controller
     "@ | kubectl apply -f -
+    ```
+=== "macOS/Linux"
+    ```bash
+    cat <<EOF | kubectl apply -f -
+    apiVersion: gateway.networking.k8s.io/v1
+    kind: GatewayClass
+    metadata:
+      name: eg
+    spec:
+      controllerName: gateway.envoyproxy.io/gatewayclass-controller
+    EOF
     ```
 
 확인:
@@ -417,19 +417,26 @@ kubectl describe httproute lab-route -n gateway-ns
 
 `/etc/hosts`에 등록합니다.
 
-=== "macOS / Linux"
-
-    ```bash
-    sudo sh -c 'echo "127.0.0.1 gw.lab.local" >> /etc/hosts'
-    ```
-
 === "Windows (PowerShell — 관리자 권한)"
 
     ```powershell
     Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "127.0.0.1 gw.lab.local"
     ```
 
+=== "macOS / Linux"
+
+    ```bash
+    sudo sh -c 'echo "127.0.0.1 gw.lab.local" >> /etc/hosts'
+    ```
+
 접속 확인:
+
+=== "Windows (PowerShell)"
+
+    ```powershell
+    Invoke-WebRequest -Uri http://gw.lab.local/blue -UseBasicParsing | Select-Object -ExpandProperty Content
+    Invoke-WebRequest -Uri http://gw.lab.local/green -UseBasicParsing | Select-Object -ExpandProperty Content
+    ```
 
 === "macOS / Linux"
 
@@ -439,13 +446,6 @@ kubectl describe httproute lab-route -n gateway-ns
 
     curl http://gw.lab.local/green
     # Green App v2
-    ```
-
-=== "Windows (PowerShell)"
-
-    ```powershell
-    Invoke-WebRequest -Uri http://gw.lab.local/blue -UseBasicParsing | Select-Object -ExpandProperty Content
-    Invoke-WebRequest -Uri http://gw.lab.local/green -UseBasicParsing | Select-Object -ExpandProperty Content
     ```
 
 ---
@@ -487,18 +487,18 @@ kubectl apply -f httproute-canary.yaml
 
 실제로 분산되는지 확인합니다. 10번 요청해서 비율을 봅니다.
 
-=== "macOS / Linux"
-
-    ```bash
-    for i in $(seq 1 10); do curl -s http://gw.lab.local/app; echo; done
-    ```
-
 === "Windows (PowerShell)"
 
     ```powershell
     1..10 | ForEach-Object {
         Invoke-WebRequest -Uri http://gw.lab.local/app -UseBasicParsing | Select-Object -ExpandProperty Content
     }
+    ```
+
+=== "macOS / Linux"
+
+    ```bash
+    for i in $(seq 1 10); do curl -s http://gw.lab.local/app; echo; done
     ```
 
 ```
@@ -534,30 +534,21 @@ kubectl delete namespace gateway-ns
 
 **Envoy Gateway (Helm) 삭제**
 
-=== "macOS / Linux"
-
-    ```bash
-    helm uninstall eg -n envoy-gateway-system
-    ```
-
 === "Windows (PowerShell)"
 
     ```powershell
     helm uninstall eg -n envoy-gateway-system
     ```
 
-**Gateway API CRD 삭제**
-
-Helm uninstall 후에도 CRD는 클러스터에 남습니다. 완전히 제거하려면 아래 명령어를 실행합니다.
-
 === "macOS / Linux"
 
     ```bash
-    kubectl get crd | grep gateway.networking.k8s.io | awk '{print $1}' | xargs kubectl delete crd
-
-    # 확인
-    kubectl get crd | grep gateway
+    helm uninstall eg -n envoy-gateway-system
     ```
+
+**Gateway API CRD 삭제**
+
+Helm uninstall 후에도 CRD는 클러스터에 남습니다. 완전히 제거하려면 아래 명령어를 실행합니다.
 
 === "Windows (PowerShell)"
 
@@ -570,19 +561,19 @@ Helm uninstall 후에도 CRD는 클러스터에 남습니다. 완전히 제거�
     kubectl get crd | Select-String "gateway"
     ```
 
+=== "macOS / Linux"
+
+    ```bash
+    kubectl get crd | grep gateway.networking.k8s.io | awk '{print $1}' | xargs kubectl delete crd
+
+    # 확인
+    kubectl get crd | grep gateway
+    ```
+
 > **왜 CRD를 따로 지워야 하나?**
 > Helm은 기본적으로 CRD를 **설치는 하지만 삭제는 하지 않습니다.** CRD를 자동 삭제하면 데이터 손실 위험이 있기 때문입니다. 다음 실습에서 버전 충돌이 생길 수 있으니 명시적으로 삭제합니다.
 
 **`/etc/hosts` 원복**
-
-=== "macOS / Linux"
-
-    ```bash
-    sudo sed -i '' '/gw\.lab\.local/d' /etc/hosts
-
-    # 확인
-    cat /etc/hosts | grep gw.lab.local
-    ```
 
 === "Windows (PowerShell — 관리자 권한)"
 
@@ -592,6 +583,15 @@ Helm uninstall 후에도 CRD는 클러스터에 남습니다. 완전히 제거�
 
     # 확인
     Get-Content $hosts | Select-String "gw.lab.local"
+    ```
+
+=== "macOS / Linux"
+
+    ```bash
+    sudo sed -i '' '/gw\.lab\.local/d' /etc/hosts
+
+    # 확인
+    cat /etc/hosts | grep gw.lab.local
     ```
 
 ---

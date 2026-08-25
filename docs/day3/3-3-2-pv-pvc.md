@@ -399,8 +399,8 @@ kubectl delete pv local-pv
 AKS 환경에서 실습이 끝난 뒤 생성한 모든 리소스를 한 번에 삭제합니다.
 `--wait=false` 옵션을 사용하면 삭제 완료를 기다리지 않고 백그라운드로 진행됩니다.
 
-=== "macOS/Linux"
-    ```bash
+=== "Windows PowerShell"
+    ```powershell
     # 실습 리소스 일괄 삭제 (백그라운드)
     kubectl delete pod data-pod data-pod-2 --ignore-not-found --wait=false
     kubectl delete deployment mysql-with-storage --ignore-not-found --wait=false
@@ -410,8 +410,8 @@ AKS 환경에서 실습이 끝난 뒤 생성한 모든 리소스를 한 번에 �
     # 삭제 진행 상태 확인
     kubectl get pods,pvc,pv
     ```
-=== "Windows PowerShell"
-    ```powershell
+=== "macOS/Linux"
+    ```bash
     # 실습 리소스 일괄 삭제 (백그라운드)
     kubectl delete pod data-pod data-pod-2 --ignore-not-found --wait=false
     kubectl delete deployment mysql-with-storage --ignore-not-found --wait=false
@@ -502,20 +502,20 @@ kubectl get pvc files-pvc   # Bound 확인
 
 실습이 완전히 끝나면 AKS 클러스터를 삭제해 Azure 비용이 발생하지 않도록 합니다.
 
-=== "macOS/Linux"
-    ```bash
-    az aks delete \
-      --resource-group k8s-4days-rg \
-      --name k8s-4days-aks \
-      --yes \
-      --no-wait
-    ```
 === "Windows PowerShell"
     ```powershell
     az aks delete `
       --resource-group k8s-4days-rg `
       --name k8s-4days-aks `
       --yes `
+      --no-wait
+    ```
+=== "macOS/Linux"
+    ```bash
+    az aks delete \
+      --resource-group k8s-4days-rg \
+      --name k8s-4days-aks \
+      --yes \
       --no-wait
     ```
 

@@ -125,13 +125,13 @@ pod-guaranteed   Guaranteed   200m      200m      256Mi     256Mi
 
 `kubectl describe pod`에서도 QoS Class를 확인할 수 있습니다:
 
-=== "macOS/Linux"
-    ```bash
-    kubectl describe pod pod-guaranteed | grep "QoS Class"
-    ```
 === "Windows PowerShell"
     ```powershell
     kubectl describe pod pod-guaranteed | Select-String "QoS Class"
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl describe pod pod-guaranteed | grep "QoS Class"
     ```
 
 ```
@@ -144,13 +144,13 @@ QoS Class:  Guaranteed
 
 실제로 Eviction을 트리거하기는 어렵지만, 노드 상태와 Pod의 실제 사용량을 보면 위험도를 판단할 수 있습니다.
 
-=== "macOS/Linux"
-    ```bash title="터미널"
-    kubectl describe node | grep -A 10 "Allocated resources"
-    ```
 === "Windows PowerShell"
     ```powershell title="터미널"
     kubectl describe node | Select-String -Pattern "Allocated resources" -Context 0,10
+    ```
+=== "macOS/Linux"
+    ```bash title="터미널"
+    kubectl describe node | grep -A 10 "Allocated resources"
     ```
 
 AKS 실제 출력 예시 (2 vCPU / 4GB 노드 2개 기준):
@@ -343,15 +343,15 @@ kubectl apply -f limitrange.yaml
 
 LimitRange 적용 후 다시 resources 없는 Pod를 만들어봅니다:
 
-=== "macOS/Linux"
-    ```bash title="터미널"
-    kubectl run no-resources --image=nginx:1.25
-    kubectl get pod no-resources -o yaml | grep -A 12 "resources:"
-    ```
 === "Windows PowerShell"
     ```powershell title="터미널"
     kubectl run no-resources --image=nginx:1.25
     kubectl get pod no-resources -o yaml | Select-String -Pattern "resources:" -Context 0,12
+    ```
+=== "macOS/Linux"
+    ```bash title="터미널"
+    kubectl run no-resources --image=nginx:1.25
+    kubectl get pod no-resources -o yaml | grep -A 12 "resources:"
     ```
 
 ```text title="출력 예시 — 기본값이 자동 주입됨"
