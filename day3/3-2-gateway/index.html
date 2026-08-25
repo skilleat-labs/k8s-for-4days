@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day3/3-2-gateway/">
       
       
+        <link rel="prev" href="../../day2/3-1-1-ingress-tls/">
+      
+      
+        <link rel="next" href="../3-3-1-emptydir/">
       
       
         
@@ -23,7 +27,7 @@
     
     
       
-        <title>Gateway API 실습 - K8s for 4 Days</title>
+        <title>1. Gateway API 실습 - K8s for 4 Days</title>
       
     
     
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Gateway API 실습
+              1. Gateway API 실습
             
           </span>
         </div>
@@ -255,6 +259,28 @@
   
   
   2일차
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  3일차
 
         </a>
       </li>
@@ -948,6 +974,585 @@
   
 
     
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3일차
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3일차
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Gateway API 실습
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Gateway API 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        실습 환경 — AKS 클러스터 연결
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="실습 환경 — AKS 클러스터 연결">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0-azure-cli-powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0) Azure CLI 설치 (PowerShell)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-aks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1) AKS 클러스터 생성 (강사와 함께)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-kubeconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) 개별 작업 — kubeconfig 가져오기
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        실습 목표
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gateway-api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gateway API란?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Helm이란?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Helm이란?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-envoy-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1) Envoy Gateway 설치
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) 테스트용 앱 배포
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3) Gateway 생성
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-httproute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) HTTPRoute 생성 — 경로 기반 라우팅
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-etchosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) /etc/hosts 등록 및 접속 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-httproute-canary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6) HTTPRoute — 가중치 기반 트래픽 분산 (Canary)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7) 정리
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingress-vs-gateway-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ingress vs Gateway API 비교
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        트러블슈팅
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-3-1-emptydir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 볼륨 실습 — emptyDir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-3-2-pv-pvc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. 볼륨 실습 — PV/PVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-probe-quick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Probe 빠른 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-1-probe-liveness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Probe 상세 — Liveness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-2-probe-readiness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Probe 상세 — Readiness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-3-resource-quick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Resource 빠른 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-3-resource-requests-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Resource Requests & Limits 상세
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-4-resource-qos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Resource QoS 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../challenge-miniblog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 도전 과제 — 미니 블로그 (Gateway API + PVC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1255,14 +1860,14 @@
 </tr>
 </tbody>
 </table>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">macOS/Linux</label><label for="__tabbed_2_2">Windows PowerShell</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows PowerShell</label><label for="__tabbed_2_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cat<span class="w"> </span>~/.kube/config
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">Get-Content</span> <span class="s2">"$env:USERPROFILE\.kube\config"</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">Get-Content</span> <span class="s2">"$env:USERPROFILE\.kube\config"</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cat<span class="w"> </span>~/.kube/config
 </span></code></pre></div>
 </div>
 </div>
@@ -1314,20 +1919,20 @@ Rancher Desktop 등 로컬 클러스터가 함께 있는 경우 컨텍스트가 
 </div>
 </blockquote>
 <p><strong>Controller + CRD 설치 (Helm)</strong></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">macOS / Linux</label><label for="__tabbed_4_2">Windows (PowerShell)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Windows (PowerShell)</label><label for="__tabbed_4_2">macOS / Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>helm<span class="w"> </span>install<span class="w"> </span>eg<span class="w"> </span>oci://docker.io/envoyproxy/gateway-helm<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span>--version<span class="w"> </span>v1.1.0<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span>--create-namespace
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">helm</span> <span class="n">install</span> <span class="n">eg</span> <span class="n">oci</span><span class="p">://</span><span class="n">docker</span><span class="p">.</span><span class="n">io</span><span class="p">/</span><span class="n">envoyproxy</span><span class="p">/</span><span class="n">gateway-helm</span> <span class="p">`</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>  <span class="p">-</span><span class="n">-version</span> <span class="n">v1</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="p">`</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>  <span class="n">-n</span> <span class="n">envoy-gateway-system</span> <span class="p">`</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>  <span class="p">-</span><span class="n">-create-namespace</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">helm</span> <span class="n">install</span> <span class="n">eg</span> <span class="n">oci</span><span class="p">://</span><span class="n">docker</span><span class="p">.</span><span class="n">io</span><span class="p">/</span><span class="n">envoyproxy</span><span class="p">/</span><span class="n">gateway-helm</span> <span class="p">`</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>  <span class="p">-</span><span class="n">-version</span> <span class="n">v1</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="p">`</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>  <span class="n">-n</span> <span class="n">envoy-gateway-system</span> <span class="p">`</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>  <span class="p">-</span><span class="n">-create-namespace</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>helm<span class="w"> </span>install<span class="w"> </span>eg<span class="w"> </span>oci://docker.io/envoyproxy/gateway-helm<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span>--version<span class="w"> </span>v1.1.0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span>-n<span class="w"> </span>envoy-gateway-system<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span>--create-namespace
 </span></code></pre></div>
 </div>
 </div>
@@ -1337,28 +1942,28 @@ Rancher Desktop 등 로컬 클러스터가 함께 있는 경우 컨텍스트가 
 </span></code></pre></div>
 <p><strong>GatewayClass 생성</strong></p>
 <p>Helm 차트는 Controller와 CRD만 설치합니다. GatewayClass 오브젝트는 별도로 생성해야 합니다.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">macOS/Linux</label><label for="__tabbed_5_2">Windows PowerShell</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Windows PowerShell</label><label for="__tabbed_5_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>cat<span class="w"> </span><span class="s">&lt;&lt;EOF | kubectl apply -f -</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="s">apiVersion: gateway.networking.k8s.io/v1</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="s">kind: GatewayClass</span>
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="s">metadata:</span>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="s">  name: eg</span>
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="s">spec:</span>
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="s">  controllerName: gateway.envoyproxy.io/gatewayclass-controller</span>
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="s">EOF</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="sh">@"</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="sh">apiVersion: gateway.networking.k8s.io/v1</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="sh">kind: GatewayClass</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="sh">metadata:</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="sh">  name: eg</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="sh">spec:</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="sh">  controllerName: gateway.envoyproxy.io/gatewayclass-controller</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="sh">"@</span> <span class="p">|</span> <span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="p">-</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="sh">@"</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="sh">apiVersion: gateway.networking.k8s.io/v1</span>
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="sh">kind: GatewayClass</span>
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="sh">metadata:</span>
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="sh">  name: eg</span>
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="sh">spec:</span>
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="sh">  controllerName: gateway.envoyproxy.io/gatewayclass-controller</span>
-</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="sh">"@</span> <span class="p">|</span> <span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="p">-</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>cat<span class="w"> </span><span class="s">&lt;&lt;EOF | kubectl apply -f -</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="s">apiVersion: gateway.networking.k8s.io/v1</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="s">kind: GatewayClass</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="s">metadata:</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="s">  name: eg</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="s">spec:</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="s">  controllerName: gateway.envoyproxy.io/gatewayclass-controller</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="s">EOF</span>
 </span></code></pre></div>
 </div>
 </div>
@@ -1535,32 +2140,32 @@ Rancher Desktop 등 로컬 클러스터가 함께 있는 경우 컨텍스트가 
 <hr />
 <h3 id="5-etchosts">5) /etc/hosts 등록 및 접속 확인<a class="headerlink" href="#5-etchosts" title="Permanent link">&para;</a></h3>
 <p><code>/etc/hosts</code>에 등록합니다.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">macOS / Linux</label><label for="__tabbed_6_2">Windows (PowerShell — 관리자 권한)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Windows (PowerShell — 관리자 권한)</label><label for="__tabbed_6_2">macOS / Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>sudo<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">'echo "127.0.0.1 gw.lab.local" &gt;&gt; /etc/hosts'</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="s2">"C:\Windows\System32\drivers\etc\hosts"</span> <span class="n">-Value</span> <span class="s2">"127.0.0.1 gw.lab.local"</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="s2">"C:\Windows\System32\drivers\etc\hosts"</span> <span class="n">-Value</span> <span class="s2">"127.0.0.1 gw.lab.local"</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>sudo<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">'echo "127.0.0.1 gw.lab.local" &gt;&gt; /etc/hosts'</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <p>접속 확인:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">macOS / Linux</label><label for="__tabbed_7_2">Windows (PowerShell)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Windows (PowerShell)</label><label for="__tabbed_7_2">macOS / Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>curl<span class="w"> </span>http://gw.lab.local/blue
-</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="c1"># Blue App v1</span>
-</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
-</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>curl<span class="w"> </span>http://gw.lab.local/green
-</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="c1"># Green App v2</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="n">http</span><span class="p">://</span><span class="n">gw</span><span class="p">.</span><span class="n">lab</span><span class="p">.</span><span class="n">local</span><span class="p">/</span><span class="n">blue</span> <span class="n">-UseBasicParsing</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">Content</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="n">http</span><span class="p">://</span><span class="n">gw</span><span class="p">.</span><span class="n">lab</span><span class="p">.</span><span class="n">local</span><span class="p">/</span><span class="n">green</span> <span class="n">-UseBasicParsing</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">Content</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="n">http</span><span class="p">://</span><span class="n">gw</span><span class="p">.</span><span class="n">lab</span><span class="p">.</span><span class="n">local</span><span class="p">/</span><span class="n">blue</span> <span class="n">-UseBasicParsing</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">Content</span>
-</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="n">http</span><span class="p">://</span><span class="n">gw</span><span class="p">.</span><span class="n">lab</span><span class="p">.</span><span class="n">local</span><span class="p">/</span><span class="n">green</span> <span class="n">-UseBasicParsing</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">Content</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>curl<span class="w"> </span>http://gw.lab.local/blue
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="c1"># Blue App v1</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>curl<span class="w"> </span>http://gw.lab.local/green
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="c1"># Green App v2</span>
 </span></code></pre></div>
 </div>
 </div>
@@ -1595,16 +2200,16 @@ Rancher Desktop 등 로컬 클러스터가 함께 있는 경우 컨텍스트가 
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>httproute-canary.yaml
 </span></code></pre></div>
 <p>실제로 분산되는지 확인합니다. 10번 요청해서 비율을 봅니다.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">macOS / Linux</label><label for="__tabbed_8_2">Windows (PowerShell)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Windows (PowerShell)</label><label for="__tabbed_8_2">macOS / Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">10</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>http://gw.lab.local/app<span class="p">;</span><span class="w"> </span>echo<span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">1</span><span class="p">..</span><span class="n">10</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>    <span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="n">http</span><span class="p">://</span><span class="n">gw</span><span class="p">.</span><span class="n">lab</span><span class="p">.</span><span class="n">local</span><span class="p">/</span><span class="n">app</span> <span class="n">-UseBasicParsing</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">Content</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="p">}</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="n">1</span><span class="p">..</span><span class="n">10</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
-</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>    <span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="n">http</span><span class="p">://</span><span class="n">gw</span><span class="p">.</span><span class="n">lab</span><span class="p">.</span><span class="n">local</span><span class="p">/</span><span class="n">app</span> <span class="n">-UseBasicParsing</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">Content</span>
-</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="p">}</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">10</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>http://gw.lab.local/app<span class="p">;</span><span class="w"> </span>echo<span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </span></code></pre></div>
 </div>
 </div>
@@ -1634,36 +2239,36 @@ Rancher Desktop 등 로컬 클러스터가 함께 있는 경우 컨텍스트가 
 </span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>gateway-ns
 </span></code></pre></div>
 <p><strong>Envoy Gateway (Helm) 삭제</strong></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">macOS / Linux</label><label for="__tabbed_9_2">Windows (PowerShell)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">Windows (PowerShell)</label><label for="__tabbed_9_2">macOS / Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>helm<span class="w"> </span>uninstall<span class="w"> </span>eg<span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="n">helm</span> <span class="n">uninstall</span> <span class="n">eg</span> <span class="n">-n</span> <span class="n">envoy-gateway-system</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="n">helm</span> <span class="n">uninstall</span> <span class="n">eg</span> <span class="n">-n</span> <span class="n">envoy-gateway-system</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>helm<span class="w"> </span>uninstall<span class="w"> </span>eg<span class="w"> </span>-n<span class="w"> </span>envoy-gateway-system
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <p><strong>Gateway API CRD 삭제</strong></p>
 <p>Helm uninstall 후에도 CRD는 클러스터에 남습니다. 완전히 제거하려면 아래 명령어를 실행합니다.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">macOS / Linux</label><label for="__tabbed_10_2">Windows (PowerShell)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">Windows (PowerShell)</label><label for="__tabbed_10_2">macOS / Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>gateway.networking.k8s.io<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{print $1}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>crd
-</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>
-</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="c1"># 확인</span>
-</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>kubectl<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>gateway
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">crd</span> <span class="n">-o</span> <span class="n">name</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">"gateway.networking.k8s.io"</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>    <span class="n">kubectl</span> <span class="n">delete</span> <span class="nv">$_</span><span class="p">.</span><span class="n">ToString</span><span class="p">().</span><span class="n">Trim</span><span class="p">()</span>
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="p">}</span>
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="c"># 확인</span>
+</span><span id="__span-43-6"><a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">crd</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">"gateway"</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">crd</span> <span class="n">-o</span> <span class="n">name</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">"gateway.networking.k8s.io"</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
-</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>    <span class="n">kubectl</span> <span class="n">delete</span> <span class="nv">$_</span><span class="p">.</span><span class="n">ToString</span><span class="p">().</span><span class="n">Trim</span><span class="p">()</span>
-</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="p">}</span>
-</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>
-</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="c"># 확인</span>
-</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">crd</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">"gateway"</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>gateway.networking.k8s.io<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{print $1}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>crd
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="c1"># 확인</span>
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>kubectl<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>gateway
 </span></code></pre></div>
 </div>
 </div>
@@ -1673,21 +2278,21 @@ Rancher Desktop 등 로컬 클러스터가 함께 있는 경우 컨텍스트가 
 Helm은 기본적으로 CRD를 <strong>설치는 하지만 삭제는 하지 않습니다.</strong> CRD를 자동 삭제하면 데이터 손실 위험이 있기 때문입니다. 다음 실습에서 버전 충돌이 생길 수 있으니 명시적으로 삭제합니다.</p>
 </blockquote>
 <p><strong><code>/etc/hosts</code> 원복</strong></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">macOS / Linux</label><label for="__tabbed_11_2">Windows (PowerShell — 관리자 권한)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">Windows (PowerShell — 관리자 권한)</label><label for="__tabbed_11_2">macOS / Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">''</span><span class="w"> </span><span class="s1">'/gw\.lab\.local/d'</span><span class="w"> </span>/etc/hosts
-</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>
-</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="c1"># 확인</span>
-</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>cat<span class="w"> </span>/etc/hosts<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>gw.lab.local
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="nv">$hosts</span> <span class="p">=</span> <span class="s2">"C:\Windows\System32\drivers\etc\hosts"</span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="p">(</span><span class="nb">Get-Content</span> <span class="nv">$hosts</span><span class="p">)</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span> <span class="o">-notmatch</span> <span class="s2">"gw\.lab\.local"</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Set-Content</span> <span class="nv">$hosts</span>
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>
+</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="c"># 확인</span>
+</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a><span class="nb">Get-Content</span> <span class="nv">$hosts</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">"gw.lab.local"</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="nv">$hosts</span> <span class="p">=</span> <span class="s2">"C:\Windows\System32\drivers\etc\hosts"</span>
-</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="p">(</span><span class="nb">Get-Content</span> <span class="nv">$hosts</span><span class="p">)</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span> <span class="o">-notmatch</span> <span class="s2">"gw\.lab\.local"</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Set-Content</span> <span class="nv">$hosts</span>
-</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a>
-</span><span id="__span-46-4"><a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="c"># 확인</span>
-</span><span id="__span-46-5"><a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a><span class="nb">Get-Content</span> <span class="nv">$hosts</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">"gw.lab.local"</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">''</span><span class="w"> </span><span class="s1">'/gw\.lab\.local/d'</span><span class="w"> </span>/etc/hosts
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>
+</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="c1"># 확인</span>
+</span><span id="__span-46-4"><a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a>cat<span class="w"> </span>/etc/hosts<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>gw.lab.local
 </span></code></pre></div>
 </div>
 </div>

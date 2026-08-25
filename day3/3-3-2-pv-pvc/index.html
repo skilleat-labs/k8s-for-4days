@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day3/3-3-2-pv-pvc/">
       
       
+        <link rel="prev" href="../3-3-1-emptydir/">
+      
+      
+        <link rel="next" href="../4-probe-quick/">
       
       
         
@@ -23,7 +27,7 @@
     
     
       
-        <title>볼륨 실습 — PersistentVolume / PVC - K8s for 4 Days</title>
+        <title>3. 볼륨 실습 — PV/PVC - K8s for 4 Days</title>
       
     
     
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              볼륨 실습 — PersistentVolume / PVC
+              3. 볼륨 실습 — PV/PVC
             
           </span>
         </div>
@@ -255,6 +259,28 @@
   
   
   2일차
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../3-2-gateway/" class="md-tabs__link">
+          
+  
+  
+  3일차
 
         </a>
       </li>
@@ -928,6 +954,641 @@
     
   
     6. Ingress TLS & Redirect 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3일차
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3일차
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-2-gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Gateway API 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-3-1-emptydir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 볼륨 실습 — emptyDir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. 볼륨 실습 — PV/PVC
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. 볼륨 실습 — PV/PVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        실습 목표
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-storageclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1) StorageClass 확인
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-a-pv-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) 방법 A — 정적 프로비저닝 (PV + PVC 수동 생성)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2) 방법 A — 정적 프로비저닝 (PV + PVC 수동 생성)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PV 생성
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PVC 생성
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-b-azure-disk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3) 방법 B — 동적 프로비저닝 (Azure Disk 자동 생성)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3) 방법 B — 동적 프로비저닝 (Azure Disk 자동 생성)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#azure-files-pvc-rwx-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azure Files PVC (RWX — 여러 Pod가 동시에 마운트)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pvc-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) PVC를 사용하는 Pod 배포
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) 데이터 영속성 확인
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5) 데이터 영속성 확인">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod 삭제
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        새 Pod에서 같은 PVC 재사용
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-pvc-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6) PVC를 Deployment에 사용
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        접근 모드 비교
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정리 (리소스 삭제)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        트러블슈팅
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AKS 실습 후 리소스 일괄 정리
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-files-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        도전 과제 정답 — Azure Files PVC 볼륨 마운트
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="도전 과제 정답 — Azure Files PVC 볼륨 마운트">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        템플릿 생성 명령어
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정답 YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AKS 클러스터 삭제 (실습 종료 후)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-probe-quick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Probe 빠른 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-1-probe-liveness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Probe 상세 — Liveness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-2-probe-readiness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Probe 상세 — Readiness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-3-resource-quick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Resource 빠른 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-3-resource-requests-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Resource Requests & Limits 상세
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-4-resource-qos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Resource QoS 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../challenge-miniblog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 도전 과제 — 미니 블로그 (Gateway API + PVC)
   
 
     
@@ -1638,28 +2299,28 @@ Pod가 재시작되거나 다른 노드로 이동해도 동일한 Azure Disk가 
 <h2 id="aks">AKS 실습 후 리소스 일괄 정리<a class="headerlink" href="#aks" title="Permanent link">&para;</a></h2>
 <p>AKS 환경에서 실습이 끝난 뒤 생성한 모든 리소스를 한 번에 삭제합니다.
 <code>--wait=false</code> 옵션을 사용하면 삭제 완료를 기다리지 않고 백그라운드로 진행됩니다.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">macOS/Linux</label><label for="__tabbed_2_2">Windows PowerShell</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows PowerShell</label><label for="__tabbed_2_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># 실습 리소스 일괄 삭제 (백그라운드)</span>
-</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>data-pod<span class="w"> </span>data-pod-2<span class="w"> </span>--ignore-not-found<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
-</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span>mysql-with-storage<span class="w"> </span>--ignore-not-found<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
-</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pvc<span class="w"> </span>local-pvc<span class="w"> </span>dynamic-pvc<span class="w"> </span>--ignore-not-found<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
-</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pv<span class="w"> </span>local-pv<span class="w"> </span>--ignore-not-found<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c"># 실습 리소스 일괄 삭제 (백그라운드)</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">data-pod</span> <span class="n">data-pod</span><span class="p">-</span><span class="n">2</span> <span class="p">-</span><span class="n">-ignore</span><span class="o">-not</span><span class="n">-found</span> <span class="p">-</span><span class="n">-wait</span><span class="p">=</span><span class="n">false</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">deployment</span> <span class="n">mysql-with-storage</span> <span class="p">-</span><span class="n">-ignore</span><span class="o">-not</span><span class="n">-found</span> <span class="p">-</span><span class="n">-wait</span><span class="p">=</span><span class="n">false</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pvc</span> <span class="n">local-pvc</span> <span class="n">dynamic-pvc</span> <span class="p">-</span><span class="n">-ignore</span><span class="o">-not</span><span class="n">-found</span> <span class="p">-</span><span class="n">-wait</span><span class="p">=</span><span class="n">false</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pv</span> <span class="n">local-pv</span> <span class="p">-</span><span class="n">-ignore</span><span class="o">-not</span><span class="n">-found</span> <span class="p">-</span><span class="n">-wait</span><span class="p">=</span><span class="n">false</span>
 </span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>
-</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="c1"># 삭제 진행 상태 확인</span>
-</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods,pvc,pv
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="c"># 삭제 진행 상태 확인</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span><span class="p">,</span><span class="n">pvc</span><span class="p">,</span><span class="n">pv</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c"># 실습 리소스 일괄 삭제 (백그라운드)</span>
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">data-pod</span> <span class="n">data-pod</span><span class="p">-</span><span class="n">2</span> <span class="p">-</span><span class="n">-ignore</span><span class="o">-not</span><span class="n">-found</span> <span class="p">-</span><span class="n">-wait</span><span class="p">=</span><span class="n">false</span>
-</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">deployment</span> <span class="n">mysql-with-storage</span> <span class="p">-</span><span class="n">-ignore</span><span class="o">-not</span><span class="n">-found</span> <span class="p">-</span><span class="n">-wait</span><span class="p">=</span><span class="n">false</span>
-</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pvc</span> <span class="n">local-pvc</span> <span class="n">dynamic-pvc</span> <span class="p">-</span><span class="n">-ignore</span><span class="o">-not</span><span class="n">-found</span> <span class="p">-</span><span class="n">-wait</span><span class="p">=</span><span class="n">false</span>
-</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pv</span> <span class="n">local-pv</span> <span class="p">-</span><span class="n">-ignore</span><span class="o">-not</span><span class="n">-found</span> <span class="p">-</span><span class="n">-wait</span><span class="p">=</span><span class="n">false</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># 실습 리소스 일괄 삭제 (백그라운드)</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>data-pod<span class="w"> </span>data-pod-2<span class="w"> </span>--ignore-not-found<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span>mysql-with-storage<span class="w"> </span>--ignore-not-found<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pvc<span class="w"> </span>local-pvc<span class="w"> </span>dynamic-pvc<span class="w"> </span>--ignore-not-found<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pv<span class="w"> </span>local-pv<span class="w"> </span>--ignore-not-found<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
 </span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>
-</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="c"># 삭제 진행 상태 확인</span>
-</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span><span class="p">,</span><span class="n">pvc</span><span class="p">,</span><span class="n">pv</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="c1"># 삭제 진행 상태 확인</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods,pvc,pv
 </span></code></pre></div>
 </div>
 </div>
@@ -1728,22 +2389,22 @@ Azure Disk(<code>managed-csi</code>)였다면 RWO 제한으로 두 번째 Pod가
 <hr />
 <h2 id="aks_1">AKS 클러스터 삭제 (실습 종료 후)<a class="headerlink" href="#aks_1" title="Permanent link">&para;</a></h2>
 <p>실습이 완전히 끝나면 AKS 클러스터를 삭제해 Azure 비용이 발생하지 않도록 합니다.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">macOS/Linux</label><label for="__tabbed_3_2">Windows PowerShell</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Windows PowerShell</label><label for="__tabbed_3_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>az<span class="w"> </span>aks<span class="w"> </span>delete<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">  </span>--resource-group<span class="w"> </span>k8s-4days-rg<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">  </span>--name<span class="w"> </span>k8s-4days-aks<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="w">  </span>--yes<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="w">  </span>--no-wait
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">az</span> <span class="n">aks</span> <span class="n">delete</span> <span class="p">`</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>  <span class="p">-</span><span class="n">-resource-group</span> <span class="n">k8s</span><span class="p">-</span><span class="n">4days-rg</span> <span class="p">`</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>  <span class="p">-</span><span class="n">-name</span> <span class="n">k8s</span><span class="p">-</span><span class="n">4days-aks</span> <span class="p">`</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>  <span class="p">-</span><span class="n">-yes</span> <span class="p">`</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>  <span class="p">-</span><span class="n">-no-wait</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="n">az</span> <span class="n">aks</span> <span class="n">delete</span> <span class="p">`</span>
-</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>  <span class="p">-</span><span class="n">-resource-group</span> <span class="n">k8s</span><span class="p">-</span><span class="n">4days-rg</span> <span class="p">`</span>
-</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>  <span class="p">-</span><span class="n">-name</span> <span class="n">k8s</span><span class="p">-</span><span class="n">4days-aks</span> <span class="p">`</span>
-</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>  <span class="p">-</span><span class="n">-yes</span> <span class="p">`</span>
-</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>  <span class="p">-</span><span class="n">-no-wait</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>az<span class="w"> </span>aks<span class="w"> </span>delete<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">  </span>--resource-group<span class="w"> </span>k8s-4days-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">  </span>--name<span class="w"> </span>k8s-4days-aks<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">  </span>--yes<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="w">  </span>--no-wait
 </span></code></pre></div>
 </div>
 </div>
