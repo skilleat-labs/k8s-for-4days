@@ -1671,6 +1671,7 @@
 </span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="no">max.connections=100</span>
 </span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="no">timeout.seconds=30</span>
 </span></code></pre></div>
+<p><code>-o yaml</code>은 리소스를 YAML 형식으로 출력합니다. ConfigMap의 전체 내용(data 항목 포함)을 확인하고 싶을 때 유용합니다.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>configmap.yaml
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>app-config<span class="w"> </span>-o<span class="w"> </span>yaml
 </span></code></pre></div>
@@ -1729,6 +1730,7 @@
 </span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">  </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abc-def-ghi</span>
 </span></code></pre></div>
 <h3 id="secret">Secret 값 확인<a class="headerlink" href="#secret" title="Permanent link">&para;</a></h3>
+<p><code>-o jsonpath</code>는 리소스 JSON 중 특정 필드만 추출합니다. Secret 값은 <code>kubectl describe</code>로는 보이지 않으므로 이 방법으로 꺼낸 뒤 base64 디코딩해서 확인합니다.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows PowerShell</label><label for="__tabbed_2_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1765,6 +1767,7 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-envfrom.yaml
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>pod-envfrom
 </span></code></pre></div>
+<p><code>kubectl exec</code>는 실행 중인 Pod 안에서 명령어를 직접 실행합니다. <code>--</code> 뒤에 오는 명령이 컨테이너 내부에서 실행됩니다.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Windows PowerShell</label><label for="__tabbed_3_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1857,6 +1860,7 @@
 </span></code></pre></div>
 <hr />
 <h2 id="6-configmap">6) ConfigMap 변경 — 반영 방식 차이<a class="headerlink" href="#6-configmap" title="Permanent link">&para;</a></h2>
+<p><code>kubectl edit</code>은 리소스를 기본 텍스트 편집기(보통 vi)에서 바로 수정합니다. 파일을 저장하면 즉시 클러스터에 반영됩니다.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>kubectl<span class="w"> </span>edit<span class="w"> </span>configmap<span class="w"> </span>app-config
 </span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="c1"># APP_ENV: development → APP_ENV: production 으로 변경 후 저장 (:wq)</span>
 </span></code></pre></div>

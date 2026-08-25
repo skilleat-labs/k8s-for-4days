@@ -1572,6 +1572,7 @@
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>rollout-svc   ClusterIP   10.96.45.123   &lt;none&gt;        80/TCP    10s
 </span></code></pre></div>
 <h3 id="endpoints">Endpoints 확인<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h3>
+<p><code>-o wide</code>는 Pod의 IP 주소와 배치 노드 같은 추가 컬럼을 함께 출력합니다. Endpoints의 IP 목록과 Pod IP가 일치하는지 비교할 때 유용합니다.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>endpoints<span class="w"> </span>rollout-svc
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
 </span></code></pre></div>
@@ -1605,6 +1606,7 @@
 </span></code></pre></div>
 <hr />
 <h2 id="3-label-selector">3) label selector 동작 확인<a class="headerlink" href="#3-label-selector" title="Permanent link">&para;</a></h2>
+<p><code>kubectl describe</code>는 리소스의 상세 정보와 이벤트를 출력합니다. Service가 어떤 Pod를 선택했는지, Endpoints가 올바르게 연결됐는지 확인할 때 사용합니다.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>svc<span class="w"> </span>rollout-svc
 </span></code></pre></div>
 <p>확인 항목:</p>
@@ -1712,6 +1714,7 @@ Rancher Desktop과 Docker Desktop은 쿠버네티스 노드가 VM 내부에 있�
 </div>
 </div>
 <p><strong>터미널 2 — Pod 강제 삭제:</strong></p>
+<p><code>--wait=false</code>를 붙이면 삭제 완료를 기다리지 않고 즉시 프롬프트를 반환합니다. 터미널 1에서 요청을 계속 보내는 동안 빠르게 다음 명령을 실행하기 위해 사용합니다.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>rollout<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
 </span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-w
 </span></code></pre></div>

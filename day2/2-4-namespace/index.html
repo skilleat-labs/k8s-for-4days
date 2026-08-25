@@ -1373,6 +1373,7 @@
 <p>매번 <code>-n dev</code>를 붙이는 대신 기본 Namespace를 바꿀 수 있습니다.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>set-context<span class="w"> </span>--current<span class="w"> </span>--namespace<span class="o">=</span>dev
 </span></code></pre></div>
+<p><code>kubectl config view --minify</code>는 현재 활성화된 컨텍스트 정보만 요약해서 출력합니다. 현재 기본 Namespace가 무엇으로 설정됐는지 확인하는 데 사용합니다.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows PowerShell</label><label for="__tabbed_1_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1401,6 +1402,7 @@
 <h2 id="5-namespace">5) Namespace 삭제 — 내부 리소스 함께 삭제<a class="headerlink" href="#5-namespace" title="Permanent link">&para;</a></h2>
 <p>Namespace를 삭제하면 그 안의 <strong>모든 리소스(Pod, Service, Deployment 등)가 함께 삭제</strong>됩니다.</p>
 <p>먼저 dev Namespace 안의 리소스를 확인합니다.</p>
+<p><code>kubectl get all</code>은 Pod, Service, Deployment, ReplicaSet 등 주요 리소스를 한 번에 조회합니다. 삭제 전 어떤 리소스가 남아 있는지 확인하는 용도로 사용합니다.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>all<span class="w"> </span>-n<span class="w"> </span>dev
 </span></code></pre></div>
 <p>Namespace를 삭제합니다.</p>
