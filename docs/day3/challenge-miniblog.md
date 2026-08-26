@@ -157,6 +157,8 @@ Frontend와 Backend로 구성되며, Backend 2개가 **동일한 데이터 파�
 kubectl delete namespace webapp
 ```
 
+<!-- 정답 숨김 처리 (공개 시 아래 주석 해제)
+
 ---
 
 ## 정답
@@ -314,3 +316,5 @@ kubectl delete namespace webapp
     kubectl apply -f frontend.yaml
     kubectl apply -f gateway.yaml
     ```
+
+-->
