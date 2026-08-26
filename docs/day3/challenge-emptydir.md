@@ -23,8 +23,8 @@
 | 볼륨 이름 | `shared-log` |
 | 볼륨 타입 | `emptyDir` |
 | 마운트 경로 (두 컨테이너 모두) | `/shared` |
-| writer 동작 | 매 2초마다 현재 시각을 `/shared/log.txt`에 추가 기록 |
-| reader 동작 | `/shared/log.txt`를 실시간으로 출력 |
+| writer command | `["sh", "-c", "while true; do date >> /shared/log.txt; sleep 2; done"]` |
+| reader command | `["sh", "-c", "sleep 3 && tail -f /shared/log.txt"]` |
 
 ### 완성 후 확인 방법
 
