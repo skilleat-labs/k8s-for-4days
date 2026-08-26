@@ -6,6 +6,91 @@
 
 ---
 
+## 시작 전 준비
+
+### 1) AKS 로그인
+
+```powershell
+az login --use-device-code
+```
+
+터미널에 `https://microsoft.com/devicelogin` 주소와 코드가 출력됩니다. 브라우저에서 해당 주소를 열고 코드를 입력해 로그인합니다.
+
+### 2) 내 클러스터에 연결
+
+본인 번호에 맞는 클러스터 이름을 확인하고 credentials를 가져옵니다.
+
+| 수강생 | 클러스터 이름 |
+|--------|--------------|
+| 1번 | `aks-user01` |
+| 2번 | `aks-user02` |
+| 3번 | `aks-user03` |
+| 4번 | `aks-user04` |
+
+```powershell
+az aks get-credentials --resource-group k8s-4days-rg --name aks-user01
+```
+
+!!! warning "본인 번호로 바꾸세요"
+    `aks-user01` 부분을 본인 번호(`aks-user02`, `aks-user03`, `aks-user04`)로 변경하세요.
+
+연결 확인:
+
+```powershell
+kubectl config current-context
+kubectl get nodes
+```
+
+노드 목록이 출력되면 정상입니다.
+
+### 3) Envoy Gateway 설치
+
+Helm이 없으면 먼저 설치합니다.
+
+```powershell
+winget install Helm.Helm
+```
+
+설치 후 PowerShell을 재시작하고 Envoy Gateway를 설치합니다.
+
+```powershell
+helm install eg oci://docker.io/envoyproxy/gateway-helm `
+  --version v1.1.0 `
+  -n envoy-gateway-system `
+  --create-namespace
+```
+
+Pod가 Running 상태가 될 때까지 기다립니다. (1~2분)
+
+```powershell
+kubectl get pods -n envoy-gateway-system
+```
+
+모든 Pod가 `Running`이면 다음으로 넘어갑니다.
+
+### 4) GatewayClass 생성
+
+```powershell
+@"
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: eg
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+"@ | kubectl apply -f -
+```
+
+확인:
+
+```powershell
+kubectl get gatewayclass
+```
+
+`ACCEPTED: True`가 되면 도전 과제를 시작합니다.
+
+---
+
 ## 시나리오
 
 미니 블로그 애플리케이션을 AKS 클러스터에 배포합니다.
