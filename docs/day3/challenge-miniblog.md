@@ -20,19 +20,19 @@ az login --use-device-code
 
 본인 번호에 맞는 클러스터 이름을 확인하고 credentials를 가져옵니다.
 
-| 수강생 | 클러스터 이름 |
-|--------|--------------|
-| 1번 | `aks-user01` |
-| 2번 | `aks-user02` |
-| 3번 | `aks-user03` |
-| 4번 | `aks-user04` |
+| 수강생 | 리소스 그룹 | 클러스터 이름 |
+|--------|------------|--------------|
+| 1번 | `user01-rg` | `aks-user01` |
+| 2번 | `user02-rg` | `aks-user02` |
+| 3번 | `user03-rg` | `aks-user03` |
+| 4번 | `user04-rg` | `aks-user04` |
 
 ```powershell
-az aks get-credentials --resource-group k8s-4days-rg --name aks-user01
+az aks get-credentials --resource-group user01-rg --name aks-user01
 ```
 
 !!! warning "본인 번호로 바꾸세요"
-    `aks-user01` 부분을 본인 번호(`aks-user02`, `aks-user03`, `aks-user04`)로 변경하세요.
+    `user01-rg`와 `aks-user01` 두 곳 모두 본인 번호로 변경하세요. (예: 2번 → `user02-rg`, `aks-user02`)
 
 연결 확인:
 
