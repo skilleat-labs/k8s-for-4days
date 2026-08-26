@@ -1899,33 +1899,38 @@
 <thead>
 <tr>
 <th>수강생</th>
+<th>리소스 그룹</th>
 <th>클러스터 이름</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1번</td>
+<td><code>user01-rg</code></td>
 <td><code>aks-user01</code></td>
 </tr>
 <tr>
 <td>2번</td>
+<td><code>user02-rg</code></td>
 <td><code>aks-user02</code></td>
 </tr>
 <tr>
 <td>3번</td>
+<td><code>user03-rg</code></td>
 <td><code>aks-user03</code></td>
 </tr>
 <tr>
 <td>4번</td>
+<td><code>user04-rg</code></td>
 <td><code>aks-user04</code></td>
 </tr>
 </tbody>
 </table>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">az</span> <span class="n">aks</span> <span class="nb">get-credentials</span> <span class="p">-</span><span class="n">-resource-group</span> <span class="n">k8s</span><span class="p">-</span><span class="n">4days-rg</span> <span class="p">-</span><span class="n">-name</span> <span class="n">aks-user01</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">az</span> <span class="n">aks</span> <span class="nb">get-credentials</span> <span class="p">-</span><span class="n">-resource-group</span> <span class="n">user01-rg</span> <span class="p">-</span><span class="n">-name</span> <span class="n">aks-user01</span>
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">본인 번호로 바꾸세요</p>
-<p><code>aks-user01</code> 부분을 본인 번호(<code>aks-user02</code>, <code>aks-user03</code>, <code>aks-user04</code>)로 변경하세요.</p>
+<p><code>user01-rg</code>와 <code>aks-user01</code> 두 곳 모두 본인 번호로 변경하세요. (예: 2번 → <code>user02-rg</code>, <code>aks-user02</code>)</p>
 </div>
 <p>연결 확인:</p>
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="n">current-context</span>
