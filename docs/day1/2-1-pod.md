@@ -41,9 +41,16 @@ VS Code 내장 터미널(`Ctrl+`` `)을 열고 아래 명령어를 실행합니�
     ```
 
     영구 적용 (VS Code 터미널 재시작 후에도 유지):
+
+    실행 정책 확인 — `Restricted`면 아래 명령어 먼저 실행:
+    ```powershell
+    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+    ```
+    Profile에 자동완성 등록:
     ```powershell
     New-Item -ItemType File -Force -Path $PROFILE
-    kubectl completion powershell >> $PROFILE
+    Add-Content -Path $PROFILE -Value 'kubectl completion powershell | Out-String | Invoke-Expression'
+    . $PROFILE
     ```
 
 === "macOS/Linux (bash)"

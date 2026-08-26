@@ -238,13 +238,29 @@ kubectl delete -f my-pod.yaml
     ```
 
     **영구 적용** (PowerShell 시작 시 자동 로드):
+
+    **① 실행 정책 확인 및 허용** (한 번만):
     ```powershell
-    New-Item -ItemType File -Force -Path $PROFILE
-    kubectl completion powershell >> $PROFILE
+    Get-ExecutionPolicy
+    ```
+    `Restricted` 또는 `AllSigned`가 나오면 아래 명령어 실행:
+    ```powershell
+    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
     ```
 
-    !!! info "적용 확인"
-        새 PowerShell 창을 열고 `kubectl get po` 입력 후 `Tab`을 눌러보세요.
+    **② Profile 파일에 자동완성 줄 추가**:
+    ```powershell
+    New-Item -ItemType File -Force -Path $PROFILE
+    Add-Content -Path $PROFILE -Value 'kubectl completion powershell | Out-String | Invoke-Expression'
+    ```
+
+    **③ 적용 확인**:
+    ```powershell
+    # 현재 세션에 바로 적용
+    . $PROFILE
+    ```
+
+    !!! info "이후부터는 PowerShell을 새로 열 때마다 자동완성이 적용됩니다."
 === "macOS/Linux"
     ```bash
     source <(kubectl completion bash)
@@ -281,4 +297,4 @@ kubectl delete -f my-pod.yaml
 | 모든 네임스페이스 Pod | `kubectl get pods -A` |
 | YAML 적용 | `kubectl apply -f 파일명.yaml` |
 | 자동완성 (macOS/Linux) | `source <(kubectl completion bash)` |
-| 자동완성 (PowerShell 영구) | `kubectl completion powershell >> $PROFILE` |
+| 자동완성 (PowerShell 영구) | `Add-Content -Path $PROFILE -Value 'kubectl completion powershell \| Out-String \| Invoke-Expression'` |
