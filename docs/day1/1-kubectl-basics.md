@@ -243,9 +243,9 @@ kubectl delete -f my-pod.yaml
     ```powershell
     Get-ExecutionPolicy
     ```
-    `Restricted` 또는 `AllSigned`가 나오면 아래 명령어 실행:
+    `Restricted` 또는 `AllSigned`가 나오면 아래 명령어 실행 (`-Force`로 확인 프롬프트 생략):
     ```powershell
-    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
     ```
 
     **② Profile 파일에 자동완성 줄 추가**:

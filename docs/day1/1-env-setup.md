@@ -142,9 +142,9 @@ lima-rancher-desktop   Ready    control-plane,master   2m    v1.29.x
 ### kubectl 자동완성 활성화
 
 === "Windows PowerShell"
-    실행 정책 확인 — `Restricted`면 아래 명령어 먼저 실행:
+    실행 정책 확인 — `Restricted`면 아래 명령어 먼저 실행 (`-Force`로 확인 프롬프트 생략):
     ```powershell
-    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
     ```
     Profile에 자동완성 등록 후 현재 세션 적용:
     ```powershell

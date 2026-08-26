@@ -42,9 +42,9 @@ VS Code 내장 터미널(`Ctrl+`` `)을 열고 아래 명령어를 실행합니�
 
     영구 적용 (VS Code 터미널 재시작 후에도 유지):
 
-    실행 정책 확인 — `Restricted`면 아래 명령어 먼저 실행:
+    실행 정책 확인 — `Restricted`면 아래 명령어 먼저 실행 (`-Force`로 확인 프롬프트 생략):
     ```powershell
-    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
     ```
     Profile에 자동완성 등록:
     ```powershell
