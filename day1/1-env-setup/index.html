@@ -1992,8 +1992,8 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows PowerShell</label><label for="__tabbed_2_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>실행 정책 확인 — <code>Restricted</code>면 아래 명령어 먼저 실행:
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">Set-ExecutionPolicy</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span>
+<p>실행 정책 확인 — <code>Restricted</code>면 아래 명령어 먼저 실행 (<code>-Force</code>로 확인 프롬프트 생략):
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">Set-ExecutionPolicy</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Force</span>
 </span></code></pre></div>
 Profile에 자동완성 등록 후 현재 세션 적용:
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">File</span> <span class="n">-Force</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span>

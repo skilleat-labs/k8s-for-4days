@@ -1891,8 +1891,8 @@
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">kubectl</span> <span class="n">completion</span> <span class="n">powershell</span> <span class="p">|</span> <span class="nb">Out-String</span> <span class="p">|</span> <span class="nb">Invoke-Expression</span>
 </span></code></pre></div></p>
 <p>영구 적용 (VS Code 터미널 재시작 후에도 유지):</p>
-<p>실행 정책 확인 — <code>Restricted</code>면 아래 명령어 먼저 실행:
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">Set-ExecutionPolicy</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span>
+<p>실행 정책 확인 — <code>Restricted</code>면 아래 명령어 먼저 실행 (<code>-Force</code>로 확인 프롬프트 생략):
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">Set-ExecutionPolicy</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Force</span>
 </span></code></pre></div>
 Profile에 자동완성 등록:
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">File</span> <span class="n">-Force</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span>
