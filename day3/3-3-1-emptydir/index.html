@@ -1641,22 +1641,32 @@
 </span></code></pre></div>
 <p><code>writer</code> 컨테이너가 기록한 타임스탬프를 <code>reader</code> 컨테이너가 읽어옵니다.</p>
 <h3 id="3-emptydir-pod">3) emptyDir 한계 확인 — Pod 삭제 시 데이터 소실<a class="headerlink" href="#3-emptydir-pod" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 현재 데이터 확인</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>emptydir-pod<span class="w"> </span>--<span class="w"> </span>cat<span class="w"> </span>/cache/hello.txt
+<p>먼저 파일을 하나 더 만들어 "삭제 전 상태"를 기록합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 파일 추가 기록</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>emptydir-pod<span class="w"> </span>--<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"echo 'extra data' &gt; /cache/extra.txt"</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Pod 삭제 후 재생성</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>emptydir-pod
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-emptydir.yaml
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># 컨테이너 기동 대기 후 확인</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>kubectl<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>--for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span>Ready<span class="w"> </span>pod/emptydir-pod<span class="w"> </span>--timeout<span class="o">=</span>30s
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>emptydir-pod<span class="w"> </span>--<span class="w"> </span>ls<span class="w"> </span>/cache/
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># 삭제 전 파일 목록 확인</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>emptydir-pod<span class="w"> </span>--<span class="w"> </span>ls<span class="w"> </span>/cache/
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>extra.txt   hello.txt
+</span></code></pre></div>
+<p>Pod를 삭제하고 재생성합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>emptydir-pod
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-emptydir.yaml
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># 컨테이너 기동 대기</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>kubectl<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>--for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span>Ready<span class="w"> </span>pod/emptydir-pod<span class="w"> </span>--timeout<span class="o">=</span>30s
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># 삭제 후 파일 목록 확인</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>emptydir-pod<span class="w"> </span>--<span class="w"> </span>ls<span class="w"> </span>/cache/
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>(출력 없음 — 디렉토리가 비어있음)
 </span></code></pre></div>
 <blockquote>
 <p><strong>포인트</strong>: Pod를 삭제하고 재생성하면 <code>/cache</code> 디렉토리는 <strong>빈 상태</strong>입니다. 컨테이너 재시작(크래시 복구)과 달리 Pod 삭제·재생성은 emptyDir 데이터를 소멸시킵니다.</p>
 </blockquote>
 <h3 id="_2">정리<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>emptydir-pod<span class="w"> </span>emptydir-shared
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>emptydir-pod<span class="w"> </span>emptydir-shared
 </span></code></pre></div>
 <blockquote>
 <p><strong>결론</strong>: emptyDir은 임시 데이터나 컨테이너 간 파일 공유에 적합하지만, Pod 삭제 후에도 데이터를 유지하려면 <strong>PersistentVolume(PV) / PVC</strong>가 필요합니다. → 다음 실습(3-3-2)에서 계속합니다.</p>
