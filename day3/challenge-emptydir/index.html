@@ -1604,12 +1604,12 @@
 <td><code>/shared</code></td>
 </tr>
 <tr>
-<td>writer 동작</td>
-<td>매 2초마다 현재 시각을 <code>/shared/log.txt</code>에 추가 기록</td>
+<td>writer command</td>
+<td><code>["sh", "-c", "while true; do date &gt;&gt; /shared/log.txt; sleep 2; done"]</code></td>
 </tr>
 <tr>
-<td>reader 동작</td>
-<td><code>/shared/log.txt</code>를 실시간으로 출력</td>
+<td>reader command</td>
+<td><code>["sh", "-c", "sleep 3 &amp;&amp; tail -f /shared/log.txt"]</code></td>
 </tr>
 </tbody>
 </table>
