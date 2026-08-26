@@ -133,11 +133,7 @@ kubectl logs deploy/log-deploy -c reader
 
 ---
 
-## 정답
-
-모두 시도해봤다면 아래에서 확인하세요.
-
-??? success "정답 보기"
+??? success "정답 보기 (모두 시도해봤다면 클릭)"
 
     **1단계: 템플릿 추출**
 
