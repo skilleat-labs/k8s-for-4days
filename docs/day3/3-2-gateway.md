@@ -107,6 +107,25 @@ kubectl get nodes
 
 ---
 
+## 이 실습에서 만드는 것
+
+```mermaid
+graph LR
+    Client("🌐 클라이언트") -->|"gw.lab.local/blue"| GW["Gateway\nlab-gateway"]
+    Client -->|"gw.lab.local/green"| GW
+    Client -->|"gw.lab.local/app\n80% / 20%"| GW
+    GW -->|"경로 기반"| ROUTE1["HTTPRoute\nlab-route"]
+    GW -->|"가중치 기반"| ROUTE2["HTTPRoute\ncanary-route"]
+    ROUTE1 --> BLUE["blue-svc\n(Blue App v1)"]
+    ROUTE1 --> GREEN["green-svc\n(Green App v2)"]
+    ROUTE2 -->|weight: 80| BLUE
+    ROUTE2 -->|weight: 20| GREEN
+```
+
+단계별 진행: **GatewayClass 설치 → Gateway 생성 → 경로 기반 라우팅 → 가중치 기반 Canary**
+
+---
+
 ## Gateway API란?
 
 Ingress는 하나의 리소스에 모든 규칙이 담깁니다. 팀이 커지면 여러 팀이 같은 파일을 건드려야 해서 충돌이 생깁니다. Gateway API는 이 문제를 **역할별 리소스 분리**로 해결합니다.
@@ -226,7 +245,7 @@ Gateway API 실습용 앱을 `gateway-ns` 네임스페이스에 배포합니다.
 kubectl create namespace gateway-ns
 ```
 
-`gw-apps.yaml` 파일을 만듭니다.
+`gw-apps.yaml` 파일을 만듭니다. VS Code에서 새 파일로 저장하거나, PowerShell에서 `code gw-apps.yaml`을 실행하면 바로 편집창이 열립니다.
 
 ```yaml
 apiVersion: apps/v1
@@ -314,7 +333,7 @@ kubectl get svc -n gateway-ns
 
 `Gateway`는 실제 리스닝 포트와 프로토콜을 정의합니다. 플랫폼 팀이 관리하는 리소스입니다.
 
-`gateway.yaml` 파일을 만듭니다.
+`gateway.yaml` 파일을 만듭니다. (`code gateway.yaml` 또는 VS Code 탐색기에서 새 파일 생성)
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1
@@ -370,7 +389,7 @@ kubectl describe gateway lab-gateway -n gateway-ns
 
 `HTTPRoute`는 "어떤 경로를 어느 Service로 보낼 것인가"를 정의합니다. 개발팀이 직접 관리하는 리소스입니다.
 
-`httproute-path.yaml` 파일을 만듭니다.
+`httproute-path.yaml` 파일을 만듭니다. (`code httproute-path.yaml`)
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1
@@ -382,7 +401,7 @@ spec:
   parentRefs:
     - name: lab-gateway         # 어느 Gateway에 붙을지 참조
   hostnames:
-    - "gw.lab.local"
+    - "gw.lab.local"            # 이 HTTPRoute가 처리할 호스트명 (Host 헤더와 일치해야 함)
   rules:
     - matches:
         - path:
@@ -415,18 +434,35 @@ kubectl describe httproute lab-route -n gateway-ns
 
 ### 5) /etc/hosts 등록 및 접속 확인
 
-`/etc/hosts`에 등록합니다.
+Gateway에 할당된 외부 IP를 먼저 확인합니다. (AKS는 LoadBalancer IP가 자동 할당됩니다.)
+
+```bash
+kubectl get gateway lab-gateway -n gateway-ns
+```
+
+`ADDRESS` 열에 외부 IP가 표시됩니다. 이 IP를 `/etc/hosts`에 등록합니다.
 
 === "Windows (PowerShell — 관리자 권한)"
 
     ```powershell
-    Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "127.0.0.1 gw.lab.local"
+    # Gateway 외부 IP 가져오기
+    $GW_IP = kubectl get gateway lab-gateway -n gateway-ns -o jsonpath='{.status.addresses[0].value}'
+    Write-Host "Gateway IP: $GW_IP"
+
+    # hosts 파일에 등록 (관리자 권한 필요)
+    Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "$GW_IP gw.lab.local"
     ```
+
+    !!! warning "관리자 권한 필요"
+        PowerShell을 **관리자 권한으로 실행**해야 `hosts` 파일을 수정할 수 있습니다.
 
 === "macOS / Linux"
 
     ```bash
-    sudo sh -c 'echo "127.0.0.1 gw.lab.local" >> /etc/hosts'
+    GW_IP=$(kubectl get gateway lab-gateway -n gateway-ns -o jsonpath='{.status.addresses[0].value}')
+    echo "Gateway IP: $GW_IP"
+
+    sudo sh -c "echo \"$GW_IP gw.lab.local\" >> /etc/hosts"
     ```
 
 접속 확인:
@@ -454,7 +490,7 @@ kubectl describe httproute lab-route -n gateway-ns
 
 Gateway API의 강력한 기능 중 하나입니다. Ingress에서는 annotation으로 억지로 구현하던 것을 `weight` 필드 하나로 표준화해서 지원합니다.
 
-`httproute-canary.yaml` 파일을 만듭니다.
+`httproute-canary.yaml` 파일을 만듭니다. (`code httproute-canary.yaml`)
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1
@@ -464,9 +500,9 @@ metadata:
   namespace: gateway-ns
 spec:
   parentRefs:
-    - name: lab-gateway
+    - name: lab-gateway         # 같은 Gateway에 붙임
   hostnames:
-    - "gw.lab.local"
+    - "gw.lab.local"            # lab-route와 같은 호스트 — 경로(/app)로 구분됨
   rules:
     - matches:
         - path:
