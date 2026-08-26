@@ -90,17 +90,35 @@ kubectl logs emptydir-shared -c reader
 
 ### 3) emptyDir 한계 확인 — Pod 삭제 시 데이터 소실
 
-```bash
-# 현재 데이터 확인
-kubectl exec emptydir-pod -- cat /cache/hello.txt
+먼저 파일을 하나 더 만들어 "삭제 전 상태"를 기록합니다.
 
-# Pod 삭제 후 재생성
+```bash
+# 파일 추가 기록
+kubectl exec emptydir-pod -- sh -c "echo 'extra data' > /cache/extra.txt"
+
+# 삭제 전 파일 목록 확인
+kubectl exec emptydir-pod -- ls /cache/
+```
+
+```
+extra.txt   hello.txt
+```
+
+Pod를 삭제하고 재생성합니다.
+
+```bash
 kubectl delete pod emptydir-pod
 kubectl apply -f pod-emptydir.yaml
 
-# 컨테이너 기동 대기 후 확인
+# 컨테이너 기동 대기
 kubectl wait --for=condition=Ready pod/emptydir-pod --timeout=30s
+
+# 삭제 후 파일 목록 확인
 kubectl exec emptydir-pod -- ls /cache/
+```
+
+```
+(출력 없음 — 디렉토리가 비어있음)
 ```
 
 > **포인트**: Pod를 삭제하고 재생성하면 `/cache` 디렉토리는 **빈 상태**입니다. 컨테이너 재시작(크래시 복구)과 달리 Pod 삭제·재생성은 emptyDir 데이터를 소멸시킵니다.
