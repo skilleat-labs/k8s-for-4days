@@ -2008,19 +2008,29 @@
 <p>현재 세션에만 적용:
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">kubectl</span> <span class="n">completion</span> <span class="n">powershell</span> <span class="p">|</span> <span class="nb">Out-String</span> <span class="p">|</span> <span class="nb">Invoke-Expression</span>
 </span></code></pre></div></p>
-<p><strong>영구 적용</strong> (PowerShell 시작 시 자동 로드):
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">File</span> <span class="n">-Force</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">kubectl</span> <span class="n">completion</span> <span class="n">powershell</span> <span class="p">&gt;&gt;</span> <span class="nv">$PROFILE</span>
+<p><strong>영구 적용</strong> (PowerShell 시작 시 자동 로드):</p>
+<p><strong>① 실행 정책 확인 및 허용</strong> (한 번만):
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">Get-ExecutionPolicy</span>
+</span></code></pre></div>
+<code>Restricted</code> 또는 <code>AllSigned</code>가 나오면 아래 명령어 실행:
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">Set-ExecutionPolicy</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span>
+</span></code></pre></div></p>
+<p><strong>② Profile 파일에 자동완성 줄 추가</strong>:
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">File</span> <span class="n">-Force</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span> <span class="n">-Value</span> <span class="s1">'kubectl completion powershell | Out-String | Invoke-Expression'</span>
+</span></code></pre></div></p>
+<p><strong>③ 적용 확인</strong>:
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c"># 현재 세션에 바로 적용</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="p">.</span> <span class="nv">$PROFILE</span>
 </span></code></pre></div></p>
 <div class="admonition info">
-<p class="admonition-title">적용 확인</p>
-<p>새 PowerShell 창을 열고 <code>kubectl get po</code> 입력 후 <code>Tab</code>을 눌러보세요.</p>
+<p class="admonition-title">이후부터는 PowerShell을 새로 열 때마다 자동완성이 적용됩니다.</p>
 </div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">source</span><span class="w"> </span>&lt;<span class="o">(</span>kubectl<span class="w"> </span>completion<span class="w"> </span>bash<span class="o">)</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'source &lt;(kubectl completion bash)'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">source</span><span class="w"> </span>&lt;<span class="o">(</span>kubectl<span class="w"> </span>completion<span class="w"> </span>bash<span class="o">)</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'source &lt;(kubectl completion bash)'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
 </span></code></pre></div>
 </div>
 </div>
@@ -2060,8 +2070,8 @@
 </table>
 <div class="admonition tip">
 <p class="admonition-title">모르는 YAML 필드가 있을 때</p>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>kubectl<span class="w"> </span>explain<span class="w"> </span>pod.spec.containers
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>kubectl<span class="w"> </span>explain<span class="w"> </span>deployment.spec.template
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kubectl<span class="w"> </span>explain<span class="w"> </span>pod.spec.containers
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>kubectl<span class="w"> </span>explain<span class="w"> </span>deployment.spec.template
 </span></code></pre></div>
 공식 문서 없이도 터미널에서 바로 필드 설명을 확인할 수 있습니다.</p>
 </div>
@@ -2097,7 +2107,7 @@
 </tr>
 <tr>
 <td>자동완성 (PowerShell 영구)</td>
-<td><code>kubectl completion powershell &gt;&gt; $PROFILE</code></td>
+<td><code>Add-Content -Path $PROFILE -Value 'kubectl completion powershell \| Out-String \| Invoke-Expression'</code></td>
 </tr>
 </tbody>
 </table>
