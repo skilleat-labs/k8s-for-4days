@@ -135,9 +135,57 @@ Frontend와 Backend로 구성되며, Backend 2개가 **동일한 데이터 파�
 
 ### 5 · Gateway API
 
-- Envoy Gateway 설치 방법은 [Gateway API 실습](3-2-gateway.md) 참고
-- GatewayClass → Gateway → HTTPRoute 순서로 구성
-- `/` 경로로 들어오는 요청이 Frontend로 라우팅되어야 함
+GatewayClass → Gateway → HTTPRoute 순서로 구성합니다.
+
+**GatewayClass** — 아래 명령어를 그대로 실행하세요.
+
+```powershell
+@"
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: eg
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+"@ | kubectl apply -f -
+```
+
+**Gateway** — 빈 칸을 채워서 `gateway.yaml`을 완성하세요.
+
+```yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: ________          # Gateway 이름 (자유롭게)
+  namespace: ________     # 앱과 같은 Namespace
+spec:
+  gatewayClassName: ______ # 위에서 만든 GatewayClass 이름
+  listeners:
+    - name: http
+      protocol: ______    # HTTP 또는 HTTPS
+      port: ______        # 외부에서 접속할 포트
+```
+
+**HTTPRoute** — 빈 칸을 채워서 `httproute.yaml`을 완성하세요.
+
+```yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: ________
+  namespace: ________
+spec:
+  parentRefs:
+    - name: ________      # 연결할 Gateway 이름
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: ______  # 모든 경로를 받으려면?
+      backendRefs:
+        - name: ________   # 트래픽을 보낼 Service 이름
+          port: ______     # Service 포트
+```
 
 ---
 
