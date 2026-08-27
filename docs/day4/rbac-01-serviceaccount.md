@@ -196,22 +196,28 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6Ii...  (JWT 토큰)
 exit
 ```
 
-토큰을 API Server 호출에 직접 사용해봅니다:
+토큰을 API Server 호출에 직접 사용해봅니다. 다시 Pod 안으로 접속해서 단계별로 실행합니다.
 
-=== "Windows PowerShell"
-    ```powershell
-    kubectl exec pod-custom-sa -- sh -c 'TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token); CACERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt; curl -s --cacert $CACERT -H "Authorization: Bearer $TOKEN" https://kubernetes.default.svc/api/v1/namespaces/default/pods'
-    ```
-=== "macOS/Linux"
-    ```bash
-    kubectl exec pod-custom-sa -- sh -c '
-      TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-      CACERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-      curl -s --cacert $CACERT \
-        -H "Authorization: Bearer $TOKEN" \
-        https://kubernetes.default.svc/api/v1/namespaces/default/pods
-    '
-    ```
+```powershell
+kubectl exec -it pod-custom-sa -- sh
+```
+
+Pod 내부 셸에서:
+
+```sh
+# 토큰과 CA 인증서 경로를 변수에 저장
+TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+CACERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+
+# API Server에 Pod 목록 요청
+curl -s --cacert $CACERT \
+  -H "Authorization: Bearer $TOKEN" \
+  https://kubernetes.default.svc/api/v1/namespaces/default/pods
+```
+
+```sh
+exit
+```
 
 !!! info "Forbidden 응답이 정상입니다"
     `403 Forbidden`은 **인증은 성공**했지만 **권한이 없다**는 뜻입니다.
