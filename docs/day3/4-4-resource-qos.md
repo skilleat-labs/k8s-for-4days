@@ -153,32 +153,35 @@ QoS Class:  Guaranteed
     kubectl describe node | grep -A 10 "Allocated resources"
     ```
 
-AKS 실제 출력 예시 (2 vCPU / 4GB 노드 2개 기준):
+AKS 실제 출력 예시 (2 vCPU / 8GB 노드 2개 기준, 실습 환경과 동일):
 
 ```
 Allocated resources:                             ← 노드 1
   Resource   Requests       Limits
-  cpu        1043m (54%)    18792m (989%)
-  memory     1862Mi (66%)   41472Mi (1486%)
+  cpu        940m (47%)     18792m (989%)
+  memory     1862Mi (26%)   41472Mi (582%)
 
 --
 Allocated resources:                             ← 노드 2
   Resource   Requests       Limits
-  cpu        1425m (75%)    18740m (986%)
-  memory     2466Mi (88%)   29167904Ki (1021%)
+  cpu        1200m (60%)    18740m (986%)
+  memory     2200Mi (30%)   29167904Ki (400%)
 ```
+
+!!! note "실제 수치는 다를 수 있습니다"
+    클러스터에 실행 중인 시스템 Pod 구성에 따라 수치가 달라집니다. 비율 패턴을 이해하는 것이 목표입니다.
 
 **Requests % — 스케줄러가 실제로 보는 수치**
 
 | | 노드 1 | 노드 2 |
 |---|---|---|
-| CPU | 1043m (54%) | 1425m (75%) |
-| Memory | 1862Mi (66%) | 2466Mi (88%) ⚠️ |
+| CPU | ~47% | ~60% |
+| Memory | ~26% | ~30% |
 
 - Requests %가 100%를 넘으면 새 Pod가 **Pending**
-- 노드 2 메모리 **88%** — 새 Pod를 더 띄우면 곧 꽉 찰 수 있어 모니터링 필요
+- 8GB 노드에서는 메모리 여유가 충분한 편
 
-**Limits % — 오버커밋 (989%, 1486%)**
+**Limits % — 오버커밋 (989%, 582%)**
 
 Limits 합계가 100%를 크게 넘어도 정상입니다.
 모든 Pod가 동시에 limits까지 사용하지 않는다는 전제로 K8s가 오버커밋을 허용합니다.
@@ -186,8 +189,8 @@ Limits 합계가 100%를 크게 넘어도 정상입니다.
 Limits가 극단적으로 높은 이유는 **limits를 설정하지 않은 Pod** 때문입니다.
 limits 미설정 시 노드 전체 용량이 limit으로 잡혀서 수치가 폭발적으로 늘어납니다.
 
-!!! warning "노드 2 메모리 88% — Eviction 위험 신호"
-    Requests 기준으로 88%가 예약된 상태에서 노드 메모리 압박이 오면
+!!! warning "Requests % 80% 이상 — Eviction 위험 신호"
+    Requests 기준으로 80% 이상이 예약된 상태에서 노드 메모리 압박이 오면
     K8s는 BestEffort → Burstable 순서로 Pod를 퇴출합니다.
     Guaranteed Pod를 DB처럼 절대 죽으면 안 되는 앱에 설정해야 하는 이유입니다.
 
@@ -271,7 +274,7 @@ spec:
           memory: 200Mi
         limits:
           cpu: 500m
-          memory: 400Mi
+          memory: 600Mi    # Quota 상한(512Mi)을 단독으로 초과
 ```
 
 ```bash title="터미널"
@@ -282,8 +285,8 @@ kubectl apply -f pod-quota-exceed.yaml
 Error from server (Forbidden): error when creating "pod-quota-exceed.yaml":
 pods "pod-quota-exceed" is forbidden:
 exceeded quota: lab-quota,
-requested: limits.memory=400Mi,
-used: limits.memory=768Mi,
+requested: limits.memory=600Mi,
+used: limits.memory=0,
 limited: limits.memory=512Mi
 ```
 

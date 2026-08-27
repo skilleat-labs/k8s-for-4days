@@ -107,25 +107,28 @@ kubectl delete pod pod-pending
 
 ---
 
-### 사전 준비 — metrics-server 활성화
+### 사전 준비 — metrics-server 확인
 
-!!! warning "Rancher Desktop 필수 설정"
-    `kubectl top` 명령은 **metrics-server**가 있어야 동작합니다.
-    Rancher Desktop(k3s)은 기본 비활성화 상태입니다. Step 2, 4 전에 한 번만 실행하세요.
+`kubectl top` 명령은 **metrics-server**가 있어야 동작합니다.
 
-    ```bash title="터미널"
-    # metrics-server 설치
-    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+!!! info "AKS — 기본 설치됨, 바로 사용 가능"
+    AKS는 metrics-server가 기본 포함되어 있습니다. 아래 명령으로 바로 확인하세요.
 
-    # k3s는 kubelet TLS 검증 우회 필요 (Mac/Linux/Windows 공통 — 한 줄로 실행)
-    kubectl patch deployment metrics-server -n kube-system --type=json -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
-
-    # 준비 확인 (1~2분 소요)
-    kubectl rollout status deployment/metrics-server -n kube-system
+    ```powershell
+    kubectl top nodes
     ```
 
-    ```text title="출력 예시"
-    deployment "metrics-server" successfully rolled out
+    노드별 CPU/메모리 수치가 출력되면 준비 완료입니다. 다음 Step으로 진행하세요.
+
+??? note "Rancher Desktop(로컬) 사용 시 — metrics-server 별도 설치 필요"
+    Rancher Desktop(k3s)은 metrics-server가 기본 비활성화 상태입니다. Step 2, 4 전에 한 번만 실행하세요.
+
+    ```bash
+    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+    kubectl patch deployment metrics-server -n kube-system --type=json -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
+
+    kubectl rollout status deployment/metrics-server -n kube-system
     ```
 
 ---
