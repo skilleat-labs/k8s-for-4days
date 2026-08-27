@@ -2069,8 +2069,8 @@ Spring Boot, JVM처럼 기동이 느린 앱은 <code>initialDelaySeconds: 30</co
 </span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
 </span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">        </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-liveness-ok.yaml
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>liveness-ok<span class="w"> </span>-w
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-liveness-ok</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">liveness-ok</span> <span class="n">-w</span>
 </span></code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">✅ 확인 포인트</p>
@@ -2100,15 +2100,15 @@ Spring Boot, JVM처럼 기동이 느린 앱은 <code>initialDelaySeconds: 30</co
 </span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">        </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
 </span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">        </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-liveness-fail.yaml
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>liveness-fail<span class="w"> </span>-w
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-liveness-fail</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">liveness-fail</span> <span class="n">-w</span>
 </span></code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">✅ 확인 포인트</p>
 <p>30~60초 후 <code>RESTARTS</code> 숫자가 1로 증가하면 OK.</p>
 </div>
 <p>이벤트 로그로 재시작 원인을 확인합니다:</p>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>liveness-fail
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">kubectl</span> <span class="n">describe</span> <span class="n">pod</span> <span class="n">liveness-fail</span>
 </span></code></pre></div>
 <div class="language-text highlight"><span class="filename">출력 예시 — Events 섹션</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Events:
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  Warning  Unhealthy  Liveness probe failed: ...
@@ -2144,16 +2144,16 @@ FastAPI, Spring Boot, Node.js 등 웹 앱은 대부분 <code>/health</code> 엔�
 </span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">        </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
 </span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">        </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-liveness-http.yaml
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>liveness-http<span class="w"> </span>-w
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-liveness-http</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">liveness-http</span> <span class="n">-w</span>
 </span></code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">✅ 확인 포인트</p>
 <p><code>RESTARTS</code> 0 유지 확인. <code>Ctrl+C</code>로 종료.</p>
 </div>
 <p>이번엔 nginx를 강제로 중단해서 HTTP Probe 실패를 유도합니다:</p>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>liveness-http<span class="w"> </span>--<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </span>stop
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>liveness-http<span class="w"> </span>-w
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">kubectl</span> <span class="n">exec</span> <span class="n">liveness-http</span> <span class="p">--</span> <span class="n">nginx</span> <span class="n">-s</span> <span class="n">stop</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">liveness-http</span> <span class="n">-w</span>
 </span></code></pre></div>
 <div class="language-text highlight"><span class="filename">출력 예시</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>NAME             READY   STATUS    RESTARTS   AGE
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>liveness-http    1/1     Running   0          30s
@@ -2228,8 +2228,8 @@ K8s는 재시작이 반복될수록 <strong>대기 시간을 지수적으로 늘
 </span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="w">        </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 </span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="w">        </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-crashloop.yaml
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>crashloop-app<span class="w"> </span>-w
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-crashloop</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">crashloop-app</span> <span class="n">-w</span>
 </span></code></pre></div>
 <div class="language-text highlight"><span class="filename">출력 예시</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>NAME            READY   STATUS             RESTARTS   AGE
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>crashloop-app   1/1     Running            0          5s
@@ -2238,14 +2238,14 @@ K8s는 재시작이 반복될수록 <strong>대기 시간을 지수적으로 늘
 </span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>crashloop-app   0/1     CrashLoopBackOff   3          90s
 </span></code></pre></div>
 <p>CrashLoopBackOff 상태가 보이면 <code>Ctrl+C</code>로 watch를 종료하고, 아래 3단계 명령으로 원인을 파악합니다:</p>
-<div class="language-bash highlight"><span class="filename">터미널 — 원인 파악 3단계</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># 1. 이벤트에서 실패 원인 확인</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>crashloop-app
+<div class="language-powershell highlight"><span class="filename">터미널 — 원인 파악 3단계</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c"># 1. 이벤트에서 실패 원인 확인</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">kubectl</span> <span class="n">describe</span> <span class="n">pod</span> <span class="n">crashloop-app</span>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># 2. 현재 컨테이너 로그 확인 (이 실습은 sleep 명령이라 비어 있음)</span>
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>crashloop-app
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c"># 2. 현재 컨테이너 로그 확인 (이 실습은 sleep 명령이라 비어 있음)</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">kubectl</span> <span class="n">logs</span> <span class="n">crashloop-app</span>
 </span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1"># 3. 이전 재시작 컨테이너 로그 확인 (RESTARTS 가 1 이상일 때만 동작)</span>
-</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>crashloop-app<span class="w"> </span>--previous
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c"># 3. 이전 재시작 컨테이너 로그 확인 (RESTARTS 가 1 이상일 때만 동작)</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">kubectl</span> <span class="n">logs</span> <span class="n">crashloop-app</span> <span class="p">-</span><span class="n">-previous</span>
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title"><code>--previous</code> 는 재시작 후에만 동작합니다</p>
@@ -2258,7 +2258,7 @@ Pod를 방금 생성했거나 아직 재시작이 없으면 <code>previous termi
 </div>
 <hr />
 <h3 id="_5">정리<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>liveness-ok<span class="w"> </span>liveness-fail<span class="w"> </span>liveness-http<span class="w"> </span>crashloop-app
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">liveness-ok</span> <span class="n">liveness-fail</span> <span class="n">liveness-http</span> <span class="n">crashloop-app</span>
 </span></code></pre></div>
 <h3 id="_6">트러블슈팅<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <table>

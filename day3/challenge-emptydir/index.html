@@ -1849,11 +1849,11 @@
 </tbody>
 </table>
 <h3 id="_3">완성 후 확인 방법<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># writer가 파일을 쓰고 있는지 확인</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>deploy/log-deploy<span class="w"> </span>-c<span class="w"> </span>writer
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c"># writer가 파일을 쓰고 있는지 확인</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">kubectl</span> <span class="n">logs</span> <span class="n">deploy</span><span class="p">/</span><span class="n">log-deploy</span> <span class="n">-c</span> <span class="n">writer</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># reader가 파일을 읽고 있는지 확인</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>deploy/log-deploy<span class="w"> </span>-c<span class="w"> </span>reader
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c"># reader가 파일을 읽고 있는지 확인</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">kubectl</span> <span class="n">logs</span> <span class="n">deploy</span><span class="p">/</span><span class="n">log-deploy</span> <span class="n">-c</span> <span class="n">reader</span>
 </span></code></pre></div>
 <p><code>reader</code> 로그에 타임스탬프가 계속 출력되면 성공입니다.</p>
 <hr />
@@ -1879,7 +1879,7 @@
 </div>
 </div>
 <p>뽑힌 파일을 VS Code로 열어서 수정하세요.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>code<span class="w"> </span>log-deploy.yaml
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">code</span> <span class="n">log-deploy</span><span class="p">.</span><span class="n">yaml</span>
 </span></code></pre></div>
 </details>
 <details class="tip">
@@ -1988,11 +1988,11 @@
 </span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="w">          </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
 </span></code></pre></div>
 <p><strong>3단계: 배포 및 확인</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>log-deploy.yaml
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">log-deploy</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span>
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># reader 로그에 타임스탬프가 출력되면 성공</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>deploy/log-deploy<span class="w"> </span>-c<span class="w"> </span>reader
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c"># reader 로그에 타임스탬프가 출력되면 성공</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">kubectl</span> <span class="n">logs</span> <span class="n">deploy</span><span class="p">/</span><span class="n">log-deploy</span> <span class="n">-c</span> <span class="n">reader</span>
 </span></code></pre></div>
 <p>출력 예시:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Wed Aug 26 05:12:01 UTC 2026
@@ -2002,7 +2002,7 @@
 </details>
 <hr />
 <h2 id="_5">정리<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span>log-deploy
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">deployment</span> <span class="n">log-deploy</span>
 </span></code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">핵심 포인트</p>

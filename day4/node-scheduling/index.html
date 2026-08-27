@@ -2374,8 +2374,8 @@
 </ul>
 <hr />
 <h2 id="_3">사전 확인<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>--show-labels
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">nodes</span> <span class="n">-o</span> <span class="n">wide</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">nodes</span> <span class="p">-</span><span class="n">-show-labels</span>
 </span></code></pre></div>
 <p>이 실습은 <strong>worker-1, worker-2</strong> 두 노드가 있는 환경을 기준으로 합니다.</p>
 <hr />
@@ -2388,8 +2388,8 @@
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>[worker-2]  label: role=db
 </span></code></pre></div>
 <h3 id="1-1-label">1-1. 노드에 label 추가<a class="headerlink" href="#1-1-label" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>worker-1<span class="w"> </span><span class="nv">role</span><span class="o">=</span>web
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>worker-2<span class="w"> </span><span class="nv">role</span><span class="o">=</span>db
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">kubectl</span> <span class="n">label</span> <span class="n">node</span> <span class="n">worker</span><span class="p">-</span><span class="n">1</span> <span class="n">role</span><span class="p">=</span><span class="n">web</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">kubectl</span> <span class="n">label</span> <span class="n">node</span> <span class="n">worker</span><span class="p">-</span><span class="n">2</span> <span class="n">role</span><span class="p">=</span><span class="n">db</span>
 </span></code></pre></div>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">macOS/Linux</label><label for="__tabbed_1_2">Windows PowerShell</label></div>
 <div class="tabbed-content">
@@ -2416,8 +2416,8 @@
 </span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="nt">nodeSelector</span><span class="p">:</span>
 </span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-nodeselector.yaml
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>pod-web<span class="w"> </span>-o<span class="w"> </span>wide
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-nodeselector</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">pod-web</span> <span class="n">-o</span> <span class="n">wide</span>
 </span></code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">확인 포인트</p>
@@ -2436,14 +2436,14 @@
 </span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">  </span><span class="nt">nodeSelector</span><span class="p">:</span>
 </span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpu</span><span class="w">     </span><span class="c1"># 어떤 노드에도 없는 label</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-nodeselector-fail.yaml
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>pod-fail
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>pod-fail
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-nodeselector-fail</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">pod-fail</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">kubectl</span> <span class="n">describe</span> <span class="n">pod</span> <span class="n">pod-fail</span>
 </span></code></pre></div>
 <p>Events에서 아래 메시지를 확인합니다:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Warning  FailedScheduling  0/2 nodes are available: node(s) didn't match Pod's node affinity/selector
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod-web<span class="w"> </span>pod-fail
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">pod-web</span> <span class="n">pod-fail</span>
 </span></code></pre></div>
 <hr />
 <h2 id="part-2-node-affinity">Part 2 — Node Affinity<a class="headerlink" href="#part-2-node-affinity" title="Permanent link">&para;</a></h2>
@@ -2487,9 +2487,9 @@
 </span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">                </span><span class="nt">values</span><span class="p">:</span>
 </span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-affinity-required.yaml
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>pod-affinity-required<span class="w"> </span>-o<span class="w"> </span>wide
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c1"># NODE가 worker-1인지 확인</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-affinity-required</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">pod-affinity-required</span> <span class="n">-o</span> <span class="n">wide</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c"># NODE가 worker-1인지 확인</span>
 </span></code></pre></div>
 <h3 id="2-2-preferred-worker-2">2-2. preferred — worker-2 우선, 없으면 다른 곳도 허용<a class="headerlink" href="#2-2-preferred-worker-2" title="Permanent link">&para;</a></h3>
 <p><code>pod-affinity-preferred.yaml</code>:</p>
@@ -2512,10 +2512,10 @@
 </span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="w">                </span><span class="nt">values</span><span class="p">:</span>
 </span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-affinity-preferred.yaml
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>pod-affinity-preferred<span class="w"> </span>-o<span class="w"> </span>wide
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># worker-2에 배포되는 것을 확인</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># worker-2가 꽉 찼거나 불가능한 상황이면 worker-1에도 배포될 수 있음</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-affinity-preferred</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">pod-affinity-preferred</span> <span class="n">-o</span> <span class="n">wide</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c"># worker-2에 배포되는 것을 확인</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c"># worker-2가 꽉 찼거나 불가능한 상황이면 worker-1에도 배포될 수 있음</span>
 </span></code></pre></div>
 <h3 id="2-3-operator">2-3. operator 종류<a class="headerlink" href="#2-3-operator" title="Permanent link">&para;</a></h3>
 <table>
@@ -2545,7 +2545,7 @@
 </tbody>
 </table>
 <h3 id="_6">정리<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod-affinity-required<span class="w"> </span>pod-affinity-preferred
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">pod-affinity-required</span> <span class="n">pod-affinity-preferred</span>
 </span></code></pre></div>
 <hr />
 <h2 id="part-3-taints-tolerations">Part 3 — Taints &amp; Tolerations<a class="headerlink" href="#part-3-taints-tolerations" title="Permanent link">&para;</a></h2>
@@ -2580,7 +2580,7 @@
 </tbody>
 </table>
 <h3 id="3-1-worker-2-taint">3-1. worker-2에 Taint 설정<a class="headerlink" href="#3-1-worker-2-taint" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>taint<span class="w"> </span>node<span class="w"> </span>worker-2<span class="w"> </span><span class="nv">dedicated</span><span class="o">=</span>gpu:NoSchedule
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">kubectl</span> <span class="n">taint</span> <span class="n">node</span> <span class="n">worker</span><span class="p">-</span><span class="n">2</span> <span class="n">dedicated</span><span class="p">=</span><span class="n">gpu</span><span class="p">:</span><span class="n">NoSchedule</span>
 </span></code></pre></div>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">macOS/Linux</label><label for="__tabbed_2_2">Windows PowerShell</label></div>
 <div class="tabbed-content">
@@ -2600,15 +2600,15 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Taints: dedicated=gpu:NoSchedule
 </span></code></pre></div></p>
 <h3 id="3-2-toleration-pod-worker-2">3-2. Toleration 없는 Pod → worker-2 배포 불가 확인<a class="headerlink" href="#3-2-toleration-pod-worker-2" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>test-taint<span class="w"> </span>--image<span class="o">=</span>nginx:1.25<span class="w"> </span>--replicas<span class="o">=</span><span class="m">4</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">kubectl</span> <span class="n">create</span> <span class="n">deployment</span> <span class="nb">test-taint</span> <span class="p">-</span><span class="n">-image</span><span class="p">=</span><span class="n">nginx</span><span class="p">:</span><span class="n">1</span><span class="p">.</span><span class="n">25</span> <span class="p">-</span><span class="n">-replicas</span><span class="p">=</span><span class="n">4</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span> <span class="n">-o</span> <span class="n">wide</span>
 </span></code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">확인 포인트</p>
 <p>4개 Pod가 모두 <strong>worker-1</strong>에만 배포되는 것을 확인하세요.
 worker-2는 Taint 때문에 거부합니다.</p>
 </div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span>test-taint
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">deployment</span> <span class="nb">test-taint</span>
 </span></code></pre></div>
 <h3 id="3-3-toleration-pod-worker-2">3-3. Toleration 있는 Pod → worker-2에도 배포 가능<a class="headerlink" href="#3-3-toleration-pod-worker-2" title="Permanent link">&para;</a></h3>
 <p><code>pod-toleration.yaml</code>:</p>
@@ -2626,9 +2626,9 @@ worker-2는 Taint 때문에 거부합니다.</p>
 </span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpu</span>
 </span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="w">      </span><span class="nt">effect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NoSchedule</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-toleration.yaml
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>pod-toleration<span class="w"> </span>-o<span class="w"> </span>wide
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="c1"># worker-2에도 배포 가능해짐 (worker-1에 배포될 수도 있음)</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-toleration</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">pod-toleration</span> <span class="n">-o</span> <span class="n">wide</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="c"># worker-2에도 배포 가능해짐 (worker-1에 배포될 수도 있음)</span>
 </span></code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Toleration은 '허용'이지 '강제'가 아닙니다</p>
@@ -2660,13 +2660,13 @@ worker-2에 <strong>반드시</strong> 배포하려면 <code>nodeSelector</code>
 </span><span id="__span-25-21"><a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a><span class="w">                </span><span class="nt">values</span><span class="p">:</span>
 </span><span id="__span-25-22"><a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a><span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-gpu-dedicated.yaml
-</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>pod-gpu-dedicated<span class="w"> </span>-o<span class="w"> </span>wide
-</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="c1"># worker-2에만 배포됨</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-gpu-dedicated</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">pod-gpu-dedicated</span> <span class="n">-o</span> <span class="n">wide</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="c"># worker-2에만 배포됨</span>
 </span></code></pre></div>
 <h3 id="3-5-taint">3-5. Taint 제거<a class="headerlink" href="#3-5-taint" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>kubectl<span class="w"> </span>taint<span class="w"> </span>node<span class="w"> </span>worker-2<span class="w"> </span><span class="nv">dedicated</span><span class="o">=</span>gpu:NoSchedule-
-</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="c1"># 마지막에 - 를 붙이면 제거</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">kubectl</span> <span class="n">taint</span> <span class="n">node</span> <span class="n">worker</span><span class="p">-</span><span class="n">2</span> <span class="n">dedicated</span><span class="p">=</span><span class="n">gpu</span><span class="p">:</span><span class="n">NoSchedule</span><span class="p">-</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="c"># 마지막에 - 를 붙이면 제거</span>
 </span></code></pre></div>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">macOS/Linux</label><label for="__tabbed_3_2">Windows PowerShell</label></div>
 <div class="tabbed-content">
@@ -2683,7 +2683,7 @@ worker-2에 <strong>반드시</strong> 배포하려면 <code>nodeSelector</code>
 </div>
 </div>
 <h3 id="_8">정리<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod-toleration<span class="w"> </span>pod-gpu-dedicated
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">pod-toleration</span> <span class="n">pod-gpu-dedicated</span>
 </span></code></pre></div>
 <hr />
 <h2 id="part-4-cordon-drain">Part 4 — cordon / drain<a class="headerlink" href="#part-4-cordon-drain" title="Permanent link">&para;</a></h2>
@@ -2698,14 +2698,14 @@ worker-2에 <strong>반드시</strong> 배포하려면 <code>nodeSelector</code>
 </span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>uncordon →  점검 후 노드를 다시 정상 상태로 복귀
 </span></code></pre></div>
 <h3 id="4-1-deployment">4-1. 테스트용 Deployment 배포<a class="headerlink" href="#4-1-deployment" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>drain-test<span class="w"> </span>--image<span class="o">=</span>nginx:1.25<span class="w"> </span>--replicas<span class="o">=</span><span class="m">4</span>
-</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
-</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="c1"># worker-1, worker-2에 분산 배포 확인</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">kubectl</span> <span class="n">create</span> <span class="n">deployment</span> <span class="n">drain-test</span> <span class="p">-</span><span class="n">-image</span><span class="p">=</span><span class="n">nginx</span><span class="p">:</span><span class="n">1</span><span class="p">.</span><span class="n">25</span> <span class="p">-</span><span class="n">-replicas</span><span class="p">=</span><span class="n">4</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span> <span class="n">-o</span> <span class="n">wide</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="c"># worker-1, worker-2에 분산 배포 확인</span>
 </span></code></pre></div>
 <h3 id="4-2-cordon-pod">4-2. cordon — 새 Pod 배포 차단<a class="headerlink" href="#4-2-cordon-pod" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>kubectl<span class="w"> </span>cordon<span class="w"> </span>worker-2
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">kubectl</span> <span class="n">cordon</span> <span class="n">worker</span><span class="p">-</span><span class="n">2</span>
 </span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
-</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">nodes</span>
 </span></code></pre></div>
 <p>출력:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>NAME            STATUS                     ROLES           AGE
@@ -2713,10 +2713,10 @@ worker-2에 <strong>반드시</strong> 배포하려면 <code>nodeSelector</code>
 </span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>worker-1        Ready                      &lt;none&gt;          1h
 </span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>worker-2        Ready,SchedulingDisabled   &lt;none&gt;          1h
 </span></code></pre></div></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="c1"># 새 Pod 추가 → worker-1에만 배포되는지 확인</span>
-</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>drain-test<span class="w"> </span>--replicas<span class="o">=</span><span class="m">6</span>
-</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
-</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="c1"># 새로 생긴 2개 Pod가 worker-1에만 배포됨</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="c"># 새 Pod 추가 → worker-1에만 배포되는지 확인</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="n">kubectl</span> <span class="n">scale</span> <span class="n">deployment</span> <span class="n">drain-test</span> <span class="p">-</span><span class="n">-replicas</span><span class="p">=</span><span class="n">6</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span> <span class="n">-o</span> <span class="n">wide</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="c"># 새로 생긴 2개 Pod가 worker-1에만 배포됨</span>
 </span></code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -2724,12 +2724,12 @@ worker-2에 <strong>반드시</strong> 배포하려면 <code>nodeSelector</code>
 단지 새로운 Pod가 이 노드에 배포되지 않도록 막는 것입니다.</p>
 </div>
 <h3 id="4-3-drain-pod">4-3. drain — 기존 Pod까지 모두 이동<a class="headerlink" href="#4-3-drain-pod" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>kubectl<span class="w"> </span>drain<span class="w"> </span>worker-2<span class="w"> </span>--ignore-daemonsets<span class="w"> </span>--delete-emptydir-data
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">kubectl</span> <span class="n">drain</span> <span class="n">worker</span><span class="p">-</span><span class="n">2</span> <span class="p">-</span><span class="n">-ignore-daemonsets</span> <span class="p">-</span><span class="n">-delete-emptydir-data</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
-</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="c1"># worker-2의 Pod가 모두 worker-1로 이동</span>
-</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="c1"># worker-2: Ready,SchedulingDisabled 유지</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span> <span class="n">-o</span> <span class="n">wide</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="c"># worker-2의 Pod가 모두 worker-1로 이동</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">nodes</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="c"># worker-2: Ready,SchedulingDisabled 유지</span>
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">옵션 설명</p>
@@ -2747,14 +2747,14 @@ worker-2에 <strong>반드시</strong> 배포하려면 <code>nodeSelector</code>
 </div>
 <h3 id="4-4-uncordon">4-4. uncordon — 노드 복귀<a class="headerlink" href="#4-4-uncordon" title="Permanent link">&para;</a></h3>
 <p>점검이 끝났다고 가정하고 노드를 다시 활성화합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>kubectl<span class="w"> </span>uncordon<span class="w"> </span>worker-2
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="n">kubectl</span> <span class="n">uncordon</span> <span class="n">worker</span><span class="p">-</span><span class="n">2</span>
 </span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>
-</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="c1"># worker-2: Ready 상태로 복귀</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">nodes</span>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="c"># worker-2: Ready 상태로 복귀</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c1"># 새 Pod 배포 → worker-2에도 다시 배포되는지 확인</span>
-</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>drain-test<span class="w"> </span>--replicas<span class="o">=</span><span class="m">8</span>
-</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c"># 새 Pod 배포 → worker-2에도 다시 배포되는지 확인</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="n">kubectl</span> <span class="n">scale</span> <span class="n">deployment</span> <span class="n">drain-test</span> <span class="p">-</span><span class="n">-replicas</span><span class="p">=</span><span class="n">8</span>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span> <span class="n">-o</span> <span class="n">wide</span>
 </span></code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">확인 포인트</p>
@@ -2762,9 +2762,9 @@ worker-2에 <strong>반드시</strong> 배포하려면 <code>nodeSelector</code>
 단, drain으로 이동한 기존 Pod는 자동으로 돌아오지 않습니다.</p>
 </div>
 <h3 id="_10">정리<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span>drain-test
-</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>worker-1<span class="w"> </span>role-
-</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>worker-2<span class="w"> </span>role-
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">deployment</span> <span class="n">drain-test</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="n">kubectl</span> <span class="n">label</span> <span class="n">node</span> <span class="n">worker</span><span class="p">-</span><span class="n">1</span> <span class="n">role</span><span class="p">-</span>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="n">kubectl</span> <span class="n">label</span> <span class="n">node</span> <span class="n">worker</span><span class="p">-</span><span class="n">2</span> <span class="n">role</span><span class="p">-</span>
 </span></code></pre></div>
 <hr />
 <h2 id="_11">전체 비교 정리<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>

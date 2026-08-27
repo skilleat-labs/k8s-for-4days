@@ -1994,13 +1994,13 @@ Memory는 이미 점유한 것을 즉시 돌려줄 방법이 없어서 프로세
 </span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">          </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">"100"</span><span class="w">        </span><span class="c1"># 100 core 요청 — 노드가 감당 불가</span>
 </span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100Gi</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-pending.yaml
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>pod-pending<span class="w"> </span>-w
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-pending</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">pod-pending</span> <span class="n">-w</span>
 </span></code></pre></div>
 <div class="language-text highlight"><span class="filename">출력 예시</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>NAME          READY   STATUS    RESTARTS   AGE
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>pod-pending   0/1     Pending   0          10s   ← 배치될 노드가 없음
 </span></code></pre></div>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>pod-pending
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">kubectl</span> <span class="n">describe</span> <span class="n">pod</span> <span class="n">pod-pending</span>
 </span></code></pre></div>
 <div class="language-text highlight"><span class="filename">출력 예시 — Events 섹션</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Events:
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  Warning  FailedScheduling  0/1 nodes are available:
@@ -2018,7 +2018,7 @@ Pod가 실행조차 안 된 이유가 순전히 <strong>requests</strong> 때문
 실제 앱이 10m밖에 안 쓰더라도 스케줄러는 200m 예약으로 계산합니다.</p>
 </div>
 <p>정리:</p>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod-pending
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">pod-pending</span>
 </span></code></pre></div>
 <hr />
 <h3 id="metrics-server">사전 준비 — metrics-server 확인<a class="headerlink" href="#metrics-server" title="Permanent link">&para;</a></h3>
@@ -2033,11 +2033,11 @@ Pod가 실행조차 안 된 이유가 순전히 <strong>requests</strong> 때문
 <details class="note">
 <summary>Rancher Desktop(로컬) 사용 시 — metrics-server 별도 설치 필요</summary>
 <p>Rancher Desktop(k3s)은 metrics-server가 기본 비활성화 상태입니다. Step 2, 4 전에 한 번만 실행하세요.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">kubernetes-sigs</span><span class="p">/</span><span class="n">metrics-server</span><span class="p">/</span><span class="n">releases</span><span class="p">/</span><span class="n">latest</span><span class="p">/</span><span class="n">download</span><span class="p">/</span><span class="n">components</span><span class="p">.</span><span class="n">yaml</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>deployment<span class="w"> </span>metrics-server<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>--type<span class="o">=</span>json<span class="w"> </span>-p<span class="o">=</span><span class="s1">'[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">kubectl</span> <span class="n">patch</span> <span class="n">deployment</span> <span class="n">metrics-server</span> <span class="n">-n</span> <span class="n">kube-system</span> <span class="p">-</span><span class="n">-type</span><span class="p">=</span><span class="n">json</span> <span class="n">-p</span><span class="p">=</span><span class="s1">'[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'</span>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/metrics-server<span class="w"> </span>-n<span class="w"> </span>kube-system
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">kubectl</span> <span class="n">rollout</span> <span class="n">status</span> <span class="n">deployment</span><span class="p">/</span><span class="n">metrics-server</span> <span class="n">-n</span> <span class="n">kube-system</span>
 </span></code></pre></div>
 </details>
 <hr />
@@ -2062,11 +2062,11 @@ CPU는 limits를 초과해도 <strong>종료되지 않고 속도만 제한(Throt
 </span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">        </span><span class="nt">limits</span><span class="p">:</span>
 </span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">          </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200m</span><span class="w">                  </span><span class="c1"># 200m 이상은 못 씀</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-cpu-limit.yaml
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>pod-cpu-limit
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-cpu-limit</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">pod-cpu-limit</span>
 </span></code></pre></div>
 <p>Pod가 <code>Running</code> 상태인지 확인 후, 실제 CPU 사용량을 측정합니다:</p>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span>top<span class="w"> </span>pod<span class="w"> </span>pod-cpu-limit
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">kubectl</span> <span class="n">top</span> <span class="n">pod</span> <span class="n">pod-cpu-limit</span>
 </span></code></pre></div>
 <div class="language-text highlight"><span class="filename">출력 예시</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>NAME            CPU(cores)   MEMORY(bytes)
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>pod-cpu-limit   200m         0Mi            ← 200m에서 딱 막힘
@@ -2083,7 +2083,7 @@ API 응답 시간이 갑자기 길어진다면 CPU Throttling이 원인일 수 �
 <code>kubectl top pod</code>로 limits에 딱 붙어있는지 확인하세요.</p>
 </div>
 <p>정리:</p>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod-cpu-limit
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">pod-cpu-limit</span>
 </span></code></pre></div>
 <hr />
 <h3 id="step-3-memory-limits-oomkilled">Step 3. Memory limits → OOMKilled (즉시 강제 종료)<a class="headerlink" href="#step-3-memory-limits-oomkilled" title="Permanent link">&para;</a></h3>
@@ -2111,14 +2111,14 @@ API 응답 시간이 갑자기 길어진다면 CPU Throttling이 원인일 수 �
 </span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="w">        </span><span class="nt">limits</span><span class="p">:</span>
 </span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20Mi</span><span class="w">     </span><span class="c1"># 20MB 제한, 50MB 시도 → OOMKilled</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-oom.yaml
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>pod-oom<span class="w"> </span>-w
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-oom</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">pod-oom</span> <span class="n">-w</span>
 </span></code></pre></div>
 <div class="language-text highlight"><span class="filename">출력 예시</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>NAME      READY   STATUS      RESTARTS   AGE
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>pod-oom   0/1     OOMKilled   0          3s    ← 즉시 강제 종료
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>pod-oom   0/1     CrashLoopBackOff  1    8s
 </span></code></pre></div>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>pod-oom
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">kubectl</span> <span class="n">describe</span> <span class="n">pod</span> <span class="n">pod-oom</span>
 </span></code></pre></div>
 <div class="language-text highlight"><span class="filename">출력 예시 — Containers 섹션</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>    State:          Waiting
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>      Reason:       CrashLoopBackOff
@@ -2137,7 +2137,7 @@ API 응답 시간이 갑자기 길어진다면 CPU Throttling이 원인일 수 �
 이 경우 <code>limits.memory</code>를 늘리거나 앱의 메모리 누수를 확인하세요.</p>
 </div>
 <p>정리:</p>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod-oom
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">pod-oom</span>
 </span></code></pre></div>
 <hr />
 <h3 id="step-4-limits">Step 4. limits 없을 때의 위험<a class="headerlink" href="#step-4-limits" title="Permanent link">&para;</a></h3>
@@ -2161,8 +2161,8 @@ API 응답 시간이 갑자기 길어진다면 CPU Throttling이 원인일 수 �
 </span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64Mi</span>
 </span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="w">        </span><span class="c1"># limits 없음 → 런타임 제한 없음</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-no-limits.yaml
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>kubectl<span class="w"> </span>top<span class="w"> </span>pod<span class="w"> </span>pod-no-limits
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-no-limits</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">kubectl</span> <span class="n">top</span> <span class="n">pod</span> <span class="n">pod-no-limits</span>
 </span></code></pre></div>
 <div class="language-text highlight"><span class="filename">출력 예시</span><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>NAME            CPU(cores)   MEMORY(bytes)
 </span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>pod-no-limits   1200m        1Mi    ← requests는 100m이지만 실제 1200m 사용
@@ -2183,7 +2183,7 @@ API 응답 시간이 갑자기 길어진다면 CPU Throttling이 원인일 수 �
 운영 환경에서는 반드시 limits를 설정하세요.</p>
 </div>
 <p>정리:</p>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod-no-limits
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">pod-no-limits</span>
 </span></code></pre></div>
 <hr />
 <h2 id="_4">핵심 정리<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
