@@ -1323,7 +1323,7 @@
   <a href="#metrics-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        사전 준비 — metrics-server 활성화
+        사전 준비 — metrics-server 확인
       
     </span>
   </a>
@@ -1839,7 +1839,7 @@
   <a href="#metrics-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        사전 준비 — metrics-server 활성화
+        사전 준비 — metrics-server 확인
       
     </span>
   </a>
@@ -2021,23 +2021,25 @@ Pod가 실행조차 안 된 이유가 순전히 <strong>requests</strong> 때문
 <div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>pod-pending
 </span></code></pre></div>
 <hr />
-<h3 id="metrics-server">사전 준비 — metrics-server 활성화<a class="headerlink" href="#metrics-server" title="Permanent link">&para;</a></h3>
-<div class="admonition warning">
-<p class="admonition-title">Rancher Desktop 필수 설정</p>
-<p><code>kubectl top</code> 명령은 <strong>metrics-server</strong>가 있어야 동작합니다.
-Rancher Desktop(k3s)은 기본 비활성화 상태입니다. Step 2, 4 전에 한 번만 실행하세요.</p>
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># metrics-server 설치</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># k3s는 kubelet TLS 검증 우회 필요 (Mac/Linux/Windows 공통 — 한 줄로 실행)</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>deployment<span class="w"> </span>metrics-server<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>--type<span class="o">=</span>json<span class="w"> </span>-p<span class="o">=</span><span class="s1">'[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># 준비 확인 (1~2분 소요)</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/metrics-server<span class="w"> </span>-n<span class="w"> </span>kube-system
+<h3 id="metrics-server">사전 준비 — metrics-server 확인<a class="headerlink" href="#metrics-server" title="Permanent link">&para;</a></h3>
+<p><code>kubectl top</code> 명령은 <strong>metrics-server</strong>가 있어야 동작합니다.</p>
+<div class="admonition info">
+<p class="admonition-title">AKS — 기본 설치됨, 바로 사용 가능</p>
+<p>AKS는 metrics-server가 기본 포함되어 있습니다. 아래 명령으로 바로 확인하세요.</p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">kubectl</span> <span class="n">top</span> <span class="n">nodes</span>
 </span></code></pre></div>
-<div class="language-text highlight"><span class="filename">출력 예시</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>deployment "metrics-server" successfully rolled out
-</span></code></pre></div>
+<p>노드별 CPU/메모리 수치가 출력되면 준비 완료입니다. 다음 Step으로 진행하세요.</p>
 </div>
+<details class="note">
+<summary>Rancher Desktop(로컬) 사용 시 — metrics-server 별도 설치 필요</summary>
+<p>Rancher Desktop(k3s)은 metrics-server가 기본 비활성화 상태입니다. Step 2, 4 전에 한 번만 실행하세요.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>deployment<span class="w"> </span>metrics-server<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>--type<span class="o">=</span>json<span class="w"> </span>-p<span class="o">=</span><span class="s1">'[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/metrics-server<span class="w"> </span>-n<span class="w"> </span>kube-system
+</span></code></pre></div>
+</details>
 <hr />
 <h3 id="step-2-cpu-limits-throttling">Step 2. CPU limits → Throttling (느려지지만 죽지 않음)<a class="headerlink" href="#step-2-cpu-limits-throttling" title="Permanent link">&para;</a></h3>
 <p>CPU를 최대한 사용하려는 컨테이너에 limits.cpu를 걸어봅니다.

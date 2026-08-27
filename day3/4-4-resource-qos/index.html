@@ -2071,18 +2071,22 @@ requests/limits 관계가 그대로 Class를 결정함을 확인하세요.</p>
 </div>
 </div>
 </div>
-<p>AKS 실제 출력 예시 (2 vCPU / 4GB 노드 2개 기준):</p>
+<p>AKS 실제 출력 예시 (2 vCPU / 8GB 노드 2개 기준, 실습 환경과 동일):</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Allocated resources:                             ← 노드 1
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>  Resource   Requests       Limits
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  cpu        1043m (54%)    18792m (989%)
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>  memory     1862Mi (66%)   41472Mi (1486%)
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  cpu        940m (47%)     18792m (989%)
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>  memory     1862Mi (26%)   41472Mi (582%)
 </span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
 </span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>--
 </span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>Allocated resources:                             ← 노드 2
 </span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>  Resource   Requests       Limits
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>  cpu        1425m (75%)    18740m (986%)
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>  memory     2466Mi (88%)   29167904Ki (1021%)
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>  cpu        1200m (60%)    18740m (986%)
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>  memory     2200Mi (30%)   29167904Ki (400%)
 </span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">실제 수치는 다를 수 있습니다</p>
+<p>클러스터에 실행 중인 시스템 Pod 구성에 따라 수치가 달라집니다. 비율 패턴을 이해하는 것이 목표입니다.</p>
+</div>
 <p><strong>Requests % — 스케줄러가 실제로 보는 수치</strong></p>
 <table>
 <thead>
@@ -2095,28 +2099,28 @@ requests/limits 관계가 그대로 Class를 결정함을 확인하세요.</p>
 <tbody>
 <tr>
 <td>CPU</td>
-<td>1043m (54%)</td>
-<td>1425m (75%)</td>
+<td>~47%</td>
+<td>~60%</td>
 </tr>
 <tr>
 <td>Memory</td>
-<td>1862Mi (66%)</td>
-<td>2466Mi (88%) ⚠️</td>
+<td>~26%</td>
+<td>~30%</td>
 </tr>
 </tbody>
 </table>
 <ul>
 <li>Requests %가 100%를 넘으면 새 Pod가 <strong>Pending</strong></li>
-<li>노드 2 메모리 <strong>88%</strong> — 새 Pod를 더 띄우면 곧 꽉 찰 수 있어 모니터링 필요</li>
+<li>8GB 노드에서는 메모리 여유가 충분한 편</li>
 </ul>
-<p><strong>Limits % — 오버커밋 (989%, 1486%)</strong></p>
+<p><strong>Limits % — 오버커밋 (989%, 582%)</strong></p>
 <p>Limits 합계가 100%를 크게 넘어도 정상입니다.
 모든 Pod가 동시에 limits까지 사용하지 않는다는 전제로 K8s가 오버커밋을 허용합니다.</p>
 <p>Limits가 극단적으로 높은 이유는 <strong>limits를 설정하지 않은 Pod</strong> 때문입니다.
 limits 미설정 시 노드 전체 용량이 limit으로 잡혀서 수치가 폭발적으로 늘어납니다.</p>
 <div class="admonition warning">
-<p class="admonition-title">노드 2 메모리 88% — Eviction 위험 신호</p>
-<p>Requests 기준으로 88%가 예약된 상태에서 노드 메모리 압박이 오면
+<p class="admonition-title">Requests % 80% 이상 — Eviction 위험 신호</p>
+<p>Requests 기준으로 80% 이상이 예약된 상태에서 노드 메모리 압박이 오면
 K8s는 BestEffort → Burstable 순서로 Pod를 퇴출합니다.
 Guaranteed Pod를 DB처럼 절대 죽으면 안 되는 앱에 설정해야 하는 이유입니다.</p>
 </div>
@@ -2180,15 +2184,15 @@ Quota를 초과하면 <strong>Pod 생성 자체가 거부</strong>됩니다.</p>
 </span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200Mi</span>
 </span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="w">        </span><span class="nt">limits</span><span class="p">:</span>
 </span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="w">          </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500m</span>
-</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">400Mi</span>
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">600Mi</span><span class="w">    </span><span class="c1"># Quota 상한(512Mi)을 단독으로 초과</span>
 </span></code></pre></div>
 <div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-quota-exceed.yaml
 </span></code></pre></div>
 <div class="language-text highlight"><span class="filename">출력 예시 — 생성 거부</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Error from server (Forbidden): error when creating "pod-quota-exceed.yaml":
 </span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>pods "pod-quota-exceed" is forbidden:
 </span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>exceeded quota: lab-quota,
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>requested: limits.memory=400Mi,
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>used: limits.memory=768Mi,
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>requested: limits.memory=600Mi,
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>used: limits.memory=0,
 </span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>limited: limits.memory=512Mi
 </span></code></pre></div>
 <div class="admonition success">
