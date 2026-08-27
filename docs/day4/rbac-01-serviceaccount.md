@@ -160,22 +160,40 @@ Service Account:  my-app-sa
 
 ## Step 4. Pod 안에서 마운트된 토큰 확인
 
-```powershell
-# Pod 안으로 접속
-kubectl exec -it pod-custom-sa -- sh
+Pod 안으로 접속합니다.
 
-# 아래를 Pod 안에서 실행
-ls /var/run/secrets/kubernetes.io/serviceaccount/
-cat /var/run/secrets/kubernetes.io/serviceaccount/namespace
-cat /var/run/secrets/kubernetes.io/serviceaccount/token
-exit
+```powershell
+kubectl exec -it pod-custom-sa -- sh
 ```
 
-출력 예시:
+Pod 내부 셸에서 ServiceAccount 마운트 경로를 확인합니다.
+
+```sh
+# 어떤 파일이 마운트됐는지 확인
+ls /var/run/secrets/kubernetes.io/serviceaccount/
+```
+
 ```
 ca.crt  namespace  token
+```
+
+각 파일을 읽어봅니다.
+
+```sh
+# 현재 네임스페이스 확인
+cat /var/run/secrets/kubernetes.io/serviceaccount/namespace
+
+# JWT 토큰 확인
+cat /var/run/secrets/kubernetes.io/serviceaccount/token
+```
+
+```
 default
 eyJhbGciOiJSUzI1NiIsImtpZCI6Ii...  (JWT 토큰)
+```
+
+```sh
+exit
 ```
 
 토큰을 API Server 호출에 직접 사용해봅니다:
