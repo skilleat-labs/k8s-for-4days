@@ -201,7 +201,7 @@ spec:
 
 ## 정리
 
-```bash
+```powershell
 kubectl delete namespace webapp
 ```
 
@@ -317,21 +317,16 @@ kubectl delete namespace webapp
 
     ### gateway.yaml
 
+    > GatewayClass(`eg`)는 시작 전 준비에서 이미 생성했습니다. gateway.yaml에는 Gateway와 HTTPRoute만 작성합니다.
+
     ```yaml
-    apiVersion: gateway.networking.k8s.io/v1
-    kind: GatewayClass
-    metadata:
-      name: blog-gw-class
-    spec:
-      controllerName: gateway.envoyproxy.io/gatewayclass-controller
-    ---
     apiVersion: gateway.networking.k8s.io/v1
     kind: Gateway
     metadata:
       name: blog-gw
       namespace: webapp
     spec:
-      gatewayClassName: blog-gw-class
+      gatewayClassName: eg        # 시작 전 준비에서 만든 GatewayClass 이름
       listeners:
         - name: http
           port: 80
@@ -357,7 +352,7 @@ kubectl delete namespace webapp
 
     ### 적용 순서
 
-    ```bash
+    ```powershell
     kubectl apply -f namespace.yaml
     kubectl apply -f backend.yaml
     kubectl apply -f frontend.yaml
