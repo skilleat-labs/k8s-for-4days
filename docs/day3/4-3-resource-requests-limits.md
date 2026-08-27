@@ -4,6 +4,25 @@
 
 ---
 
+## 시작 전 — Envoy Gateway 정리
+
+이전 Gateway API 실습에서 설치한 Envoy Gateway를 먼저 삭제합니다. 남아있으면 노드 자원을 점유해 이번 실습 결과에 영향을 줄 수 있습니다.
+
+```powershell
+helm uninstall eg -n envoy-gateway-system
+kubectl delete namespace envoy-gateway-system --ignore-not-found
+```
+
+삭제 확인:
+
+```powershell
+kubectl get pods -n envoy-gateway-system
+```
+
+`No resources found` 또는 `namespaces "envoy-gateway-system" not found`가 나오면 다음으로 진행합니다.
+
+---
+
 !!! quote "이대리"
     *"requests랑 limits, 둘 다 '자원 설정'이라고 생각하면 헷갈려. 얘네는 역할이 완전히 달라. requests는 스케줄러한테 하는 말이고, limits는 런타임한테 하는 말이야."*
 
