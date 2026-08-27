@@ -87,7 +87,7 @@ spec:
         failureThreshold: 3
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-liveness-ok.yaml
 kubectl get pod liveness-ok -w
 ```
@@ -124,7 +124,7 @@ spec:
         failureThreshold: 3
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-liveness-fail.yaml
 kubectl get pod liveness-fail -w
 ```
@@ -134,7 +134,7 @@ kubectl get pod liveness-fail -w
 
 이벤트 로그로 재시작 원인을 확인합니다:
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl describe pod liveness-fail
 ```
 
@@ -179,7 +179,7 @@ spec:
         failureThreshold: 3
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-liveness-http.yaml
 kubectl get pod liveness-http -w
 ```
@@ -189,7 +189,7 @@ kubectl get pod liveness-http -w
 
 이번엔 nginx를 강제로 중단해서 HTTP Probe 실패를 유도합니다:
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl exec liveness-http -- nginx -s stop
 kubectl get pod liveness-http -w
 ```
@@ -256,7 +256,7 @@ spec:
         failureThreshold: 2
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-crashloop.yaml
 kubectl get pod crashloop-app -w
 ```
@@ -271,7 +271,7 @@ crashloop-app   0/1     CrashLoopBackOff   3          90s
 
 CrashLoopBackOff 상태가 보이면 `Ctrl+C`로 watch를 종료하고, 아래 3단계 명령으로 원인을 파악합니다:
 
-```bash title="터미널 — 원인 파악 3단계"
+```powershell title="터미널 — 원인 파악 3단계"
 # 1. 이벤트에서 실패 원인 확인
 kubectl describe pod crashloop-app
 
@@ -293,7 +293,7 @@ kubectl logs crashloop-app --previous
 
 ### 정리
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl delete pod liveness-ok liveness-fail liveness-http crashloop-app
 ```
 

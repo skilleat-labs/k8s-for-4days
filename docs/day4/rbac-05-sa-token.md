@@ -37,13 +37,13 @@ Pod 레벨 설정이 SA 레벨보다 우선합니다.
 
 ## Step 1. 기본 상태 — 토큰 존재 확인
 
-```bash
+```powershell
 # 기본 SA로 Pod 배포
 kubectl run pod-default --image=busybox:1.36-musl -- sleep 3600
 kubectl get pod pod-default
 ```
 
-```bash
+```powershell
 # 토큰 마운트 확인
 kubectl exec pod-default -- ls /var/run/secrets/kubernetes.io/serviceaccount/
 ```
@@ -70,7 +70,7 @@ Mounts:
   /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-xxxxx (ro)
 ```
 
-```bash
+```powershell
 kubectl delete pod pod-default
 ```
 
@@ -80,7 +80,7 @@ kubectl delete pod pod-default
 
 토큰이 실제로 API 서버 접근에 사용될 수 있음을 확인합니다.
 
-```bash
+```powershell
 # curl이 있는 Pod 생성
 kubectl run api-test --image=curlimages/curl:latest --restart=Never --command -- sleep 3600
 kubectl get pod api-test
@@ -107,7 +107,7 @@ Pod 안에서 토큰을 꺼내 API 서버에 직접 요청합니다:
     !!! info "PowerShell single quote 사용 이유"
         PowerShell에서 single quote(`'`)로 감싸면 `$TOKEN` 같은 변수를 PowerShell이 먼저 해석하지 않고 그대로 컨테이너 안의 sh에 전달합니다.
 
-```bash
+```powershell
 kubectl delete pod api-test
 ```
 
@@ -129,7 +129,7 @@ metadata:
 automountServiceAccountToken: false   # SA 레벨 비활성화
 ```
 
-```bash
+```powershell
 kubectl apply -f sa-no-automount.yaml
 ```
 
@@ -150,11 +150,11 @@ spec:
       command: ["sleep", "3600"]
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-sa-no-token.yaml
 
 # 토큰이 없는지 확인
-kubectl exec pod-sa-no-token -- ls /var/run/secrets/kubernetes.io/serviceaccount/ 2>&1
+kubectl exec pod-sa-no-token -- ls /var/run/secrets/kubernetes.io/serviceaccount/
 ```
 
 출력:
@@ -188,16 +188,16 @@ spec:
       command: ["sleep", "3600"]
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-no-token.yaml
 
-kubectl exec pod-no-token -- ls /var/run/secrets/ 2>&1
+kubectl exec pod-no-token -- ls /var/run/secrets/
 # 디렉토리 없음 확인
 ```
 
 우선순위 확인:
 
-```bash
+```powershell
 # SA는 automount: false, Pod는 true로 설정 → Pod 설정이 이김
 ```
 
@@ -217,7 +217,7 @@ spec:
       command: ["sleep", "3600"]
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-override-token.yaml
 
 kubectl exec pod-override-token -- ls /var/run/secrets/kubernetes.io/serviceaccount/
@@ -263,7 +263,7 @@ spec:
                   path: ca.crt
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-projected-token.yaml
 
 # 마운트 위치 확인
@@ -275,7 +275,7 @@ kubectl exec pod-projected-token -- ls /var/run/secrets/tokens/
 ca.crt  token
 ```
 
-```bash
+```powershell
 # 토큰 내용 확인 (JWT)
 kubectl exec pod-projected-token -- cat /var/run/secrets/tokens/token
 ```
@@ -329,7 +329,7 @@ kubectl exec pod-projected-token -- cat /var/run/secrets/tokens/token
 
 ## 정리
 
-```bash
+```powershell
 kubectl delete pod pod-sa-no-token pod-no-token pod-override-token pod-projected-token
 kubectl delete sa no-token-sa
 ```

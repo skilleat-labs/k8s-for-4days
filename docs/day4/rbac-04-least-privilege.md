@@ -22,7 +22,7 @@
 
 ## 사전 준비
 
-```bash
+```powershell
 kubectl create namespace least-priv
 kubectl create serviceaccount app-sa -n least-priv
 ```
@@ -45,24 +45,36 @@ rules:
     verbs: ["*"]
 ```
 
-```bash
-kubectl apply -f role-wildcard.yaml
+=== "Windows PowerShell"
+    ```powershell
+    kubectl apply -f role-wildcard.yaml
 
-kubectl create rolebinding wildcard-binding \
-  --role=wildcard-role \
-  --serviceaccount=least-priv:app-sa \
-  -n least-priv
-```
+    kubectl create rolebinding wildcard-binding --role=wildcard-role --serviceaccount=least-priv:app-sa -n least-priv
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl apply -f role-wildcard.yaml
+
+    kubectl create rolebinding wildcard-binding \
+      --role=wildcard-role \
+      --serviceaccount=least-priv:app-sa \
+      -n least-priv
+    ```
 
 ---
 
 ## Step 2. `auth can-i --list` 로 전체 권한 확인
 
-```bash
-kubectl auth can-i --list \
-  --as=system:serviceaccount:least-priv:app-sa \
-  -n least-priv
-```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl auth can-i --list --as=system:serviceaccount:least-priv:app-sa -n least-priv
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl auth can-i --list \
+      --as=system:serviceaccount:least-priv:app-sa \
+      -n least-priv
+    ```
 
 출력 예시:
 ```
@@ -73,25 +85,36 @@ Resources                                       Non-Resource URLs   Resource Nam
 
 `*.*`에 `[*]` Verbs — **모든 리소스에 모든 동작이 허용**된 상태입니다.
 
-```bash
-# 삭제도 된다
-kubectl auth can-i delete secrets \
-  --as=system:serviceaccount:least-priv:app-sa \
-  -n least-priv
-# yes ← 위험!
+=== "Windows PowerShell"
+    ```powershell
+    # 삭제도 된다
+    kubectl auth can-i delete secrets --as=system:serviceaccount:least-priv:app-sa -n least-priv
+    # yes ← 위험!
 
-# 다른 Role 수정도 된다
-kubectl auth can-i update roles \
-  --as=system:serviceaccount:least-priv:app-sa \
-  -n least-priv
-# yes ← 매우 위험!
-```
+    # 다른 Role 수정도 된다
+    kubectl auth can-i update roles --as=system:serviceaccount:least-priv:app-sa -n least-priv
+    # yes ← 매우 위험!
+    ```
+=== "macOS/Linux"
+    ```bash
+    # 삭제도 된다
+    kubectl auth can-i delete secrets \
+      --as=system:serviceaccount:least-priv:app-sa \
+      -n least-priv
+    # yes ← 위험!
+
+    # 다른 Role 수정도 된다
+    kubectl auth can-i update roles \
+      --as=system:serviceaccount:least-priv:app-sa \
+      -n least-priv
+    # yes ← 매우 위험!
+    ```
 
 !!! danger "와일드카드 권한의 위험성"
     `*` 권한을 가진 SA가 탈취되면 해당 Namespace의 모든 리소스를 마음대로 조작할 수 있습니다.
     Secret 탈취, Role 수정, Pod 삭제 등 무엇이든 가능합니다.
 
-```bash
+```powershell
 # 와일드카드 Role 제거
 kubectl delete rolebinding wildcard-binding -n least-priv
 kubectl delete role wildcard-role -n least-priv
@@ -120,39 +143,63 @@ rules:
     verbs: ["get"]
 ```
 
-```bash
-kubectl apply -f role-minimal.yaml
+=== "Windows PowerShell"
+    ```powershell
+    kubectl apply -f role-minimal.yaml
 
-kubectl create rolebinding minimal-binding \
-  --role=minimal-role \
-  --serviceaccount=least-priv:app-sa \
-  -n least-priv
-```
+    kubectl create rolebinding minimal-binding --role=minimal-role --serviceaccount=least-priv:app-sa -n least-priv
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl apply -f role-minimal.yaml
+
+    kubectl create rolebinding minimal-binding \
+      --role=minimal-role \
+      --serviceaccount=least-priv:app-sa \
+      -n least-priv
+    ```
 
 권한 확인:
 
-```bash
-kubectl auth can-i --list \
-  --as=system:serviceaccount:least-priv:app-sa \
-  -n least-priv
-```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl auth can-i --list --as=system:serviceaccount:least-priv:app-sa -n least-priv
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl auth can-i --list \
+      --as=system:serviceaccount:least-priv:app-sa \
+      -n least-priv
+    ```
 
-```bash
-kubectl auth can-i list pods \
-  --as=system:serviceaccount:least-priv:app-sa \
-  -n least-priv
-# yes
+=== "Windows PowerShell"
+    ```powershell
+    kubectl auth can-i list pods --as=system:serviceaccount:least-priv:app-sa -n least-priv
+    # yes
 
-kubectl auth can-i delete pods \
-  --as=system:serviceaccount:least-priv:app-sa \
-  -n least-priv
-# no
+    kubectl auth can-i delete pods --as=system:serviceaccount:least-priv:app-sa -n least-priv
+    # no
 
-kubectl auth can-i delete secrets \
-  --as=system:serviceaccount:least-priv:app-sa \
-  -n least-priv
-# no
-```
+    kubectl auth can-i delete secrets --as=system:serviceaccount:least-priv:app-sa -n least-priv
+    # no
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl auth can-i list pods \
+      --as=system:serviceaccount:least-priv:app-sa \
+      -n least-priv
+    # yes
+
+    kubectl auth can-i delete pods \
+      --as=system:serviceaccount:least-priv:app-sa \
+      -n least-priv
+    # no
+
+    kubectl auth can-i delete secrets \
+      --as=system:serviceaccount:least-priv:app-sa \
+      -n least-priv
+    # no
+    ```
 
 ---
 
@@ -160,7 +207,7 @@ kubectl auth can-i delete secrets \
 
 특정 ConfigMap **하나**만 읽을 수 있도록 더 좁힐 수 있습니다.
 
-```bash
+```powershell
 # 테스트용 ConfigMap 2개 생성
 kubectl create configmap allowed-config --from-literal=key=value -n least-priv
 kubectl create configmap secret-config --from-literal=key=secret -n least-priv
@@ -181,41 +228,66 @@ rules:
     resourceNames: ["allowed-config"]   # 이 ConfigMap만 허용
 ```
 
-```bash
-# 기존 binding 제거 후 새 Role로 교체
-kubectl delete rolebinding minimal-binding -n least-priv
+=== "Windows PowerShell"
+    ```powershell
+    # 기존 binding 제거 후 새 Role로 교체
+    kubectl delete rolebinding minimal-binding -n least-priv
 
-kubectl apply -f role-resourcenames.yaml
+    kubectl apply -f role-resourcenames.yaml
 
-kubectl create rolebinding specific-binding \
-  --role=specific-config-reader \
-  --serviceaccount=least-priv:app-sa \
-  -n least-priv
-```
+    kubectl create rolebinding specific-binding --role=specific-config-reader --serviceaccount=least-priv:app-sa -n least-priv
+    ```
+=== "macOS/Linux"
+    ```bash
+    # 기존 binding 제거 후 새 Role로 교체
+    kubectl delete rolebinding minimal-binding -n least-priv
+
+    kubectl apply -f role-resourcenames.yaml
+
+    kubectl create rolebinding specific-binding \
+      --role=specific-config-reader \
+      --serviceaccount=least-priv:app-sa \
+      -n least-priv
+    ```
 
 ---
 
 ## Step 5. 허용/차단 조합 확인
 
-```bash
-# allowed-config 조회 → 허용
-kubectl auth can-i get configmap/allowed-config \
-  --as=system:serviceaccount:least-priv:app-sa \
-  -n least-priv
-# yes
+=== "Windows PowerShell"
+    ```powershell
+    # allowed-config 조회 → 허용
+    kubectl auth can-i get configmap/allowed-config --as=system:serviceaccount:least-priv:app-sa -n least-priv
+    # yes
 
-# secret-config 조회 → 차단
-kubectl auth can-i get configmap/secret-config \
-  --as=system:serviceaccount:least-priv:app-sa \
-  -n least-priv
-# no
+    # secret-config 조회 → 차단
+    kubectl auth can-i get configmap/secret-config --as=system:serviceaccount:least-priv:app-sa -n least-priv
+    # no
 
-# list (전체 목록) → 차단 (resourceNames가 있으면 list/watch 불가)
-kubectl auth can-i list configmaps \
-  --as=system:serviceaccount:least-priv:app-sa \
-  -n least-priv
-# no
-```
+    # list (전체 목록) → 차단 (resourceNames가 있으면 list/watch 불가)
+    kubectl auth can-i list configmaps --as=system:serviceaccount:least-priv:app-sa -n least-priv
+    # no
+    ```
+=== "macOS/Linux"
+    ```bash
+    # allowed-config 조회 → 허용
+    kubectl auth can-i get configmap/allowed-config \
+      --as=system:serviceaccount:least-priv:app-sa \
+      -n least-priv
+    # yes
+
+    # secret-config 조회 → 차단
+    kubectl auth can-i get configmap/secret-config \
+      --as=system:serviceaccount:least-priv:app-sa \
+      -n least-priv
+    # no
+
+    # list (전체 목록) → 차단 (resourceNames가 있으면 list/watch 불가)
+    kubectl auth can-i list configmaps \
+      --as=system:serviceaccount:least-priv:app-sa \
+      -n least-priv
+    # no
+    ```
 
 !!! warning "resourceNames + list/watch"
     `resourceNames`를 지정하면 `list`, `watch`는 자동으로 차단됩니다.
@@ -225,7 +297,7 @@ kubectl auth can-i list configmaps \
 
 ## 정리
 
-```bash
+```powershell
 kubectl delete namespace least-priv
 ```
 

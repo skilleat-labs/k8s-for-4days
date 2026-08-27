@@ -39,7 +39,7 @@ Pod가 생성될 때 SA의 토큰이 컨테이너 안의 고정 경로에 자동
 
 ## Step 1. 기본 SA 확인
 
-```bash
+```powershell
 # 현재 네임스페이스의 SA 목록
 kubectl get serviceaccounts
 kubectl get sa   # 축약형
@@ -59,7 +59,7 @@ Mountable secrets:   <none>
 Tokens:              <none>
 ```
 
-```bash
+```powershell
 # 다른 네임스페이스의 SA 확인
 kubectl get sa -n kube-system
 ```
@@ -74,7 +74,7 @@ kubectl get sa -n kube-system
 
 ### 방법 A — kubectl 명령어
 
-```bash
+```powershell
 kubectl create serviceaccount my-app-sa
 kubectl get sa
 ```
@@ -91,7 +91,7 @@ metadata:
   namespace: default
 ```
 
-```bash
+```powershell
 kubectl apply -f sa.yaml
 kubectl describe sa my-app-sa
 ```
@@ -132,7 +132,7 @@ spec:
       command: ["sleep", "3600"]
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-default-sa.yaml
 kubectl apply -f pod-custom-sa.yaml
 
@@ -160,7 +160,7 @@ Service Account:  my-app-sa
 
 ## Step 4. Pod 안에서 마운트된 토큰 확인
 
-```bash
+```powershell
 # Pod 안으로 접속
 kubectl exec pod-custom-sa -- sh
 
@@ -204,7 +204,7 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6Ii...  (JWT 토큰)
 
 ## 정리
 
-```bash
+```powershell
 kubectl delete pod pod-default-sa pod-custom-sa
 kubectl delete sa my-app-sa
 ```

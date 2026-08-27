@@ -34,7 +34,7 @@
 
 ### 완성 후 확인 방법
 
-```bash
+```powershell
 # writer가 파일을 쓰고 있는지 확인
 kubectl logs deploy/log-deploy -c writer
 
@@ -68,7 +68,7 @@ kubectl logs deploy/log-deploy -c reader
 
     뽑힌 파일을 VS Code로 열어서 수정하세요.
 
-    ```bash
+    ```powershell
     code log-deploy.yaml
     ```
 
@@ -187,7 +187,7 @@ kubectl logs deploy/log-deploy -c reader
 
     **3단계: 배포 및 확인**
 
-    ```bash
+    ```powershell
     kubectl apply -f log-deploy.yaml
     kubectl get pods
 
@@ -206,7 +206,7 @@ kubectl logs deploy/log-deploy -c reader
 
 ## 정리
 
-```bash
+```powershell
 kubectl delete deployment log-deploy
 ```
 

@@ -48,7 +48,7 @@ spec:
   restartPolicy: Never
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-no-secret.yaml
 kubectl get pod pod-no-secret
 kubectl describe pod pod-no-secret
@@ -69,7 +69,7 @@ Failed to pull image "...": unauthorized: authentication required
     인증 실패 또는 이미지가 존재하지 않을 때 발생합니다.
     쿠버네티스가 재시도 간격을 점점 늘려가며 반복 시도합니다.
 
-```bash
+```powershell
 kubectl delete pod pod-no-secret
 ```
 
@@ -79,16 +79,24 @@ kubectl delete pod pod-no-secret
 
 강사에게 전달받은 ACR 인증 정보로 Secret을 생성합니다.
 
-```bash
-kubectl create secret docker-registry acr-secret \
-  --docker-server=<ACR이름>.azurecr.io \
-  --docker-username=<username> \
-  --docker-password=<password>
-```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl create secret docker-registry acr-secret `
+      --docker-server=<ACR이름>.azurecr.io `
+      --docker-username=<username> `
+      --docker-password=<password>
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl create secret docker-registry acr-secret \
+      --docker-server=<ACR이름>.azurecr.io \
+      --docker-username=<username> \
+      --docker-password=<password>
+    ```
 
 Secret 확인:
 
-```bash
+```powershell
 kubectl get secret acr-secret
 kubectl describe secret acr-secret
 ```
@@ -144,7 +152,7 @@ spec:
   restartPolicy: Never
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-with-secret.yaml
 kubectl get pod pod-with-secret -w
 ```
@@ -159,7 +167,7 @@ pod-with-secret   1/1     Running             8s   ← 성공!
     `ContainerCreating` → `Running`으로 전환되면 인증 성공입니다.
     Secret 없이 배포했을 때의 `ImagePullBackOff`와 비교해보세요.
 
-```bash
+```powershell
 kubectl delete pod pod-with-secret
 ```
 
@@ -195,7 +203,7 @@ spec:
         - name: acr-secret
 ```
 
-```bash
+```powershell
 kubectl apply -f deploy-acr.yaml
 kubectl get pods -l app=acr-app
 kubectl get pods -l app=acr-app -o wide
@@ -209,7 +217,7 @@ kubectl get pods -l app=acr-app -o wide
     하지만 새 노드가 추가되거나 이미지 태그가 바뀌면 다시 pull하므로
     항상 Secret을 유지해야 합니다.
 
-```bash
+```powershell
 kubectl delete -f deploy-acr.yaml
 ```
 
@@ -217,7 +225,7 @@ kubectl delete -f deploy-acr.yaml
 
 ## 정리 (리소스 삭제)
 
-```bash
+```powershell
 kubectl delete secret acr-secret
 ```
 

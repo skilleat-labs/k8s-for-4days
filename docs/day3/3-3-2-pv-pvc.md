@@ -12,7 +12,7 @@
 
 클러스터에서 사용 가능한 StorageClass를 확인합니다.
 
-```bash
+```powershell
 kubectl get storageclass
 ```
 
@@ -78,7 +78,7 @@ spec:
     path: /tmp/k8s-lab-data    # 노드의 실제 경로 (Rancher Desktop은 Lima VM 내부 경로)
 ```
 
-```bash
+```powershell
 kubectl apply -f pv-local.yaml
 kubectl get pv
 ```
@@ -112,7 +112,7 @@ spec:
   storageClassName: manual
 ```
 
-```bash
+```powershell
 kubectl apply -f pvc-local.yaml
 kubectl get pvc
 kubectl get pv    # STATUS가 Bound로 변경됨
@@ -149,7 +149,7 @@ spec:
       storage: 5Gi
 ```
 
-```bash
+```powershell
 kubectl apply -f pvc-dynamic.yaml
 kubectl get pvc dynamic-pvc
 kubectl get pv    # PV(Azure Disk)가 자동 생성됨
@@ -191,7 +191,7 @@ spec:
       storage: 5Gi
 ```
 
-```bash
+```powershell
 kubectl apply -f pvc-files.yaml
 kubectl get pvc files-pvc
 ```
@@ -241,7 +241,7 @@ spec:
   restartPolicy: Never
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-with-pvc.yaml
 kubectl logs data-pod
 ```
@@ -255,7 +255,7 @@ Hello K8s Storage!
 
     `dynamic-pvc`가 `Pending` 상태로 유지되는 것은 **정상**입니다. 다음 6단계에서 MySQL Deployment를 배포하면 그때 `Bound`로 전환됩니다.
 
-    ```bash
+    ```powershell
     kubectl get pvc dynamic-pvc   # Pending — 정상, 아직 사용하는 Pod가 없음
     ```
 
@@ -267,7 +267,7 @@ Pod를 삭제하고 재생성해도 데이터가 유지되는지 확인합니다
 
 ### Pod 삭제
 
-```bash
+```powershell
 kubectl delete pod data-pod
 ```
 
@@ -295,7 +295,7 @@ spec:
   restartPolicy: Never
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-with-pvc-2.yaml
 kubectl logs data-pod-2
 ```
@@ -346,7 +346,7 @@ spec:
             claimName: dynamic-pvc   # 3단계에서 생성한 Azure Disk PVC
 ```
 
-```bash
+```powershell
 kubectl apply -f deploy-with-pvc.yaml
 kubectl get pods -l app=mysql-storage
 kubectl get pvc dynamic-pvc   # 이 시점에서 Pending → Bound로 전환됨
@@ -371,7 +371,7 @@ Pod가 재시작되거나 다른 노드로 이동해도 동일한 Azure Disk가 
 
 ## 정리 (리소스 삭제)
 
-```bash
+```powershell
 kubectl delete pod data-pod-2
 kubectl delete -f deploy-with-pvc.yaml
 kubectl delete pvc local-pvc dynamic-pvc
@@ -428,14 +428,19 @@ AKS 환경에서 실습이 끝난 뒤 생성한 모든 리소스를 한 번에 �
 
     PV가 `Released` 상태로 남아있는 경우 (Retain Policy) 수동 삭제가 필요합니다:
 
-    ```bash
-    kubectl delete pv $(kubectl get pv --no-headers | awk '{print $1}')
-    ```
+    === "Windows PowerShell"
+        ```powershell
+        kubectl get pv --no-headers | ForEach-Object { kubectl delete pv ($_ -split '\s+')[0] }
+        ```
+    === "macOS/Linux"
+        ```bash
+        kubectl delete pv $(kubectl get pv --no-headers | awk '{print $1}')
+        ```
 
 !!! tip "네임스페이스 전체 삭제로 한 번에 정리"
     실습을 별도 네임스페이스에서 진행했다면 네임스페이스를 통째로 삭제하는 것이 가장 빠릅니다:
 
-    ```bash
+    ```powershell
     kubectl delete namespace <실습-네임스페이스> --wait=false
     ```
 
@@ -445,9 +450,14 @@ AKS 환경에서 실습이 끝난 뒤 생성한 모든 리소스를 한 번에 �
 
 ### 템플릿 생성 명령어
 
-```bash
-kubectl create deployment test --replicas 2 --image nginx --dry-run=client -o yaml > filepvc-test-deploy.yaml
-```
+=== "Windows PowerShell"
+    ```powershell
+    kubectl create deployment test --replicas 2 --image nginx --dry-run=client -o yaml | Out-File filepvc-test-deploy.yaml -Encoding utf8
+    ```
+=== "macOS/Linux"
+    ```bash
+    kubectl create deployment test --replicas 2 --image nginx --dry-run=client -o yaml > filepvc-test-deploy.yaml
+    ```
 
 ### 정답 YAML
 
@@ -487,7 +497,7 @@ spec:
 status: {}
 ```
 
-```bash
+```powershell
 kubectl apply -f filepvc-test-deploy.yaml
 kubectl get pods -l app=test
 kubectl get pvc files-pvc   # Bound 확인
@@ -521,7 +531,7 @@ kubectl get pvc files-pvc   # Bound 확인
 
 삭제 진행 상태 확인:
 
-```bash
+```powershell
 az aks show --resource-group k8s-4days-rg --name k8s-4days-aks
 ```
 

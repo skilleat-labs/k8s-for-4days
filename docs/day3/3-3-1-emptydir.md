@@ -40,7 +40,7 @@ spec:
       emptyDir: {}
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-emptydir.yaml
 kubectl exec emptydir-pod -- cat /cache/hello.txt
 ```
@@ -81,7 +81,7 @@ spec:
       emptyDir: {}
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-emptydir-shared.yaml
 kubectl logs emptydir-shared -c reader
 ```
@@ -92,7 +92,7 @@ kubectl logs emptydir-shared -c reader
 
 먼저 파일을 하나 더 만들어 "삭제 전 상태"를 기록합니다.
 
-```bash
+```powershell
 # 파일 추가 기록
 kubectl exec emptydir-pod -- sh -c "echo 'extra data' > /cache/extra.txt"
 
@@ -106,7 +106,7 @@ extra.txt   hello.txt
 
 Pod를 삭제하고 재생성합니다.
 
-```bash
+```powershell
 kubectl delete pod emptydir-pod
 kubectl apply -f pod-emptydir.yaml
 
@@ -125,7 +125,7 @@ kubectl exec emptydir-pod -- ls /cache/
 
 ### 정리
 
-```bash
+```powershell
 kubectl delete pod emptydir-pod emptydir-shared
 ```
 

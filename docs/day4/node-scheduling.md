@@ -10,7 +10,7 @@
 
 ## 사전 확인
 
-```bash
+```powershell
 kubectl get nodes -o wide
 kubectl get nodes --show-labels
 ```
@@ -34,7 +34,7 @@ kubectl get nodes --show-labels
 
 ### 1-1. 노드에 label 추가
 
-```bash
+```powershell
 kubectl label node worker-1 role=web
 kubectl label node worker-2 role=db
 ```
@@ -65,7 +65,7 @@ spec:
     role: web
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-nodeselector.yaml
 kubectl get pod pod-web -o wide
 ```
@@ -90,7 +90,7 @@ spec:
     role: gpu     # 어떤 노드에도 없는 label
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-nodeselector-fail.yaml
 kubectl get pod pod-fail
 kubectl describe pod pod-fail
@@ -102,7 +102,7 @@ Events에서 아래 메시지를 확인합니다:
 Warning  FailedScheduling  0/2 nodes are available: node(s) didn't match Pod's node affinity/selector
 ```
 
-```bash
+```powershell
 kubectl delete pod pod-web pod-fail
 ```
 
@@ -143,7 +143,7 @@ spec:
                   - web
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-affinity-required.yaml
 kubectl get pod pod-affinity-required -o wide
 # NODE가 worker-1인지 확인
@@ -174,7 +174,7 @@ spec:
                   - db
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-affinity-preferred.yaml
 kubectl get pod pod-affinity-preferred -o wide
 # worker-2에 배포되는 것을 확인
@@ -192,7 +192,7 @@ kubectl get pod pod-affinity-preferred -o wide
 
 ### 정리
 
-```bash
+```powershell
 kubectl delete pod pod-affinity-required pod-affinity-preferred
 ```
 
@@ -221,7 +221,7 @@ Affinity는 Pod가 특정 노드를 "선호"하는 방식이지만,
 
 ### 3-1. worker-2에 Taint 설정
 
-```bash
+```powershell
 kubectl taint node worker-2 dedicated=gpu:NoSchedule
 ```
 
@@ -243,7 +243,7 @@ Taints: dedicated=gpu:NoSchedule
 
 ### 3-2. Toleration 없는 Pod → worker-2 배포 불가 확인
 
-```bash
+```powershell
 kubectl create deployment test-taint --image=nginx:1.25 --replicas=4
 kubectl get pods -o wide
 ```
@@ -252,7 +252,7 @@ kubectl get pods -o wide
     4개 Pod가 모두 **worker-1**에만 배포되는 것을 확인하세요.
     worker-2는 Taint 때문에 거부합니다.
 
-```bash
+```powershell
 kubectl delete deployment test-taint
 ```
 
@@ -276,7 +276,7 @@ spec:
       effect: NoSchedule
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-toleration.yaml
 kubectl get pod pod-toleration -o wide
 # worker-2에도 배포 가능해짐 (worker-1에 배포될 수도 있음)
@@ -315,7 +315,7 @@ spec:
                   - db
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-gpu-dedicated.yaml
 kubectl get pod pod-gpu-dedicated -o wide
 # worker-2에만 배포됨
@@ -323,7 +323,7 @@ kubectl get pod pod-gpu-dedicated -o wide
 
 ### 3-5. Taint 제거
 
-```bash
+```powershell
 kubectl taint node worker-2 dedicated=gpu:NoSchedule-
 # 마지막에 - 를 붙이면 제거
 ```
@@ -341,7 +341,7 @@ kubectl taint node worker-2 dedicated=gpu:NoSchedule-
 
 ### 정리
 
-```bash
+```powershell
 kubectl delete pod pod-toleration pod-gpu-dedicated
 ```
 
@@ -365,7 +365,7 @@ uncordon →  점검 후 노드를 다시 정상 상태로 복귀
 
 ### 4-1. 테스트용 Deployment 배포
 
-```bash
+```powershell
 kubectl create deployment drain-test --image=nginx:1.25 --replicas=4
 kubectl get pods -o wide
 # worker-1, worker-2에 분산 배포 확인
@@ -373,7 +373,7 @@ kubectl get pods -o wide
 
 ### 4-2. cordon — 새 Pod 배포 차단
 
-```bash
+```powershell
 kubectl cordon worker-2
 
 kubectl get nodes
@@ -387,7 +387,7 @@ worker-1        Ready                      <none>          1h
 worker-2        Ready,SchedulingDisabled   <none>          1h
 ```
 
-```bash
+```powershell
 # 새 Pod 추가 → worker-1에만 배포되는지 확인
 kubectl scale deployment drain-test --replicas=6
 kubectl get pods -o wide
@@ -400,11 +400,11 @@ kubectl get pods -o wide
 
 ### 4-3. drain — 기존 Pod까지 모두 이동
 
-```bash
+```powershell
 kubectl drain worker-2 --ignore-daemonsets --delete-emptydir-data
 ```
 
-```bash
+```powershell
 kubectl get pods -o wide
 # worker-2의 Pod가 모두 worker-1로 이동
 kubectl get nodes
@@ -426,14 +426,14 @@ kubectl get nodes
 
 점검이 끝났다고 가정하고 노드를 다시 활성화합니다.
 
-```bash
+```powershell
 kubectl uncordon worker-2
 
 kubectl get nodes
 # worker-2: Ready 상태로 복귀
 ```
 
-```bash
+```powershell
 # 새 Pod 배포 → worker-2에도 다시 배포되는지 확인
 kubectl scale deployment drain-test --replicas=8
 kubectl get pods -o wide
@@ -445,7 +445,7 @@ kubectl get pods -o wide
 
 ### 정리
 
-```bash
+```powershell
 kubectl delete deployment drain-test
 kubectl label node worker-1 role-
 kubectl label node worker-2 role-

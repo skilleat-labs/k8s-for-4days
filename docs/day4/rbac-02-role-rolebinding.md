@@ -40,7 +40,7 @@ SA      →  Role   →  Namespace
 
 ## 사전 준비
 
-```bash
+```powershell
 # 실습용 네임스페이스 생성
 kubectl create namespace rbac-test
 
@@ -109,7 +109,7 @@ rules:
     verbs: ["get", "list", "watch"]
 ```
 
-```bash
+```powershell
 kubectl apply -f role-pod-reader.yaml
 kubectl get role -n rbac-test
 kubectl describe role pod-reader -n rbac-test
@@ -147,7 +147,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-```bash
+```powershell
 kubectl apply -f rolebinding-pod-reader.yaml
 kubectl get rolebinding -n rbac-test
 kubectl describe rolebinding pod-reader-binding -n rbac-test
@@ -222,7 +222,7 @@ spec:
       command: ["sleep", "3600"]
 ```
 
-```bash
+```powershell
 kubectl apply -f pod-rbac-test.yaml
 kubectl get pod -n rbac-test
 ```
@@ -252,7 +252,7 @@ Pod 안에서 직접 API 호출:
 
 ## 정리
 
-```bash
+```powershell
 kubectl delete namespace rbac-test
 ```
 

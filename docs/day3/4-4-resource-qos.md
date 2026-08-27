@@ -100,7 +100,7 @@ spec:
           memory: 256Mi   # requests == limits → Guaranteed
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-besteffort.yaml
 kubectl apply -f pod-burstable.yaml
 kubectl apply -f pod-guaranteed.yaml
@@ -108,7 +108,7 @@ kubectl apply -f pod-guaranteed.yaml
 
 3개가 뜨면 QoS Class를 한눈에 비교합니다:
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl get pods pod-besteffort pod-burstable pod-guaranteed -o custom-columns=NAME:.metadata.name,QoS:.status.qosClass,CPU-REQ:.spec.containers[0].resources.requests.cpu,CPU-LIM:.spec.containers[0].resources.limits.cpu,MEM-REQ:.spec.containers[0].resources.requests.memory,MEM-LIM:.spec.containers[0].resources.limits.memory
 ```
 
@@ -196,7 +196,7 @@ limits 미설정 시 노드 전체 용량이 limit으로 잡혀서 수치가 폭
 
 현재 Pod들의 실제 메모리 사용량도 확인합니다:
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl top pod
 ```
 
@@ -213,7 +213,7 @@ kubectl top pod
 
 Step 1 Pod를 정리하고 다음 실습을 진행합니다:
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl delete pod pod-besteffort pod-burstable pod-guaranteed
 ```
 
@@ -240,7 +240,7 @@ spec:
     count/pods: "5"
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f resourcequota.yaml
 kubectl describe resourcequota lab-quota
 ```
@@ -277,7 +277,7 @@ spec:
           memory: 600Mi    # Quota 상한(512Mi)을 단독으로 초과
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-quota-exceed.yaml
 ```
 
@@ -303,7 +303,7 @@ LimitRange는 이 상황을 막기 위해 **기본값을 자동으로 채워줍�
 
 먼저 LimitRange 없이 requests 없는 Pod를 시도합니다:
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl run no-resources --image=nginx:1.25
 ```
 
@@ -340,7 +340,7 @@ spec:
         memory: 64Mi
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f limitrange.yaml
 ```
 
@@ -390,7 +390,7 @@ spec:
           memory: 256Mi
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-over-max.yaml
 ```
 
@@ -407,7 +407,7 @@ max cpu usage per Container is 1, but limit is 2.
 
 ### 정리 및 리소스 삭제
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl delete pod no-resources pod-quota-exceed pod-over-max --ignore-not-found
 kubectl delete resourcequota lab-quota
 kubectl delete limitrange lab-limitrange

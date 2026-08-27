@@ -129,7 +129,7 @@ CSR 파일을 base64로 인코딩해서 K8s에 제출합니다.
 
 CSR 제출:
 
-```bash
+```powershell
 kubectl apply -f csr.yaml
 kubectl get csr
 ```
@@ -144,7 +144,7 @@ dev-user-csr   5s    kubernetes.io/kube-apiserver-client   rancher-desktop    Pe
 
 ## 4) CSR 승인 (관리자 역할)
 
-```bash
+```powershell
 kubectl certificate approve dev-user-csr
 kubectl get csr
 ```
@@ -187,15 +187,9 @@ kubectl get csr
 
 ## 6) kubeconfig에 dev-user 등록
 
-```bash
-kubectl config set-credentials dev-user \
-  --client-certificate=$HOME/rbac-lab/dev-user.crt \
-  --client-key=$HOME/rbac-lab/dev-user.key
-```
-
 현재 클러스터 이름 확인 후 context 생성:
 
-```bash
+```powershell
 kubectl config get-clusters
 ```
 
@@ -224,14 +218,14 @@ kubectl config get-clusters
 
 ## 7) dev-user로 전환 & 권한 확인
 
-```bash
+```powershell
 kubectl config use-context dev-context
 kubectl config current-context
 ```
 
 Pod 조회 시도:
 
-```bash
+```powershell
 kubectl get pods
 ```
 
@@ -247,7 +241,7 @@ User "dev-user" cannot list resource "pods" in API group "" in the namespace "de
 
 관리자 context로 복귀:
 
-```bash
+```powershell
 kubectl config use-context rancher-desktop
 ```
 

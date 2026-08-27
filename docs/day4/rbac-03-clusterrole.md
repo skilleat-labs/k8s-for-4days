@@ -20,7 +20,7 @@
 
 클러스터 범위 리소스는 Role로 접근 권한을 줄 수 없습니다.
 
-```bash
+```powershell
 # 클러스터 범위 리소스 목록 확인
 kubectl api-resources --namespaced=false
 # nodes, persistentvolumes, clusterroles, namespaces 등...
@@ -39,7 +39,7 @@ Role         +  ClusterRoleBinding  →  사용 불가 (오류)
 
 ## 사전 준비
 
-```bash
+```powershell
 kubectl create namespace ns-a
 kubectl create namespace ns-b
 kubectl create serviceaccount cluster-reader -n ns-a
@@ -67,7 +67,7 @@ rules:
     verbs: ["get", "list", "watch"]
 ```
 
-```bash
+```powershell
 kubectl apply -f clusterrole-reader.yaml
 kubectl get clusterrole cluster-resource-reader
 kubectl describe clusterrole cluster-resource-reader
@@ -94,7 +94,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-```bash
+```powershell
 kubectl apply -f clusterrolebinding-reader.yaml
 ```
 
@@ -102,23 +102,38 @@ kubectl apply -f clusterrolebinding-reader.yaml
 
 ## Step 3. 클러스터 범위 권한 확인
 
-```bash
-# 노드 조회 (클러스터 리소스)
-kubectl auth can-i list nodes \
-  --as=system:serviceaccount:ns-a:cluster-reader
-# yes
+=== "Windows PowerShell"
+    ```powershell
+    # 노드 조회 (클러스터 리소스)
+    kubectl auth can-i list nodes --as=system:serviceaccount:ns-a:cluster-reader
+    # yes
 
-# PV 조회
-kubectl auth can-i list persistentvolumes \
-  --as=system:serviceaccount:ns-a:cluster-reader
-# yes
+    # PV 조회
+    kubectl auth can-i list persistentvolumes --as=system:serviceaccount:ns-a:cluster-reader
+    # yes
 
-# ns-b의 Pod 조회 (다른 NS)
-kubectl auth can-i list pods \
-  --as=system:serviceaccount:ns-a:cluster-reader \
-  -n ns-b
-# yes ← 클러스터 전체 범위이므로 다른 NS도 가능
-```
+    # ns-b의 Pod 조회 (다른 NS)
+    kubectl auth can-i list pods --as=system:serviceaccount:ns-a:cluster-reader -n ns-b
+    # yes ← 클러스터 전체 범위이므로 다른 NS도 가능
+    ```
+=== "macOS/Linux"
+    ```bash
+    # 노드 조회 (클러스터 리소스)
+    kubectl auth can-i list nodes \
+      --as=system:serviceaccount:ns-a:cluster-reader
+    # yes
+
+    # PV 조회
+    kubectl auth can-i list persistentvolumes \
+      --as=system:serviceaccount:ns-a:cluster-reader
+    # yes
+
+    # ns-b의 Pod 조회 (다른 NS)
+    kubectl auth can-i list pods \
+      --as=system:serviceaccount:ns-a:cluster-reader \
+      -n ns-b
+    # yes ← 클러스터 전체 범위이므로 다른 NS도 가능
+    ```
 
 ---
 
@@ -126,7 +141,7 @@ kubectl auth can-i list pods \
 
 같은 ClusterRole이지만 이번엔 **RoleBinding**으로 연결하면 `ns-a`에서만 유효합니다.
 
-```bash
+```powershell
 # 기존 ClusterRoleBinding 제거
 kubectl delete clusterrolebinding cluster-resource-reader-binding
 ```
@@ -149,30 +164,45 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-```bash
+```powershell
 kubectl apply -f rolebinding-cluster-role.yaml
 ```
 
 권한 재확인:
 
-```bash
-# ns-a의 Pod 조회
-kubectl auth can-i list pods \
-  --as=system:serviceaccount:ns-a:cluster-reader \
-  -n ns-a
-# yes ← ns-a는 가능
+=== "Windows PowerShell"
+    ```powershell
+    # ns-a의 Pod 조회
+    kubectl auth can-i list pods --as=system:serviceaccount:ns-a:cluster-reader -n ns-a
+    # yes ← ns-a는 가능
 
-# ns-b의 Pod 조회
-kubectl auth can-i list pods \
-  --as=system:serviceaccount:ns-a:cluster-reader \
-  -n ns-b
-# no ← RoleBinding이라서 ns-a로 제한됨
+    # ns-b의 Pod 조회
+    kubectl auth can-i list pods --as=system:serviceaccount:ns-a:cluster-reader -n ns-b
+    # no ← RoleBinding이라서 ns-a로 제한됨
 
-# 노드 조회 (클러스터 리소스 — NS 무관)
-kubectl auth can-i list nodes \
-  --as=system:serviceaccount:ns-a:cluster-reader
-# no ← RoleBinding은 클러스터 리소스에 효력 없음
-```
+    # 노드 조회 (클러스터 리소스 — NS 무관)
+    kubectl auth can-i list nodes --as=system:serviceaccount:ns-a:cluster-reader
+    # no ← RoleBinding은 클러스터 리소스에 효력 없음
+    ```
+=== "macOS/Linux"
+    ```bash
+    # ns-a의 Pod 조회
+    kubectl auth can-i list pods \
+      --as=system:serviceaccount:ns-a:cluster-reader \
+      -n ns-a
+    # yes ← ns-a는 가능
+
+    # ns-b의 Pod 조회
+    kubectl auth can-i list pods \
+      --as=system:serviceaccount:ns-a:cluster-reader \
+      -n ns-b
+    # no ← RoleBinding이라서 ns-a로 제한됨
+
+    # 노드 조회 (클러스터 리소스 — NS 무관)
+    kubectl auth can-i list nodes \
+      --as=system:serviceaccount:ns-a:cluster-reader
+    # no ← RoleBinding은 클러스터 리소스에 효력 없음
+    ```
 
 !!! info "핵심 차이"
     ClusterRole을 **ClusterRoleBinding**으로 연결 → 클러스터 전체 적용
@@ -200,24 +230,33 @@ kubectl auth can-i list nodes \
 | `admin` | Namespace 내 거의 모든 권한 |
 | `cluster-admin` | 클러스터 전체 모든 권한 |
 
-```bash
-# 내장 view ClusterRole을 특정 NS에 적용
-kubectl create rolebinding ns-a-view \
-  --clusterrole=view \
-  --serviceaccount=ns-a:cluster-reader \
-  -n ns-a
+=== "Windows PowerShell"
+    ```powershell
+    # 내장 view ClusterRole을 특정 NS에 적용
+    kubectl create rolebinding ns-a-view --clusterrole=view --serviceaccount=ns-a:cluster-reader -n ns-a
 
-kubectl auth can-i list pods \
-  --as=system:serviceaccount:ns-a:cluster-reader \
-  -n ns-a
-# yes
-```
+    kubectl auth can-i list pods --as=system:serviceaccount:ns-a:cluster-reader -n ns-a
+    # yes
+    ```
+=== "macOS/Linux"
+    ```bash
+    # 내장 view ClusterRole을 특정 NS에 적용
+    kubectl create rolebinding ns-a-view \
+      --clusterrole=view \
+      --serviceaccount=ns-a:cluster-reader \
+      -n ns-a
+
+    kubectl auth can-i list pods \
+      --as=system:serviceaccount:ns-a:cluster-reader \
+      -n ns-a
+    # yes
+    ```
 
 ---
 
 ## 정리
 
-```bash
+```powershell
 kubectl delete namespace ns-a ns-b
 kubectl delete clusterrole cluster-resource-reader
 kubectl delete clusterrolebinding cluster-resource-reader-binding --ignore-not-found

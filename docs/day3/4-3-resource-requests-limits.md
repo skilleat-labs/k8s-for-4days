@@ -70,7 +70,7 @@ spec:
           memory: 100Gi
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-pending.yaml
 kubectl get pod pod-pending -w
 ```
@@ -80,7 +80,7 @@ NAME          READY   STATUS    RESTARTS   AGE
 pod-pending   0/1     Pending   0          10s   ← 배치될 노드가 없음
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl describe pod pod-pending
 ```
 
@@ -101,7 +101,7 @@ Events:
 
 정리:
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl delete pod pod-pending
 ```
 
@@ -123,7 +123,7 @@ kubectl delete pod pod-pending
 ??? note "Rancher Desktop(로컬) 사용 시 — metrics-server 별도 설치 필요"
     Rancher Desktop(k3s)은 metrics-server가 기본 비활성화 상태입니다. Step 2, 4 전에 한 번만 실행하세요.
 
-    ```bash
+    ```powershell
     kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
     kubectl patch deployment metrics-server -n kube-system --type=json -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
@@ -158,14 +158,14 @@ spec:
           cpu: 200m                  # 200m 이상은 못 씀
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-cpu-limit.yaml
 kubectl get pod pod-cpu-limit
 ```
 
 Pod가 `Running` 상태인지 확인 후, 실제 CPU 사용량을 측정합니다:
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl top pod pod-cpu-limit
 ```
 
@@ -185,7 +185,7 @@ pod-cpu-limit   200m         0Mi            ← 200m에서 딱 막힘
 
 정리:
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl delete pod pod-cpu-limit
 ```
 
@@ -221,7 +221,7 @@ spec:
           memory: 20Mi     # 20MB 제한, 50MB 시도 → OOMKilled
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-oom.yaml
 kubectl get pod pod-oom -w
 ```
@@ -232,7 +232,7 @@ pod-oom   0/1     OOMKilled   0          3s    ← 즉시 강제 종료
 pod-oom   0/1     CrashLoopBackOff  1    8s
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl describe pod pod-oom
 ```
 
@@ -254,7 +254,7 @@ kubectl describe pod pod-oom
 
 정리:
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl delete pod pod-oom
 ```
 
@@ -285,7 +285,7 @@ spec:
         # limits 없음 → 런타임 제한 없음
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-no-limits.yaml
 kubectl top pod pod-no-limits
 ```
@@ -313,7 +313,7 @@ pod-no-limits   1200m        1Mi    ← requests는 100m이지만 실제 1200m �
 
 정리:
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl delete pod pod-no-limits
 ```
 

@@ -124,7 +124,7 @@ Readiness Probe는 아직 넣지 않습니다.
           targetPort: 80
     ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f deploy-readiness.yaml
 kubectl get pods -l app=readiness-app
 kubectl get endpoints readiness-svc
@@ -190,7 +190,7 @@ Probe 없이 배포하면 Pod가 `Running`이 되는 즉시 Endpoint에 추가�
           targetPort: 80
     ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f deploy-readiness.yaml
 kubectl get pods -l app=readiness-app -w
 ```
@@ -216,7 +216,7 @@ Pod 하나의 nginx를 강제로 중단해서 Readiness를 실패시킵니다.
     재시작 후 `initialDelaySeconds: 5` 동안은 `READY 0/1` 상태입니다.
     이 5초 안에 아래 두 명령을 빠르게 실행하세요.
 
-```bash title="터미널"
+```powershell title="터미널"
 # Pod 이름 확인
 kubectl get pods -l app=readiness-app
 
@@ -279,7 +279,7 @@ spec:
       targetPort: 80
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-readiness-exec.yaml
 kubectl get pod readiness-exec
 kubectl get endpoints readiness-exec-svc
@@ -290,7 +290,7 @@ kubectl get endpoints readiness-exec-svc
 
 **Readiness 실패시키기 — 파일 삭제**
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl exec readiness-exec -- rm /tmp/ready
 kubectl get pod readiness-exec -w
 ```
@@ -301,7 +301,7 @@ readiness-exec    1/1     Running   0          30s
 readiness-exec    0/1     Running   0          36s   ← Readiness 실패
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl get endpoints readiness-exec-svc
 ```
 
@@ -312,7 +312,7 @@ readiness-exec-svc    <none>      40s
 
 **Readiness 회복시키기 — 파일 복구**
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl exec readiness-exec -- touch /tmp/ready
 kubectl get pod readiness-exec -w
 ```
@@ -323,7 +323,7 @@ readiness-exec    0/1     Running   0          50s
 readiness-exec    1/1     Running   0          53s   ← 자동 회복!
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl get endpoints readiness-exec-svc
 ```
 
@@ -339,11 +339,11 @@ Readiness Probe가 있을 때 배포 중 트래픽이 끊기지 않는지 직접
 
 **이미지 업데이트 실행 (터미널 2개 준비)**
 
-```bash title="터미널 1 — Pod 상태 감시"
+```powershell title="터미널 1 — Pod 상태 감시"
 kubectl get pods -l app=readiness-app -w
 ```
 
-```bash title="터미널 2 — 이미지 버전 업데이트"
+```powershell title="터미널 2 — 이미지 버전 업데이트"
 kubectl set image deployment/readiness-app app=nginx:1.24
 ```
 
@@ -364,7 +364,7 @@ readiness-app-old-xxx           1/1     Terminating         0   ← 그 다음 �
 
 롤아웃 상태도 확인합니다:
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl rollout status deployment/readiness-app
 ```
 
@@ -383,7 +383,7 @@ deployment "readiness-app" successfully rolled out
 
 ### 정리
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl delete -f deploy-readiness.yaml
 kubectl delete -f pod-readiness-exec.yaml
 ```
@@ -485,7 +485,7 @@ spec:
         failureThreshold: 3
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-startup.yaml
 kubectl get pod startup-app -w
 ```
@@ -523,7 +523,7 @@ spec:
         failureThreshold: 3
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-no-startup.yaml
 kubectl get pod no-startup-app -w
 ```
@@ -570,7 +570,7 @@ spec:
         failureThreshold: 3
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-startup-timeout.yaml
 kubectl get pod startup-timeout -w
 ```
@@ -582,7 +582,7 @@ startup-timeout    0/1     Running   1          15s   ← 6초 안에 초기화 
 startup-timeout    0/1     Running   2          30s   ← 또 재시작 → CrashLoopBackOff로 진행
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl describe pod startup-timeout
 ```
 
@@ -635,7 +635,7 @@ spec:
         failureThreshold: 3
 ```
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl apply -f pod-all-probes.yaml
 kubectl get pod all-probes -w
 ```
@@ -652,7 +652,7 @@ all-probes   1/1     Running   0          18s   ← Startup 성공 → Readiness
     15초간 `RESTARTS`가 0으로 유지되면 Startup Probe가 Liveness를 잘 막고 있는 것.
     15초 후 `READY 1/1`로 한번에 전환되면 OK.
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl describe pod all-probes
 ```
 
@@ -676,7 +676,7 @@ t=15s  /tmp/started 생성 → Startup 성공!
 
 ### 정리
 
-```bash title="터미널"
+```powershell title="터미널"
 kubectl delete pod startup-app no-startup-app startup-timeout all-probes
 ```
 
