@@ -205,7 +205,6 @@ spec:
 kubectl delete namespace webapp
 ```
 
-<!-- 정답 숨김 처리 (공개 시 아래 주석 해제)
 
 ---
 
@@ -364,5 +363,3 @@ kubectl delete namespace webapp
     kubectl apply -f frontend.yaml
     kubectl apply -f gateway.yaml
     ```
-
--->
