@@ -69,7 +69,6 @@ nav:
       - 4. RBAC — 최소 권한 설계: day4/rbac-04-least-privilege.md
       - 5. RBAC — SA 토큰 관리: day4/rbac-05-sa-token.md
       - 6. 노드 스케줄링 실습: day4/node-scheduling.md
-      - 7. Private Registry — ACR Pull Secret: day4/acr-pull-secret.md
 
 markdown_extensions:
   - admonition
