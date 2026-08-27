@@ -162,7 +162,7 @@ Service Account:  my-app-sa
 
 ```powershell
 # Pod 안으로 접속
-kubectl exec pod-custom-sa -- sh
+kubectl exec -it pod-custom-sa -- sh
 
 # 아래를 Pod 안에서 실행
 ls /var/run/secrets/kubernetes.io/serviceaccount/
