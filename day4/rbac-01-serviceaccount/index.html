@@ -2037,7 +2037,7 @@ SA를 지정하지 않은 Pod는 이 <code>default</code> SA를 사용합니다.
 <hr />
 <h2 id="step-4-pod">Step 4. Pod 안에서 마운트된 토큰 확인<a class="headerlink" href="#step-4-pod" title="Permanent link">&para;</a></h2>
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c"># Pod 안으로 접속</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">kubectl</span> <span class="n">exec</span> <span class="n">pod-custom-sa</span> <span class="p">--</span> <span class="n">sh</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">kubectl</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">pod-custom-sa</span> <span class="p">--</span> <span class="n">sh</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
 </span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c"># 아래를 Pod 안에서 실행</span>
 </span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="nb">ls </span><span class="p">/</span><span class="n">var</span><span class="p">/</span><span class="n">run</span><span class="p">/</span><span class="n">secrets</span><span class="p">/</span><span class="n">kubernetes</span><span class="p">.</span><span class="n">io</span><span class="p">/</span><span class="n">serviceaccount</span><span class="p">/</span>
