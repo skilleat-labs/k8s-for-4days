@@ -13,8 +13,6 @@
         <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day5/5-3-networkpolicy/">
       
       
-        <link rel="prev" href="../5-2-statefulset/">
-      
       
       
         
@@ -25,7 +23,7 @@
     
     
       
-        <title>3. NetworkPolicy 실습 (Cilium) - K8s for 4 Days</title>
+        <title>NetworkPolicy 실습 — 파드 사이의 방화벽 - K8s for 4 Days</title>
       
     
     
@@ -110,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3. NetworkPolicy 실습 (Cilium)
+              NetworkPolicy 실습 — 파드 사이의 방화벽
             
           </span>
         </div>
@@ -308,13 +306,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../5-1-daemonset/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../day6/netpol-01-intro/" class="md-tabs__link">
           
   
   
@@ -1530,31 +1526,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
@@ -1572,7 +1565,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1590,14 +1583,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../5-1-daemonset/" class="md-nav__link">
+      <a href="../../day6/netpol-01-intro/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    1. DaemonSet 실습
+    1. 개념과 Deny-All
   
 
     
@@ -1618,14 +1611,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../5-2-statefulset/" class="md-nav__link">
+      <a href="../../day6/netpol-02-podselector/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    2. StatefulSet 실습
+    2. PodSelector 실습
   
 
     
@@ -1643,44 +1636,17 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    3. NetworkPolicy 실습 (Cilium)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../day6/netpol-03-namespaceselector/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    3. NetworkPolicy 실습 (Cilium)
+    3. NamespaceSelector & AND/OR
   
 
     
@@ -1689,286 +1655,90 @@
   
 
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="목차">
+              
+            
+              
+                
   
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../day6/netpol-04-egress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
+    4. Egress & ipBlock
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      목차
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        실습 목표
-      
-    </span>
-  </a>
+
+    
+  </span>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        개념 요약
-      
-    </span>
-  </a>
   
-    <nav class="md-nav" aria-label="개념 요약">
-      <ul class="md-nav__list">
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day6/netpol-05-cilium/" class="md-nav__link">
         
-          <li class="md-nav__item">
-  <a href="#networkpolicy_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        NetworkPolicy 란?
-      
-    </span>
-  </a>
   
-</li>
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Cilium L7 정책 (CiliumNetworkPolicy)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day6/netpol-06-mtls/" class="md-nav__link">
         
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        핵심 3원칙
-      
-    </span>
-  </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#drop-reject" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        차단은 DROP, reject가 아니다
-      
-    </span>
-  </a>
   
-</li>
-        
-      </ul>
-    </nav>
+  <span class="md-ellipsis">
+    
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cilium" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cilium 상태 확인
-      
-    </span>
-  </a>
+    6. Cilium mTLS
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1. 기본 상태 확인 — 전부 열려 있다
-      
-    </span>
-  </a>
+
+    
+  </span>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-deny-all" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2. deny-all — 네임스페이스 전체 기본 거부
-      
-    </span>
-  </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3. 3계층 격리 — 필요한 경로만 열기
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step 3. 3계층 격리 — 필요한 경로만 열기">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        목표 구조
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1-db-api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        정책 1 — db 는 api 에서만
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-api-web" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        정책 2 — api 는 web 에서만
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 4. 검증
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step 4. 검증">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        허용 경로 확인
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        차단 경로 확인
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        정책 상태 확인
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-5-and-vs-or" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 5. AND vs OR — 셀렉터 함정
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-6-cilium-l7-http" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 6. Cilium 전용 — L7 HTTP 정책
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-7-egress-dns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 7. Egress 제한 + DNS 허용
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        트러블슈팅 요약
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        정리
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        정리 및 리소스 삭제
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
+
+      </a>
     </li>
   
 

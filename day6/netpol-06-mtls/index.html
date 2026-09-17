@@ -13,6 +13,8 @@
         <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day6/netpol-06-mtls/">
       
       
+        <link rel="prev" href="../netpol-05-cilium/">
+      
       
       
         
@@ -23,7 +25,7 @@
     
     
       
-        <title>NetworkPolicy 06 — Cilium Mutual TLS (mTLS) - K8s for 4 Days</title>
+        <title>6. Cilium mTLS - K8s for 4 Days</title>
       
     
     
@@ -108,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NetworkPolicy 06 — Cilium Mutual TLS (mTLS)
+              6. Cilium mTLS
             
           </span>
         </div>
@@ -306,11 +308,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../day5/5-1-daemonset/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../netpol-01-intro/" class="md-tabs__link">
           
   
   
@@ -1526,28 +1530,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -1565,7 +1572,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1583,14 +1590,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../day5/5-1-daemonset/" class="md-nav__link">
+      <a href="../netpol-01-intro/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    1. DaemonSet 실습
+    1. 개념과 Deny-All
   
 
     
@@ -1611,14 +1618,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../day5/5-2-statefulset/" class="md-nav__link">
+      <a href="../netpol-02-podselector/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    2. StatefulSet 실습
+    2. PodSelector 실습
   
 
     
@@ -1639,14 +1646,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../day5/5-3-networkpolicy/" class="md-nav__link">
+      <a href="../netpol-03-namespaceselector/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    3. NetworkPolicy 실습 (Cilium)
+    3. NamespaceSelector & AND/OR
   
 
     
@@ -1655,6 +1662,409 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../netpol-04-egress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Egress & ipBlock
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../netpol-05-cilium/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Cilium L7 정책 (CiliumNetworkPolicy)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Cilium mTLS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Cilium mTLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        실습 목표
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        개념
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="개념">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#networkpolicy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NetworkPolicy만으로 부족한 이유
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mtls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mTLS가 해결하는 것
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cilium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cilium의 두 가지 암호화 방식
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-a-transparent-encryption-wireguard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part A — Transparent Encryption (WireGuard)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part A — Transparent Encryption (WireGuard)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wireguard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WireGuard 활성화
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wireguard_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WireGuard 상태 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        암호화 트래픽 검증
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-b-cilium-mtls-spiffespire-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part B — Cilium mTLS (SPIFFE/SPIRE Identity)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part B — Cilium mTLS (SPIFFE/SPIRE Identity)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mtls_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mTLS 활성화
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spiffe-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPIFFE ID 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-c-authenticationmode-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part C — authentication.mode: required
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part C — authentication.mode: required">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mtls_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mTLS 필수 정책 적용
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod-vs-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        검증 — 인증된 Pod vs 미인증 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-d-mtls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part D — 실무 mTLS 패턴
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part D — 실무 mTLS 패턴">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mtls_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        전체 네임스페이스에 mTLS 강제
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mtls_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        서비스 메시 없이 mTLS 달성
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mtls_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        전체 mTLS 흐름 요약
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step — 정리
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        전체 Day 6 핵심 정리
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        도전 과제
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 

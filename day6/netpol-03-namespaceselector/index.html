@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day6/netpol-03-namespaceselector/">
       
       
+        <link rel="prev" href="../netpol-02-podselector/">
+      
+      
+        <link rel="next" href="../netpol-04-egress/">
       
       
         
@@ -23,7 +27,7 @@
     
     
       
-        <title>NetworkPolicy 03 — NamespaceSelector 실습 - K8s for 4 Days</title>
+        <title>3. NamespaceSelector & AND/OR - K8s for 4 Days</title>
       
     
     
@@ -108,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NetworkPolicy 03 — NamespaceSelector 실습
+              3. NamespaceSelector & AND/OR
             
           </span>
         </div>
@@ -306,11 +310,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../day5/5-1-daemonset/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../netpol-01-intro/" class="md-tabs__link">
           
   
   
@@ -1526,28 +1532,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -1565,7 +1574,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1583,14 +1592,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../day5/5-1-daemonset/" class="md-nav__link">
+      <a href="../netpol-01-intro/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    1. DaemonSet 실습
+    1. 개념과 Deny-All
   
 
     
@@ -1611,14 +1620,317 @@
   
   
     <li class="md-nav__item">
-      <a href="../../day5/5-2-statefulset/" class="md-nav__link">
+      <a href="../netpol-02-podselector/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    2. StatefulSet 실습
+    2. PodSelector 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. NamespaceSelector & AND/OR
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. NamespaceSelector & AND/OR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        실습 목표
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        개념
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="개념">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#namespaceselector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NamespaceSelector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#and-vs-or" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AND vs OR 핵심 차이
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        실습 환경 준비
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="실습 환경 준비">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        네임스페이스에 라벨 추가
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        모니터링용 Pod 추가
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deny-all" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deny-All 기준선 설정
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-namespaceselector-ns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1. NamespaceSelector로 특정 NS 허용
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1. NamespaceSelector로 특정 NS 허용">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        결과 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-ns-or" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2. 모니터링 NS도 추가 허용 (OR 조건)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-and-ns-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3. AND 조건 — 특정 NS의 특정 Pod만 허용
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3. AND 조건 — 특정 NS의 특정 Pod만 허용">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#netpol-client-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        검증: netpol-client 내 Pod 라벨 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-kubernetesiometadataname-ns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4. kubernetes.io/metadata.name 활용 (특정 NS 이름으로 허용)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5. 정리
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#and-vs-or_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정리 — AND vs OR 비교표
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../netpol-04-egress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Egress & ipBlock
   
 
     
@@ -1639,14 +1951,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../day5/5-3-networkpolicy/" class="md-nav__link">
+      <a href="../netpol-05-cilium/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    3. NetworkPolicy 실습 (Cilium)
+    5. Cilium L7 정책 (CiliumNetworkPolicy)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../netpol-06-mtls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Cilium mTLS
   
 
     
