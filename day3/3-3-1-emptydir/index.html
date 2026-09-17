@@ -16,7 +16,7 @@
         <link rel="prev" href="../3-2-gateway/">
       
       
-        <link rel="next" href="../3-3-2-pv-pvc/">
+        <link rel="next" href="../challenge-emptydir/">
       
       
         
@@ -296,11 +296,31 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../day4/vbox-k8s-setup/" class="md-tabs__link">
+        <a href="../../day4/rbac-01-serviceaccount/" class="md-tabs__link">
           
   
   
   4일차
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day5/5-1-daemonset/" class="md-tabs__link">
+          
+  
+  
+  5일차
 
         </a>
       </li>
@@ -770,6 +790,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../day2/challenge-deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 도전 과제 — Deployment 만들기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../day2/2-2-service/" class="md-nav__link">
         
   
@@ -854,6 +902,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../day2/challenge-namespace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 도전 과제 — Namespace에 앱 배포하고 관찰하기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../day2/2-3-configmap-secret/" class="md-nav__link">
         
   
@@ -890,34 +966,6 @@
     
   
     5. Ingress 실습
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day2/3-1-1-ingress-tls/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    6. Ingress TLS & Redirect 실습
   
 
     
@@ -1177,6 +1225,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../challenge-emptydir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 도전 과제 — Deployment + emptyDir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../3-3-2-pv-pvc/" class="md-nav__link">
         
   
@@ -1212,7 +1288,7 @@
   <span class="md-ellipsis">
     
   
-    4. Liveness Probe 실습
+    4. Probe 상세 — Liveness
   
 
     
@@ -1240,7 +1316,7 @@
   <span class="md-ellipsis">
     
   
-    5. Readiness & Startup Probe 실습
+    5. Probe 상세 — Readiness
   
 
     
@@ -1268,7 +1344,7 @@
   <span class="md-ellipsis">
     
   
-    6. Resource Requests & Limits 실습
+    6. Resource Requests & Limits 상세
   
 
     
@@ -1406,90 +1482,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../day4/vbox-k8s-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    1. VirtualBox + 쿠버네티스 구축하기
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/acr-pull-secret/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    2. Private Registry — ACR 이미지 Pull Secret
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/node-scheduling/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    3. 노드 스케줄링 — 배치 제어 실습
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../day4/rbac-01-serviceaccount/" class="md-nav__link">
         
   
@@ -1497,7 +1489,7 @@
   <span class="md-ellipsis">
     
   
-    4. RBAC 01 — ServiceAccount 기초
+    1. RBAC — ServiceAccount 기초
   
 
     
@@ -1525,7 +1517,7 @@
   <span class="md-ellipsis">
     
   
-    5. RBAC 02 — Role & RoleBinding
+    2. RBAC — Role & RoleBinding
   
 
     
@@ -1553,7 +1545,7 @@
   <span class="md-ellipsis">
     
   
-    6. RBAC 03 — ClusterRole & ClusterRoleBinding
+    3. RBAC — ClusterRole & ClusterRoleBinding
   
 
     
@@ -1581,7 +1573,7 @@
   <span class="md-ellipsis">
     
   
-    7. RBAC 04 — 최소 권한 설계
+    4. RBAC — 최소 권한 설계
   
 
     
@@ -1609,7 +1601,180 @@
   <span class="md-ellipsis">
     
   
-    8. RBAC 05 — SA 토큰 관리
+    5. RBAC — SA 토큰 관리
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/node-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 노드 스케줄링 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5일차
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5일차
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day5/5-1-daemonset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. DaemonSet 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day5/5-2-statefulset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. StatefulSet 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day5/5-3-networkpolicy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. NetworkPolicy 실습 (Cilium)
   
 
     
@@ -1798,8 +1963,8 @@
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cache-vol</span>
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-emptydir.yaml
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>emptydir-pod<span class="w"> </span>--<span class="w"> </span>cat<span class="w"> </span>/cache/hello.txt
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-emptydir</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">kubectl</span> <span class="n">exec</span> <span class="n">emptydir-pod</span> <span class="p">--</span> <span class="nb">cat </span><span class="p">/</span><span class="n">cache</span><span class="p">/</span><span class="n">hello</span><span class="p">.</span><span class="n">txt</span>
 </span></code></pre></div>
 <p>출력:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Hello emptyDir!
@@ -1829,27 +1994,37 @@
 </span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shared-vol</span>
 </span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">      </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-emptydir-shared.yaml
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>emptydir-shared<span class="w"> </span>-c<span class="w"> </span>reader
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-emptydir-shared</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">kubectl</span> <span class="n">logs</span> <span class="n">emptydir-shared</span> <span class="n">-c</span> <span class="n">reader</span>
 </span></code></pre></div>
 <p><code>writer</code> 컨테이너가 기록한 타임스탬프를 <code>reader</code> 컨테이너가 읽어옵니다.</p>
 <h3 id="3-emptydir-pod">3) emptyDir 한계 확인 — Pod 삭제 시 데이터 소실<a class="headerlink" href="#3-emptydir-pod" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 현재 데이터 확인</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>emptydir-pod<span class="w"> </span>--<span class="w"> </span>cat<span class="w"> </span>/cache/hello.txt
+<p>먼저 파일을 하나 더 만들어 "삭제 전 상태"를 기록합니다.</p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c"># 파일 추가 기록</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">kubectl</span> <span class="n">exec</span> <span class="n">emptydir-pod</span> <span class="p">--</span> <span class="n">sh</span> <span class="n">-c</span> <span class="s2">&quot;echo &#39;extra data&#39; &gt; /cache/extra.txt&quot;</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Pod 삭제 후 재생성</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>emptydir-pod
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-emptydir.yaml
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># 컨테이너 기동 대기 후 확인</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>kubectl<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>--for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span>Ready<span class="w"> </span>pod/emptydir-pod<span class="w"> </span>--timeout<span class="o">=</span>30s
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>emptydir-pod<span class="w"> </span>--<span class="w"> </span>ls<span class="w"> </span>/cache/
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c"># 삭제 전 파일 목록 확인</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">kubectl</span> <span class="n">exec</span> <span class="n">emptydir-pod</span> <span class="p">--</span> <span class="nb">ls </span><span class="p">/</span><span class="n">cache</span><span class="p">/</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>extra.txt   hello.txt
+</span></code></pre></div>
+<p>Pod를 삭제하고 재생성합니다.</p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">emptydir-pod</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">pod-emptydir</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c"># 컨테이너 기동 대기</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">kubectl</span> <span class="n">wait</span> <span class="p">-</span><span class="n">-for</span><span class="p">=</span><span class="n">condition</span><span class="p">=</span><span class="n">Ready</span> <span class="n">pod</span><span class="p">/</span><span class="n">emptydir-pod</span> <span class="p">-</span><span class="n">-timeout</span><span class="p">=</span><span class="n">30s</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c"># 삭제 후 파일 목록 확인</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">kubectl</span> <span class="n">exec</span> <span class="n">emptydir-pod</span> <span class="p">--</span> <span class="nb">ls </span><span class="p">/</span><span class="n">cache</span><span class="p">/</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>(출력 없음 — 디렉토리가 비어있음)
 </span></code></pre></div>
 <blockquote>
 <p><strong>포인트</strong>: Pod를 삭제하고 재생성하면 <code>/cache</code> 디렉토리는 <strong>빈 상태</strong>입니다. 컨테이너 재시작(크래시 복구)과 달리 Pod 삭제·재생성은 emptyDir 데이터를 소멸시킵니다.</p>
 </blockquote>
 <h3 id="_2">정리<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>emptydir-pod<span class="w"> </span>emptydir-shared
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">emptydir-pod</span> <span class="n">emptydir-shared</span>
 </span></code></pre></div>
 <blockquote>
 <p><strong>결론</strong>: emptyDir은 임시 데이터나 컨테이너 간 파일 공유에 적합하지만, Pod 삭제 후에도 데이터를 유지하려면 <strong>PersistentVolume(PV) / PVC</strong>가 필요합니다. → 다음 실습(3-3-2)에서 계속합니다.</p>

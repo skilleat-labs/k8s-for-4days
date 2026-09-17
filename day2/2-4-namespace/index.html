@@ -16,7 +16,7 @@
         <link rel="prev" href="../challenge-debug/">
       
       
-        <link rel="next" href="../2-3-configmap-secret/">
+        <link rel="next" href="../challenge-namespace/">
       
       
         
@@ -296,11 +296,31 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../day4/vbox-k8s-setup/" class="md-tabs__link">
+        <a href="../../day4/rbac-01-serviceaccount/" class="md-tabs__link">
           
   
   
   4일차
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day5/5-1-daemonset/" class="md-tabs__link">
+          
+  
+  
+  5일차
 
         </a>
       </li>
@@ -773,6 +793,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../challenge-deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 도전 과제 — Deployment 만들기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../2-2-service/" class="md-nav__link">
         
   
@@ -1014,6 +1062,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../challenge-namespace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 도전 과제 — Namespace에 앱 배포하고 관찰하기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../2-3-configmap-secret/" class="md-nav__link">
         
   
@@ -1050,34 +1126,6 @@
     
   
     5. Ingress 실습
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../3-1-1-ingress-tls/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    6. Ingress TLS & Redirect 실습
   
 
     
@@ -1215,6 +1263,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../day3/challenge-emptydir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 도전 과제 — Deployment + emptyDir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../day3/3-3-2-pv-pvc/" class="md-nav__link">
         
   
@@ -1250,7 +1326,7 @@
   <span class="md-ellipsis">
     
   
-    4. Liveness Probe 실습
+    4. Probe 상세 — Liveness
   
 
     
@@ -1278,7 +1354,7 @@
   <span class="md-ellipsis">
     
   
-    5. Readiness & Startup Probe 실습
+    5. Probe 상세 — Readiness
   
 
     
@@ -1306,7 +1382,7 @@
   <span class="md-ellipsis">
     
   
-    6. Resource Requests & Limits 실습
+    6. Resource Requests & Limits 상세
   
 
     
@@ -1444,90 +1520,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../day4/vbox-k8s-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    1. VirtualBox + 쿠버네티스 구축하기
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/acr-pull-secret/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    2. Private Registry — ACR 이미지 Pull Secret
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/node-scheduling/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    3. 노드 스케줄링 — 배치 제어 실습
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../day4/rbac-01-serviceaccount/" class="md-nav__link">
         
   
@@ -1535,7 +1527,7 @@
   <span class="md-ellipsis">
     
   
-    4. RBAC 01 — ServiceAccount 기초
+    1. RBAC — ServiceAccount 기초
   
 
     
@@ -1563,7 +1555,7 @@
   <span class="md-ellipsis">
     
   
-    5. RBAC 02 — Role & RoleBinding
+    2. RBAC — Role & RoleBinding
   
 
     
@@ -1591,7 +1583,7 @@
   <span class="md-ellipsis">
     
   
-    6. RBAC 03 — ClusterRole & ClusterRoleBinding
+    3. RBAC — ClusterRole & ClusterRoleBinding
   
 
     
@@ -1619,7 +1611,7 @@
   <span class="md-ellipsis">
     
   
-    7. RBAC 04 — 최소 권한 설계
+    4. RBAC — 최소 권한 설계
   
 
     
@@ -1647,7 +1639,180 @@
   <span class="md-ellipsis">
     
   
-    8. RBAC 05 — SA 토큰 관리
+    5. RBAC — SA 토큰 관리
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/node-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 노드 스케줄링 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5일차
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5일차
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day5/5-1-daemonset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. DaemonSet 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day5/5-2-statefulset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. StatefulSet 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day5/5-3-networkpolicy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. NetworkPolicy 실습 (Cilium)
   
 
     
@@ -1926,14 +2091,26 @@
 <h2 id="4-namespace">4) 기본 Namespace 전환<a class="headerlink" href="#4-namespace" title="Permanent link">&para;</a></h2>
 <p>매번 <code>-n dev</code>를 붙이는 대신 기본 Namespace를 바꿀 수 있습니다.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>set-context<span class="w"> </span>--current<span class="w"> </span>--namespace<span class="o">=</span>dev
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>kubectl<span class="w"> </span>config<span class="w"> </span>view<span class="w"> </span>--minify<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>namespace<span class="w">    </span><span class="c1"># 현재 기본 Namespace 확인</span>
 </span></code></pre></div>
+<p><code>kubectl config view --minify</code>는 현재 활성화된 컨텍스트 정보만 요약해서 출력합니다. 현재 기본 Namespace가 무엇으로 설정됐는지 확인하는 데 사용합니다.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows PowerShell</label><label for="__tabbed_1_2">macOS/Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="n">view</span> <span class="p">-</span><span class="n">-minify</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">&quot;namespace&quot;</span>    <span class="c"># 현재 기본 Namespace 확인</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>view<span class="w"> </span>--minify<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>namespace<span class="w">    </span><span class="c1"># 현재 기본 Namespace 확인</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
 <p>전환 후에는 <code>-n</code> 없이도 <code>dev</code> Namespace에 명령이 적용됩니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w">    </span><span class="c1"># dev Namespace의 Pod가 출력됨</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w">    </span><span class="c1"># dev Namespace의 Pod가 출력됨</span>
 </span></code></pre></div>
 <p>실습이 끝나면 <strong>반드시 <code>default</code>로 복원</strong>합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>set-context<span class="w"> </span>--current<span class="w"> </span>--namespace<span class="o">=</span>default
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w">    </span><span class="c1"># default Namespace의 Pod가 출력됨</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>set-context<span class="w"> </span>--current<span class="w"> </span>--namespace<span class="o">=</span>default
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w">    </span><span class="c1"># default Namespace의 Pod가 출력됨</span>
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Namespace 전환 후 꼭 복원하세요</p>
@@ -1944,13 +2121,14 @@
 <h2 id="5-namespace">5) Namespace 삭제 — 내부 리소스 함께 삭제<a class="headerlink" href="#5-namespace" title="Permanent link">&para;</a></h2>
 <p>Namespace를 삭제하면 그 안의 <strong>모든 리소스(Pod, Service, Deployment 등)가 함께 삭제</strong>됩니다.</p>
 <p>먼저 dev Namespace 안의 리소스를 확인합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>all<span class="w"> </span>-n<span class="w"> </span>dev
+<p><code>kubectl get all</code>은 Pod, Service, Deployment, ReplicaSet 등 주요 리소스를 한 번에 조회합니다. 삭제 전 어떤 리소스가 남아 있는지 확인하는 용도로 사용합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>all<span class="w"> </span>-n<span class="w"> </span>dev
 </span></code></pre></div>
 <p>Namespace를 삭제합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>dev
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>dev
 </span></code></pre></div>
 <p>삭제 후 리소스가 사라졌는지 확인합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>dev<span class="w">    </span><span class="c1"># Error from server (NotFound) 출력</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>dev<span class="w">    </span><span class="c1"># Error from server (NotFound) 출력</span>
 </span></code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Namespace 삭제는 되돌릴 수 없습니다</p>
@@ -1959,8 +2137,8 @@
 </div>
 <hr />
 <h2 id="_2">정리<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>prod
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>ns<span class="w">    </span><span class="c1"># dev, prod 모두 삭제 확인</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>prod
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>ns<span class="w">    </span><span class="c1"># dev, prod 모두 삭제 확인</span>
 </span></code></pre></div>
 <hr />
 <h2 id="namespace_1">Namespace 명령어 정리<a class="headerlink" href="#namespace_1" title="Permanent link">&para;</a></h2>

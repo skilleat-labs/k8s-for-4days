@@ -296,11 +296,31 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../day4/vbox-k8s-setup/" class="md-tabs__link">
+        <a href="../../day4/rbac-01-serviceaccount/" class="md-tabs__link">
           
   
   
   4일차
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day5/5-1-daemonset/" class="md-tabs__link">
+          
+  
+  
+  5일차
 
         </a>
       </li>
@@ -1053,6 +1073,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../day2/challenge-deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 도전 과제 — Deployment 만들기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../day2/2-2-service/" class="md-nav__link">
         
   
@@ -1137,6 +1185,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../day2/challenge-namespace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 도전 과제 — Namespace에 앱 배포하고 관찰하기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../day2/2-3-configmap-secret/" class="md-nav__link">
         
   
@@ -1173,34 +1249,6 @@
     
   
     5. Ingress 실습
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day2/3-1-1-ingress-tls/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    6. Ingress TLS & Redirect 실습
   
 
     
@@ -1338,6 +1386,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../day3/challenge-emptydir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔧 도전 과제 — Deployment + emptyDir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../day3/3-3-2-pv-pvc/" class="md-nav__link">
         
   
@@ -1373,7 +1449,7 @@
   <span class="md-ellipsis">
     
   
-    4. Liveness Probe 실습
+    4. Probe 상세 — Liveness
   
 
     
@@ -1401,7 +1477,7 @@
   <span class="md-ellipsis">
     
   
-    5. Readiness & Startup Probe 실습
+    5. Probe 상세 — Readiness
   
 
     
@@ -1429,7 +1505,7 @@
   <span class="md-ellipsis">
     
   
-    6. Resource Requests & Limits 실습
+    6. Resource Requests & Limits 상세
   
 
     
@@ -1567,90 +1643,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../day4/vbox-k8s-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    1. VirtualBox + 쿠버네티스 구축하기
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/acr-pull-secret/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    2. Private Registry — ACR 이미지 Pull Secret
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/node-scheduling/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    3. 노드 스케줄링 — 배치 제어 실습
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../day4/rbac-01-serviceaccount/" class="md-nav__link">
         
   
@@ -1658,7 +1650,7 @@
   <span class="md-ellipsis">
     
   
-    4. RBAC 01 — ServiceAccount 기초
+    1. RBAC — ServiceAccount 기초
   
 
     
@@ -1686,7 +1678,7 @@
   <span class="md-ellipsis">
     
   
-    5. RBAC 02 — Role & RoleBinding
+    2. RBAC — Role & RoleBinding
   
 
     
@@ -1714,7 +1706,7 @@
   <span class="md-ellipsis">
     
   
-    6. RBAC 03 — ClusterRole & ClusterRoleBinding
+    3. RBAC — ClusterRole & ClusterRoleBinding
   
 
     
@@ -1742,7 +1734,7 @@
   <span class="md-ellipsis">
     
   
-    7. RBAC 04 — 최소 권한 설계
+    4. RBAC — 최소 권한 설계
   
 
     
@@ -1770,7 +1762,180 @@
   <span class="md-ellipsis">
     
   
-    8. RBAC 05 — SA 토큰 관리
+    5. RBAC — SA 토큰 관리
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/node-scheduling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 노드 스케줄링 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5일차
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5일차
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day5/5-1-daemonset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. DaemonSet 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day5/5-2-statefulset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. StatefulSet 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day5/5-3-networkpolicy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. NetworkPolicy 실습 (Cilium)
   
 
     
@@ -2157,12 +2322,18 @@
 <li><strong>Kubernetes Version</strong>: 최신 안정 버전 (예: v1.29.x)</li>
 </ol>
 <h3 id="2-kubeconfig">2) kubeconfig 자동 설정 확인<a class="headerlink" href="#2-kubeconfig" title="Permanent link">&para;</a></h3>
-<p><strong>PowerShell:</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows PowerShell</label><label for="__tabbed_1_2">macOS/Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">Get-Content</span> <span class="s2">&quot;$env:USERPROFILE\.kube\config&quot;</span>
 </span></code></pre></div>
-<p><strong>Bash:</strong></p>
+</div>
+<div class="tabbed-block">
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cat<span class="w"> </span>~/.kube/config
 </span></code></pre></div>
+</div>
+</div>
+</div>
 <p>→ <code>rancher-desktop</code> 클러스터 항목이 포함되면 정상</p>
 <h3 id="3_1">3) 연결 확인<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>current-context
@@ -2176,18 +2347,29 @@
 <hr />
 <h2 id="_3">공통 확인 사항<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="kubectl">kubectl 자동완성 활성화<a class="headerlink" href="#kubectl" title="Permanent link">&para;</a></h3>
-<p><strong>PowerShell:</strong></p>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">kubectl</span> <span class="n">completion</span> <span class="n">powershell</span> <span class="p">|</span> <span class="nb">Out-String</span> <span class="p">|</span> <span class="nb">Invoke-Expression</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">kubectl</span> <span class="n">completion</span> <span class="n">powershell</span> <span class="p">&gt;&gt;</span> <span class="nv">$PROFILE</span>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows PowerShell</label><label for="__tabbed_2_2">macOS/Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>실행 정책 확인 — <code>Restricted</code>면 아래 명령어 먼저 실행 (<code>-Force</code>로 확인 프롬프트 생략):
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">Set-ExecutionPolicy</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Force</span>
 </span></code></pre></div>
-<p><strong>Bash:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">source</span><span class="w"> </span>&lt;<span class="o">(</span>kubectl<span class="w"> </span>completion<span class="w"> </span>bash<span class="o">)</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;source &lt;(kubectl completion bash)&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+Profile에 자동완성 등록 후 현재 세션 적용:
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">File</span> <span class="n">-Force</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span> <span class="n">-Value</span> <span class="s1">&#39;kubectl completion powershell | Out-String | Invoke-Expression&#39;</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">.</span> <span class="nv">$PROFILE</span>
+</span></code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">source</span><span class="w"> </span>&lt;<span class="o">(</span>kubectl<span class="w"> </span>completion<span class="w"> </span>bash<span class="o">)</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;source &lt;(kubectl completion bash)&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
 </span></code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="_4">클러스터 전체 상태 확인<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>cluster-info
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>cluster-info
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
 </span></code></pre></div>
 <hr />
 <h2 id="windows-powershell">Windows PowerShell 사용 시 참고 사항<a class="headerlink" href="#windows-powershell" title="Permanent link">&para;</a></h2>
