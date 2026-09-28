@@ -93,13 +93,13 @@ skilleatlab.azurecr.io/lab/nginx:latest
 
 | 팀 | 이메일 | 비밀번호 |
 |-----|--------|---------|
-| Team 01 | `user01@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
-| Team 02 | `user02@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
-| Team 03 | `user03@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
-| Team 04 | `user04@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
-| Team 05 | `user05@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
-| Team 06 | `user06@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
-| Team 07 | `user07@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
+| Team 1 | `user1@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
+| Team 2 | `user2@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
+| Team 3 | `user3@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
+| Team 4 | `user4@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
+| Team 5 | `user5@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
+| Team 6 | `user6@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
+| Team 7 | `user7@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
 
 ```bash
 az login --use-device-code
