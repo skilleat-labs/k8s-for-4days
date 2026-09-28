@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day1/1-1-vm-setup/">
+        <link rel="canonical" href="https://skilleat-labs.github.io/k8s-for-4days/day1/1-1-vm-setup-ubuntu26/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../1-1-vm-setup/">
       
       
-        <link rel="next" href="../1-1-vm-setup-ubuntu26/">
+        <link rel="next" href="../1-2-container/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>1. VM 직접 구축하기 (Ubuntu 24.04) - K8s for 4 Days</title>
+        <title>1. VM 직접 구축하기 (Ubuntu 26.04) - K8s for 4 Days</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#1-1-vm-virtualbox-ubuntu" class="md-skip">
+        <a href="#1-1-vm-virtualbox-ubuntu-ubuntu-2604" class="md-skip">
           콘텐츠로 이동
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1. VM 직접 구축하기 (Ubuntu 24.04)
+              1. VM 직접 구축하기 (Ubuntu 26.04)
             
           </span>
         </div>
@@ -236,7 +236,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../1-1-vm-setup/" class="md-tabs__link">
           
   
   
@@ -369,6 +369,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-1-vm-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. VM 직접 구축하기 (Ubuntu 24.04)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -388,7 +416,7 @@
   <span class="md-ellipsis">
     
   
-    1. VM 직접 구축하기 (Ubuntu 24.04)
+    1. VM 직접 구축하기 (Ubuntu 26.04)
   
 
     
@@ -406,7 +434,7 @@
   <span class="md-ellipsis">
     
   
-    1. VM 직접 구축하기 (Ubuntu 24.04)
+    1. VM 직접 구축하기 (Ubuntu 26.04)
   
 
     
@@ -476,10 +504,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-ubuntu-server-2404" class="md-nav__link">
+  <a href="#2-ubuntu-server-2604" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2) Ubuntu Server 24.04 이미지 준비
+        2) Ubuntu Server 26.04 이미지 준비
       
     </span>
   </a>
@@ -767,34 +795,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../1-1-vm-setup-ubuntu26/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    1. VM 직접 구축하기 (Ubuntu 26.04)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1102,10 +1102,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-ubuntu-server-2404" class="md-nav__link">
+  <a href="#2-ubuntu-server-2604" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2) Ubuntu Server 24.04 이미지 준비
+        2) Ubuntu Server 26.04 이미지 준비
       
     </span>
   </a>
@@ -1406,11 +1406,11 @@
 
 
 
-<h1 id="1-1-vm-virtualbox-ubuntu">1-1. VM 직접 체험 — VirtualBox로 Ubuntu 서버 구축하기<a class="headerlink" href="#1-1-vm-virtualbox-ubuntu" title="Permanent link">&para;</a></h1>
+<h1 id="1-1-vm-virtualbox-ubuntu-ubuntu-2604">1-1. VM 직접 체험 — VirtualBox로 Ubuntu 서버 구축하기 (Ubuntu 26.04)<a class="headerlink" href="#1-1-vm-virtualbox-ubuntu-ubuntu-2604" title="Permanent link">&para;</a></h1>
 <h2 id="_1">실습 목표<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>이 가이드는 다음을 직접 경험하는 데 목적이 있습니다.</p>
 <ul>
-<li>VirtualBox에 Ubuntu 24.04 VM 설치 및 실행</li>
+<li>VirtualBox에 Ubuntu 26.04 VM 설치 및 실행</li>
 <li>VM 부팅 속도가 느리다는 점 체감</li>
 <li>VM 내부에 Nginx 설치 후 포트포워딩으로 로컬 브라우저에서 확인</li>
 <li>Docker 설치 후 Nginx를 한 번에 실행하여 VM 방식과 비교</li>
@@ -1424,7 +1424,7 @@
 <h2 id="_3">공식 다운로드 링크<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">VirtualBox 공식 다운로드</a></li>
-<li><a href="https://ubuntu.com/download/server" target="_blank">Ubuntu Server 24.04 LTS 다운로드</a></li>
+<li><a href="https://ubuntu.com/download/server" target="_blank">Ubuntu Server 26.04 LTS 다운로드</a></li>
 <li><a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank">Docker Engine (Ubuntu) 설치 문서</a></li>
 <li><a href="https://www.docker.com/products/docker-desktop/" target="_blank">Docker Desktop (Windows/macOS)</a></li>
 </ul>
@@ -1468,17 +1468,12 @@
 <li>기본 옵션으로 설치합니다.</li>
 <li>설치 완료 후 VirtualBox를 실행합니다.</li>
 </ol>
-<h2 id="2-ubuntu-server-2404">2) Ubuntu Server 24.04 이미지 준비<a class="headerlink" href="#2-ubuntu-server-2404" title="Permanent link">&para;</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">반드시 24.04 LTS를 다운로드하세요</p>
-<p>현재 Ubuntu 공식 사이트 기본 다운로드는 <strong>26</strong>입니다.
-이 실습은 <strong>24.04 LTS</strong> 기준으로 작성되었으므로, 아래 안내에 따라 <strong>Previous releases</strong>에서 24.04를 선택해야 합니다.</p>
-</div>
+<h2 id="2-ubuntu-server-2604">2) Ubuntu Server 26.04 이미지 준비<a class="headerlink" href="#2-ubuntu-server-2604" title="Permanent link">&para;</a></h2>
 <ol>
 <li><a href="https://ubuntu.com/download/server" target="_blank">Ubuntu 공식 다운로드 페이지</a>에 접속합니다.</li>
-<li>페이지를 아래로 스크롤하여 <strong>Previous releases</strong> 섹션에서 <code>Ubuntu Server 24.04 LTS</code>를 선택합니다.</li>
+<li>기본 다운로드(최신 LTS)가 26.04이므로 그대로 다운로드합니다.</li>
 <li>ISO 파일을 다운로드합니다.</li>
-<li>파일명을 확인합니다. 예: <code>ubuntu-24.04.2-live-server-amd64.iso</code></li>
+<li>파일명을 확인합니다. 예: <code>ubuntu-26.04-live-server-amd64.iso</code></li>
 </ol>
 <h2 id="3-vm">3) VM 생성<a class="headerlink" href="#3-vm" title="Permanent link">&para;</a></h2>
 <h3 id="_4">기본 정보 입력<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
@@ -1500,7 +1495,7 @@
 </tr>
 <tr>
 <td>ISO Image</td>
-<td>다운로드한 <code>ubuntu-24.04.x-live-server-amd64.iso</code> 선택</td>
+<td>다운로드한 <code>ubuntu-26.04-live-server-amd64.iso</code> 선택</td>
 </tr>
 <tr>
 <td>유형</td>
@@ -1810,29 +1805,55 @@
 </span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.docker.com/linux/ubuntu/gpg<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/etc/apt/keyrings/docker.gpg
 </span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>sudo<span class="w"> </span>chmod<span class="w"> </span>a+r<span class="w"> </span>/etc/apt/keyrings/docker.gpg
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
-</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">  </span><span class="s2">"deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] \</span>
-</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="s2">  https://download.docker.com/linux/ubuntu \</span>
-</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="s2">  </span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$VERSION_CODENAME</span><span class="s2">"</span><span class="k">)</span><span class="s2"> stable"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
 </span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Ubuntu 26.04 — Docker 저장소 코드네임 확인</p>
+<p>Ubuntu 26.04의 코드네임이 Docker 공식 저장소에 등록되어 있는지 먼저 확인합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$VERSION_CODENAME</span>
+</span></code></pre></div>
+<p>출력된 코드네임(예: <code>resolute</code>)으로 아래 명령을 실행했을 때 오류가 나면,
+<strong>대신 <code>noble</code>(24.04 코드네임)을 사용</strong>하는 우회 방법을 쓰세요.</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">정상 (Ubuntu 26 코드네임 지원 시)</label><label for="__tabbed_2_2">우회 방법 (코드네임 미지원 시)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="s2">"deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] \</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="s2">  https://download.docker.com/linux/ubuntu \</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="s2">  </span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$VERSION_CODENAME</span><span class="s2">"</span><span class="k">)</span><span class="s2"> stable"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="s2">"deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] \</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="s2">  https://download.docker.com/linux/ubuntu \</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="s2">  noble stable"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><code>noble</code>은 Ubuntu 24.04 LTS 코드네임입니다. Docker 패키지는 하위 호환되므로 Ubuntu 26.04에서도 정상 동작합니다.</p>
+</div>
+</div>
+</div>
+</div>
 <h3 id="docker-engine">Docker Engine 설치<a class="headerlink" href="#docker-engine" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
 </span></code></pre></div>
 <h3 id="docker_1">Docker 서비스 시작 및 자동 실행 등록<a class="headerlink" href="#docker_1" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>docker
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>docker
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>docker<span class="w"> </span>--no-pager
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>docker
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>docker
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>docker<span class="w"> </span>--no-pager
 </span></code></pre></div>
 <h3 id="sudo-docker">sudo 없이 docker 명령어 사용 (선택)<a class="headerlink" href="#sudo-docker" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>newgrp<span class="w"> </span>docker
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>newgrp<span class="w"> </span>docker
 </span></code></pre></div>
 <h3 id="_9">설치 확인<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span>version
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>docker<span class="w"> </span>run<span class="w"> </span>hello-world
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>docker<span class="w"> </span>version
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>docker<span class="w"> </span>run<span class="w"> </span>hello-world
 </span></code></pre></div>
 <p><code>Hello from Docker!</code> 메시지가 출력되면 Docker 설치가 완료된 것입니다.</p>
 
