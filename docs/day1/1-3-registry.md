@@ -93,27 +93,13 @@ skilleatlab.azurecr.io/lab/nginx:latest
 
 | 팀 | 이메일 | 비밀번호 |
 |-----|--------|---------|
-| Team 01 | `user01@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 02 | `user02@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 03 | `user03@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 04 | `user04@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 05 | `user05@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 06 | `user06@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 07 | `user07@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 08 | `user08@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 09 | `user09@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 10 | `user10@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 11 | `user11@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 12 | `user12@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 13 | `user13@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 14 | `user14@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 15 | `user15@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 16 | `user16@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 17 | `user17@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 18 | `user18@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 19 | `user19@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 20 | `user20@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
-| Team 21 | `user21@nrkim0615outlook.onmicrosoft.com` | 강사 제공 |
+| Team 01 | `user01@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
+| Team 02 | `user02@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
+| Team 03 | `user03@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
+| Team 04 | `user04@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
+| Team 05 | `user05@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
+| Team 06 | `user06@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
+| Team 07 | `user07@nrkim0615outlook.onmicrosoft.com` | `Skilleat1!` |
 
 ```bash
 az login --use-device-code
