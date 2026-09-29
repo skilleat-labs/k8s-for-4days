@@ -5,7 +5,7 @@
 당신은 오늘 온콜 당번입니다.
 
 팀원이 퇴근 직전에 `broken-app`을 배포하고 갔는데, 앱이 정상적으로 동작하지 않습니다.
-`http://localhost:30090`에 접속하면 아무 응답이 없는 상태입니다.
+`http://localhost`에 접속하면 아무 응답이 없는 상태입니다.
 
 **YAML 파일 어딘가에 버그가 3개 있습니다. 모두 찾아서 고쳐야 페이지가 보입니다.**
 
@@ -15,7 +15,7 @@
 
 - `kubectl get`, `kubectl describe`, `kubectl logs`로 문제를 스스로 추적한다.
 - Deployment / Service 의 관계를 이해하고 버그를 수정한다.
-- 3개의 버그를 모두 고쳐 `http://localhost:30090`에서 정상 페이지를 확인한다.
+- 3개의 버그를 모두 고쳐 `http://localhost`에서 정상 페이지를 확인한다.
 
 ---
 
@@ -49,13 +49,12 @@ kind: Service
 metadata:
   name: broken-svc
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: wrong-app
   ports:
     - port: 80
       targetPort: 9999
-      nodePort: 30090
 ```
 
 ```bash
@@ -81,15 +80,15 @@ kubectl get endpoints broken-svc
 === "macOS/Linux"
     ```bash
     # 3. 브라우저 또는 curl로 페이지 확인
-    curl http://localhost:30090
+    curl http://localhost
     ```
 === "Windows PowerShell"
     ```powershell
     # 3. 브라우저 또는 curl로 페이지 확인
-    curl.exe http://localhost:30090
+    curl.exe http://localhost
     ```
 
-`http://localhost:30090`에서 페이지가 보이면 성공입니다.
+`http://localhost`에서 페이지가 보이면 성공입니다.
 
 ---
 
