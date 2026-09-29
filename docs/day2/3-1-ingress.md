@@ -7,34 +7,9 @@
 
 ---
 
-## 사전 준비 — Rancher Desktop 사용자
-
-!!! warning "Traefik 비활성화 필수"
-    Rancher Desktop(k3s)은 기본적으로 **Traefik**이라는 Ingress Controller가 포트 80을 이미 점유하고 있습니다.
-    이 상태에서 Nginx Ingress Controller를 설치하면 포트 충돌로 `EXTERNAL-IP`가 `<pending>`에 머물고 라우팅이 동작하지 않습니다.
-    **반드시 아래 순서대로 Traefik을 먼저 비활성화한 뒤 실습을 시작하세요.**
-
-**비활성화 방법 (GUI)**
-
-1. Rancher Desktop 앱 실행
-2. 왼쪽 메뉴 → **Kubernetes Settings** (또는 **Preferences → Kubernetes**)
-3. **Enable Traefik** 체크박스 **해제**
-4. **Apply** 클릭 → k3s 자동 재시작 (1~2분 소요)
-
-**비활성화 확인**
-
-=== "Windows PowerShell"
-    ```powershell
-    kubectl get pods -n kube-system | Select-String "traefik"
-    # 아무것도 출력되지 않으면 정상
-    ```
-=== "macOS/Linux"
-    ```bash
-    kubectl get pods -n kube-system | grep traefik
-    # 아무것도 출력되지 않으면 정상
-    ```
-
----
+!!! info "Docker Desktop 환경"
+    Docker Desktop은 별도 사전 작업 없이 바로 시작할 수 있습니다.
+    Nginx Ingress Controller 설치 후 `EXTERNAL-IP`가 `localhost`로 표시됩니다.
 
 ### 1) Nginx Ingress Controller 설치
 
