@@ -1,11 +1,17 @@
-# 2-2. Service 실습 (ClusterIP · NodePort · port-forward)
+# 2-2. Service 실습 (ClusterIP · NodePort · LoadBalancer · port-forward)
 
 ## 실습 목표
 
-- ClusterIP, NodePort Service 생성 및 차이점 체감
+- ClusterIP, NodePort, LoadBalancer Service 생성 및 차이점 체감
 - 클러스터 내 모든 Pod에서 ClusterIP 통신 확인
-- Service 이름(DNS), ClusterIP, NodePort 세 가지 방식으로 통신
+- Service 이름(DNS), ClusterIP, LoadBalancer 세 가지 방식으로 통신
 - label selector 기반 라우팅 동작 확인
+
+!!! warning "Docker Desktop 환경 주의"
+    이 실습은 **Docker Desktop Kubernetes** 기준입니다.
+    Docker Desktop에서는 **NodePort로 `localhost` 접근이 되지 않습니다.**
+    외부에서 `localhost`로 접근하려면 **LoadBalancer** 타입을 사용해야 합니다.
+    Docker Desktop은 LoadBalancer Service에 자동으로 `localhost`를 EXTERNAL-IP로 할당합니다.
 
 ## 전제 조건
 
@@ -150,6 +156,11 @@ kubectl delete pod other-pod
 
 ## 4) NodePort Service 생성
 
+!!! warning "Docker Desktop에서는 NodePort로 localhost 접근 불가"
+    NodePort는 개념 이해용으로만 실습합니다.
+    Docker Desktop 환경에서는 `localhost:30080`으로 접근이 되지 않습니다.
+    **외부 접근이 필요하면 5) LoadBalancer를 사용하세요.**
+
 `svc-nodeport.yaml`:
 
 ```yaml
@@ -179,46 +190,64 @@ NAME               TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 rollout-nodeport   NodePort   10.96.78.200    <none>        80:30080/TCP   10s
 ```
 
-### 노드 IP 확인
+### 클러스터 내부에서만 접근 확인
 
 ```bash
-kubectl get nodes -o wide
+kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm \
+  -- curl http://rollout-nodeport
 ```
 
-!!! warning "Rancher Desktop / Docker Desktop 사용자"
-    노드 IP(`INTERNAL-IP`)로 접근이 **안 됩니다.** `localhost`를 사용하세요.
-    Rancher Desktop과 Docker Desktop은 쿠버네티스 노드가 VM 내부에 있어 호스트에서 노드 IP로 직접 라우팅이 되지 않기 때문입니다.
+---
 
-### 세 가지 방법으로 모두 접근
+## 5) LoadBalancer Service 생성
+
+Docker Desktop에서 **localhost로 외부 접근**하려면 LoadBalancer 타입을 사용합니다.
+Docker Desktop은 LoadBalancer Service에 자동으로 `localhost`를 EXTERNAL-IP로 할당합니다.
+
+`svc-lb.yaml`:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: rollout-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: rollout
+  ports:
+    - port: 80
+      targetPort: 8080
+```
+
+```bash
+kubectl apply -f svc-lb.yaml
+kubectl get svc rollout-lb
+```
+
+**출력 예시:**
+
+```
+NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+rollout-lb   LoadBalancer   10.96.12.34     localhost     80:31234/TCP   10s
+```
+
+`EXTERNAL-IP`가 `localhost`로 표시되면 정상입니다.
+
+### localhost로 접근 확인
 
 === "Windows PowerShell"
     ```powershell
-    # 1. 로컬에서 localhost:nodePort (Docker Desktop/Rancher Desktop)
-    curl.exe http://localhost:30080
-
-    # 2. 노드 IP:nodePort
-    curl.exe http://<노드 INTERNAL-IP>:30080
-
-    # 3. ClusterIP (클러스터 내부 Pod에서)
-    kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm `
-      -- curl http://rollout-nodeport
+    curl.exe http://localhost
     ```
 === "macOS/Linux"
     ```bash
-    # 1. 로컬에서 localhost:nodePort (Docker Desktop/Rancher Desktop)
-    curl http://localhost:30080
-
-    # 2. 노드 IP:nodePort
-    curl http://<노드 INTERNAL-IP>:30080
-
-    # 3. ClusterIP (클러스터 내부 Pod에서)
-    kubectl run curl-test --image=curlimages/curl:latest --restart=Never -it --rm \
-      -- curl http://rollout-nodeport
+    curl http://localhost
     ```
 
 ---
 
-## 5) port-forward (개발 시 빠른 접속)
+## 6) port-forward (개발 시 빠른 접속)
 
 ```bash
 kubectl port-forward svc/rollout-svc 8080:80
@@ -239,17 +268,19 @@ kubectl port-forward svc/rollout-svc 8080:80
 
 ---
 
-## 6) Pod 삭제 후 Service 연속성 확인
+## 7) Pod 삭제 후 Service 연속성 확인
+
+LoadBalancer(`localhost:80`)로 반복 요청을 보내면서 Pod를 삭제해 Service가 자동으로 새 Pod로 전환되는 것을 확인합니다.
 
 **터미널 1 — 반복 요청:**
 
 === "Windows PowerShell"
     ```powershell
-    while ($true) { (curl.exe -s -o NUL -w "%{http_code}" http://localhost:30080); Start-Sleep 1 }
+    while ($true) { (curl.exe -s -o NUL -w "%{http_code}" http://localhost); Start-Sleep 1 }
     ```
 === "macOS/Linux"
     ```bash
-    while true; do curl -s -o /dev/null -w "%{http_code}\n" http://localhost:30080; sleep 1; done
+    while true; do curl -s -o /dev/null -w "%{http_code}\n" http://localhost; sleep 1; done
     ```
 
 **터미널 2 — Pod 강제 삭제:**
@@ -265,7 +296,7 @@ kubectl get pods -w
 
 ---
 
-## 7) kubectl expose — 명령어로 Service 즉시 생성
+## 8) kubectl expose — 명령어로 Service 즉시 생성
 
 === "Windows PowerShell"
     ```powershell
@@ -336,6 +367,7 @@ kubectl delete svc rollout-expose
 ```bash
 kubectl delete -f svc-clusterip.yaml
 kubectl delete -f svc-nodeport.yaml
+kubectl delete -f svc-lb.yaml
 ```
 
 ---
@@ -356,5 +388,5 @@ kubectl delete -f svc-nodeport.yaml
 |------|---------|
 | Endpoints가 `<none>` | Pod label과 Service selector 일치 여부 확인 |
 | ClusterIP로 접근 불가 | Pod 내부에서 실행했는지 확인 (로컬 터미널에서는 불가) |
-| NodePort 접속 불가 | Rancher Desktop에서 `localhost:30080` 사용, 노드 IP는 `kubectl get nodes -o wide` 확인 |
+| NodePort 접속 불가 | Docker Desktop에서는 NodePort로 localhost 접근 불가 — LoadBalancer 타입 사용 |
 | DNS 이름으로 접근 불가 | Service와 Pod가 같은 네임스페이스에 있는지 확인 |
