@@ -131,8 +131,18 @@ v2.0.0으로 업데이트합니다 (**초록색** 페이지).
 
 `kubectl rollout status`는 업데이트가 완료될 때까지 진행 상황을 실시간으로 출력합니다. 롤링 업데이트가 성공적으로 끝났는지 확인하는 데 사용합니다.
 
+!!! info "컨테이너 이름 확인 후 입력"
+    `kubectl set image`는 `컨테이너이름=이미지` 형식으로 사용합니다.
+    내 Deployment의 컨테이너 이름을 먼저 확인하세요.
+
+    ```bash
+    kubectl get deployment rollout-deploy -o jsonpath='{.spec.template.spec.containers[*].name}'
+    ```
+
+    출력된 이름을 아래 명령어의 `app` 자리에 넣으세요.
+
 ```bash
-kubectl set image deployment/rollout-deploy app=skilleat/rollout-demo:v2.0.0
+kubectl set image deployment/rollout-deploy <컨테이너이름>=skilleat/rollout-demo:v2.0.0
 kubectl rollout status deployment/rollout-deploy
 kubectl get pods -w
 ```
