@@ -1403,21 +1403,29 @@
 <h2 id="3">3) 롤링 업데이트<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <p>v2.0.0으로 업데이트합니다 (<strong>초록색</strong> 페이지).</p>
 <p><code>kubectl rollout status</code>는 업데이트가 완료될 때까지 진행 상황을 실시간으로 출력합니다. 롤링 업데이트가 성공적으로 끝났는지 확인하는 데 사용합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span><span class="nb">set</span><span class="w"> </span>image<span class="w"> </span>deployment/rollout-deploy<span class="w"> </span><span class="nv">app</span><span class="o">=</span>skilleat/rollout-demo:v2.0.0
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/rollout-deploy
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-w
+<div class="admonition info">
+<p class="admonition-title">컨테이너 이름 확인 후 입력</p>
+<p><code>kubectl set image</code>는 <code>컨테이너이름=이미지</code> 형식으로 사용합니다.
+내 Deployment의 컨테이너 이름을 먼저 확인하세요.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployment<span class="w"> </span>rollout-deploy<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.spec.template.spec.containers[*].name}'</span>
+</span></code></pre></div>
+<p>출력된 이름을 아래 명령어의 <code>app</code> 자리에 넣으세요.</p>
+</div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span><span class="nb">set</span><span class="w"> </span>image<span class="w"> </span>deployment/rollout-deploy<span class="w"> </span>&lt;컨테이너이름&gt;<span class="o">=</span>skilleat/rollout-demo:v2.0.0
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/rollout-deploy
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-w
 </span></code></pre></div>
 <p>완료 후 확인:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>port-forward<span class="w"> </span>deployment/rollout-deploy<span class="w"> </span><span class="m">8080</span>:8080
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>port-forward<span class="w"> </span>deployment/rollout-deploy<span class="w"> </span><span class="m">8080</span>:8080
 </span></code></pre></div>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows PowerShell</label><label for="__tabbed_2_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">kubectl</span> <span class="n">describe</span> <span class="n">deployment</span> <span class="n">rollout-deploy</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">"Image"</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">kubectl</span> <span class="n">describe</span> <span class="n">deployment</span> <span class="n">rollout-deploy</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">"Image"</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>deployment<span class="w"> </span>rollout-deploy<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Image
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>deployment<span class="w"> </span>rollout-deploy<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Image
 </span></code></pre></div>
 </div>
 </div>
@@ -1425,33 +1433,33 @@
 <hr />
 <h2 id="4">4) 롤백<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p><code>kubectl rollout history</code>는 Deployment의 변경 이력(revision)을 보여주고, <code>rollout undo</code>는 이전 revision으로 되돌립니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment/rollout-deploy
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/rollout-deploy
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/rollout-deploy
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment/rollout-deploy
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/rollout-deploy
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/rollout-deploy
 </span></code></pre></div>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Windows PowerShell</label><label for="__tabbed_3_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">kubectl</span> <span class="n">describe</span> <span class="n">deployment</span> <span class="n">rollout-deploy</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">"Image"</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">kubectl</span> <span class="n">describe</span> <span class="n">deployment</span> <span class="n">rollout-deploy</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">"Image"</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>deployment<span class="w"> </span>rollout-deploy<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Image
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>deployment<span class="w"> </span>rollout-deploy<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Image
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <hr />
 <h2 id="5">5) 스케일 조정<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>rollout-deploy<span class="w"> </span>--replicas<span class="o">=</span><span class="m">5</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>rollout-deploy<span class="w"> </span>--replicas<span class="o">=</span><span class="m">2</span>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>rollout-deploy<span class="w"> </span>--replicas<span class="o">=</span><span class="m">5</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>rollout-deploy<span class="w"> </span>--replicas<span class="o">=</span><span class="m">2</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
 </span></code></pre></div>
 <hr />
 <h2 id="_2">정리 (리소스 삭제)<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>replicaset.yaml
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>deploy-rollout.yaml
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>replicaset.yaml
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>deploy-rollout.yaml
 </span></code></pre></div>
 <hr />
 <h2 id="_3">핵심 정리<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
