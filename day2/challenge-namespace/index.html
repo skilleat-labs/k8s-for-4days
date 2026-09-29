@@ -967,10 +967,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-service-nodeport" class="md-nav__link">
+  <a href="#3-service-loadbalancer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3 · Service 생성 (NodePort)
+        3 · Service 생성 (LoadBalancer)
       
     </span>
   </a>
@@ -978,10 +978,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-replicas-1" class="md-nav__link">
+  <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4 · 접속 확인 (replicas: 1)
+        4 · 접속 확인
       
     </span>
   </a>
@@ -993,17 +993,6 @@
     <span class="md-ellipsis">
       
         5 · replicas를 2로 변경
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6 · 관찰
       
     </span>
   </a>
@@ -1148,10 +1137,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-service-nodeport" class="md-nav__link">
+  <a href="#3-service-loadbalancer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3 · Service 생성 (NodePort)
+        3 · Service 생성 (LoadBalancer)
       
     </span>
   </a>
@@ -1159,10 +1148,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-replicas-1" class="md-nav__link">
+  <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4 · 접속 확인 (replicas: 1)
+        4 · 접속 확인
       
     </span>
   </a>
@@ -1174,17 +1163,6 @@
     <span class="md-ellipsis">
       
         5 · replicas를 2로 변경
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6 · 관찰
       
     </span>
   </a>
@@ -1258,15 +1236,15 @@
 </tbody>
 </table>
 <hr />
-<h3 id="3-service-nodeport">3 · Service 생성 (NodePort)<a class="headerlink" href="#3-service-nodeport" title="Permanent link">&para;</a></h3>
+<h3 id="3-service-loadbalancer">3 · Service 생성 (LoadBalancer)<a class="headerlink" href="#3-service-loadbalancer" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>guide-ns</code> 네임스페이스 안에 NodePort 타입으로 Service를 생성하세요.</li>
-<li>NodePort 번호: <strong>30088</strong></li>
+<li><code>guide-ns</code> 네임스페이스 안에 LoadBalancer 타입으로 Service를 생성하세요.</li>
+<li>port: <strong>80</strong>, targetPort: <strong>80</strong></li>
 </ul>
 <hr />
-<h3 id="4-replicas-1">4 · 접속 확인 (replicas: 1)<a class="headerlink" href="#4-replicas-1" title="Permanent link">&para;</a></h3>
+<h3 id="4">4 · 접속 확인<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
 <ul>
-<li>브라우저에서 <code>http://localhost:30088</code> 접속 → getting-started 페이지 확인</li>
+<li>브라우저에서 <code>http://localhost</code> 접속 → getting-started 페이지 확인</li>
 </ul>
 <hr />
 <h3 id="5-replicas-2">5 · replicas를 2로 변경<a class="headerlink" href="#5-replicas-2" title="Permanent link">&para;</a></h3>
@@ -1275,19 +1253,11 @@
 <li>Pod 2개가 모두 <code>Running</code> 상태인지 확인하세요.</li>
 </ul>
 <hr />
-<h3 id="6">6 · 관찰<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>http://localhost:30088</code>에서 브라우저를 <strong>여러 번 새로고침</strong>해보세요.</li>
-<li>무언가 이상한 점을 발견할 수 있습니까?</li>
-<li><code>kubectl</code> 명령어로 두 Pod의 상태를 확인하면서 어떤 일이 벌어지는지 생각해보세요.</li>
-</ul>
-<hr />
 <div class="admonition note">
 <p class="admonition-title">아키텍처 주의사항</p>
 <ul>
 <li>Deployment와 Service는 <strong>같은 Namespace</strong> 안에 있어야 서로 연결됩니다.</li>
 <li>Service의 <code>selector</code>는 Deployment의 Pod <code>labels</code>와 <strong>정확히 일치</strong>해야 합니다.</li>
-<li>NodePort는 클러스터 전체 노드에서 동일한 포트로 열립니다. Rancher Desktop / Docker Desktop 환경에서는 노드 IP 대신 <code>localhost</code>를 사용하세요.</li>
 <li>replicas가 2 이상일 때 Service는 요청을 <strong>여러 Pod에 분산</strong>합니다.</li>
 </ul>
 </div>
