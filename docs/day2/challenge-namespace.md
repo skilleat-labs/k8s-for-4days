@@ -31,13 +31,18 @@
 ### 3 · Service 생성 (LoadBalancer)
 
 - `guide-ns` 네임스페이스 안에 LoadBalancer 타입으로 Service를 생성하세요.
-- port: **80**, targetPort: **80**
+
+| 항목 | 값 |
+|------|----|
+| port (서비스 포트) | **7777** |
+| targetPort (컨테이너 포트) | **80** |
+| nodePort | **30088** |
 
 ---
 
 ### 4 · 접속 확인
 
-- 브라우저에서 `http://localhost` 접속 → getting-started 페이지 확인
+- 브라우저에서 `http://localhost:7777` 접속 → getting-started 페이지 확인
 
 ---
 
