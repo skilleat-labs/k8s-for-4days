@@ -10,6 +10,104 @@
 
 ---
 
+## 0) 맛보기 — 색깔로 ConfigMap 체험하기
+
+ConfigMap이 뭔지 설명보다 먼저 **눈으로** 확인합니다.
+
+### ConfigMap 생성
+
+```bash
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: color-config
+data:
+  APP_COLOR: blue
+EOF
+```
+
+### Pod 생성 (LoadBalancer로 바로 노출)
+
+```bash
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Pod
+metadata:
+  name: color-app
+  labels:
+    app: color-app
+spec:
+  containers:
+    - name: app
+      image: kodekloud/webapp-color
+      envFrom:
+        - configMapRef:
+            name: color-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: color-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: color-app
+  ports:
+    - port: 80
+      targetPort: 8080
+EOF
+```
+
+브라우저에서 `http://localhost` 접속 → **파란 배경** 확인
+
+### ConfigMap 값 변경 → Pod 재시작
+
+```bash
+kubectl delete pod color-app
+
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: color-config
+data:
+  APP_COLOR: red
+EOF
+
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Pod
+metadata:
+  name: color-app
+  labels:
+    app: color-app
+spec:
+  containers:
+    - name: app
+      image: kodekloud/webapp-color
+      envFrom:
+        - configMapRef:
+            name: color-config
+EOF
+```
+
+브라우저 새로고침 → **빨간 배경**으로 바뀜
+
+!!! tip "포인트"
+    코드(이미지)는 그대로인데 ConfigMap 값만 바꿔서 앱 동작이 달라졌습니다.
+    이것이 ConfigMap의 핵심입니다.
+
+### 정리
+
+```bash
+kubectl delete pod color-app
+kubectl delete svc color-svc
+kubectl delete configmap color-config
+```
+
+---
+
 ## 왜 ConfigMap과 Secret이 필요한가?
 
 ### 환경변수를 YAML에 직접 넣는 방식
