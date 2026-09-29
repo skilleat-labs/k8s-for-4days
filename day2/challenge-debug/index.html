@@ -1161,14 +1161,14 @@
 <h2 id="_2">시나리오<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>당신은 오늘 온콜 당번입니다.</p>
 <p>팀원이 퇴근 직전에 <code>broken-app</code>을 배포하고 갔는데, 앱이 정상적으로 동작하지 않습니다.
-<code>http://localhost:30090</code>에 접속하면 아무 응답이 없는 상태입니다.</p>
+<code>http://localhost</code>에 접속하면 아무 응답이 없는 상태입니다.</p>
 <p><strong>YAML 파일 어딘가에 버그가 3개 있습니다. 모두 찾아서 고쳐야 페이지가 보입니다.</strong></p>
 <hr />
 <h2 id="_3">실습 목표<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>kubectl get</code>, <code>kubectl describe</code>, <code>kubectl logs</code>로 문제를 스스로 추적한다.</li>
 <li>Deployment / Service 의 관계를 이해하고 버그를 수정한다.</li>
-<li>3개의 버그를 모두 고쳐 <code>http://localhost:30090</code>에서 정상 페이지를 확인한다.</li>
+<li>3개의 버그를 모두 고쳐 <code>http://localhost</code>에서 정상 페이지를 확인한다.</li>
 </ul>
 <hr />
 <h2 id="_4">준비 — 고장난 앱 배포<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
@@ -1198,13 +1198,12 @@
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="nt">metadata</span><span class="p">:</span>
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">broken-svc</span>
 </span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NodePort</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span>
 </span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
 </span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wrong-app</span>
 </span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
 </span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
 </span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9999</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30090</span>
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>broken-app.yaml
 </span></code></pre></div>
@@ -1222,17 +1221,17 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 3. 브라우저 또는 curl로 페이지 확인</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>curl<span class="w"> </span>http://localhost:30090
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>curl<span class="w"> </span>http://localhost
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c"># 3. 브라우저 또는 curl로 페이지 확인</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">30090</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
-<p><code>http://localhost:30090</code>에서 페이지가 보이면 성공입니다.</p>
+<p><code>http://localhost</code>에서 페이지가 보이면 성공입니다.</p>
 <hr />
 <h2 id="_6">정리<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>broken-app.yaml
