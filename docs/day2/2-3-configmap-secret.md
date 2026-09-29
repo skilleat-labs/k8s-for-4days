@@ -16,21 +16,26 @@ ConfigMap이 뭔지 설명보다 먼저 **눈으로** 확인합니다.
 
 ### ConfigMap 생성
 
-```bash
-kubectl apply -f - <<EOF
+`color-config.yaml` 파일을 만들고 아래 내용을 붙여넣으세요.
+
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: color-config
 data:
   APP_COLOR: blue
-EOF
 ```
 
-### Pod 생성 (LoadBalancer로 바로 노출)
-
 ```bash
-kubectl apply -f - <<EOF
+kubectl apply -f color-config.yaml
+```
+
+### Pod & Service 생성
+
+`color-app.yaml` 파일을 만들고 아래 내용을 붙여넣으세요.
+
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -56,40 +61,31 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
-EOF
+```
+
+```bash
+kubectl apply -f color-app.yaml
 ```
 
 브라우저에서 `http://localhost` 접속 → **파란 배경** 확인
 
 ### ConfigMap 값 변경 → Pod 재시작
 
-```bash
-kubectl delete pod color-app
+`color-config.yaml`의 `APP_COLOR` 값을 `red`로 변경하세요.
 
-kubectl apply -f - <<EOF
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: color-config
 data:
   APP_COLOR: red
-EOF
+```
 
-kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Pod
-metadata:
-  name: color-app
-  labels:
-    app: color-app
-spec:
-  containers:
-    - name: app
-      image: kodekloud/webapp-color
-      envFrom:
-        - configMapRef:
-            name: color-config
-EOF
+```bash
+kubectl apply -f color-config.yaml
+kubectl delete pod color-app
+kubectl apply -f color-app.yaml
 ```
 
 브라우저 새로고침 → **빨간 배경**으로 바뀜
@@ -101,9 +97,8 @@ EOF
 ### 정리
 
 ```bash
-kubectl delete pod color-app
-kubectl delete svc color-svc
-kubectl delete configmap color-config
+kubectl delete -f color-app.yaml
+kubectl delete -f color-config.yaml
 ```
 
 ---
