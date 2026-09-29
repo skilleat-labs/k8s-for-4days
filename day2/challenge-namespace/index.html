@@ -1239,12 +1239,33 @@
 <h3 id="3-service-loadbalancer">3 · Service 생성 (LoadBalancer)<a class="headerlink" href="#3-service-loadbalancer" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>guide-ns</code> 네임스페이스 안에 LoadBalancer 타입으로 Service를 생성하세요.</li>
-<li>port: <strong>80</strong>, targetPort: <strong>80</strong></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>port (서비스 포트)</td>
+<td><strong>7777</strong></td>
+</tr>
+<tr>
+<td>targetPort (컨테이너 포트)</td>
+<td><strong>80</strong></td>
+</tr>
+<tr>
+<td>nodePort</td>
+<td><strong>30088</strong></td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h3 id="4">4 · 접속 확인<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
 <ul>
-<li>브라우저에서 <code>http://localhost</code> 접속 → getting-started 페이지 확인</li>
+<li>브라우저에서 <code>http://localhost:7777</code> 접속 → getting-started 페이지 확인</li>
 </ul>
 <hr />
 <h3 id="5-replicas-2">5 · replicas를 2로 변경<a class="headerlink" href="#5-replicas-2" title="Permanent link">&para;</a></h3>
