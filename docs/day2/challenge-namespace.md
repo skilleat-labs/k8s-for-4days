@@ -28,16 +28,16 @@
 
 ---
 
-### 3 · Service 생성 (NodePort)
+### 3 · Service 생성 (LoadBalancer)
 
-- `guide-ns` 네임스페이스 안에 NodePort 타입으로 Service를 생성하세요.
-- NodePort 번호: **30088**
+- `guide-ns` 네임스페이스 안에 LoadBalancer 타입으로 Service를 생성하세요.
+- port: **80**, targetPort: **80**
 
 ---
 
-### 4 · 접속 확인 (replicas: 1)
+### 4 · 접속 확인
 
-- 브라우저에서 `http://localhost:30088` 접속 → getting-started 페이지 확인
+- 브라우저에서 `http://localhost` 접속 → getting-started 페이지 확인
 
 ---
 
@@ -48,16 +48,7 @@
 
 ---
 
-### 6 · 관찰
-
-- `http://localhost:30088`에서 브라우저를 **여러 번 새로고침**해보세요.
-- 무언가 이상한 점을 발견할 수 있습니까?
-- `kubectl` 명령어로 두 Pod의 상태를 확인하면서 어떤 일이 벌어지는지 생각해보세요.
-
----
-
 !!! note "아키텍처 주의사항"
     - Deployment와 Service는 **같은 Namespace** 안에 있어야 서로 연결됩니다.
     - Service의 `selector`는 Deployment의 Pod `labels`와 **정확히 일치**해야 합니다.
-    - NodePort는 클러스터 전체 노드에서 동일한 포트로 열립니다. Rancher Desktop / Docker Desktop 환경에서는 노드 IP 대신 `localhost`를 사용하세요.
     - replicas가 2 이상일 때 Service는 요청을 **여러 Pod에 분산**합니다.
