@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#2-2-service-clusterip-nodeport-port-forward" class="md-skip">
+        <a href="#2-2-service-clusterip-nodeport-loadbalancer-port-forward" class="md-skip">
           콘텐츠로 이동
         </a>
       
@@ -1000,21 +1000,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ip" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        노드 IP 확인
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        세 가지 방법으로 모두 접근
+        클러스터 내부에서만 접근 확인
       
     </span>
   </a>
@@ -1027,10 +1016,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-port-forward" class="md-nav__link">
+  <a href="#5-loadbalancer-service" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5) port-forward (개발 시 빠른 접속)
+        5) LoadBalancer Service 생성
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5) LoadBalancer Service 생성">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#localhost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        localhost로 접근 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-port-forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6) port-forward (개발 시 빠른 접속)
       
     </span>
   </a>
@@ -1038,10 +1055,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-pod-service" class="md-nav__link">
+  <a href="#7-pod-service" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6) Pod 삭제 후 Service 연속성 확인
+        7) Pod 삭제 후 Service 연속성 확인
       
     </span>
   </a>
@@ -1049,10 +1066,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-kubectl-expose-service" class="md-nav__link">
+  <a href="#8-kubectl-expose-service" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7) kubectl expose — 명령어로 Service 즉시 생성
+        8) kubectl expose — 명령어로 Service 즉시 생성
       
     </span>
   </a>
@@ -1426,21 +1443,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ip" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        노드 IP 확인
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        세 가지 방법으로 모두 접근
+        클러스터 내부에서만 접근 확인
       
     </span>
   </a>
@@ -1453,10 +1459,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-port-forward" class="md-nav__link">
+  <a href="#5-loadbalancer-service" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5) port-forward (개발 시 빠른 접속)
+        5) LoadBalancer Service 생성
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5) LoadBalancer Service 생성">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#localhost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        localhost로 접근 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-port-forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6) port-forward (개발 시 빠른 접속)
       
     </span>
   </a>
@@ -1464,10 +1498,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-pod-service" class="md-nav__link">
+  <a href="#7-pod-service" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6) Pod 삭제 후 Service 연속성 확인
+        7) Pod 삭제 후 Service 연속성 확인
       
     </span>
   </a>
@@ -1475,10 +1509,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-kubectl-expose-service" class="md-nav__link">
+  <a href="#8-kubectl-expose-service" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7) kubectl expose — 명령어로 Service 즉시 생성
+        8) kubectl expose — 명령어로 Service 즉시 생성
       
     </span>
   </a>
@@ -1535,14 +1569,21 @@
 
 
 
-<h1 id="2-2-service-clusterip-nodeport-port-forward">2-2. Service 실습 (ClusterIP · NodePort · port-forward)<a class="headerlink" href="#2-2-service-clusterip-nodeport-port-forward" title="Permanent link">&para;</a></h1>
+<h1 id="2-2-service-clusterip-nodeport-loadbalancer-port-forward">2-2. Service 실습 (ClusterIP · NodePort · LoadBalancer · port-forward)<a class="headerlink" href="#2-2-service-clusterip-nodeport-loadbalancer-port-forward" title="Permanent link">&para;</a></h1>
 <h2 id="_1">실습 목표<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
-<li>ClusterIP, NodePort Service 생성 및 차이점 체감</li>
+<li>ClusterIP, NodePort, LoadBalancer Service 생성 및 차이점 체감</li>
 <li>클러스터 내 모든 Pod에서 ClusterIP 통신 확인</li>
-<li>Service 이름(DNS), ClusterIP, NodePort 세 가지 방식으로 통신</li>
+<li>Service 이름(DNS), ClusterIP, LoadBalancer 세 가지 방식으로 통신</li>
 <li>label selector 기반 라우팅 동작 확인</li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">Docker Desktop 환경 주의</p>
+<p>이 실습은 <strong>Docker Desktop Kubernetes</strong> 기준입니다.
+Docker Desktop에서는 <strong>NodePort로 <code>localhost</code> 접근이 되지 않습니다.</strong>
+외부에서 <code>localhost</code>로 접근하려면 <strong>LoadBalancer</strong> 타입을 사용해야 합니다.
+Docker Desktop은 LoadBalancer Service에 자동으로 <code>localhost</code>를 EXTERNAL-IP로 할당합니다.</p>
+</div>
 <h2 id="_2">전제 조건<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>deploy-rollout.yaml
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>po<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>rollout
@@ -1656,6 +1697,12 @@
 </span></code></pre></div>
 <hr />
 <h2 id="4-nodeport-service">4) NodePort Service 생성<a class="headerlink" href="#4-nodeport-service" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Docker Desktop에서는 NodePort로 localhost 접근 불가</p>
+<p>NodePort는 개념 이해용으로만 실습합니다.
+Docker Desktop 환경에서는 <code>localhost:30080</code>으로 접근이 되지 않습니다.
+<strong>외부 접근이 필요하면 5) LoadBalancer를 사용하세요.</strong></p>
+</div>
 <p><code>svc-nodeport.yaml</code>:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
@@ -1677,116 +1724,98 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>NAME               TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>rollout-nodeport   NodePort   10.96.78.200    &lt;none&gt;        80:30080/TCP   10s
 </span></code></pre></div>
-<h3 id="ip">노드 IP 확인<a class="headerlink" href="#ip" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+<h3 id="_3">클러스터 내부에서만 접근 확인<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>run<span class="w"> </span>curl-test<span class="w"> </span>--image<span class="o">=</span>curlimages/curl:latest<span class="w"> </span>--restart<span class="o">=</span>Never<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span>--<span class="w"> </span>curl<span class="w"> </span>http://rollout-nodeport
 </span></code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Rancher Desktop / Docker Desktop 사용자</p>
-<p>노드 IP(<code>INTERNAL-IP</code>)로 접근이 <strong>안 됩니다.</strong> <code>localhost</code>를 사용하세요.
-Rancher Desktop과 Docker Desktop은 쿠버네티스 노드가 VM 내부에 있어 호스트에서 노드 IP로 직접 라우팅이 되지 않기 때문입니다.</p>
-</div>
-<h3 id="_3">세 가지 방법으로 모두 접근<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<hr />
+<h2 id="5-loadbalancer-service">5) LoadBalancer Service 생성<a class="headerlink" href="#5-loadbalancer-service" title="Permanent link">&para;</a></h2>
+<p>Docker Desktop에서 <strong>localhost로 외부 접근</strong>하려면 LoadBalancer 타입을 사용합니다.
+Docker Desktop은 LoadBalancer Service에 자동으로 <code>localhost</code>를 EXTERNAL-IP로 할당합니다.</p>
+<p><code>svc-lb.yaml</code>:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rollout-lb</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rollout</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>svc-lb.yaml
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>rollout-lb
+</span></code></pre></div>
+<p><strong>출력 예시:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>rollout-lb   LoadBalancer   10.96.12.34     localhost     80:31234/TCP   10s
+</span></code></pre></div>
+<p><code>EXTERNAL-IP</code>가 <code>localhost</code>로 표시되면 정상입니다.</p>
+<h3 id="localhost">localhost로 접근 확인<a class="headerlink" href="#localhost" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Windows PowerShell</label><label for="__tabbed_4_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c"># 1. 로컬에서 localhost:nodePort (Docker Desktop/Rancher Desktop)</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">30080</span>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c"># 2. 노드 IP:nodePort</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">http</span><span class="p">://&lt;</span><span class="n">노드</span> <span class="n">INTERNAL-IP</span><span class="p">&gt;:</span><span class="n">30080</span>
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="c"># 3. ClusterIP (클러스터 내부 Pod에서)</span>
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="n">kubectl</span> <span class="n">run</span> <span class="n">curl-test</span> <span class="p">-</span><span class="n">-image</span><span class="p">=</span><span class="n">curlimages</span><span class="p">/</span><span class="n">curl</span><span class="p">:</span><span class="n">latest</span> <span class="p">-</span><span class="n">-restart</span><span class="p">=</span><span class="n">Never</span> <span class="n">-it</span> <span class="p">-</span><span class="n">-rm</span> <span class="p">`</span>
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>  <span class="p">--</span> <span class="nb">curl </span><span class="n">http</span><span class="p">://</span><span class="n">rollout-nodeport</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># 1. 로컬에서 localhost:nodePort (Docker Desktop/Rancher Desktop)</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>curl<span class="w"> </span>http://localhost:30080
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># 2. 노드 IP:nodePort</span>
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>curl<span class="w"> </span>http://&lt;노드<span class="w"> </span>INTERNAL-IP&gt;:30080
-</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="c1"># 3. ClusterIP (클러스터 내부 Pod에서)</span>
-</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>kubectl<span class="w"> </span>run<span class="w"> </span>curl-test<span class="w"> </span>--image<span class="o">=</span>curlimages/curl:latest<span class="w"> </span>--restart<span class="o">=</span>Never<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">  </span>--<span class="w"> </span>curl<span class="w"> </span>http://rollout-nodeport
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>curl<span class="w"> </span>http://localhost
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <hr />
-<h2 id="5-port-forward">5) port-forward (개발 시 빠른 접속)<a class="headerlink" href="#5-port-forward" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>kubectl<span class="w"> </span>port-forward<span class="w"> </span>svc/rollout-svc<span class="w"> </span><span class="m">8080</span>:80
+<h2 id="6-port-forward">6) port-forward (개발 시 빠른 접속)<a class="headerlink" href="#6-port-forward" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kubectl<span class="w"> </span>port-forward<span class="w"> </span>svc/rollout-svc<span class="w"> </span><span class="m">8080</span>:80
 </span></code></pre></div>
 <p>새 터미널에서:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Windows PowerShell</label><label for="__tabbed_5_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">8080</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">8080</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>curl<span class="w"> </span>http://localhost:8080
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>curl<span class="w"> </span>http://localhost:8080
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <p><code>Ctrl+C</code>로 종료.</p>
 <hr />
-<h2 id="6-pod-service">6) Pod 삭제 후 Service 연속성 확인<a class="headerlink" href="#6-pod-service" title="Permanent link">&para;</a></h2>
+<h2 id="7-pod-service">7) Pod 삭제 후 Service 연속성 확인<a class="headerlink" href="#7-pod-service" title="Permanent link">&para;</a></h2>
+<p>LoadBalancer(<code>localhost:80</code>)로 반복 요청을 보내면서 Pod를 삭제해 Service가 자동으로 새 Pod로 전환되는 것을 확인합니다.</p>
 <p><strong>터미널 1 — 반복 요청:</strong></p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Windows PowerShell</label><label for="__tabbed_6_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">while</span> <span class="p">(</span><span class="nv">$true</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">-s</span> <span class="n">-o</span> <span class="n">NUL</span> <span class="n">-w</span> <span class="s2">"%{http_code}"</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">30080</span><span class="p">);</span> <span class="nb">Start-Sleep</span> <span class="n">1</span> <span class="p">}</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">while</span> <span class="p">(</span><span class="nv">$true</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">-s</span> <span class="n">-o</span> <span class="n">NUL</span> <span class="n">-w</span> <span class="s2">"%{http_code}"</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">);</span> <span class="nb">Start-Sleep</span> <span class="n">1</span> <span class="p">}</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s2">"%{http_code}\n"</span><span class="w"> </span>http://localhost:30080<span class="p">;</span><span class="w"> </span>sleep<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s2">"%{http_code}\n"</span><span class="w"> </span>http://localhost<span class="p">;</span><span class="w"> </span>sleep<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <p><strong>터미널 2 — Pod 강제 삭제:</strong></p>
 <p><code>--wait=false</code>를 붙이면 삭제 완료를 기다리지 않고 즉시 프롬프트를 반환합니다. 터미널 1에서 요청을 계속 보내는 동안 빠르게 다음 명령을 실행하기 위해 사용합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>rollout<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
-</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-w
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>rollout<span class="w"> </span>--wait<span class="o">=</span><span class="nb">false</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-w
 </span></code></pre></div>
 <p>응답 코드가 계속 <code>200</code>으로 유지되면 Service가 새 Pod로 자동 전환된 것입니다.</p>
 <hr />
-<h2 id="7-kubectl-expose-service">7) kubectl expose — 명령어로 Service 즉시 생성<a class="headerlink" href="#7-kubectl-expose-service" title="Permanent link">&para;</a></h2>
+<h2 id="8-kubectl-expose-service">8) kubectl expose — 명령어로 Service 즉시 생성<a class="headerlink" href="#8-kubectl-expose-service" title="Permanent link">&para;</a></h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Windows PowerShell</label><label for="__tabbed_7_2">macOS/Linux</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">kubectl</span> <span class="n">expose</span> <span class="n">deployment</span> <span class="n">rollout-deploy</span> <span class="p">`</span>
-</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>  <span class="p">-</span><span class="n">-name</span><span class="p">=</span><span class="n">rollout-expose</span> <span class="p">`</span>
-</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>  <span class="p">-</span><span class="n">-type</span><span class="p">=</span><span class="n">NodePort</span> <span class="p">`</span>
-</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>  <span class="p">-</span><span class="n">-port</span><span class="p">=</span><span class="n">80</span> <span class="p">`</span>
-</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>  <span class="p">-</span><span class="n">-target-port</span><span class="p">=</span><span class="n">8080</span>
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>kubectl<span class="w"> </span>expose<span class="w"> </span>deployment<span class="w"> </span>rollout-deploy<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span>--name<span class="o">=</span>rollout-expose<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">  </span>--type<span class="o">=</span>NodePort<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">  </span>--port<span class="o">=</span><span class="m">80</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">  </span>--target-port<span class="o">=</span><span class="m">8080</span>
-</span></code></pre></div>
-</div>
-</div>
-</div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>rollout-expose
-</span></code></pre></div>
-<p><strong>dry-run으로 YAML 미리 확인:</strong></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Windows PowerShell</label><label for="__tabbed_8_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">kubectl</span> <span class="n">expose</span> <span class="n">deployment</span> <span class="n">rollout-deploy</span> <span class="p">`</span>
 </span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>  <span class="p">-</span><span class="n">-name</span><span class="p">=</span><span class="n">rollout-expose</span> <span class="p">`</span>
 </span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>  <span class="p">-</span><span class="n">-type</span><span class="p">=</span><span class="n">NodePort</span> <span class="p">`</span>
 </span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>  <span class="p">-</span><span class="n">-port</span><span class="p">=</span><span class="n">80</span> <span class="p">`</span>
-</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>  <span class="p">-</span><span class="n">-target-port</span><span class="p">=</span><span class="n">8080</span> <span class="p">`</span>
-</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>  <span class="p">-</span><span class="n">-dry-run</span><span class="p">=</span><span class="n">client</span> <span class="n">-o</span> <span class="n">yaml</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>  <span class="p">-</span><span class="n">-target-port</span><span class="p">=</span><span class="n">8080</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1794,8 +1823,32 @@ Rancher Desktop과 Docker Desktop은 쿠버네티스 노드가 VM 내부에 있�
 </span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">  </span>--name<span class="o">=</span>rollout-expose<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">  </span>--type<span class="o">=</span>NodePort<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="w">  </span>--port<span class="o">=</span><span class="m">80</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="w">  </span>--target-port<span class="o">=</span><span class="m">8080</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="w">  </span>--dry-run<span class="o">=</span>client<span class="w"> </span>-o<span class="w"> </span>yaml
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="w">  </span>--target-port<span class="o">=</span><span class="m">8080</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>rollout-expose
+</span></code></pre></div>
+<p><strong>dry-run으로 YAML 미리 확인:</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Windows PowerShell</label><label for="__tabbed_8_2">macOS/Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">kubectl</span> <span class="n">expose</span> <span class="n">deployment</span> <span class="n">rollout-deploy</span> <span class="p">`</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>  <span class="p">-</span><span class="n">-name</span><span class="p">=</span><span class="n">rollout-expose</span> <span class="p">`</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>  <span class="p">-</span><span class="n">-type</span><span class="p">=</span><span class="n">NodePort</span> <span class="p">`</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>  <span class="p">-</span><span class="n">-port</span><span class="p">=</span><span class="n">80</span> <span class="p">`</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>  <span class="p">-</span><span class="n">-target-port</span><span class="p">=</span><span class="n">8080</span> <span class="p">`</span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>  <span class="p">-</span><span class="n">-dry-run</span><span class="p">=</span><span class="n">client</span> <span class="n">-o</span> <span class="n">yaml</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>kubectl<span class="w"> </span>expose<span class="w"> </span>deployment<span class="w"> </span>rollout-deploy<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">  </span>--name<span class="o">=</span>rollout-expose<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">  </span>--type<span class="o">=</span>NodePort<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="w">  </span>--port<span class="o">=</span><span class="m">80</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="w">  </span>--target-port<span class="o">=</span><span class="m">8080</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="w">  </span>--dry-run<span class="o">=</span>client<span class="w"> </span>-o<span class="w"> </span>yaml
 </span></code></pre></div>
 </div>
 </div>
@@ -1845,12 +1898,13 @@ Rancher Desktop과 Docker Desktop은 쿠버네티스 노드가 VM 내부에 있�
 </ul>
 </div>
 <p><strong>확인 후 삭제:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>svc<span class="w"> </span>rollout-expose
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>svc<span class="w"> </span>rollout-expose
 </span></code></pre></div>
 <hr />
 <h2 id="_4">정리 (리소스 삭제)<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>svc-clusterip.yaml
-</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>svc-nodeport.yaml
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>svc-clusterip.yaml
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>svc-nodeport.yaml
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>svc-lb.yaml
 </span></code></pre></div>
 <hr />
 <h2 id="service_1">Service 타입 비교<a class="headerlink" href="#service_1" title="Permanent link">&para;</a></h2>
@@ -1904,7 +1958,7 @@ Rancher Desktop과 Docker Desktop은 쿠버네티스 노드가 VM 내부에 있�
 </tr>
 <tr>
 <td>NodePort 접속 불가</td>
-<td>Rancher Desktop에서 <code>localhost:30080</code> 사용, 노드 IP는 <code>kubectl get nodes -o wide</code> 확인</td>
+<td>Docker Desktop에서는 NodePort로 localhost 접근 불가 — LoadBalancer 타입 사용</td>
 </tr>
 <tr>
 <td>DNS 이름으로 접근 불가</td>
