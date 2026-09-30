@@ -156,6 +156,10 @@ DB 접속 주소, 포트, 환경 이름처럼 **노출돼도 괜찮은 설정값
 
 ### 방법 A — kubectl 명령어로 생성
 
+!!! danger "참고만 하세요 — 이 방법으로 실습하면 아래 단계에서 에러 납니다"
+    `--from-literal`로는 `app.properties` 키를 추가할 수 없어 **5) 볼륨 마운트 실습**에서 에러가 발생합니다.
+    이런 방법도 있다는 것만 확인하고, **실제 실습은 방법 B로 진행하세요.**
+
 === "Windows PowerShell"
     ```powershell
     kubectl create configmap app-config `
@@ -176,7 +180,7 @@ kubectl get configmaps
 kubectl describe configmap app-config
 ```
 
-### 방법 B — YAML 파일로 생성
+### 방법 B — YAML 파일로 생성 ✅ 실습은 이 방법으로
 
 `configmap.yaml`:
 
