@@ -63,6 +63,7 @@ nav:
       - 6. Resource Requests & Limits 상세: day3/4-3-resource-requests-limits.md
       - 7. Resource QoS 실습: day3/4-4-resource-qos.md
       - 🔧 도전 과제 — 미니 블로그 (Gateway API + PVC): day3/challenge-miniblog.md
+      - 🔧 도전 과제 — 미니 블로그 (Docker Desktop): day3/challenge-miniblog-docker.md
   # - 4일차:
   #     - 1. RBAC — ServiceAccount 기초: day4/rbac-01-serviceaccount.md
   #     - 2. RBAC — Role & RoleBinding: day4/rbac-02-role-rolebinding.md
