@@ -1107,7 +1107,7 @@
   <a href="#b-yaml" class="md-nav__link">
     <span class="md-ellipsis">
       
-        방법 B — YAML 파일로 생성
+        방법 B — YAML 파일로 생성 ✅ 실습은 이 방법으로
       
     </span>
   </a>
@@ -1828,7 +1828,7 @@
   <a href="#b-yaml" class="md-nav__link">
     <span class="md-ellipsis">
       
-        방법 B — YAML 파일로 생성
+        방법 B — YAML 파일로 생성 ✅ 실습은 이 방법으로
       
     </span>
   </a>
@@ -2171,6 +2171,11 @@
 <h2 id="1-configmap">1) ConfigMap — 비민감 설정 분리<a class="headerlink" href="#1-configmap" title="Permanent link">&para;</a></h2>
 <p>DB 접속 주소, 포트, 환경 이름처럼 <strong>노출돼도 괜찮은 설정값</strong>을 별도 리소스로 분리합니다.</p>
 <h3 id="a-kubectl">방법 A — kubectl 명령어로 생성<a class="headerlink" href="#a-kubectl" title="Permanent link">&para;</a></h3>
+<div class="admonition danger">
+<p class="admonition-title">참고만 하세요 — 이 방법으로 실습하면 아래 단계에서 에러 납니다</p>
+<p><code>--from-literal</code>로는 <code>app.properties</code> 키를 추가할 수 없어 <strong>5) 볼륨 마운트 실습</strong>에서 에러가 발생합니다.
+이런 방법도 있다는 것만 확인하고, <strong>실제 실습은 방법 B로 진행하세요.</strong></p>
+</div>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows PowerShell</label><label for="__tabbed_1_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2192,7 +2197,7 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>configmaps
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>configmap<span class="w"> </span>app-config
 </span></code></pre></div>
-<h3 id="b-yaml">방법 B — YAML 파일로 생성<a class="headerlink" href="#b-yaml" title="Permanent link">&para;</a></h3>
+<h3 id="b-yaml">방법 B — YAML 파일로 생성 ✅ 실습은 이 방법으로<a class="headerlink" href="#b-yaml" title="Permanent link">&para;</a></h3>
 <p><code>configmap.yaml</code>:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
