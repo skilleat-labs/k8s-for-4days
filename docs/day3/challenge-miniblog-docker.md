@@ -40,7 +40,8 @@ Frontend와 Backend로 구성되며, Gateway API를 통해 `http://localhost`로
 
 - 이미지: `skilleat/backend:v3-kb5`
 - replicas: **1**
-- Service 이름: `backend-service`, 포트: `5000`
+- 컨테이너 포트: `5000`
+- Service 이름: `backend-service`, port: `5000`, targetPort: `5000`
 
 ---
 
@@ -48,7 +49,8 @@ Frontend와 Backend로 구성되며, Gateway API를 통해 `http://localhost`로
 
 - 이미지: `skilleat/frontend:v3-kb5`
 - replicas: **1**
-- Service 이름: `frontend-service`, 포트: `80`
+- 컨테이너 포트: `80`
+- Service 이름: `frontend-service`, port: `80`, targetPort: `80`
 
 ---
 
