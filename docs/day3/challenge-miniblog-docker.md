@@ -56,42 +56,6 @@ Frontend와 Backend로 구성되며, Gateway API를 통해 `http://localhost`로
 
 GatewayClass(`eg`)는 이미 생성되어 있습니다. Gateway와 HTTPRoute만 작성하세요.
 
-**Gateway** — 빈 칸을 채워서 `gateway.yaml`을 완성하세요.
-
-```yaml
-apiVersion: gateway.networking.k8s.io/v1
-kind: Gateway
-metadata:
-  name: ________          # Gateway 이름 (자유롭게)
-  namespace: ________     # 앱과 같은 Namespace
-spec:
-  gatewayClassName: ______ # 이미 생성된 GatewayClass 이름
-  listeners:
-    - name: http
-      protocol: ______    # HTTP 또는 HTTPS
-      port: ______        # 외부에서 접속할 포트
-```
-
-**HTTPRoute** — 빈 칸을 채워서 `httproute.yaml`을 완성하세요.
-
-```yaml
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: ________
-  namespace: ________
-spec:
-  parentRefs:
-    - name: ________      # 연결할 Gateway 이름
-  rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: ______  # 모든 경로를 받으려면?
-      backendRefs:
-        - name: ________   # 트래픽을 보낼 Service 이름
-          port: ______     # Service 포트
-```
 
 ---
 
