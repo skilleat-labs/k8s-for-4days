@@ -40,7 +40,6 @@ Frontend와 Backend로 구성되며, Gateway API를 통해 `http://localhost`로
 
 - 이미지: `skilleat/backend:v3-kb5`
 - replicas: **1**
-- 데이터 저장 경로 `/app/data`에 **emptyDir** 마운트
 - Service 이름: `backend-service`, 포트: `5000`
 
 ---
@@ -150,12 +149,6 @@ kubectl delete namespace webapp
               image: skilleat/backend:v3-kb5
               ports:
                 - containerPort: 5000
-              volumeMounts:
-                - name: data
-                  mountPath: /app/data
-          volumes:
-            - name: data
-              emptyDir: {}
     ---
     apiVersion: v1
     kind: Service
