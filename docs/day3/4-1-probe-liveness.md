@@ -245,7 +245,7 @@ spec:
       command:
         - sh
         - -c
-        - "sleep 3600"
+        - "echo \"[$(date)] 컨테이너 시작\"; sleep 3600"
       livenessProbe:
         exec:
           command:
