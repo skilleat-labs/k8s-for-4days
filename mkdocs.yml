@@ -65,10 +65,10 @@ nav:
       - 🔧 도전 과제 — 미니 블로그 (Gateway API + PVC): day3/challenge-miniblog.md
       - 🔧 도전 과제 — 미니 블로그 (Docker Desktop): day3/challenge-miniblog-docker.md
   - 4일차:
-      - 1. RBAC — ServiceAccount 기초: day4/rbac-01-serviceaccount.md
-      - 2. RBAC — Role & RoleBinding: day4/rbac-02-role-rolebinding.md
-      - 3. RBAC — ClusterRole & ClusterRoleBinding: day4/rbac-03-clusterrole.md
-      - 4. 노드 스케줄링 실습: day4/node-scheduling.md
+      - 1. 노드 스케줄링 실습: day4/node-scheduling.md
+      - 2. RBAC — ServiceAccount 기초: day4/rbac-01-serviceaccount.md
+      - 3. RBAC — Role & RoleBinding: day4/rbac-02-role-rolebinding.md
+      - 4. RBAC — ClusterRole & ClusterRoleBinding: day4/rbac-03-clusterrole.md
   # - 5일차:
   #     - 1. 개념과 Deny-All: day6/netpol-01-intro.md
   #     - 2. PodSelector 실습: day6/netpol-02-podselector.md
