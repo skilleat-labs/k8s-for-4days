@@ -1365,28 +1365,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-qos-class-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1. QoS Class 3종 만들고 비교하기
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-eviction" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2. Eviction 위험도 — 노드 상태로 확인
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#step-3-resourcequota-quota-pod" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1825,28 +1803,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-qos-class-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1. QoS Class 3종 만들고 비교하기
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-eviction" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2. Eviction 위험도 — 노드 상태로 확인
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#step-3-resourcequota-quota-pod" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1980,7 +1936,8 @@
 </span></code></pre></div>
 <hr />
 <h2 id="_3">실습<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<h3 id="step-1-qos-class-3">Step 1. QoS Class 3종 만들고 비교하기<a class="headerlink" href="#step-1-qos-class-3" title="Permanent link">&para;</a></h3>
+<details class="note">
+<summary>Step 1. QoS Class 3종 만들고 비교하기 (접어두기)</summary>
 <p>3가지 QoS Class Pod를 한번에 만들어서 나란히 비교합니다.</p>
 <div class="language-yaml highlight"><span class="filename">pod-besteffort.yaml</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
@@ -2056,32 +2013,36 @@ requests/limits 관계가 그대로 Class를 결정함을 확인하세요.</p>
 </div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>QoS Class:  Guaranteed
 </span></code></pre></div>
-<hr />
-<h3 id="step-2-eviction">Step 2. Eviction 위험도 — 노드 상태로 확인<a class="headerlink" href="#step-2-eviction" title="Permanent link">&para;</a></h3>
+<p>정리:</p>
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">pod-besteffort</span> <span class="n">pod-burstable</span> <span class="n">pod-guaranteed</span>
+</span></code></pre></div>
+</details>
+<details class="note">
+<summary>Step 2. Eviction 위험도 — 노드 상태로 확인 (접어두기)</summary>
 <p>실제로 Eviction을 트리거하기는 어렵지만, 노드 상태와 Pod의 실제 사용량을 보면 위험도를 판단할 수 있습니다.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows PowerShell</label><label for="__tabbed_2_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">kubectl</span> <span class="n">describe</span> <span class="n">node</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="n">-Pattern</span> <span class="s2">"Allocated resources"</span> <span class="n">-Context</span> <span class="n">0</span><span class="p">,</span><span class="n">10</span>
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">kubectl</span> <span class="n">describe</span> <span class="n">node</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="n">-Pattern</span> <span class="s2">"Allocated resources"</span> <span class="n">-Context</span> <span class="n">0</span><span class="p">,</span><span class="n">10</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="s2">"Allocated resources"</span>
+<div class="language-bash highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="s2">"Allocated resources"</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <p>AKS 실제 출력 예시 (2 vCPU / 8GB 노드 2개 기준, 실습 환경과 동일):</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Allocated resources:                             ← 노드 1
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>  Resource   Requests       Limits
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  cpu        940m (47%)     18792m (989%)
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>  memory     1862Mi (26%)   41472Mi (582%)
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>--
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>Allocated resources:                             ← 노드 2
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>  Resource   Requests       Limits
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>  cpu        1200m (60%)    18740m (986%)
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>  memory     2200Mi (30%)   29167904Ki (400%)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Allocated resources:                             ← 노드 1
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>  Resource   Requests       Limits
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>  cpu        940m (47%)     18792m (989%)
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>  memory     1862Mi (26%)   41472Mi (582%)
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>--
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>Allocated resources:                             ← 노드 2
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>  Resource   Requests       Limits
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>  cpu        1200m (60%)    18740m (986%)
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>  memory     2200Mi (30%)   29167904Ki (400%)
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">실제 수치는 다를 수 있습니다</p>
@@ -2125,20 +2086,17 @@ K8s는 BestEffort → Burstable 순서로 Pod를 퇴출합니다.
 Guaranteed Pod를 DB처럼 절대 죽으면 안 되는 앱에 설정해야 하는 이유입니다.</p>
 </div>
 <p>현재 Pod들의 실제 메모리 사용량도 확인합니다:</p>
-<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">kubectl</span> <span class="n">top</span> <span class="n">pod</span>
+<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">kubectl</span> <span class="n">top</span> <span class="n">pod</span>
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Eviction 위험도를 판단하는 기준</p>
 <p>실제 사용량이 requests에 근접하거나 넘으면 Eviction 후보가 됩니다.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>pod-burstable:
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>  requests.memory: 128Mi
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>  실제 사용: 120Mi  ← requests에 근접 → Eviction 위험
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>pod-burstable:
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  requests.memory: 128Mi
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>  실제 사용: 120Mi  ← requests에 근접 → Eviction 위험
 </span></code></pre></div>
 </div>
-<hr />
-<p>Step 1 Pod를 정리하고 다음 실습을 진행합니다:</p>
-<div class="language-powershell highlight"><span class="filename">터미널</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">pod-besteffort</span> <span class="n">pod-burstable</span> <span class="n">pod-guaranteed</span>
-</span></code></pre></div>
+</details>
 <hr />
 <h3 id="step-3-resourcequota-quota-pod">Step 3. ResourceQuota — Quota 초과 시 Pod 생성 거부<a class="headerlink" href="#step-3-resourcequota-quota-pod" title="Permanent link">&para;</a></h3>
 <p>ResourceQuota는 Namespace 전체의 자원 총량을 제한합니다.
