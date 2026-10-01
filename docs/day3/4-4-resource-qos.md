@@ -48,174 +48,170 @@ Guaranteed   → "requests = limits. 사용량이 예측 가능하고 안정적�
 
 ## 실습
 
-### Step 1. QoS Class 3종 만들고 비교하기
+??? note "Step 1. QoS Class 3종 만들고 비교하기 (접어두기)"
 
-3가지 QoS Class Pod를 한번에 만들어서 나란히 비교합니다.
+    3가지 QoS Class Pod를 한번에 만들어서 나란히 비교합니다.
 
-```yaml title="pod-besteffort.yaml"
-apiVersion: v1
-kind: Pod
-metadata:
-  name: pod-besteffort
-spec:
-  containers:
-    - name: app
-      image: nginx:1.25
-      # resources 없음 → BestEffort
-```
-
-```yaml title="pod-burstable.yaml"
-apiVersion: v1
-kind: Pod
-metadata:
-  name: pod-burstable
-spec:
-  containers:
-    - name: app
-      image: nginx:1.25
-      resources:
-        requests:
-          cpu: 100m
-          memory: 128Mi
-        limits:
-          cpu: 500m
-          memory: 512Mi   # requests < limits → Burstable
-```
-
-```yaml title="pod-guaranteed.yaml"
-apiVersion: v1
-kind: Pod
-metadata:
-  name: pod-guaranteed
-spec:
-  containers:
-    - name: app
-      image: nginx:1.25
-      resources:
-        requests:
-          cpu: 200m
-          memory: 256Mi
-        limits:
-          cpu: 200m
-          memory: 256Mi   # requests == limits → Guaranteed
-```
-
-```powershell title="터미널"
-kubectl apply -f pod-besteffort.yaml
-kubectl apply -f pod-burstable.yaml
-kubectl apply -f pod-guaranteed.yaml
-```
-
-3개가 뜨면 QoS Class를 한눈에 비교합니다:
-
-```powershell title="터미널"
-kubectl get pods pod-besteffort pod-burstable pod-guaranteed -o custom-columns=NAME:.metadata.name,QoS:.status.qosClass,CPU-REQ:.spec.containers[0].resources.requests.cpu,CPU-LIM:.spec.containers[0].resources.limits.cpu,MEM-REQ:.spec.containers[0].resources.requests.memory,MEM-LIM:.spec.containers[0].resources.limits.memory
-```
-
-```text title="출력 예시"
-NAME             QoS          CPU-REQ   CPU-LIM   MEM-REQ   MEM-LIM
-pod-besteffort   BestEffort   <none>    <none>    <none>    <none>
-pod-burstable    Burstable    100m      500m      128Mi     512Mi
-pod-guaranteed   Guaranteed   200m      200m      256Mi     256Mi
-```
-
-!!! success "✅ 확인 포인트"
-    QoS Class가 자동으로 부여된 것 확인.
-    requests/limits 관계가 그대로 Class를 결정함을 확인하세요.
-
-`kubectl describe pod`에서도 QoS Class를 확인할 수 있습니다:
-
-=== "Windows PowerShell"
-    ```powershell
-    kubectl describe pod pod-guaranteed | Select-String "QoS Class"
-    ```
-=== "macOS/Linux"
-    ```bash
-    kubectl describe pod pod-guaranteed | grep "QoS Class"
+    ```yaml title="pod-besteffort.yaml"
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: pod-besteffort
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.25
+          # resources 없음 → BestEffort
     ```
 
-```
-QoS Class:  Guaranteed
-```
+    ```yaml title="pod-burstable.yaml"
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: pod-burstable
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.25
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi   # requests < limits → Burstable
+    ```
 
----
+    ```yaml title="pod-guaranteed.yaml"
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: pod-guaranteed
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.25
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi   # requests == limits → Guaranteed
+    ```
 
-### Step 2. Eviction 위험도 — 노드 상태로 확인
-
-실제로 Eviction을 트리거하기는 어렵지만, 노드 상태와 Pod의 실제 사용량을 보면 위험도를 판단할 수 있습니다.
-
-=== "Windows PowerShell"
     ```powershell title="터미널"
-    kubectl describe node | Select-String -Pattern "Allocated resources" -Context 0,10
-    ```
-=== "macOS/Linux"
-    ```bash title="터미널"
-    kubectl describe node | grep -A 10 "Allocated resources"
+    kubectl apply -f pod-besteffort.yaml
+    kubectl apply -f pod-burstable.yaml
+    kubectl apply -f pod-guaranteed.yaml
     ```
 
-AKS 실제 출력 예시 (2 vCPU / 8GB 노드 2개 기준, 실습 환경과 동일):
+    3개가 뜨면 QoS Class를 한눈에 비교합니다:
 
-```
-Allocated resources:                             ← 노드 1
-  Resource   Requests       Limits
-  cpu        940m (47%)     18792m (989%)
-  memory     1862Mi (26%)   41472Mi (582%)
-
---
-Allocated resources:                             ← 노드 2
-  Resource   Requests       Limits
-  cpu        1200m (60%)    18740m (986%)
-  memory     2200Mi (30%)   29167904Ki (400%)
-```
-
-!!! note "실제 수치는 다를 수 있습니다"
-    클러스터에 실행 중인 시스템 Pod 구성에 따라 수치가 달라집니다. 비율 패턴을 이해하는 것이 목표입니다.
-
-**Requests % — 스케줄러가 실제로 보는 수치**
-
-| | 노드 1 | 노드 2 |
-|---|---|---|
-| CPU | ~47% | ~60% |
-| Memory | ~26% | ~30% |
-
-- Requests %가 100%를 넘으면 새 Pod가 **Pending**
-- 8GB 노드에서는 메모리 여유가 충분한 편
-
-**Limits % — 오버커밋 (989%, 582%)**
-
-Limits 합계가 100%를 크게 넘어도 정상입니다.
-모든 Pod가 동시에 limits까지 사용하지 않는다는 전제로 K8s가 오버커밋을 허용합니다.
-
-Limits가 극단적으로 높은 이유는 **limits를 설정하지 않은 Pod** 때문입니다.
-limits 미설정 시 노드 전체 용량이 limit으로 잡혀서 수치가 폭발적으로 늘어납니다.
-
-!!! warning "Requests % 80% 이상 — Eviction 위험 신호"
-    Requests 기준으로 80% 이상이 예약된 상태에서 노드 메모리 압박이 오면
-    K8s는 BestEffort → Burstable 순서로 Pod를 퇴출합니다.
-    Guaranteed Pod를 DB처럼 절대 죽으면 안 되는 앱에 설정해야 하는 이유입니다.
-
-현재 Pod들의 실제 메모리 사용량도 확인합니다:
-
-```powershell title="터미널"
-kubectl top pod
-```
-
-!!! tip "Eviction 위험도를 판단하는 기준"
-    실제 사용량이 requests에 근접하거나 넘으면 Eviction 후보가 됩니다.
-
-    ```text
-    pod-burstable:
-      requests.memory: 128Mi
-      실제 사용: 120Mi  ← requests에 근접 → Eviction 위험
+    ```powershell title="터미널"
+    kubectl get pods pod-besteffort pod-burstable pod-guaranteed -o custom-columns=NAME:.metadata.name,QoS:.status.qosClass,CPU-REQ:.spec.containers[0].resources.requests.cpu,CPU-LIM:.spec.containers[0].resources.limits.cpu,MEM-REQ:.spec.containers[0].resources.requests.memory,MEM-LIM:.spec.containers[0].resources.limits.memory
     ```
 
----
+    ```text title="출력 예시"
+    NAME             QoS          CPU-REQ   CPU-LIM   MEM-REQ   MEM-LIM
+    pod-besteffort   BestEffort   <none>    <none>    <none>    <none>
+    pod-burstable    Burstable    100m      500m      128Mi     512Mi
+    pod-guaranteed   Guaranteed   200m      200m      256Mi     256Mi
+    ```
 
-Step 1 Pod를 정리하고 다음 실습을 진행합니다:
+    !!! success "✅ 확인 포인트"
+        QoS Class가 자동으로 부여된 것 확인.
+        requests/limits 관계가 그대로 Class를 결정함을 확인하세요.
 
-```powershell title="터미널"
-kubectl delete pod pod-besteffort pod-burstable pod-guaranteed
-```
+    `kubectl describe pod`에서도 QoS Class를 확인할 수 있습니다:
+
+    === "Windows PowerShell"
+        ```powershell
+        kubectl describe pod pod-guaranteed | Select-String "QoS Class"
+        ```
+    === "macOS/Linux"
+        ```bash
+        kubectl describe pod pod-guaranteed | grep "QoS Class"
+        ```
+
+    ```
+    QoS Class:  Guaranteed
+    ```
+
+    정리:
+
+    ```powershell title="터미널"
+    kubectl delete pod pod-besteffort pod-burstable pod-guaranteed
+    ```
+
+??? note "Step 2. Eviction 위험도 — 노드 상태로 확인 (접어두기)"
+
+    실제로 Eviction을 트리거하기는 어렵지만, 노드 상태와 Pod의 실제 사용량을 보면 위험도를 판단할 수 있습니다.
+
+    === "Windows PowerShell"
+        ```powershell title="터미널"
+        kubectl describe node | Select-String -Pattern "Allocated resources" -Context 0,10
+        ```
+    === "macOS/Linux"
+        ```bash title="터미널"
+        kubectl describe node | grep -A 10 "Allocated resources"
+        ```
+
+    AKS 실제 출력 예시 (2 vCPU / 8GB 노드 2개 기준, 실습 환경과 동일):
+
+    ```
+    Allocated resources:                             ← 노드 1
+      Resource   Requests       Limits
+      cpu        940m (47%)     18792m (989%)
+      memory     1862Mi (26%)   41472Mi (582%)
+
+    --
+    Allocated resources:                             ← 노드 2
+      Resource   Requests       Limits
+      cpu        1200m (60%)    18740m (986%)
+      memory     2200Mi (30%)   29167904Ki (400%)
+    ```
+
+    !!! note "실제 수치는 다를 수 있습니다"
+        클러스터에 실행 중인 시스템 Pod 구성에 따라 수치가 달라집니다. 비율 패턴을 이해하는 것이 목표입니다.
+
+    **Requests % — 스케줄러가 실제로 보는 수치**
+
+    | | 노드 1 | 노드 2 |
+    |---|---|---|
+    | CPU | ~47% | ~60% |
+    | Memory | ~26% | ~30% |
+
+    - Requests %가 100%를 넘으면 새 Pod가 **Pending**
+    - 8GB 노드에서는 메모리 여유가 충분한 편
+
+    **Limits % — 오버커밋 (989%, 582%)**
+
+    Limits 합계가 100%를 크게 넘어도 정상입니다.
+    모든 Pod가 동시에 limits까지 사용하지 않는다는 전제로 K8s가 오버커밋을 허용합니다.
+
+    Limits가 극단적으로 높은 이유는 **limits를 설정하지 않은 Pod** 때문입니다.
+    limits 미설정 시 노드 전체 용량이 limit으로 잡혀서 수치가 폭발적으로 늘어납니다.
+
+    !!! warning "Requests % 80% 이상 — Eviction 위험 신호"
+        Requests 기준으로 80% 이상이 예약된 상태에서 노드 메모리 압박이 오면
+        K8s는 BestEffort → Burstable 순서로 Pod를 퇴출합니다.
+        Guaranteed Pod를 DB처럼 절대 죽으면 안 되는 앱에 설정해야 하는 이유입니다.
+
+    현재 Pod들의 실제 메모리 사용량도 확인합니다:
+
+    ```powershell title="터미널"
+    kubectl top pod
+    ```
+
+    !!! tip "Eviction 위험도를 판단하는 기준"
+        실제 사용량이 requests에 근접하거나 넘으면 Eviction 후보가 됩니다.
+
+        ```text
+        pod-burstable:
+          requests.memory: 128Mi
+          실제 사용: 120Mi  ← requests에 근접 → Eviction 위험
+        ```
 
 ---
 
