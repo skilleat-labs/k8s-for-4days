@@ -29,6 +29,65 @@
 
 ---
 
+## VirtualBox 사용 중이라면 먼저 확인
+
+VM 실습 후 Docker Desktop / Rancher Desktop으로 넘어올 때 아래 항목을 순서대로 확인하세요.
+
+### 1) VirtualBox VM 전부 종료
+
+Docker Desktop / Rancher Desktop 설치 중 재부팅이 발생합니다. VM이 켜진 상태에서 재부팅하면 디스크 손상 위험이 있습니다.
+
+```
+VirtualBox → 모든 VM → 오른쪽 클릭 → 닫기 → 전원 끄기
+```
+
+### 2) Windows — WSL2 백엔드 사용 (Hyper-V 대신)
+
+Docker Desktop은 **Hyper-V** 또는 **WSL2** 백엔드를 선택할 수 있습니다.
+VirtualBox를 계속 쓸 예정이라면 반드시 **WSL2 백엔드**를 선택하세요.
+
+!!! warning "Hyper-V 활성화 시 VirtualBox 충돌"
+    Hyper-V를 활성화하면 VirtualBox 6.1 미만에서 64비트 VM이 실행되지 않습니다.
+    VirtualBox 7.0 이상은 공존 가능하지만, WSL2 백엔드가 더 안정적입니다.
+
+Docker Desktop 설치 화면에서 **"Use WSL 2 instead of Hyper-V"** 옵션을 선택합니다.
+
+### 3) 포트 충돌 확인
+
+VirtualBox에서 포트 포워딩을 설정한 경우 아래 포트가 겹치면 Kubernetes가 뜨지 않습니다.
+
+| 포트 | 용도 |
+|------|------|
+| 6443 | Kubernetes API Server |
+| 8080 | 실습 중 자주 쓰는 NodePort |
+
+=== "Windows PowerShell"
+    ```powershell
+    netstat -ano | Select-String "6443|8080"
+    ```
+=== "macOS"
+    ```bash
+    lsof -i :6443 -i :8080
+    ```
+
+포트를 점유하는 프로세스가 VirtualBox면 해당 VM을 종료하고 진행합니다.
+
+### 4) kubeconfig 덮어쓰기 주의
+
+Docker Desktop / Rancher Desktop 첫 실행 시 `~/.kube/config`의 **current-context가 자동으로 변경**됩니다.
+기존 VM 기반 kubeconfig를 보존하고 싶다면 미리 백업하세요.
+
+=== "Windows PowerShell"
+    ```powershell
+    Copy-Item "$env:USERPROFILE\.kube\config" "$env:USERPROFILE\.kube\config.bak"
+    ```
+=== "macOS"
+    ```bash
+    cp ~/.kube/config ~/.kube/config.bak
+    ```
+
+---
+
 ## 옵션 A — Docker Desktop으로 설정
 
 ### 1) Docker Desktop 설치
