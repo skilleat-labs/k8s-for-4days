@@ -1468,6 +1468,37 @@
 <li>기본 옵션으로 설치합니다.</li>
 <li>설치 완료 후 VirtualBox를 실행합니다.</li>
 </ol>
+<div class="admonition info">
+<p class="admonition-title">Windows — 설치 중 나타나는 경고 창</p>
+<p>설치 중 아래 대화상자가 차례로 나타납니다. 모두 <strong>예(Yes)</strong> 또는 <strong>계속(Continue)</strong> 를 클릭하세요.</p>
+<table>
+<thead>
+<tr>
+<th>메시지</th>
+<th>의미</th>
+<th>처리</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Warning: Network Interfaces"</td>
+<td>가상 네트워크 어댑터 설치로 잠시 인터넷 연결이 끊김</td>
+<td><strong>예</strong> 클릭</td>
+</tr>
+<tr>
+<td>"Warning: USB Support"</td>
+<td>USB 필터 드라이버 설치</td>
+<td><strong>예</strong> 클릭</td>
+</tr>
+<tr>
+<td>Windows 보안 경고 (방화벽)</td>
+<td>VirtualBox 네트워크 허용 요청</td>
+<td><strong>액세스 허용</strong> 클릭</td>
+</tr>
+</tbody>
+</table>
+<p>설치 중 화면이 잠깐 까맣게 되거나 인터넷이 1~2초 끊기는 것은 정상입니다.</p>
+</div>
 <h2 id="2-ubuntu-server-2404">2) Ubuntu Server 24.04 이미지 준비<a class="headerlink" href="#2-ubuntu-server-2404" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">반드시 24.04 LTS를 다운로드하세요</p>
@@ -1555,11 +1586,73 @@
 <li><strong>Create a Virtual Hard Disk Now</strong> 선택 후 디스크 크기를 기본값 <strong>25GB</strong> 그대로 사용합니다.</li>
 <li><code>Next</code> → <code>Finish</code>를 클릭해 VM 생성을 완료합니다.</li>
 </ol>
+<div class="admonition tip">
+<p class="admonition-title">Windows 사용자 — VM 창 안에서 마우스/키보드 캡처</p>
+<p>VM 창 안쪽을 클릭하면 마우스와 키보드가 VM에 캡처됩니다.
+내 PC로 돌아오려면 <strong>오른쪽 Ctrl (Right Ctrl)</strong> 키를 누르세요.</p>
+<table>
+<thead>
+<tr>
+<th>상태</th>
+<th>화면 하단 표시</th>
+<th>해제 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VM이 마우스·키보드 점유 중</td>
+<td>🔒 <code>Right Ctrl to release</code></td>
+<td><strong>Right Ctrl</strong> 키</td>
+</tr>
+<tr>
+<td>해제됨</td>
+<td>아무 표시 없음</td>
+<td>VM 창 클릭 시 다시 캡처</td>
+</tr>
+</tbody>
+</table>
+<p>처음에는 당황할 수 있습니다. 커서가 사라졌다면 Right Ctrl을 누르세요.</p>
+</div>
 <h2 id="4-vm-ubuntu">4) VM 부팅 및 Ubuntu 설치<a class="headerlink" href="#4-vm-ubuntu" title="Permanent link">&para;</a></h2>
 <ol>
-<li>VM을 시작합니다.</li>
-<li>Ubuntu 설치 마법사를 따라 설치합니다.</li>
-<li>설치가 완료되면 VM이 재시작되고 로그인 화면이 나타납니다. 로그인 후 다음 단계를 이어서 진행합니다.</li>
+<li>VirtualBox에서 <code>docker-lab</code> VM을 선택하고 <strong>시작(Start)</strong> 버튼을 클릭합니다.</li>
+<li>Ubuntu가 <strong>자동으로 설치</strong>됩니다. <strong>약 10~15분</strong> 소요됩니다.</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">자동 설치 중 — 그냥 기다리세요</p>
+<p>VirtualBox가 앞서 입력한 계정 정보로 Ubuntu를 자동 설치합니다.
+VM 화면에 아래처럼 텍스트가 흘러가는 것은 정상입니다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>[  OK  ] Started GRUB...
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Installing system...
+</span></code></pre></div>
+<p>설치 중간에 VM이 <strong>한 번 자동 재부팅</strong>됩니다. 화면이 잠깐 까맣게 되는 것도 정상입니다.
+VM 창을 닫거나 강제로 종료하지 마세요.</p>
+</div>
+<ol>
+<li>
+<p>설치가 완료되면 아래와 같은 로그인 화면이 나타납니다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ubuntu login:
+</span></code></pre></div>
+</li>
+<li>
+<p>VM 창 안을 클릭해 포커스를 맞춘 뒤 아래 순서로 로그인합니다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ubuntu login: vboxuser      ← 사용자명 입력 후 Enter
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Password:                   ← 비밀번호 입력 후 Enter
+</span></code></pre></div>
+</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">비밀번호 입력 시 화면에 아무것도 표시되지 않는 것이 정상입니다</p>
+<p>Linux는 보안상 비밀번호 입력 중 커서조차 움직이지 않습니다.
+틀린 것이 아니니 그냥 입력하고 Enter를 누르세요.</p>
+</div>
+<ol>
+<li>
+<p>로그인에 성공하면 아래와 같은 프롬프트가 나타납니다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>vboxuser@ubuntu:~$
+</span></code></pre></div>
+<p><code>$</code> 기호가 보이면 준비 완료입니다. 이후 명령어는 여기에 입력합니다.</p>
+</li>
 </ol>
 <h2 id="5-vm">5) VM 부팅 속도 체감 포인트<a class="headerlink" href="#5-vm" title="Permanent link">&para;</a></h2>
 <p>아래를 체크해보세요.</p>
@@ -1571,18 +1664,36 @@
 <p>이 단계에서 "운영체제 전체를 부팅하는 비용"이 있다는 점을 기억합니다.</p>
 <h2 id="6-vm-nginx">6) VM 내부에 Nginx 설치<a class="headerlink" href="#6-vm-nginx" title="Permanent link">&para;</a></h2>
 <p>VM 터미널에서 실행합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nginx
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>nginx
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>nginx
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>nginx<span class="w"> </span>--no-pager
+<div class="admonition tip">
+<p class="admonition-title">Windows 사용자 — VirtualBox 콘솔에서 붙여넣기</p>
+<p>VirtualBox 콘솔에서는 기본적으로 <code>Ctrl+V</code>가 작동하지 않습니다.</p>
+<p><strong>방법 1 — 메뉴에서 클립보드 공유 활성화 후 오른쪽 클릭</strong></p>
+<ol>
+<li>VirtualBox 상단 메뉴 → <strong>장치(Devices)</strong> → <strong>공유 클립보드(Shared Clipboard)</strong> → <strong>양방향(Bidirectional)</strong> 선택</li>
+<li>내 PC에서 명령어를 복사한 뒤 VM 창 안에서 <strong>오른쪽 클릭 → 붙여넣기</strong></li>
+</ol>
+<p><strong>방법 2 — 8단계 SSH 연결 후 붙여넣기 (권장)</strong></p>
+<p>8단계에서 SSH를 설정하면 Windows Terminal에서 <code>Ctrl+V</code>로 자유롭게 붙여넣을 수 있습니다.
+지금은 명령어를 직접 타이핑하거나 방법 1을 사용하세요.</p>
+</div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nginx
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>nginx
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>nginx
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>nginx<span class="w"> </span>--no-pager
 </span></code></pre></div>
 <p>정상 동작 확인:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-I<span class="w"> </span>http://localhost
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>curl<span class="w"> </span>-I<span class="w"> </span>http://localhost
 </span></code></pre></div>
 <p><code>HTTP/1.1 200 OK</code>가 보이면 정상입니다.</p>
 <h2 id="7-host-vm">7) 포트포워딩 설정 (Host -&gt; VM)<a class="headerlink" href="#7-host-vm" title="Permanent link">&para;</a></h2>
 <p>목표: 내 PC 브라우저에서 <code>http://localhost:8080</code> 접속 시 VM의 Nginx 페이지 표시</p>
+<div class="admonition warning">
+<p class="admonition-title">포트포워딩 설정은 VM이 꺼진 상태에서 하는 것이 안전합니다</p>
+<p>실행 중에도 설정 가능하지만, VM을 먼저 종료하고 진행하면 오류를 방지할 수 있습니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>poweroff
+</span></code></pre></div>
+</div>
 <ol>
 <li>VirtualBox에서 <code>docker-lab</code> VM을 클릭합니다.</li>
 <li>상단 메뉴 <code>설정</code> → <code>네트워크</code> → <code>포트 포워딩</code>을 클릭합니다.</li>
@@ -1621,10 +1732,24 @@
 </ol>
 <p>Nginx Welcome 페이지가 보이면 성공입니다.</p>
 <h2 id="8-ssh">8) 다음 실습을 위한 SSH 설치<a class="headerlink" href="#8-ssh" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Windows 사용자 — SSH 명령어는 VM 안이 아니라 내 PC에서 실행합니다</p>
+<p>아래 <code>ssh</code> 명령어는 VM 터미널이 아닌, <strong>내 PC의 Windows Terminal 또는 PowerShell을 새로 열어서</strong> 실행합니다.
+두 개의 창을 띄워두세요. VM 콘솔(VirtualBox 창)과 내 PC 터미널(Windows Terminal)은 별개입니다.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Windows OpenSSH 클라이언트 확인</p>
+<p>Windows 10 1809 이상은 SSH 클라이언트가 기본 내장되어 있습니다.
+Windows Terminal 또는 PowerShell에서 아래 명령어로 확인하세요.</p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">ssh</span> <span class="n">-V</span>
+</span></code></pre></div>
+<p><code>OpenSSH_9.x...</code> 같은 버전 정보가 나오면 바로 사용 가능합니다.</p>
+<p>아무 출력이 없거나 오류가 나오면: <strong>설정 → 앱 → 선택적 기능 → 기능 추가 → OpenSSH 클라이언트</strong> 설치 후 재시도하세요.</p>
+</div>
 <p>VM 터미널에서 실행합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>openssh-server
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>ssh
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>ssh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>openssh-server
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>ssh
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>ssh
 </span></code></pre></div>
 <p>포트포워딩에 SSH 규칙을 추가합니다.</p>
 <table>
@@ -1646,7 +1771,7 @@
 </tbody>
 </table>
 <p>이후 호스트(내 PC) 터미널에서:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ssh<span class="w"> </span>-p<span class="w"> </span><span class="m">2222</span><span class="w"> </span>vboxuser@localhost
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ssh<span class="w"> </span>-p<span class="w"> </span><span class="m">2222</span><span class="w"> </span>vboxuser@localhost
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1740,7 +1865,7 @@
 <h3 id="virtualbox">VirtualBox 어댑터 추가<a class="headerlink" href="#virtualbox" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">VM을 먼저 종료하세요</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>poweroff
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>poweroff
 </span></code></pre></div>
 </div>
 <ol>
@@ -1751,17 +1876,17 @@
 </ol>
 <h3 id="ip-netplan">고정 IP 설정 (Netplan)<a class="headerlink" href="#ip-netplan" title="Permanent link">&para;</a></h3>
 <p>SSH로 접속 후 관리자 권한으로 전환합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>su
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>su
 </span></code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">sudo su 란?</p>
 <p><code>sudo su</code> 는 일반 사용자에서 <strong>root(관리자)</strong> 로 전환하는 명령어입니다.</p>
 </div>
 <p>네트워크 인터페이스 목록 확인:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ip<span class="w"> </span>addr
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ip<span class="w"> </span>addr
 </span></code></pre></div>
 <p>Netplan 설정 파일을 열어 확인한 인터페이스를 추가합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>nano<span class="w"> </span>/etc/netplan/50-cloud-init.yaml
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>nano<span class="w"> </span>/etc/netplan/50-cloud-init.yaml
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">nano 편집기 사용법</p>
@@ -1795,32 +1920,32 @@
 <p><strong>순서 요약</strong>: 편집 완료 → <code>Ctrl + O</code> (저장 확인 프롬프트 나타남) → <code>Enter</code> (파일명 확정) → <code>Ctrl + X</code> (종료)</p>
 </div>
 <p>아래와 같이 작성합니다.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">network</span><span class="p">:</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">enp0s3</span><span class="p">:</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">      </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="nt">enp0s9</span><span class="p">:</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">      </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.56.10/24</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="nt">enp0s3</span><span class="p">:</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">      </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="nt">enp0s9</span><span class="p">:</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">      </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.56.10/24</span>
 </span></code></pre></div>
 <p>저장 후 적용합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>apply
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>enp0s9
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>apply
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>enp0s9
 </span></code></pre></div>
 <p><code>192.168.56.10</code>이 보이면 성공입니다.</p>
 <h3 id="_7">접속 확인<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows PowerShell</label><label for="__tabbed_1_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">ssh</span> <span class="n">vboxuser</span><span class="nv">@192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">56</span><span class="p">.</span><span class="n">10</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">http</span><span class="p">://</span><span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">56</span><span class="p">.</span><span class="n">10</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">ssh</span> <span class="n">vboxuser</span><span class="nv">@192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">56</span><span class="p">.</span><span class="n">10</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">curl</span><span class="p">.</span><span class="n">exe</span> <span class="n">http</span><span class="p">://</span><span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">56</span><span class="p">.</span><span class="n">10</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ssh<span class="w"> </span>vboxuser@192.168.56.10
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>curl<span class="w"> </span>http://192.168.56.10
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ssh<span class="w"> </span>vboxuser@192.168.56.10
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>curl<span class="w"> </span>http://192.168.56.10
 </span></code></pre></div>
 </div>
 </div>
@@ -1831,39 +1956,39 @@
 <h2 id="11-docker">11) Docker 설치<a class="headerlink" href="#11-docker" title="Permanent link">&para;</a></h2>
 <p>이제 VM 위에 Docker를 설치합니다. VM 터미널(또는 SSH 접속 후)에서 아래 명령어를 순서대로 실행하세요.</p>
 <h3 id="_8">기존 패키지 제거<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>-y<span class="w"> </span>docker<span class="w"> </span>docker-engine<span class="w"> </span>docker.io<span class="w"> </span>containerd<span class="w"> </span>runc
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>-y<span class="w"> </span>docker<span class="w"> </span>docker-engine<span class="w"> </span>docker.io<span class="w"> </span>containerd<span class="w"> </span>runc
 </span></code></pre></div>
 <h3 id="docker">필수 패키지 및 Docker 공식 저장소 등록<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ca-certificates<span class="w"> </span>curl<span class="w"> </span>gnupg
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>-d<span class="w"> </span>/etc/apt/keyrings
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.docker.com/linux/ubuntu/gpg<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/etc/apt/keyrings/docker.gpg
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>sudo<span class="w"> </span>chmod<span class="w"> </span>a+r<span class="w"> </span>/etc/apt/keyrings/docker.gpg
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
-</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">  </span><span class="s2">"deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] \</span>
-</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="s2">  https://download.docker.com/linux/ubuntu \</span>
-</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="s2">  </span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$VERSION_CODENAME</span><span class="s2">"</span><span class="k">)</span><span class="s2"> stable"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ca-certificates<span class="w"> </span>curl<span class="w"> </span>gnupg
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>-d<span class="w"> </span>/etc/apt/keyrings
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.docker.com/linux/ubuntu/gpg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/etc/apt/keyrings/docker.gpg
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>sudo<span class="w"> </span>chmod<span class="w"> </span>a+r<span class="w"> </span>/etc/apt/keyrings/docker.gpg
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="w">  </span><span class="s2">"deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] \</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="s2">  https://download.docker.com/linux/ubuntu \</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="s2">  </span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$VERSION_CODENAME</span><span class="s2">"</span><span class="k">)</span><span class="s2"> stable"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
 </span></code></pre></div>
 <h3 id="docker-engine">Docker Engine 설치<a class="headerlink" href="#docker-engine" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
 </span></code></pre></div>
 <h3 id="docker_1">Docker 서비스 시작 및 자동 실행 등록<a class="headerlink" href="#docker_1" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>docker
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>docker
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>docker<span class="w"> </span>--no-pager
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>docker
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>docker
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>docker<span class="w"> </span>--no-pager
 </span></code></pre></div>
 <h3 id="sudo-docker">sudo 없이 docker 명령어 사용 (선택)<a class="headerlink" href="#sudo-docker" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>newgrp<span class="w"> </span>docker
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>newgrp<span class="w"> </span>docker
 </span></code></pre></div>
 <h3 id="_9">설치 확인<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span>version
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>docker<span class="w"> </span>run<span class="w"> </span>hello-world
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>docker<span class="w"> </span>version
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>docker<span class="w"> </span>run<span class="w"> </span>hello-world
 </span></code></pre></div>
 <p><code>Hello from Docker!</code> 메시지가 출력되면 Docker 설치가 완료된 것입니다.</p>
 
