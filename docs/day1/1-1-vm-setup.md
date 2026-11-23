@@ -50,6 +50,17 @@
 2. 기본 옵션으로 설치합니다.
 3. 설치 완료 후 VirtualBox를 실행합니다.
 
+!!! info "Windows — 설치 중 나타나는 경고 창"
+    설치 중 아래 대화상자가 차례로 나타납니다. 모두 **예(Yes)** 또는 **계속(Continue)** 를 클릭하세요.
+
+    | 메시지 | 의미 | 처리 |
+    |--------|------|------|
+    | "Warning: Network Interfaces" | 가상 네트워크 어댑터 설치로 잠시 인터넷 연결이 끊김 | **예** 클릭 |
+    | "Warning: USB Support" | USB 필터 드라이버 설치 | **예** 클릭 |
+    | Windows 보안 경고 (방화벽) | VirtualBox 네트워크 허용 요청 | **액세스 허용** 클릭 |
+
+    설치 중 화면이 잠깐 까맣게 되거나 인터넷이 1~2초 끊기는 것은 정상입니다.
+
 ## 2) Ubuntu Server 24.04 이미지 준비
 
 !!! warning "반드시 24.04 LTS를 다운로드하세요"
@@ -98,11 +109,58 @@
 6. **Create a Virtual Hard Disk Now** 선택 후 디스크 크기를 기본값 **25GB** 그대로 사용합니다.
 7. `Next` → `Finish`를 클릭해 VM 생성을 완료합니다.
 
+!!! tip "Windows 사용자 — VM 창 안에서 마우스/키보드 캡처"
+    VM 창 안쪽을 클릭하면 마우스와 키보드가 VM에 캡처됩니다.
+    내 PC로 돌아오려면 **오른쪽 Ctrl (Right Ctrl)** 키를 누르세요.
+
+    | 상태 | 화면 하단 표시 | 해제 방법 |
+    |------|--------------|---------|
+    | VM이 마우스·키보드 점유 중 | 🔒 `Right Ctrl to release` | **Right Ctrl** 키 |
+    | 해제됨 | 아무 표시 없음 | VM 창 클릭 시 다시 캡처 |
+
+    처음에는 당황할 수 있습니다. 커서가 사라졌다면 Right Ctrl을 누르세요.
+
 ## 4) VM 부팅 및 Ubuntu 설치
 
-1. VM을 시작합니다.
-2. Ubuntu 설치 마법사를 따라 설치합니다.
-3. 설치가 완료되면 VM이 재시작되고 로그인 화면이 나타납니다. 로그인 후 다음 단계를 이어서 진행합니다.
+1. VirtualBox에서 `docker-lab` VM을 선택하고 **시작(Start)** 버튼을 클릭합니다.
+2. Ubuntu가 **자동으로 설치**됩니다. **약 10~15분** 소요됩니다.
+
+!!! info "자동 설치 중 — 그냥 기다리세요"
+    VirtualBox가 앞서 입력한 계정 정보로 Ubuntu를 자동 설치합니다.
+    VM 화면에 아래처럼 텍스트가 흘러가는 것은 정상입니다.
+
+    ```
+    [  OK  ] Started GRUB...
+    Installing system...
+    ```
+
+    설치 중간에 VM이 **한 번 자동 재부팅**됩니다. 화면이 잠깐 까맣게 되는 것도 정상입니다.
+    VM 창을 닫거나 강제로 종료하지 마세요.
+
+3. 설치가 완료되면 아래와 같은 로그인 화면이 나타납니다.
+
+    ```
+    ubuntu login:
+    ```
+
+4. VM 창 안을 클릭해 포커스를 맞춘 뒤 아래 순서로 로그인합니다.
+
+    ```
+    ubuntu login: vboxuser      ← 사용자명 입력 후 Enter
+    Password:                   ← 비밀번호 입력 후 Enter
+    ```
+
+!!! warning "비밀번호 입력 시 화면에 아무것도 표시되지 않는 것이 정상입니다"
+    Linux는 보안상 비밀번호 입력 중 커서조차 움직이지 않습니다.
+    틀린 것이 아니니 그냥 입력하고 Enter를 누르세요.
+
+5. 로그인에 성공하면 아래와 같은 프롬프트가 나타납니다.
+
+    ```
+    vboxuser@ubuntu:~$
+    ```
+
+    `$` 기호가 보이면 준비 완료입니다. 이후 명령어는 여기에 입력합니다.
 
 ## 5) VM 부팅 속도 체감 포인트
 
@@ -117,6 +175,19 @@
 ## 6) VM 내부에 Nginx 설치
 
 VM 터미널에서 실행합니다.
+
+!!! tip "Windows 사용자 — VirtualBox 콘솔에서 붙여넣기"
+    VirtualBox 콘솔에서는 기본적으로 `Ctrl+V`가 작동하지 않습니다.
+
+    **방법 1 — 메뉴에서 클립보드 공유 활성화 후 오른쪽 클릭**
+
+    1. VirtualBox 상단 메뉴 → **장치(Devices)** → **공유 클립보드(Shared Clipboard)** → **양방향(Bidirectional)** 선택
+    2. 내 PC에서 명령어를 복사한 뒤 VM 창 안에서 **오른쪽 클릭 → 붙여넣기**
+
+    **방법 2 — 8단계 SSH 연결 후 붙여넣기 (권장)**
+
+    8단계에서 SSH를 설정하면 Windows Terminal에서 `Ctrl+V`로 자유롭게 붙여넣을 수 있습니다.
+    지금은 명령어를 직접 타이핑하거나 방법 1을 사용하세요.
 
 ```bash
 sudo apt update
@@ -138,6 +209,13 @@ curl -I http://localhost
 
 목표: 내 PC 브라우저에서 `http://localhost:8080` 접속 시 VM의 Nginx 페이지 표시
 
+!!! warning "포트포워딩 설정은 VM이 꺼진 상태에서 하는 것이 안전합니다"
+    실행 중에도 설정 가능하지만, VM을 먼저 종료하고 진행하면 오류를 방지할 수 있습니다.
+
+    ```bash
+    sudo poweroff
+    ```
+
 1. VirtualBox에서 `docker-lab` VM을 클릭합니다.
 2. 상단 메뉴 `설정` → `네트워크` → `포트 포워딩`을 클릭합니다.
 3. 아래 규칙을 추가합니다.
@@ -156,6 +234,22 @@ curl -I http://localhost
 Nginx Welcome 페이지가 보이면 성공입니다.
 
 ## 8) 다음 실습을 위한 SSH 설치
+
+!!! warning "Windows 사용자 — SSH 명령어는 VM 안이 아니라 내 PC에서 실행합니다"
+    아래 `ssh` 명령어는 VM 터미널이 아닌, **내 PC의 Windows Terminal 또는 PowerShell을 새로 열어서** 실행합니다.
+    두 개의 창을 띄워두세요. VM 콘솔(VirtualBox 창)과 내 PC 터미널(Windows Terminal)은 별개입니다.
+
+!!! info "Windows OpenSSH 클라이언트 확인"
+    Windows 10 1809 이상은 SSH 클라이언트가 기본 내장되어 있습니다.
+    Windows Terminal 또는 PowerShell에서 아래 명령어로 확인하세요.
+
+    ```powershell
+    ssh -V
+    ```
+
+    `OpenSSH_9.x...` 같은 버전 정보가 나오면 바로 사용 가능합니다.
+
+    아무 출력이 없거나 오류가 나오면: **설정 → 앱 → 선택적 기능 → 기능 추가 → OpenSSH 클라이언트** 설치 후 재시도하세요.
 
 VM 터미널에서 실행합니다.
 
