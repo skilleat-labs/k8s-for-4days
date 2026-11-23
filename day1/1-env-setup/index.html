@@ -689,6 +689,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#virtualbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VirtualBox 사용 중이라면 먼저 확인
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VirtualBox 사용 중이라면 먼저 확인">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-virtualbox-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1) VirtualBox VM 전부 종료
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-windows-wsl2-hyper-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) Windows — WSL2 백엔드 사용 (Hyper-V 대신)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3) 포트 충돌 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-kubeconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) kubeconfig 덮어쓰기 주의
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#a-docker-desktop" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -723,7 +784,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+  <a href="#3_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         3) 연결 확인
@@ -784,7 +845,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
+  <a href="#3_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         3) 연결 확인
@@ -1020,6 +1081,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#virtualbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VirtualBox 사용 중이라면 먼저 확인
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VirtualBox 사용 중이라면 먼저 확인">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-virtualbox-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1) VirtualBox VM 전부 종료
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-windows-wsl2-hyper-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) Windows — WSL2 백엔드 사용 (Hyper-V 대신)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3) 포트 충돌 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-kubeconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) kubeconfig 덮어쓰기 주의
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#a-docker-desktop" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1054,7 +1176,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+  <a href="#3_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         3) 연결 확인
@@ -1115,7 +1237,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
+  <a href="#3_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         3) 연결 확인
@@ -1248,6 +1370,70 @@
 </tbody>
 </table>
 <hr />
+<h2 id="virtualbox">VirtualBox 사용 중이라면 먼저 확인<a class="headerlink" href="#virtualbox" title="Permanent link">&para;</a></h2>
+<p>VM 실습 후 Docker Desktop / Rancher Desktop으로 넘어올 때 아래 항목을 순서대로 확인하세요.</p>
+<h3 id="1-virtualbox-vm">1) VirtualBox VM 전부 종료<a class="headerlink" href="#1-virtualbox-vm" title="Permanent link">&para;</a></h3>
+<p>Docker Desktop / Rancher Desktop 설치 중 재부팅이 발생합니다. VM이 켜진 상태에서 재부팅하면 디스크 손상 위험이 있습니다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>VirtualBox → 모든 VM → 오른쪽 클릭 → 닫기 → 전원 끄기
+</span></code></pre></div>
+<h3 id="2-windows-wsl2-hyper-v">2) Windows — WSL2 백엔드 사용 (Hyper-V 대신)<a class="headerlink" href="#2-windows-wsl2-hyper-v" title="Permanent link">&para;</a></h3>
+<p>Docker Desktop은 <strong>Hyper-V</strong> 또는 <strong>WSL2</strong> 백엔드를 선택할 수 있습니다.
+VirtualBox를 계속 쓸 예정이라면 반드시 <strong>WSL2 백엔드</strong>를 선택하세요.</p>
+<div class="admonition warning">
+<p class="admonition-title">Hyper-V 활성화 시 VirtualBox 충돌</p>
+<p>Hyper-V를 활성화하면 VirtualBox 6.1 미만에서 64비트 VM이 실행되지 않습니다.
+VirtualBox 7.0 이상은 공존 가능하지만, WSL2 백엔드가 더 안정적입니다.</p>
+</div>
+<p>Docker Desktop 설치 화면에서 <strong>"Use WSL 2 instead of Hyper-V"</strong> 옵션을 선택합니다.</p>
+<h3 id="3">3) 포트 충돌 확인<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>VirtualBox에서 포트 포워딩을 설정한 경우 아래 포트가 겹치면 Kubernetes가 뜨지 않습니다.</p>
+<table>
+<thead>
+<tr>
+<th>포트</th>
+<th>용도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6443</td>
+<td>Kubernetes API Server</td>
+</tr>
+<tr>
+<td>8080</td>
+<td>실습 중 자주 쓰는 NodePort</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows PowerShell</label><label for="__tabbed_1_2">macOS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">netstat</span> <span class="n">-ano</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">"6443|8080"</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>lsof<span class="w"> </span>-i<span class="w"> </span>:6443<span class="w"> </span>-i<span class="w"> </span>:8080
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>포트를 점유하는 프로세스가 VirtualBox면 해당 VM을 종료하고 진행합니다.</p>
+<h3 id="4-kubeconfig">4) kubeconfig 덮어쓰기 주의<a class="headerlink" href="#4-kubeconfig" title="Permanent link">&para;</a></h3>
+<p>Docker Desktop / Rancher Desktop 첫 실행 시 <code>~/.kube/config</code>의 <strong>current-context가 자동으로 변경</strong>됩니다.
+기존 VM 기반 kubeconfig를 보존하고 싶다면 미리 백업하세요.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows PowerShell</label><label for="__tabbed_2_2">macOS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">Copy-Item</span> <span class="s2">"$env:USERPROFILE\.kube\config"</span> <span class="s2">"$env:USERPROFILE\.kube\config.bak"</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cp<span class="w"> </span>~/.kube/config<span class="w"> </span>~/.kube/config.bak
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<hr />
 <h2 id="a-docker-desktop">옵션 A — Docker Desktop으로 설정<a class="headerlink" href="#a-docker-desktop" title="Permanent link">&para;</a></h2>
 <h3 id="1-docker-desktop">1) Docker Desktop 설치<a class="headerlink" href="#1-docker-desktop" title="Permanent link">&para;</a></h3>
 <p><a href="https://www.docker.com/products/docker-desktop/" target="_blank">Docker Desktop 공식 다운로드 페이지</a>에서 운영체제에 맞는 버전을 설치합니다.</p>
@@ -1259,31 +1445,31 @@
 <li><strong>Apply &amp; Restart</strong> 버튼 클릭</li>
 <li>하단 상태 표시줄에 초록색 Kubernetes 아이콘이 나타날 때까지 대기 (1~3분)</li>
 </ol>
-<h3 id="3">3) 연결 확인<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>current-context
+<h3 id="3_1">3) 연결 확인<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>current-context
 </span></code></pre></div>
 <p>→ <code>docker-desktop</code> 출력되면 정상</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 </span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>NAME             STATUS   ROLES           AGE   VERSION
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>docker-desktop   Ready    control-plane   1m    v1.29.x
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>NAME             STATUS   ROLES           AGE   VERSION
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>docker-desktop   Ready    control-plane   1m    v1.29.x
 </span></code></pre></div>
 <hr />
 <h2 id="b-rancher-desktop">옵션 B — Rancher Desktop으로 설정<a class="headerlink" href="#b-rancher-desktop" title="Permanent link">&para;</a></h2>
 <h3 id="0-windows-windows">0) Windows 사전 준비 (Windows 사용자만)<a class="headerlink" href="#0-windows-windows" title="Permanent link">&para;</a></h3>
 <p><strong>① BIOS 가상화 활성화 확인</strong></p>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">(</span><span class="nb">Get-ComputerInfo</span><span class="p">).</span><span class="n">HyperVRequirementVirtualizationFirmwareEnabled</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">(</span><span class="nb">Get-ComputerInfo</span><span class="p">).</span><span class="n">HyperVRequirementVirtualizationFirmwareEnabled</span>
 </span></code></pre></div>
 <p>→ <code>True</code> 출력되면 정상.</p>
 <p><strong>② WSL2 설치 및 활성화</strong></p>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-install</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-install</span>
 </span></code></pre></div>
 <p>재부팅 후:</p>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-status</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-status</span>
 </span></code></pre></div>
 <p>→ <code>기본 버전: 2</code>로 표시되면 준비 완료</p>
 <p>WSL 버전 1인 경우:</p>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-default-version</span> <span class="n">2</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-default-version</span> <span class="n">2</span>
 </span></code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Windows 버전 요구사항</p>
@@ -1298,54 +1484,54 @@
 <li><strong>Kubernetes Version</strong>: 최신 안정 버전 (예: v1.29.x)</li>
 </ol>
 <h3 id="2-kubeconfig">2) kubeconfig 자동 설정 확인<a class="headerlink" href="#2-kubeconfig" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows PowerShell</label><label for="__tabbed_1_2">macOS/Linux</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Windows PowerShell</label><label for="__tabbed_3_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">Get-Content</span> <span class="s2">"$env:USERPROFILE\.kube\config"</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">Get-Content</span> <span class="s2">"$env:USERPROFILE\.kube\config"</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cat<span class="w"> </span>~/.kube/config
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cat<span class="w"> </span>~/.kube/config
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <p>→ <code>rancher-desktop</code> 클러스터 항목이 포함되면 정상</p>
-<h3 id="3_1">3) 연결 확인<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>current-context
+<h3 id="3_2">3) 연결 확인<a class="headerlink" href="#3_2" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>current-context
 </span></code></pre></div>
 <p>→ <code>rancher-desktop</code> 출력되면 정상</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 </span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>NAME                   STATUS   ROLES                  AGE   VERSION
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>lima-rancher-desktop   Ready    control-plane,master   2m    v1.29.x
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>NAME                   STATUS   ROLES                  AGE   VERSION
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>lima-rancher-desktop   Ready    control-plane,master   2m    v1.29.x
 </span></code></pre></div>
 <hr />
 <h2 id="_3">공통 확인 사항<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="kubectl">kubectl 자동완성 활성화<a class="headerlink" href="#kubectl" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows PowerShell</label><label for="__tabbed_2_2">macOS/Linux</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Windows PowerShell</label><label for="__tabbed_4_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>실행 정책 확인 — <code>Restricted</code>면 아래 명령어 먼저 실행 (<code>-Force</code>로 확인 프롬프트 생략):
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">Set-ExecutionPolicy</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Force</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">Set-ExecutionPolicy</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Force</span>
 </span></code></pre></div>
 Profile에 자동완성 등록 후 현재 세션 적용:
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">File</span> <span class="n">-Force</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span> <span class="n">-Value</span> <span class="s1">'kubectl completion powershell | Out-String | Invoke-Expression'</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">.</span> <span class="nv">$PROFILE</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">File</span> <span class="n">-Force</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span> <span class="n">-Value</span> <span class="s1">'kubectl completion powershell | Out-String | Invoke-Expression'</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">.</span> <span class="nv">$PROFILE</span>
 </span></code></pre></div></p>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">source</span><span class="w"> </span>&lt;<span class="o">(</span>kubectl<span class="w"> </span>completion<span class="w"> </span>bash<span class="o">)</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'source &lt;(kubectl completion bash)'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">source</span><span class="w"> </span>&lt;<span class="o">(</span>kubectl<span class="w"> </span>completion<span class="w"> </span>bash<span class="o">)</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'source &lt;(kubectl completion bash)'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <h3 id="_4">클러스터 전체 상태 확인<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>cluster-info
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>kubectl<span class="w"> </span>cluster-info
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
 </span></code></pre></div>
 <hr />
 <h2 id="windows-powershell">Windows PowerShell 사용 시 참고 사항<a class="headerlink" href="#windows-powershell" title="Permanent link">&para;</a></h2>
