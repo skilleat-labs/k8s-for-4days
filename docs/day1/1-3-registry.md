@@ -89,20 +89,12 @@ skilleatlab.azurecr.io/lab/nginx:latest
 
 ### 2-1. 팀 계정으로 Azure 로그인
 
-각 팀별 계정 정보:
+강사로부터 본인 번호를 받아 아래 형식으로 로그인하세요.
 
-| 팀 | 이메일 | 비밀번호 |
-|-----|--------|---------|
-| Team 1  | `user01@nrkim0615outlook.onmicrosoft.com` | `K8sLab2026!` |
-| Team 2  | `user02@nrkim0615outlook.onmicrosoft.com` | `K8sLab2026!` |
-| Team 3  | `user03@nrkim0615outlook.onmicrosoft.com` | `K8sLab2026!` |
-| Team 4  | `user04@nrkim0615outlook.onmicrosoft.com` | `K8sLab2026!` |
-| Team 5  | `user05@nrkim0615outlook.onmicrosoft.com` | `K8sLab2026!` |
-| Team 6  | `user06@nrkim0615outlook.onmicrosoft.com` | `K8sLab2026!` |
-| Team 7  | `user07@nrkim0615outlook.onmicrosoft.com` | `K8sLab2026!` |
-| Team 8  | `user08@nrkim0615outlook.onmicrosoft.com` | `K8sLab2026!` |
-| Team 9  | `user09@nrkim0615outlook.onmicrosoft.com` | `K8sLab2026!` |
-| Team 10 | `user10@nrkim0615outlook.onmicrosoft.com` | `K8sLab2026!` |
+- **이메일**: `user{번호}@nrkim0615outlook.onmicrosoft.com`
+- **비밀번호**: `K8sLab2026!`
+
+예) 1번을 받은 경우 → `user01@nrkim0615outlook.onmicrosoft.com`
 
 ```bash
 az login --use-device-code
