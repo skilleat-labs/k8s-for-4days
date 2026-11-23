@@ -316,15 +316,15 @@ docker pull python:3.11-slim
 docker pull python:3.12-slim
 ```
 
-=== "Windows PowerShell"
-    ```powershell
-    (docker image inspect python:3.11-slim | ConvertFrom-Json)[0].RootFS.Layers
-    (docker image inspect python:3.12-slim | ConvertFrom-Json)[0].RootFS.Layers
-    ```
 === "macOS/Linux"
     ```bash
     docker image inspect python:3.11-slim | jq '.[0].RootFS.Layers'
     docker image inspect python:3.12-slim | jq '.[0].RootFS.Layers'
+    ```
+=== "Windows PowerShell"
+    ```powershell
+    (docker image inspect python:3.11-slim | ConvertFrom-Json)[0].RootFS.Layers
+    (docker image inspect python:3.12-slim | ConvertFrom-Json)[0].RootFS.Layers
     ```
 
 ### 6-3. 같은 이미지로 새 컨테이너 추가 실행
