@@ -144,9 +144,33 @@ kubectl delete pod pod-pending
 
     ```powershell
     kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+    ```
 
-    kubectl patch deployment metrics-server -n kube-system --type=json -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
+    다음 patch 명령은 **PowerShell에서 큰따옴표가 벗겨져 JSON이 깨지는 문제**가 있습니다. 아래 탭에서 본인 환경에 맞는 방법을 선택하세요.
 
+    === "macOS / Linux (bash/zsh)"
+
+        ```bash
+        kubectl patch deployment metrics-server -n kube-system --type=json \
+          -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
+        ```
+
+    === "Windows PowerShell 5.x"
+
+        ```powershell
+        kubectl patch deployment metrics-server -n kube-system --type=json -p='[{\"op\":\"add\",\"path\":\"/spec/template/spec/containers/0/args/-\",\"value\":\"--kubelet-insecure-tls\"}]'
+        ```
+
+    === "Windows PowerShell 7.x (또는 위 명령 실패 시)"
+
+        ```powershell
+        '[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]' | Out-File patch.json -Encoding ascii
+        kubectl patch deployment metrics-server -n kube-system --type=json --patch-file patch.json
+        ```
+
+    적용 후 Ready 확인:
+
+    ```powershell
     kubectl rollout status deployment/metrics-server -n kube-system
     ```
 
@@ -164,9 +188,29 @@ kubectl delete pod pod-pending
 
     ```powershell
     kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+    ```
 
-    kubectl patch deployment metrics-server -n kube-system --type=json -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
+    === "macOS / Linux (bash/zsh)"
 
+        ```bash
+        kubectl patch deployment metrics-server -n kube-system --type=json \
+          -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
+        ```
+
+    === "Windows PowerShell 5.x"
+
+        ```powershell
+        kubectl patch deployment metrics-server -n kube-system --type=json -p='[{\"op\":\"add\",\"path\":\"/spec/template/spec/containers/0/args/-\",\"value\":\"--kubelet-insecure-tls\"}]'
+        ```
+
+    === "Windows PowerShell 7.x (또는 위 명령 실패 시)"
+
+        ```powershell
+        '[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]' | Out-File patch.json -Encoding ascii
+        kubectl patch deployment metrics-server -n kube-system --type=json --patch-file patch.json
+        ```
+
+    ```powershell
     kubectl rollout status deployment/metrics-server -n kube-system
     ```
 
