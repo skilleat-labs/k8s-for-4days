@@ -210,6 +210,8 @@ kubectl delete pod pod-pending
         kubectl patch deployment metrics-server -n kube-system --type=json --patch-file patch.json
         ```
 
+    적용 후 Ready 확인:
+
     ```powershell
     kubectl rollout status deployment/metrics-server -n kube-system
     ```
