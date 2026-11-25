@@ -154,6 +154,32 @@ kubectl describe ingress lab-ingress
 
 ### 4) /etc/hosts 설정
 
+#### EXTERNAL-IP 확인 (먼저 필수)
+
+hosts 파일에 등록할 IP는 환경마다 다릅니다. **먼저 Ingress Controller의 EXTERNAL-IP를 확인하세요.**
+
+```bash
+kubectl get svc -n ingress-nginx
+```
+
+```
+NAME                       TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)
+ingress-nginx-controller   LoadBalancer   10.96.10.100   172.19.x.x      80:31234/TCP
+```
+
+| 환경 | EXTERNAL-IP | hosts에 등록할 IP |
+|---|---|---|
+| Docker Desktop | `localhost` | `127.0.0.1` |
+| Rancher Desktop | `127.0.0.1` | `127.0.0.1` |
+| VirtualBox / VM | `172.x.x.x` | 해당 IP 그대로 |
+| AKS (클라우드) | 실제 공인 IP | 해당 IP 그대로 |
+
+!!! warning "127.0.0.1이 아닐 수 있습니다"
+    EXTERNAL-IP가 `172.x.x.x`처럼 나오면 `127.0.0.1` 대신 그 IP를 사용해야 합니다.
+    아래 명령어의 `<EXTERNAL-IP>` 부분을 실제 IP로 바꿔서 실행하세요.
+
+---
+
 #### hosts 파일이란?
 
 브라우저가 `lab.local` 같은 도메인에 접속하려면 먼저 DNS 서버에 IP 주소를 물어봅니다. **hosts 파일**은 DNS 서버에 묻기 전에 운영체제가 가장 먼저 확인하는 로컬 주소록입니다.
@@ -162,7 +188,7 @@ kubectl describe ingress lab-ingress
 도메인 요청 → hosts 파일 확인 → (없으면) DNS 서버 조회
 ```
 
-실습에서 `lab.local`은 실제 존재하는 도메인이 아니므로, hosts 파일에 직접 `127.0.0.1 lab.local`을 등록해서 로컬 클러스터로 연결되도록 설정합니다.
+실습에서 `lab.local`은 실제 존재하는 도메인이 아니므로, hosts 파일에 직접 등록해서 로컬 클러스터로 연결되도록 설정합니다.
 
 **파일 위치**
 
@@ -181,7 +207,7 @@ kubectl describe ingress lab-ingress
 시작 메뉴에서 `PowerShell` 검색 → 우클릭 → **관리자 권한으로 실행** 후 아래 명령어 실행:
 
 ```powershell
-Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "127.0.0.1 lab.local"
+Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "<EXTERNAL-IP> lab.local"
 ```
 
 등록 확인:
@@ -195,9 +221,9 @@ Get-Content "C:\Windows\System32\drivers\etc\hosts" | Select-String "lab.local"
 1. 시작 메뉴에서 `메모장` 검색 → 우클릭 → **관리자 권한으로 실행**
 2. 메모장에서 `파일 → 열기` → 경로에 `C:\Windows\System32\drivers\etc\hosts` 입력
 3. 파일 형식을 **모든 파일 (\*.\*)** 로 변경 후 `hosts` 파일 선택
-4. 맨 아래에 추가:
+4. 맨 아래에 추가 (`<EXTERNAL-IP>`를 실제 IP로 변경):
     ```
-    127.0.0.1 lab.local
+    <EXTERNAL-IP> lab.local
     ```
 5. 저장 (`Ctrl+S`)
 
@@ -206,14 +232,28 @@ Get-Content "C:\Windows\System32\drivers\etc\hosts" | Select-String "lab.local"
 === "Windows (PowerShell — 관리자 권한)"
 
     ```powershell
-    Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "127.0.0.1 lab.local"
+    Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "<EXTERNAL-IP> lab.local"
     ```
 
 === "macOS / Linux"
 
     ```bash
-    sudo sh -c 'echo "127.0.0.1 lab.local" >> /etc/hosts'
+    sudo sh -c 'echo "<EXTERNAL-IP> lab.local" >> /etc/hosts'
     ```
+
+!!! tip "변경 후 적용이 안 될 때 — DNS 캐시 초기화"
+
+    === "Windows (PowerShell)"
+
+        ```powershell
+        ipconfig /flushdns
+        ```
+
+    === "macOS"
+
+        ```bash
+        sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+        ```
 
 ### 5) 접속 확인
 
@@ -304,18 +344,20 @@ Get-Content "C:\Windows\System32\drivers\etc\hosts" | Select-String "lab.local"
 
 **`/etc/hosts` 등록** (테스트 전에 먼저 추가하세요)
 
+> `<EXTERNAL-IP>`는 `kubectl get svc -n ingress-nginx`에서 확인한 IP를 사용하세요.
+
 === "Windows (PowerShell — 관리자 권한)"
 
     ```powershell
-    Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "127.0.0.1 api.lab.local"
-    Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "127.0.0.1 web.lab.local"
+    Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "<EXTERNAL-IP> api.lab.local"
+    Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "<EXTERNAL-IP> web.lab.local"
     ```
 
 === "macOS / Linux"
 
     ```bash
-    sudo sh -c 'echo "127.0.0.1 api.lab.local" >> /etc/hosts'
-    sudo sh -c 'echo "127.0.0.1 web.lab.local" >> /etc/hosts'
+    sudo sh -c 'echo "<EXTERNAL-IP> api.lab.local" >> /etc/hosts'
+    sudo sh -c 'echo "<EXTERNAL-IP> web.lab.local" >> /etc/hosts'
     ```
 
 **성공 조건:**
