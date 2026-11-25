@@ -387,9 +387,7 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/con
 
 ---
 
-## 정답
-
-??? note "정답 보기 (먼저 직접 작성해보세요!)"
+??? note "정답 보기 — 먼저 직접 작성해보세요!"
 
     **api-app.yaml**
 
@@ -465,7 +463,9 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/con
           targetPort: 5678
     ```
 
-??? note "미션 1 정답 — 서비스 추가 + 경로 라우팅"
+    ---
+
+    **미션 1 — 서비스 추가 + 경로 라우팅**
 
     **shop-app.yaml**
 
@@ -542,7 +542,9 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/con
                       number: 80
     ```
 
-??? note "미션 2 정답 — 호스트 기반 라우팅"
+    ---
+
+    **미션 2 — 호스트 기반 라우팅**
 
     **ingress-host.yaml**
 
