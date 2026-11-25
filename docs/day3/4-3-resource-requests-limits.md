@@ -139,6 +139,26 @@ kubectl delete pod pod-pending
 
     노드별 CPU/메모리 수치가 출력되면 준비 완료입니다. 다음 Step으로 진행하세요.
 
+??? note "Docker Desktop 사용 시 — metrics-server 별도 설치 필요"
+    Docker Desktop은 metrics-server가 기본 비활성화 상태입니다. Step 2, 4 전에 한 번만 실행하세요.
+
+    ```powershell
+    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+    kubectl patch deployment metrics-server -n kube-system --type=json -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
+
+    kubectl rollout status deployment/metrics-server -n kube-system
+    ```
+
+    설치 후 1~2분 대기하면 `kubectl top nodes`가 동작합니다.
+
+    !!! warning "Docker Desktop 실습 한계"
+        Docker Desktop은 Mac/Windows 자원을 공유하는 **단일 노드** 환경입니다.
+
+        - **Step 2 (CPU Throttling)**: `kubectl top pod`로 200m 상한은 확인되지만, 수치가 AKS보다 느리게 반영될 수 있습니다.
+        - **Step 3 (OOMKilled)**: 대부분 정상 동작하지만 `/dev/shm` 할당이 호스트 OS 환경에 따라 다를 수 있습니다.
+        - **Step 4 (limits 미설정)**: 단일 노드라 CPU 독식 시 다른 Pod에 미치는 영향이 AKS만큼 극명하게 나타나지 않습니다. **이 시나리오는 AKS에서 가장 효과적입니다.**
+
 ??? note "Rancher Desktop(로컬) 사용 시 — metrics-server 별도 설치 필요"
     Rancher Desktop(k3s)은 metrics-server가 기본 비활성화 상태입니다. Step 2, 4 전에 한 번만 실행하세요.
 
