@@ -184,43 +184,26 @@ kubectl delete pod pod-with-secret
 
 ---
 
-## 실습 4 — Deployment에 imagePullSecrets 적용
+## 🔧 도전 과제 — Deployment에 imagePullSecrets 적용
 
 실제 운영에서는 Pod 단독이 아니라 Deployment에 설정합니다.
+지금까지 배운 내용을 바탕으로 `deploy-acr.yaml`을 직접 작성하세요.
 
-`deploy-acr.yaml`:
+**조건:**
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: acr-app
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: acr-app
-  template:
-    metadata:
-      labels:
-        app: acr-app
-    spec:
-      containers:
-        - name: app
-          image: skilleatlab.azurecr.io/skilleat/rollout-demo:v1.0.0
-          ports:
-            - containerPort: 8080
-      imagePullSecrets:
-        - name: acr-secret
-```
+- Deployment 이름: `acr-app`
+- 이미지: `skilleatlab.azurecr.io/skilleat/rollout-demo:v1.0.0`
+- replicas: `2`
+- containerPort: `8080`
+- 앞서 만든 Secret을 연결해 이미지를 pull할 수 있어야 함
+
+**성공 조건:**
 
 ```powershell
-kubectl apply -f deploy-acr.yaml
-kubectl get pods -l app=acr-app
 kubectl get pods -l app=acr-app -o wide
 ```
 
-2개의 Pod가 서로 다른 노드에서 이미지를 pull해 실행되는지 확인합니다.
+2개의 Pod가 모두 `Running` 상태이고, `-o wide`로 서로 다른 노드에 배포됐는지 확인합니다.
 
 !!! info "노드별 이미지 캐시"
     각 노드가 처음 이미지를 pull할 때 Secret을 사용합니다.
