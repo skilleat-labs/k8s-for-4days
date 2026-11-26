@@ -30,6 +30,17 @@ Pod에 `imagePullSecrets`로 연결합니다.
 
 ---
 
+## 실습 ACR 정보
+
+!!! info "실습용 ACR 접속 정보"
+    | 항목 | 값 |
+    |---|---|
+    | Registry 주소 | `skilleatlab.azurecr.io` |
+    | Username | `lab-readonly` |
+    | Password | `7NJ4kReN9XeJruhOZpwaIJs4XXr7GcyH7usoXjklVTAWg20yYZ9wJQQJ99CKACNns7REqg7NAAABAZCRtXSq` |
+
+---
+
 ## 실습 1 — Secret 없이 배포 (실패 확인)
 
 먼저 Secret 없이 배포해서 어떤 에러가 나는지 확인합니다.
@@ -44,7 +55,7 @@ metadata:
 spec:
   containers:
     - name: app
-      image: <ACR이름>.azurecr.io/skilleat/rollout-demo:v1.0.0
+      image: skilleatlab.azurecr.io/skilleat/rollout-demo:v1.0.0
   restartPolicy: Never
 ```
 
@@ -77,21 +88,21 @@ kubectl delete pod pod-no-secret
 
 ## 실습 2 — imagePullSecret 생성
 
-강사에게 전달받은 ACR 인증 정보로 Secret을 생성합니다.
+아래 명령어를 그대로 실행하세요.
 
 === "Windows PowerShell"
     ```powershell
     kubectl create secret docker-registry acr-secret `
-      --docker-server=<ACR이름>.azurecr.io `
-      --docker-username=<username> `
-      --docker-password=<password>
+      --docker-server=skilleatlab.azurecr.io `
+      --docker-username=lab-readonly `
+      --docker-password=7NJ4kReN9XeJruhOZpwaIJs4XXr7GcyH7usoXjklVTAWg20yYZ9wJQQJ99CKACNns7REqg7NAAABAZCRtXSq
     ```
 === "macOS/Linux"
     ```bash
     kubectl create secret docker-registry acr-secret \
-      --docker-server=<ACR이름>.azurecr.io \
-      --docker-username=<username> \
-      --docker-password=<password>
+      --docker-server=skilleatlab.azurecr.io \
+      --docker-username=lab-readonly \
+      --docker-password=7NJ4kReN9XeJruhOZpwaIJs4XXr7GcyH7usoXjklVTAWg20yYZ9wJQQJ99CKACNns7REqg7NAAABAZCRtXSq
     ```
 
 Secret 확인:
@@ -144,7 +155,7 @@ metadata:
 spec:
   containers:
     - name: app
-      image: <ACR이름>.azurecr.io/skilleat/rollout-demo:v1.0.0
+      image: skilleatlab.azurecr.io/skilleat/rollout-demo:v1.0.0
       ports:
         - containerPort: 8080
   imagePullSecrets:
@@ -196,7 +207,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: <ACR이름>.azurecr.io/skilleat/rollout-demo:v1.0.0
+          image: skilleatlab.azurecr.io/skilleat/rollout-demo:v1.0.0
           ports:
             - containerPort: 8080
       imagePullSecrets:
