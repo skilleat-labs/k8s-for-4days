@@ -1553,10 +1553,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-deployment-imagepullsecrets" class="md-nav__link">
+  <a href="#deployment-imagepullsecrets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        실습 4 — Deployment에 imagePullSecrets 적용
+        🔧 도전 과제 — Deployment에 imagePullSecrets 적용
       
     </span>
   </a>
@@ -1912,10 +1912,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-deployment-imagepullsecrets" class="md-nav__link">
+  <a href="#deployment-imagepullsecrets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        실습 4 — Deployment에 imagePullSecrets 적용
+        🔧 도전 과제 — Deployment에 imagePullSecrets 적용
       
     </span>
   </a>
@@ -2147,36 +2147,21 @@ Secret 없이 배포했을 때의 <code>ImagePullBackOff</code>와 비교해보�
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">pod</span> <span class="n">pod-with-secret</span>
 </span></code></pre></div>
 <hr />
-<h2 id="4-deployment-imagepullsecrets">실습 4 — Deployment에 imagePullSecrets 적용<a class="headerlink" href="#4-deployment-imagepullsecrets" title="Permanent link">&para;</a></h2>
-<p>실제 운영에서는 Pod 단독이 아니라 Deployment에 설정합니다.</p>
-<p><code>deploy-acr.yaml</code>:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">acr-app</span>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">acr-app</span>
-</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
-</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">acr-app</span>
-</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
-</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
-</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">skilleatlab.azurecr.io/skilleat/rollout-demo:v1.0.0</span>
-</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
-</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="w">      </span><span class="nt">imagePullSecrets</span><span class="p">:</span>
-</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">acr-secret</span>
+<h2 id="deployment-imagepullsecrets">🔧 도전 과제 — Deployment에 imagePullSecrets 적용<a class="headerlink" href="#deployment-imagepullsecrets" title="Permanent link">&para;</a></h2>
+<p>실제 운영에서는 Pod 단독이 아니라 Deployment에 설정합니다.
+지금까지 배운 내용을 바탕으로 <code>deploy-acr.yaml</code>을 직접 작성하세요.</p>
+<p><strong>조건:</strong></p>
+<ul>
+<li>Deployment 이름: <code>acr-app</code></li>
+<li>이미지: <code>skilleatlab.azurecr.io/skilleat/rollout-demo:v1.0.0</code></li>
+<li>replicas: <code>2</code></li>
+<li>containerPort: <code>8080</code></li>
+<li>앞서 만든 Secret을 연결해 이미지를 pull할 수 있어야 함</li>
+</ul>
+<p><strong>성공 조건:</strong></p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span> <span class="n">-l</span> <span class="n">app</span><span class="p">=</span><span class="n">acr-app</span> <span class="n">-o</span> <span class="n">wide</span>
 </span></code></pre></div>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">deploy-acr</span><span class="p">.</span><span class="n">yaml</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span> <span class="n">-l</span> <span class="n">app</span><span class="p">=</span><span class="n">acr-app</span>
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span> <span class="n">-l</span> <span class="n">app</span><span class="p">=</span><span class="n">acr-app</span> <span class="n">-o</span> <span class="n">wide</span>
-</span></code></pre></div>
-<p>2개의 Pod가 서로 다른 노드에서 이미지를 pull해 실행되는지 확인합니다.</p>
+<p>2개의 Pod가 모두 <code>Running</code> 상태이고, <code>-o wide</code>로 서로 다른 노드에 배포됐는지 확인합니다.</p>
 <div class="admonition info">
 <p class="admonition-title">노드별 이미지 캐시</p>
 <p>각 노드가 처음 이미지를 pull할 때 Secret을 사용합니다.
@@ -2184,21 +2169,21 @@ Secret 없이 배포했을 때의 <code>ImagePullBackOff</code>와 비교해보�
 하지만 새 노드가 추가되거나 이미지 태그가 바뀌면 다시 pull하므로
 항상 Secret을 유지해야 합니다.</p>
 </div>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="o">-f</span> <span class="n">deploy-acr</span><span class="p">.</span><span class="n">yaml</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="o">-f</span> <span class="n">deploy-acr</span><span class="p">.</span><span class="n">yaml</span>
 </span></code></pre></div>
 <hr />
 <h2 id="_2">정리 (리소스 삭제)<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">secret</span> <span class="n">acr-secret</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">kubectl</span> <span class="n">delete</span> <span class="n">secret</span> <span class="n">acr-secret</span>
 </span></code></pre></div>
 <hr />
 <h2 id="secret-vs-imagepullsecrets">Secret vs imagePullSecrets 구조 정리<a class="headerlink" href="#secret-vs-imagepullsecrets" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Secret (docker-registry 타입)
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>  └── .dockerconfigjson
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>        └── { "auths": { "registry주소": { "username", "password" } } }
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>Pod / Deployment
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>  └── spec.imagePullSecrets
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>        └── - name: acr-secret   ← Secret 이름 참조
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Secret (docker-registry 타입)
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>  └── .dockerconfigjson
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>        └── { "auths": { "registry주소": { "username", "password" } } }
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>Pod / Deployment
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>  └── spec.imagePullSecrets
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>        └── - name: acr-secret   ← Secret 이름 참조
 </span></code></pre></div>
 <hr />
 <h2 id="_3">비교 정리<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
