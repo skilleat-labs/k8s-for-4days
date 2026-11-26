@@ -4,7 +4,7 @@ VirtualBox로 **control-plane 1대 + worker 2대** 구성하기
 
 스킬샵 클러스터를 내 PC에 그대로 만들어봅니다.
 
-**Kubernetes v1.32 / Ubuntu 22.04 LTS / containerd / Cilium 기준**
+**Kubernetes v1.32 / Ubuntu 24.04 LTS / containerd / Cilium 기준**
 
 ---
 
@@ -15,9 +15,9 @@ graph TB
     Internet((Internet))
     subgraph Host["Host PC - VirtualBox"]
         subgraph HostOnly["Host-only Network 192.168.56.0/24"]
-            CP["control-plane\n192.168.56.10\nCPU:2 RAM:2560MB\netcd API Server Scheduler Controller Manager"]
-            W1["worker-1\n192.168.56.11\nCPU:2 RAM:2048MB\nkubelet kube-proxy"]
-            W2["worker-2\n192.168.56.12\nCPU:2 RAM:2048MB\nkubelet kube-proxy"]
+            CP["control-plane\n192.168.56.10\nCPU:2 RAM:2560MB\netcd · API Server · Scheduler · Controller Manager"]
+            W1["worker-1\n192.168.56.11\nCPU:2 RAM:2048MB\nkubelet · kube-proxy"]
+            W2["worker-2\n192.168.56.12\nCPU:2 RAM:2048MB\nkubelet · kube-proxy"]
         end
         NAT["NAT 어댑터1 인터넷용"]
     end
@@ -32,18 +32,62 @@ graph TB
 
 ---
 
+## 전체 흐름
+
+```
+1. 사전 준비 (VirtualBox 설치, PC 사양 확인)
+        ↓
+2. Ubuntu 24.04 Server ISO 다운로드
+        ↓
+3. control-plane VM 생성 · 네트워크 · IP 설정
+        ↓
+4. 공통 설정 — control-plane에서 먼저 완료
+   (swap 비활성화 · containerd · kubeadm/kubectl/kubelet)
+        ↓
+5. worker-1, worker-2 복제 → IP/hostname만 변경
+        ↓
+6. control-plane 초기화 (kubeadm init)
+        ↓
+7. Cilium CNI 설치
+        ↓
+8. worker 노드 조인 (kubeadm join)
+        ↓
+9. 최종 검증
+        ↓
+10. 트러블슈팅 / 11. 로컬 kubeconfig 병합 / 12. kubectl 자동완성
+```
+
+!!! info "핵심 포인트"
+    **공통 설정을 복제 전에 완료합니다.**
+    control-plane에서 containerd · kubeadm 등을 설치한 뒤 복제하면,
+    worker도 동일 환경으로 시작하므로 세 번 반복할 필요가 없습니다.
+
+---
+
+## 노드별 역할과 컴포넌트
+
+| 노드 | 역할 | 주요 컴포넌트 |
+|------|------|--------------|
+| control-plane | 클러스터 관리 · API 처리 | kube-apiserver, etcd, kube-scheduler, kube-controller-manager |
+| worker-1 / worker-2 | 애플리케이션 실행 | kubelet, kube-proxy, containerd |
+| 모든 노드 공통 | — | kubelet (노드 에이전트), containerd (컨테이너 런타임) |
+
+---
+
 ## 목차
 
 1. [사전 준비](#1-사전-준비)
 2. [Ubuntu 이미지 다운로드 & 저장 위치](#2-ubuntu-이미지-다운로드-저장-위치)
 3. [control-plane VM 생성 및 설정 (복제 전)](#3-control-plane-vm-생성-및-설정-복제-전)
-4. [worker VM 복제 및 설정](#4-worker-vm-복제-및-설정)
-5. [공통 설정 (3대 모두)](#5-공통-설정-3대-모두)
+4. [공통 설정 (3대 모두 — 복제 전에 완료)](#4-공통-설정-3대-모두-복제-전에-완료)
+5. [worker VM 복제 및 설정](#5-worker-vm-복제-및-설정)
 6. [control-plane 초기화](#6-control-plane-초기화)
 7. [Cilium 설치](#7-cilium-설치)
 8. [worker 노드 조인](#8-worker-노드-조인)
 9. [최종 검증](#9-최종-검증)
 10. [자주 나는 에러 & 트러블슈팅](#10-자주-나는-에러-트러블슈팅)
+11. [로컬 PC에서 kubectl 연결 (kubeconfig 병합)](#11-로컬-pc에서-kubectl-연결-kubeconfig-병합)
+12. [kubectl 자동완성 설정](#12-kubectl-자동완성-설정)
 
 ---
 
@@ -90,12 +134,12 @@ VM 3대를 동시에 돌리므로 호스트 PC 사양이 중요합니다.
 
 ### 어떤 이미지를 받나
 
-- **Ubuntu Server 22.04 LTS** (Desktop 아님, Server!)
-- 파일명 예: `ubuntu-22.04.5-live-server-amd64.iso`
-- 다운로드: [https://releases.ubuntu.com/22.04/](https://releases.ubuntu.com/22.04/)
+- **Ubuntu Server 24.04 LTS** (Desktop 아님, Server!)
+- 파일명 예: `ubuntu-24.04.2-live-server-amd64.iso`
+- 다운로드: [https://releases.ubuntu.com/24.04/](https://releases.ubuntu.com/24.04/)
 
 !!! warning
-    Desktop 버전은 GUI 때문에 무겁습니다. 반드시 Server 버전.
+    Desktop 버전은 GUI 때문에 무겁습니다. 반드시 Server 버전으로 받으세요.
     Apple Silicon 맥이면 arm64 버전을 받으세요.
 
 ### ISO 파일을 어디에 저장하나
@@ -105,13 +149,13 @@ ISO는 VM "설치 디스크" 역할만 합니다. 한 번 설치하면 그 뒤�
 === "Windows"
     ```
     C:\Users\<사용자명>\VirtualBox VMs\iso\
-      └── ubuntu-22.04.5-live-server-amd64.iso
+      └── ubuntu-24.04.2-live-server-amd64.iso
     ```
 
 === "macOS"
     ```
     ~/VirtualBox VMs/iso/
-      └── ubuntu-22.04.5-live-server-amd64.iso
+      └── ubuntu-24.04.2-live-server-amd64.iso
     ```
 
 !!! tip
@@ -141,7 +185,7 @@ VirtualBox가 자동으로 아래에 만듭니다 (기본값).
 
 !!! warning "중요"
     이 섹션의 모든 설정은 **복제 전에 완료**해야 합니다.
-    control-plane을 복제해서 worker-1, worker-2를 만들기 때문에, 여기서 설정한 내용이 세 대에 그대로 복사됩니다.
+    4번 공통 설정까지 마친 뒤 복제하면, worker도 동일 환경으로 시작합니다.
 
 ### 3-1. VM 생성
 
@@ -154,13 +198,12 @@ VirtualBox가 자동으로 아래에 만듭니다 (기본값).
 7. 생성 완료
 
 !!! warning
-    2560MB 이상을 권장합니다. 그 이하(특히 2GB 미만)로 설정하면 control-plane에서 etcd, API Server, Scheduler, Controller Manager가 동시에 기동될 때 메모리 부족(OOM)이 발생하여 클러스터가 정상적으로 동작하지 않을 수 있습니다.
+    2560MB 이상을 권장합니다. 그 이하(특히 2GB 미만)로 설정하면 control-plane에서 etcd, API Server, Scheduler, Controller Manager가 동시에 기동될 때 메모리 부족(OOM)이 발생할 수 있습니다.
 
 ### 3-2. 부팅 확인 & OpenSSH Server 설치
 
-이 실습에서는 사전 구성된 ISO를 사용하므로 별도 설치 과정 없이 부팅하면 바로 로그인 화면이 나타납니다.
-
-부팅 후 아래 항목을 확인하세요.
+Ubuntu 24.04 Server 설치 중 "OpenSSH Server 설치" 옵션을 체크하면 별도 설치 없이 사용 가능합니다.
+설치 후 부팅되면 아래 항목을 확인하세요.
 
 ```bash
 hostname
@@ -168,7 +211,7 @@ whoami
 ip a
 ```
 
-OpenSSH Server 설치 (SSH 접속용):
+OpenSSH Server가 없는 경우 설치:
 
 ```bash
 sudo apt-get update
@@ -224,10 +267,121 @@ sudo netplan apply
 
 hosts 파일에 세 노드의 IP와 호스트명을 등록합니다.
 
+```bash
+sudo tee -a /etc/hosts <<EOF
+192.168.56.10 control-plane
+192.168.56.11 worker-1
+192.168.56.12 worker-2
+EOF
+```
+
 !!! tip
     복제 시 이 파일도 그대로 복사되므로 worker에서 따로 설정할 필요가 없습니다.
 
-### 3-6. VM 종료
+---
+
+## 4. 공통 설정 (3대 모두 — 복제 전에 완료)
+
+!!! warning "순서 중요"
+    control-plane에서 4번을 **완료한 뒤** 복제하세요.
+    그러면 worker도 동일 환경으로 시작합니다 — worker에서 4번을 반복할 필요가 없습니다.
+
+### 4-1. swap 비활성화
+
+쿠버네티스는 메모리 관리를 직접 하기 때문에 swap이 켜져 있으면 kubelet이 오작동합니다.
+
+```bash
+sudo swapoff -a
+sudo sed -i.bak -r 's/(.+ swap .+)/#\1/' /etc/fstab
+free -h
+```
+
+Swap 항목이 모두 `0`이면 성공입니다.
+
+!!! warning
+    swap이 살아있으면 `kubeadm init`이 실패합니다.
+
+### 4-2. 커널 모듈 & sysctl
+
+**왜 필요한가?**
+
+- `overlay`: containerd가 레이어 파일시스템을 쓰기 위한 모듈
+- `br_netfilter`: 브리지 네트워크 트래픽도 iptables로 처리 → Pod 간 통신에 필수
+- `ip_forward`: 호스트가 패킷을 라우팅할 수 있게 (컨테이너 → 외부)
+
+```bash
+sudo tee /etc/modules-load.d/k8s.conf <<EOF
+overlay
+br_netfilter
+EOF
+
+sudo modprobe overlay
+sudo modprobe br_netfilter
+
+sudo tee /etc/sysctl.d/kubernetes.conf <<EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+EOF
+
+sudo sysctl --system
+```
+
+### 4-3. containerd 설치
+
+**containerd**는 쿠버네티스의 컨테이너 런타임입니다. kubelet이 containerd를 통해 컨테이너를 생성·삭제합니다.
+
+```bash
+sudo apt-get update
+sudo apt-get install -y containerd
+
+sudo mkdir -p /etc/containerd
+containerd config default | sudo tee /etc/containerd/config.toml > /dev/null
+
+sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
+
+sudo systemctl restart containerd
+sudo systemctl enable containerd
+sudo systemctl status containerd --no-pager
+```
+
+!!! warning "`SystemdCgroup = true` 왜 필요한가?"
+    쿠버네티스와 containerd가 각자 cgroup을 관리하면 충돌이 생깁니다.
+    `SystemdCgroup = true`로 맞춰야 kubelet이 안정적으로 동작합니다.
+
+### 4-4. kubeadm / kubelet / kubectl 설치 (v1.32)
+
+| 도구 | 역할 |
+|------|------|
+| **kubeadm** | 클러스터 초기화(init) · 노드 조인(join) 도구 |
+| **kubelet** | 각 노드에서 실행되는 에이전트 — Pod 생성·삭제 담당 |
+| **kubectl** | 클러스터에 명령을 보내는 CLI |
+
+```bash
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+
+sudo mkdir -p -m 755 /etc/apt/keyrings
+
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | \
+  sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \
+https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /" | \
+  sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+
+kubeadm version
+```
+
+!!! success "체크포인트"
+    여기까지가 복제 전 공통 설정입니다.
+    **이 상태에서 VM을 종료하고 복제**합니다 → 5번으로 이동하세요.
+
+### 4-5. VM 종료
 
 ```bash
 sudo poweroff
@@ -239,9 +393,9 @@ sudo poweroff
 
 ---
 
-## 4. worker VM 복제 및 설정
+## 5. worker VM 복제 및 설정
 
-### 4-1. 복제 (clone)
+### 5-1. 복제 (clone)
 
 control-plane VM이 Powered Off 상태인지 확인 후:
 
@@ -252,10 +406,10 @@ control-plane VM이 Powered Off 상태인지 확인 후:
 5. 같은 방법으로 `worker-2`도 복제
 
 !!! tip
-    어댑터 설정, netplan 구조, hosts 설정이 모두 복사됩니다.
+    어댑터 설정, netplan 구조, hosts 설정, containerd, kubeadm이 모두 복사됩니다.
     worker에서 바꿔야 하는 건 **IP 주소와 hostname 두 가지뿐**입니다.
 
-### 4-2. worker별 IP 변경 및 hostname 설정
+### 5-2. worker별 IP 변경 및 hostname 설정
 
 worker-1, worker-2 각각 부팅 후 아래를 실행합니다.
 
@@ -279,7 +433,7 @@ exec bash
 !!! info
     worker-2에서는 `worker-2`로 설정합니다.
 
-### 4-3. 통신 확인 (필수 체크포인트)
+### 5-3. 통신 확인 (필수 체크포인트)
 
 3대 모두 부팅된 상태에서 **control-plane에서** 실행:
 
@@ -290,133 +444,6 @@ ping -c 2 worker-2
 
 !!! success "체크포인트"
     ping이 가야 다음으로 진행하세요. 안 가면 netplan IP 설정을 다시 점검하세요.
-
----
-
-## 5. 공통 설정 (3대 모두)
-
-control-plane, worker-1, worker-2 **세 대 모두**에서 동일하게 실행합니다.
-
-### 5-1. swap 비활성화
-
-```bash
-sudo swapoff -a
-sudo sed -i.bak -r 's/(.+ swap .+)/#\1/' /etc/fstab
-free -h
-```
-
-!!! warning
-    swap이 살아있으면 `kubeadm init`이 실패합니다. Swap 항목이 `0`이어야 합니다.
-
-### 5-2. 커널 모듈 & sysctl
-
-```bash
-sudo tee /etc/modules-load.d/k8s.conf <<EOF
-overlay
-br_netfilter
-EOF
-
-sudo modprobe overlay
-sudo modprobe br_netfilter
-
-sudo tee /etc/sysctl.d/kubernetes.conf <<EOF
-net.bridge.bridge-nf-call-ip6tables = 1
-net.bridge.bridge-nf-call-iptables = 1
-net.ipv4.ip_forward = 1
-EOF
-
-sudo sysctl --system
-```
-
-### 5-3. containerd 설치
-
-```bash
-sudo apt-get update
-sudo apt-get install -y containerd
-
-sudo mkdir -p /etc/containerd
-containerd config default | sudo tee /etc/containerd/config.toml > /dev/null
-
-sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
-
-sudo systemctl restart containerd
-sudo systemctl enable containerd
-sudo systemctl status containerd --no-pager
-```
-
-!!! warning
-    `SystemdCgroup = true` 안 바꾸면 나중에 kubelet이 불안정합니다.
-
-### 5-4. kubeadm / kubelet / kubectl 설치 (v1.32)
-
-```bash
-sudo apt-get update
-sudo apt-get install -y apt-transport-https ca-certificates curl gpg
-
-sudo mkdir -p -m 755 /etc/apt/keyrings
-
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | \
-  sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \
-https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /" | \
-  sudo tee /etc/apt/sources.list.d/kubernetes.list
-
-sudo apt-get update
-sudo apt-get install -y kubelet kubeadm kubectl
-sudo apt-mark hold kubelet kubeadm kubectl
-
-kubeadm version
-```
-
-!!! success "체크포인트"
-    여기까지가 3대 공통입니다. 세 대 모두 5-1 ~ 5-4 완료 후 6번으로 넘어가세요.
-
-### worker용 한번에 설치 블록
-
-control-plane에서는 위 5-1 ~ 5-4를 하나씩 따라가세요.
-worker-1, worker-2는 아래 블록을 통째로 복사해서 붙여넣기 하면 한 번에 설치됩니다.
-
-```bash
-sudo swapoff -a
-sudo sed -i.bak -r 's/(.+ swap .+)/#\1/' /etc/fstab
-
-sudo tee /etc/modules-load.d/k8s.conf <<EOF
-overlay
-br_netfilter
-EOF
-sudo modprobe overlay
-sudo modprobe br_netfilter
-
-sudo tee /etc/sysctl.d/kubernetes.conf <<EOF
-net.bridge.bridge-nf-call-ip6tables = 1
-net.bridge.bridge-nf-call-iptables = 1
-net.ipv4.ip_forward = 1
-EOF
-sudo sysctl --system
-
-sudo apt-get update
-sudo apt-get install -y containerd
-sudo mkdir -p /etc/containerd
-containerd config default | sudo tee /etc/containerd/config.toml > /dev/null
-sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
-sudo systemctl restart containerd
-sudo systemctl enable containerd
-
-sudo apt-get install -y apt-transport-https ca-certificates curl gpg
-sudo mkdir -p -m 755 /etc/apt/keyrings
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | \
-  sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \
-https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /" | \
-  sudo tee /etc/apt/sources.list.d/kubernetes.list
-sudo apt-get update
-sudo apt-get install -y kubelet kubeadm kubectl
-sudo apt-mark hold kubelet kubeadm kubectl
-
-echo "완료! kubeadm version으로 확인하세요."
-kubeadm version
-```
 
 ---
 
@@ -433,7 +460,7 @@ sudo kubeadm init \
 
 성공하면 마지막에 join 명령어가 출력됩니다.
 
-```bash
+```
 kubeadm join 192.168.56.10:6443 --token xxxx \
   --discovery-token-ca-cert-hash sha256:yyyy
 ```
@@ -459,6 +486,15 @@ kubectl get nodes
 ## 7. Cilium 설치
 
 control-plane에서만 실행합니다.
+
+**왜 CNI가 필요한가?**
+쿠버네티스 자체는 Pod 네트워크를 구현하지 않습니다. CNI(Container Network Interface) 플러그인이 Pod IP 할당과 Pod 간 통신을 담당합니다.
+
+| CNI | 특징 |
+|-----|------|
+| **Cilium** | eBPF 기반, 고성능, L7 정책 지원 |
+| Flannel | 가볍고 단순, 소규모 클러스터에 적합 |
+| Calico | BGP 기반, 대규모 클러스터에 많이 사용 |
 
 ```bash
 CILIUM_CLI_VERSION=$(curl -s https://raw.githubusercontent.com/cilium/cilium-cli/main/stable.txt)
@@ -545,44 +581,176 @@ kubectl delete deployment test
 | 노드 계속 NotReady | cilium pod 상태 확인, kubelet 로그 확인 |
 | 노드 간 통신 안됨 | 어댑터2 호스트전용 여부, netplan IP, ping 테스트, hosts 파일 |
 
-### kubeadm init이 실패해요
+??? question "kubeadm init이 실패해요"
+    ```bash
+    free -h
+    sudo systemctl status containerd
+    sudo kubeadm reset -f
+    sudo rm -rf $HOME/.kube
+    ```
+    reset 후 6번부터 다시 시도하세요.
+
+??? question "worker join이 안 돼요"
+    - control-plane으로 ping이 가는가? (5-3 확인)
+    - 토큰 만료 아닌가? (24시간) → control-plane에서 `kubeadm token create --print-join-command` 재발급
+    - join에 `sudo` 붙였는가?
+    - 양쪽 방화벽/swap 확인
+
+??? question "노드가 계속 NotReady예요"
+    ```bash
+    kubectl get pods -n kube-system | grep cilium
+    sudo journalctl -u kubelet -f
+    ```
+    Cilium pod가 `Running`이 아니면 cilium 재설치를 시도합니다.
+
+??? question "노드 간 통신이 안 돼요 (가장 흔함)"
+    원인: 호스트 전용 네트워크 설정 문제
+
+    - 각 VM 어댑터2가 호스트전용인지 확인
+    - netplan IP가 제대로 들어갔는지 (`ip a`)
+    - `ping 192.168.56.10` 테스트
+    - hosts 파일 등록 확인
+
+??? question "처음부터 다시 하고 싶어요"
+    ```bash
+    sudo kubeadm reset -f
+    sudo rm -rf $HOME/.kube
+    sudo iptables -F && sudo iptables -t nat -F
+    ```
+    그 후 6번부터 다시 시작합니다.
+
+---
+
+## 11. 로컬 PC에서 kubectl 연결 (kubeconfig 병합)
+
+VM 안에서만 `kubectl`을 쓰는 것은 불편합니다.
+로컬 PC의 kubeconfig에 vbox 클러스터를 추가하면 PC 터미널에서 직접 제어할 수 있습니다.
+
+### 11-1. admin.conf 가져오기
+
+control-plane에서 kubeconfig를 로컬로 복사합니다.
+
+=== "macOS/Linux"
+    ```bash
+    scp <사용자명>@192.168.56.10:~/.kube/config ~/vbox-k8s.yaml
+    ```
+
+=== "Windows PowerShell"
+    ```powershell
+    scp <사용자명>@192.168.56.10:~/.kube/config $HOME\vbox-k8s.yaml
+    ```
+
+### 11-2. server 주소 변경
+
+admin.conf의 `server:` 가 `https://192.168.56.10:6443`인지 확인합니다.
+`127.0.0.1`로 되어 있으면 `192.168.56.10`으로 바꿔줍니다.
+
+=== "macOS/Linux"
+    ```bash
+    sed -i '' 's/127.0.0.1/192.168.56.10/' ~/vbox-k8s.yaml
+    ```
+
+=== "Windows PowerShell"
+    ```powershell
+    (Get-Content $HOME\vbox-k8s.yaml) -replace '127.0.0.1','192.168.56.10' |
+      Set-Content $HOME\vbox-k8s.yaml
+    ```
+
+### 11-3. 기존 kubeconfig와 병합
+
+=== "macOS/Linux"
+    ```bash
+    # 기존 config 백업
+    cp ~/.kube/config ~/.kube/config.bak
+
+    # 병합
+    KUBECONFIG=~/.kube/config:~/vbox-k8s.yaml kubectl config view --merge --flatten > /tmp/merged.yaml
+    mv /tmp/merged.yaml ~/.kube/config
+    chmod 600 ~/.kube/config
+    ```
+
+=== "Windows PowerShell"
+    ```powershell
+    # 기존 config 백업
+    Copy-Item $HOME\.kube\config $HOME\.kube\config.bak
+
+    # 병합
+    $env:KUBECONFIG = "$HOME\.kube\config;$HOME\vbox-k8s.yaml"
+    kubectl config view --merge --flatten | Set-Content $HOME\.kube\config_merged
+    Move-Item $HOME\.kube\config_merged $HOME\.kube\config -Force
+    $env:KUBECONFIG = ""
+    ```
+
+### 11-4. context 전환
 
 ```bash
-free -h
-sudo systemctl status containerd
-sudo kubeadm reset -f
-sudo rm -rf $HOME/.kube
+kubectl config get-contexts
+kubectl config use-context kubernetes-admin@kubernetes
+kubectl get nodes
 ```
 
-### worker join이 안 돼요
+!!! success
+    로컬 터미널에서 `kubectl get nodes`가 성공하면 연결 완료입니다.
 
-- control-plane으로 ping이 가는가? (4-3 확인)
-- 토큰 만료 아닌가? (24시간) → 재발급
-- join에 `sudo` 붙였는가?
-- 양쪽 방화벽/swap 확인
+---
 
-### 노드가 계속 NotReady예요
+## 12. kubectl 자동완성 설정
+
+매번 명령어 전체를 타이핑하는 건 번거롭습니다.
+자동완성을 설정하면 `Tab` 키로 명령어와 리소스 이름을 완성할 수 있습니다.
+
+=== "bash (Linux / macOS Intel)"
+    ```bash
+    echo 'source <(kubectl completion bash)' >> ~/.bashrc
+    echo 'alias k=kubectl' >> ~/.bashrc
+    echo 'complete -o default -F __start_kubectl k' >> ~/.bashrc
+    source ~/.bashrc
+    ```
+
+=== "zsh (macOS)"
+    ```bash
+    echo 'source <(kubectl completion zsh)' >> ~/.zshrc
+    echo 'alias k=kubectl' >> ~/.zshrc
+    echo 'complete -o default -F __start_kubectl k' >> ~/.zshrc
+    source ~/.zshrc
+    ```
+
+=== "Windows PowerShell"
+    ```powershell
+    # 프로필 파일이 없으면 생성
+    if (!(Test-Path $PROFILE)) { New-Item $PROFILE -Force }
+
+    # 자동완성 등록
+    Add-Content $PROFILE "`nkubectl completion powershell | Out-String | Invoke-Expression"
+    . $PROFILE
+    ```
+
+확인:
 
 ```bash
-kubectl get pods -n kube-system | grep cilium
-sudo journalctl -u kubelet -f
+k get no   # Tab을 누르면 nodes로 완성됩니다
 ```
 
-### 노드 간 통신이 안 돼요 (가장 흔함)
+---
 
-원인: 호스트 전용 네트워크 설정 문제
+## FAQ
 
-- 각 VM 어댑터2가 호스트전용인지 확인
-- netplan IP가 제대로 들어갔는지 (`ip a`)
-- `ping 192.168.56.10` 테스트
-- hosts 파일 등록 확인
+??? question "worker를 1대만 만들면 안 되나요?"
+    됩니다. worker 1대로도 대부분의 실습은 가능합니다.
+    단, 노드 스케줄링(affinity, taint) 실습은 2대가 있어야 의미 있습니다.
 
-### 처음부터 다시 하고 싶어요
+??? question "VM을 껐다 켜면 클러스터가 살아 있나요?"
+    네. kubeadm으로 구성한 클러스터는 VM 재시작 후에도 자동으로 복구됩니다.
+    control-plane 먼저 켜고, worker를 켜면 됩니다.
 
-```bash
-sudo kubeadm reset -f
-sudo rm -rf $HOME/.kube
-sudo iptables -F && sudo iptables -t nat -F
-```
+??? question "IP가 192.168.56.x가 아니어도 되나요?"
+    됩니다. 단, 세 VM의 IP 대역이 일치해야 하고, `kubeadm init --apiserver-advertise-address`와 hosts 파일을 모두 맞춰서 변경해야 합니다.
 
-그 후 6번부터 다시 시작합니다.
+??? question "kubeadm join 토큰이 24시간 지나서 만료됐어요"
+    control-plane에서 재발급하세요:
+    ```bash
+    kubeadm token create --print-join-command
+    ```
+
+??? question "containerd 대신 Docker를 써도 되나요?"
+    권장하지 않습니다. Kubernetes 1.24부터 dockershim이 제거되어 Docker는 직접 런타임으로 쓸 수 없습니다. containerd를 사용하세요.
