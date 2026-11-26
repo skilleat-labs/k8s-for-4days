@@ -2025,18 +2025,22 @@ User는 K8s 내부 리소스가 아니라, <strong>인증서(Certificate)의 CN(
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>OpenSSL 3.x.x ...  ← 버전이 출력되면 OK
 </span></code></pre></div>
-<p><strong>3) alias 등록 (매번 경로 입력 생략용)</strong></p>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">Set-Alias</span> <span class="n">openssl</span> <span class="s2">"C:\Program Files\Git\usr\bin\openssl.exe"</span>
+<p><strong>3) alias 영구 등록</strong></p>
+<p>PowerShell 프로필에 등록하면 새 창을 열 때마다 자동으로 적용됩니다.</p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c"># 프로필 파일이 없으면 먼저 생성</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">if</span> <span class="p">(!(</span><span class="nb">Test-Path</span> <span class="nv">$PROFILE</span><span class="p">))</span> <span class="p">{</span> <span class="nb">New-Item</span> <span class="nv">$PROFILE</span> <span class="n">-Force</span> <span class="p">}</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c"># alias 추가</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nb">Add-Content</span> <span class="nv">$PROFILE</span> <span class="s2">"</span><span class="se">`n</span><span class="s2">Set-Alias openssl 'C:\Program Files\Git\usr\bin\openssl.exe'"</span>
 </span></code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">alias는 현재 세션에만 적용됩니다</p>
-<p>PowerShell을 새로 열 때마다 다시 등록해야 합니다.
-실습 중 <code>openssl : 명령을 찾을 수 없습니다</code> 에러가 나오면 위 alias 명령을 다시 실행하세요.</p>
-</div>
+<p>적용 확인 (현재 세션에 즉시 반영):</p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">.</span> <span class="nv">$PROFILE</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">openssl</span> <span class="n">version</span>
+</span></code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>openssl이 기본 설치되어 있습니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>openssl<span class="w"> </span>version
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>openssl<span class="w"> </span>version
 </span></code></pre></div>
 </div>
 </div>
@@ -2046,11 +2050,11 @@ User는 K8s 내부 리소스가 아니라, <strong>인증서(Certificate)의 CN(
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows PowerShell</label><label for="__tabbed_2_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">mkdir</span> <span class="p">~/</span><span class="n">rbac-lab</span><span class="p">;</span> <span class="nb">cd </span><span class="p">~/</span><span class="n">rbac-lab</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">mkdir</span> <span class="p">~/</span><span class="n">rbac-lab</span><span class="p">;</span> <span class="nb">cd </span><span class="p">~/</span><span class="n">rbac-lab</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mkdir<span class="w"> </span>~/rbac-lab<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/rbac-lab
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mkdir<span class="w"> </span>~/rbac-lab<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/rbac-lab
 </span></code></pre></div>
 </div>
 </div>
@@ -2062,13 +2066,13 @@ User는 K8s 내부 리소스가 아니라, <strong>인증서(Certificate)의 CN(
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Windows PowerShell</label><label for="__tabbed_3_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">&amp;</span> <span class="s2">"C:\Program Files\Git\usr\bin\openssl.exe"</span> <span class="n">genrsa</span> <span class="n">-out</span> <span class="n">dev-user</span><span class="p">.</span><span class="n">key</span> <span class="n">2048</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="p">&amp;</span> <span class="s2">"C:\Program Files\Git\usr\bin\openssl.exe"</span> <span class="n">req</span> <span class="n">-new</span> <span class="n">-key</span> <span class="n">dev-user</span><span class="p">.</span><span class="n">key</span> <span class="n">-out</span> <span class="n">dev-user</span><span class="p">.</span><span class="n">csr</span> <span class="n">-subj</span> <span class="s2">"/CN=dev-user/O=dev-team"</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">&amp;</span> <span class="s2">"C:\Program Files\Git\usr\bin\openssl.exe"</span> <span class="n">genrsa</span> <span class="n">-out</span> <span class="n">dev-user</span><span class="p">.</span><span class="n">key</span> <span class="n">2048</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p">&amp;</span> <span class="s2">"C:\Program Files\Git\usr\bin\openssl.exe"</span> <span class="n">req</span> <span class="n">-new</span> <span class="n">-key</span> <span class="n">dev-user</span><span class="p">.</span><span class="n">key</span> <span class="n">-out</span> <span class="n">dev-user</span><span class="p">.</span><span class="n">csr</span> <span class="n">-subj</span> <span class="s2">"/CN=dev-user/O=dev-team"</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>dev-user.key<span class="w"> </span><span class="m">2048</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-key<span class="w"> </span>dev-user.key<span class="w"> </span>-out<span class="w"> </span>dev-user.csr<span class="w"> </span>-subj<span class="w"> </span><span class="s2">"/CN=dev-user/O=dev-team"</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>dev-user.key<span class="w"> </span><span class="m">2048</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-key<span class="w"> </span>dev-user.key<span class="w"> </span>-out<span class="w"> </span>dev-user.csr<span class="w"> </span>-subj<span class="w"> </span><span class="s2">"/CN=dev-user/O=dev-team"</span>
 </span></code></pre></div>
 </div>
 </div>
@@ -2080,53 +2084,53 @@ User는 K8s 내부 리소스가 아니라, <strong>인증서(Certificate)의 CN(
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>CSR을 base64로 인코딩:
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">$CSR_B64</span> <span class="p">=</span> <span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="no">[System.IO.File]</span><span class="p">::</span><span class="n">ReadAllBytes</span><span class="p">(</span><span class="s2">"$HOME/rbac-lab/dev-user.csr"</span><span class="p">))</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nv">$CSR_B64</span> <span class="p">=</span> <span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="no">[System.IO.File]</span><span class="p">::</span><span class="n">ReadAllBytes</span><span class="p">(</span><span class="s2">"$HOME/rbac-lab/dev-user.csr"</span><span class="p">))</span>
 </span></code></pre></div></p>
 <p>YAML 파일 생성:
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="sh">@"</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="sh">apiVersion: certificates.k8s.io/v1</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="sh">kind: CertificateSigningRequest</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="sh">metadata:</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="sh">  name: dev-user-csr</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="sh">spec:</span>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="sh">  request: $CSR_B64</span>
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="sh">  signerName: kubernetes.io/kube-apiserver-client</span>
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="sh">  expirationSeconds: 86400</span>
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="sh">  usages:</span>
-</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="sh">  - client auth</span>
-</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="sh">"@</span> <span class="p">|</span> <span class="nb">Set-Content</span> <span class="n">csr</span><span class="p">.</span><span class="n">yaml</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="sh">@"</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="sh">apiVersion: certificates.k8s.io/v1</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="sh">kind: CertificateSigningRequest</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="sh">metadata:</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="sh">  name: dev-user-csr</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="sh">spec:</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="sh">  request: $CSR_B64</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="sh">  signerName: kubernetes.io/kube-apiserver-client</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="sh">  expirationSeconds: 86400</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="sh">  usages:</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="sh">  - client auth</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="sh">"@</span> <span class="p">|</span> <span class="nb">Set-Content</span> <span class="n">csr</span><span class="p">.</span><span class="n">yaml</span>
 </span></code></pre></div></p>
 </div>
 <div class="tabbed-block">
 <p>CSR을 base64로 인코딩 후 YAML 생성:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; csr.yaml</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="s">apiVersion: certificates.k8s.io/v1</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="s">kind: CertificateSigningRequest</span>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="s">metadata:</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="s">  name: dev-user-csr</span>
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="s">spec:</span>
-</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="s">  request: $(cat dev-user.csr | base64 | tr -d '\n')</span>
-</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="s">  signerName: kubernetes.io/kube-apiserver-client</span>
-</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="s">  expirationSeconds: 86400</span>
-</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="s">  usages:</span>
-</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="s">  - client auth</span>
-</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="s">EOF</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; csr.yaml</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="s">apiVersion: certificates.k8s.io/v1</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="s">kind: CertificateSigningRequest</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="s">metadata:</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="s">  name: dev-user-csr</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="s">spec:</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="s">  request: $(cat dev-user.csr | base64 | tr -d '\n')</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="s">  signerName: kubernetes.io/kube-apiserver-client</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="s">  expirationSeconds: 86400</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="s">  usages:</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="s">  - client auth</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="s">EOF</span>
 </span></code></pre></div></p>
 </div>
 </div>
 </div>
 <p>CSR 제출:</p>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">csr</span><span class="p">.</span><span class="n">yaml</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">csr</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-f</span> <span class="n">csr</span><span class="p">.</span><span class="n">yaml</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">csr</span>
 </span></code></pre></div>
 <p>예상 출력:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>NAME           AGE   SIGNERNAME                            REQUESTOR          CONDITION
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>dev-user-csr   5s    kubernetes.io/kube-apiserver-client   rancher-desktop    Pending
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>NAME           AGE   SIGNERNAME                            REQUESTOR          CONDITION
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>dev-user-csr   5s    kubernetes.io/kube-apiserver-client   rancher-desktop    Pending
 </span></code></pre></div></p>
 <hr />
 <h2 id="4-csr">4) CSR 승인 (관리자 역할)<a class="headerlink" href="#4-csr" title="Permanent link">&para;</a></h2>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">kubectl</span> <span class="n">certificate</span> <span class="n">approve</span> <span class="n">dev-user-csr</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">csr</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">kubectl</span> <span class="n">certificate</span> <span class="n">approve</span> <span class="n">dev-user-csr</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">csr</span>
 </span></code></pre></div>
 <p><code>CONDITION</code>이 <code>Approved,Issued</code>로 바뀌면 성공입니다.</p>
 <hr />
@@ -2135,15 +2139,15 @@ User는 K8s 내부 리소스가 아니라, <strong>인증서(Certificate)의 CN(
 <div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Windows PowerShell</label><label for="__tabbed_5_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">$CERT</span> <span class="p">=</span> <span class="n">kubectl</span> <span class="n">get</span> <span class="n">csr</span> <span class="n">dev-user-csr</span> <span class="n">-o</span> <span class="n">jsonpath</span><span class="p">=</span><span class="s1">'{.status.certificate}'</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="no">[System.IO.File]</span><span class="p">::</span><span class="n">WriteAllBytes</span><span class="p">(</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>  <span class="s2">"$HOME/rbac-lab/dev-user.crt"</span><span class="p">,</span>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>  <span class="no">[Convert]</span><span class="p">::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="nv">$CERT</span><span class="p">)</span>
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="p">)</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nv">$CERT</span> <span class="p">=</span> <span class="n">kubectl</span> <span class="n">get</span> <span class="n">csr</span> <span class="n">dev-user-csr</span> <span class="n">-o</span> <span class="n">jsonpath</span><span class="p">=</span><span class="s1">'{.status.certificate}'</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="no">[System.IO.File]</span><span class="p">::</span><span class="n">WriteAllBytes</span><span class="p">(</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>  <span class="s2">"$HOME/rbac-lab/dev-user.crt"</span><span class="p">,</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>  <span class="no">[Convert]</span><span class="p">::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="nv">$CERT</span><span class="p">)</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="p">)</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>csr<span class="w"> </span>dev-user-csr<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.certificate}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;<span class="w"> </span>dev-user.crt
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>csr<span class="w"> </span>dev-user-csr<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.certificate}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;<span class="w"> </span>dev-user.crt
 </span></code></pre></div>
 </div>
 </div>
@@ -2152,11 +2156,11 @@ User는 K8s 내부 리소스가 아니라, <strong>인증서(Certificate)의 CN(
 <div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Windows PowerShell</label><label for="__tabbed_6_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="p">&amp;</span> <span class="s2">"C:\Program Files\Git\usr\bin\openssl.exe"</span> <span class="n">x509</span> <span class="n">-in</span> <span class="n">dev-user</span><span class="p">.</span><span class="n">crt</span> <span class="n">-noout</span> <span class="n">-text</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">"Subject:"</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="p">&amp;</span> <span class="s2">"C:\Program Files\Git\usr\bin\openssl.exe"</span> <span class="n">x509</span> <span class="n">-in</span> <span class="n">dev-user</span><span class="p">.</span><span class="n">crt</span> <span class="n">-noout</span> <span class="n">-text</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="s2">"Subject:"</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>openssl<span class="w"> </span>x509<span class="w"> </span>-in<span class="w"> </span>dev-user.crt<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Subject:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>openssl<span class="w"> </span>x509<span class="w"> </span>-in<span class="w"> </span>dev-user.crt<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Subject:
 </span></code></pre></div>
 </div>
 </div>
@@ -2165,43 +2169,43 @@ User는 K8s 내부 리소스가 아니라, <strong>인증서(Certificate)의 CN(
 <hr />
 <h2 id="6-kubeconfig-dev-user">6) kubeconfig에 dev-user 등록<a class="headerlink" href="#6-kubeconfig-dev-user" title="Permanent link">&para;</a></h2>
 <p>현재 클러스터 이름 확인 후 context 생성:</p>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="nb">get-clusters</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="nb">get-clusters</span>
 </span></code></pre></div>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Windows PowerShell</label><label for="__tabbed_7_2">macOS/Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="nb">set-credentials</span> <span class="n">dev-user</span> <span class="p">`</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>  <span class="p">-</span><span class="n">-client-certificate</span><span class="p">=</span><span class="s2">"$HOME/rbac-lab/dev-user.crt"</span> <span class="p">`</span>
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>  <span class="p">-</span><span class="n">-client-key</span><span class="p">=</span><span class="s2">"$HOME/rbac-lab/dev-user.key"</span>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="nb">set-context</span> <span class="n">dev-context</span> <span class="p">`</span>
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>  <span class="p">-</span><span class="n">-cluster</span><span class="p">=</span><span class="n">rancher-desktop</span> <span class="p">`</span>
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>  <span class="p">-</span><span class="n">-user</span><span class="p">=</span><span class="n">dev-user</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="nb">set-credentials</span> <span class="n">dev-user</span> <span class="p">`</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>  <span class="p">-</span><span class="n">-client-certificate</span><span class="p">=</span><span class="s2">"$HOME/rbac-lab/dev-user.crt"</span> <span class="p">`</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>  <span class="p">-</span><span class="n">-client-key</span><span class="p">=</span><span class="s2">"$HOME/rbac-lab/dev-user.key"</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="nb">set-context</span> <span class="n">dev-context</span> <span class="p">`</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>  <span class="p">-</span><span class="n">-cluster</span><span class="p">=</span><span class="n">rancher-desktop</span> <span class="p">`</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>  <span class="p">-</span><span class="n">-user</span><span class="p">=</span><span class="n">dev-user</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>set-credentials<span class="w"> </span>dev-user<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span>--client-certificate<span class="o">=</span><span class="nv">$HOME</span>/rbac-lab/dev-user.crt<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span>--client-key<span class="o">=</span><span class="nv">$HOME</span>/rbac-lab/dev-user.key
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>kubectl<span class="w"> </span>config<span class="w"> </span>set-context<span class="w"> </span>dev-context<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">  </span>--cluster<span class="o">=</span>rancher-desktop<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">  </span>--user<span class="o">=</span>dev-user
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>set-credentials<span class="w"> </span>dev-user<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span>--client-certificate<span class="o">=</span><span class="nv">$HOME</span>/rbac-lab/dev-user.crt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">  </span>--client-key<span class="o">=</span><span class="nv">$HOME</span>/rbac-lab/dev-user.key
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>kubectl<span class="w"> </span>config<span class="w"> </span>set-context<span class="w"> </span>dev-context<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">  </span>--cluster<span class="o">=</span>rancher-desktop<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">  </span>--user<span class="o">=</span>dev-user
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <hr />
 <h2 id="7-dev-user">7) dev-user로 전환 &amp; 권한 확인<a class="headerlink" href="#7-dev-user" title="Permanent link">&para;</a></h2>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="nb">use-context</span> <span class="n">dev-context</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="n">current-context</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="nb">use-context</span> <span class="n">dev-context</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="n">current-context</span>
 </span></code></pre></div>
 <p>Pod 조회 시도:</p>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span>
 </span></code></pre></div>
 <p>예상 출력:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Error from server (Forbidden): pods is forbidden:
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>User "dev-user" cannot list resource "pods" in API group "" in the namespace "default"
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>Error from server (Forbidden): pods is forbidden:
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>User "dev-user" cannot list resource "pods" in API group "" in the namespace "default"
 </span></code></pre></div></p>
 <div class="admonition success">
 <p class="admonition-title">의도된 결과입니다</p>
@@ -2209,7 +2213,7 @@ User는 K8s 내부 리소스가 아니라, <strong>인증서(Certificate)의 CN(
 다음 실습(RBAC 02)에서 Role과 RoleBinding으로 권한을 부여합니다.</p>
 </div>
 <p>관리자 context로 복귀:</p>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="nb">use-context</span> <span class="n">rancher-desktop</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="nb">use-context</span> <span class="n">rancher-desktop</span>
 </span></code></pre></div>
 <hr />
 <h2 id="context">context 전환 치트시트<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
