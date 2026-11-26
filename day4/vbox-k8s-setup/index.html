@@ -1695,6 +1695,28 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
+        전체 흐름
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        노드별 역할과 컴포넌트
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         목차
       
     </span>
@@ -1765,7 +1787,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         어떤 이미지를 받나
@@ -1869,61 +1891,72 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#3-6-vm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3-6. VM 종료
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-worker-vm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. worker VM 복제 및 설정
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. worker VM 복제 및 설정">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#4-1-clone" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4-1. 복제 (clone)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-2-worker-ip-hostname" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4-2. worker별 IP 변경 및 hostname 설정
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#4-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4-3. 통신 확인 (필수 체크포인트)
+        4. 공통 설정 (3대 모두 — 복제 전에 완료)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 공통 설정 (3대 모두 — 복제 전에 완료)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1-swap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-1. swap 비활성화
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2-sysctl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-2. 커널 모듈 &amp; sysctl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-3-containerd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-3. containerd 설치
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-4-kubeadm-kubelet-kubectl-v132" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-4. kubeadm / kubelet / kubectl 설치 (v1.32)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-5-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-5. VM 종료
       
     </span>
   </a>
@@ -1936,22 +1969,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-3" class="md-nav__link">
+  <a href="#5-worker-vm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 공통 설정 (3대 모두)
+        5. worker VM 복제 및 설정
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5. 공통 설정 (3대 모두)">
+    <nav class="md-nav" aria-label="5. worker VM 복제 및 설정">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#5-1-swap" class="md-nav__link">
+  <a href="#5-1-clone" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5-1. swap 비활성화
+        5-1. 복제 (clone)
       
     </span>
   </a>
@@ -1959,10 +1992,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-2-sysctl" class="md-nav__link">
+  <a href="#5-2-worker-ip-hostname" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5-2. 커널 모듈 &amp; sysctl
+        5-2. worker별 IP 변경 및 hostname 설정
       
     </span>
   </a>
@@ -1970,32 +2003,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-3-containerd" class="md-nav__link">
+  <a href="#5-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5-3. containerd 설치
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-4-kubeadm-kubelet-kubectl-v132" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5-4. kubeadm / kubelet / kubectl 설치 (v1.32)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#worker" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        worker용 한번에 설치 블록
+        5-3. 통신 확인 (필수 체크포인트)
       
     </span>
   </a>
@@ -2060,14 +2071,25 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="10. 자주 나는 에러 &amp; 트러블슈팅">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-pc-kubectl-kubeconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 로컬 PC에서 kubectl 연결 (kubeconfig 병합)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 로컬 PC에서 kubectl 연결 (kubeconfig 병합)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#kubeadm-init" class="md-nav__link">
+  <a href="#11-1-adminconf" class="md-nav__link">
     <span class="md-ellipsis">
       
-        kubeadm init이 실패해요
+        11-1. admin.conf 가져오기
       
     </span>
   </a>
@@ -2075,10 +2097,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#worker-join" class="md-nav__link">
+  <a href="#11-2-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        worker join이 안 돼요
+        11-2. server 주소 변경
       
     </span>
   </a>
@@ -2086,10 +2108,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#notready" class="md-nav__link">
+  <a href="#11-3-kubeconfig" class="md-nav__link">
     <span class="md-ellipsis">
       
-        노드가 계속 NotReady예요
+        11-3. 기존 kubeconfig와 병합
       
     </span>
   </a>
@@ -2097,21 +2119,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#11-4-context" class="md-nav__link">
     <span class="md-ellipsis">
       
-        노드 간 통신이 안 돼요 (가장 흔함)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        처음부터 다시 하고 싶어요
+        11-4. context 전환
       
     </span>
   </a>
@@ -2120,6 +2131,28 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. kubectl 자동완성 설정
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAQ
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2180,6 +2213,28 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
+        전체 흐름
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        노드별 역할과 컴포넌트
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         목차
       
     </span>
@@ -2250,7 +2305,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         어떤 이미지를 받나
@@ -2354,61 +2409,72 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#3-6-vm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3-6. VM 종료
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-worker-vm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. worker VM 복제 및 설정
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. worker VM 복제 및 설정">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#4-1-clone" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4-1. 복제 (clone)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-2-worker-ip-hostname" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4-2. worker별 IP 변경 및 hostname 설정
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#4-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4-3. 통신 확인 (필수 체크포인트)
+        4. 공통 설정 (3대 모두 — 복제 전에 완료)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 공통 설정 (3대 모두 — 복제 전에 완료)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1-swap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-1. swap 비활성화
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2-sysctl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-2. 커널 모듈 &amp; sysctl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-3-containerd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-3. containerd 설치
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-4-kubeadm-kubelet-kubectl-v132" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-4. kubeadm / kubelet / kubectl 설치 (v1.32)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-5-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-5. VM 종료
       
     </span>
   </a>
@@ -2421,22 +2487,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-3" class="md-nav__link">
+  <a href="#5-worker-vm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 공통 설정 (3대 모두)
+        5. worker VM 복제 및 설정
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5. 공통 설정 (3대 모두)">
+    <nav class="md-nav" aria-label="5. worker VM 복제 및 설정">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#5-1-swap" class="md-nav__link">
+  <a href="#5-1-clone" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5-1. swap 비활성화
+        5-1. 복제 (clone)
       
     </span>
   </a>
@@ -2444,10 +2510,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-2-sysctl" class="md-nav__link">
+  <a href="#5-2-worker-ip-hostname" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5-2. 커널 모듈 &amp; sysctl
+        5-2. worker별 IP 변경 및 hostname 설정
       
     </span>
   </a>
@@ -2455,32 +2521,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-3-containerd" class="md-nav__link">
+  <a href="#5-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5-3. containerd 설치
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-4-kubeadm-kubelet-kubectl-v132" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5-4. kubeadm / kubelet / kubectl 설치 (v1.32)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#worker" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        worker용 한번에 설치 블록
+        5-3. 통신 확인 (필수 체크포인트)
       
     </span>
   </a>
@@ -2545,14 +2589,25 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="10. 자주 나는 에러 &amp; 트러블슈팅">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-pc-kubectl-kubeconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 로컬 PC에서 kubectl 연결 (kubeconfig 병합)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 로컬 PC에서 kubectl 연결 (kubeconfig 병합)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#kubeadm-init" class="md-nav__link">
+  <a href="#11-1-adminconf" class="md-nav__link">
     <span class="md-ellipsis">
       
-        kubeadm init이 실패해요
+        11-1. admin.conf 가져오기
       
     </span>
   </a>
@@ -2560,10 +2615,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#worker-join" class="md-nav__link">
+  <a href="#11-2-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        worker join이 안 돼요
+        11-2. server 주소 변경
       
     </span>
   </a>
@@ -2571,10 +2626,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#notready" class="md-nav__link">
+  <a href="#11-3-kubeconfig" class="md-nav__link">
     <span class="md-ellipsis">
       
-        노드가 계속 NotReady예요
+        11-3. 기존 kubeconfig와 병합
       
     </span>
   </a>
@@ -2582,21 +2637,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#11-4-context" class="md-nav__link">
     <span class="md-ellipsis">
       
-        노드 간 통신이 안 돼요 (가장 흔함)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        처음부터 다시 하고 싶어요
+        11-4. context 전환
       
     </span>
   </a>
@@ -2605,6 +2649,28 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. kubectl 자동완성 설정
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAQ
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2628,16 +2694,16 @@
 <h1 id="virtualbox">VirtualBox + 쿠버네티스 구축하기<a class="headerlink" href="#virtualbox" title="Permanent link">&para;</a></h1>
 <p>VirtualBox로 <strong>control-plane 1대 + worker 2대</strong> 구성하기</p>
 <p>스킬샵 클러스터를 내 PC에 그대로 만들어봅니다.</p>
-<p><strong>Kubernetes v1.32 / Ubuntu 22.04 LTS / containerd / Cilium 기준</strong></p>
+<p><strong>Kubernetes v1.32 / Ubuntu 24.04 LTS / containerd / Cilium 기준</strong></p>
 <hr />
 <h2 id="_1">클러스터 구성도<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>graph TB
     Internet((Internet))
     subgraph Host["Host PC - VirtualBox"]
         subgraph HostOnly["Host-only Network 192.168.56.0/24"]
-            CP["control-plane\n192.168.56.10\nCPU:2 RAM:2560MB\netcd API Server Scheduler Controller Manager"]
-            W1["worker-1\n192.168.56.11\nCPU:2 RAM:2048MB\nkubelet kube-proxy"]
-            W2["worker-2\n192.168.56.12\nCPU:2 RAM:2048MB\nkubelet kube-proxy"]
+            CP["control-plane\n192.168.56.10\nCPU:2 RAM:2560MB\netcd · API Server · Scheduler · Controller Manager"]
+            W1["worker-1\n192.168.56.11\nCPU:2 RAM:2048MB\nkubelet · kube-proxy"]
+            W2["worker-2\n192.168.56.12\nCPU:2 RAM:2048MB\nkubelet · kube-proxy"]
         end
         NAT["NAT 어댑터1 인터넷용"]
     end
@@ -2649,18 +2715,77 @@
     CP &lt;--&gt;|"Host-only 어댑터2"| W2
     W1 &lt;--&gt;|"Host-only 어댑터2"| W2</code></pre>
 <hr />
-<h2 id="_2">목차<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">전체 흐름<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1. 사전 준비 (VirtualBox 설치, PC 사양 확인)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>        ↓
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>2. Ubuntu 24.04 Server ISO 다운로드
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        ↓
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>3. control-plane VM 생성 · 네트워크 · IP 설정
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        ↓
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>4. 공통 설정 — control-plane에서 먼저 완료
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   (swap 비활성화 · containerd · kubeadm/kubectl/kubelet)
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        ↓
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>5. worker-1, worker-2 복제 → IP/hostname만 변경
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        ↓
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>6. control-plane 초기화 (kubeadm init)
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        ↓
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>7. Cilium CNI 설치
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        ↓
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>8. worker 노드 조인 (kubeadm join)
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        ↓
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>9. 최종 검증
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        ↓
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>10. 트러블슈팅 / 11. 로컬 kubeconfig 병합 / 12. kubectl 자동완성
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">핵심 포인트</p>
+<p><strong>공통 설정을 복제 전에 완료합니다.</strong>
+control-plane에서 containerd · kubeadm 등을 설치한 뒤 복제하면,
+worker도 동일 환경으로 시작하므로 세 번 반복할 필요가 없습니다.</p>
+</div>
+<hr />
+<h2 id="_3">노드별 역할과 컴포넌트<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>노드</th>
+<th>역할</th>
+<th>주요 컴포넌트</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control-plane</td>
+<td>클러스터 관리 · API 처리</td>
+<td>kube-apiserver, etcd, kube-scheduler, kube-controller-manager</td>
+</tr>
+<tr>
+<td>worker-1 / worker-2</td>
+<td>애플리케이션 실행</td>
+<td>kubelet, kube-proxy, containerd</td>
+</tr>
+<tr>
+<td>모든 노드 공통</td>
+<td>—</td>
+<td>kubelet (노드 에이전트), containerd (컨테이너 런타임)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_4">목차<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ol>
 <li><a href="#1-사전-준비">사전 준비</a></li>
 <li><a href="#2-ubuntu-이미지-다운로드-저장-위치">Ubuntu 이미지 다운로드 &amp; 저장 위치</a></li>
 <li><a href="#3-control-plane-vm-생성-및-설정-복제-전">control-plane VM 생성 및 설정 (복제 전)</a></li>
-<li><a href="#4-worker-vm-복제-및-설정">worker VM 복제 및 설정</a></li>
-<li><a href="#5-공통-설정-3대-모두">공통 설정 (3대 모두)</a></li>
+<li><a href="#4-공통-설정-3대-모두-복제-전에-완료">공통 설정 (3대 모두 — 복제 전에 완료)</a></li>
+<li><a href="#5-worker-vm-복제-및-설정">worker VM 복제 및 설정</a></li>
 <li><a href="#6-control-plane-초기화">control-plane 초기화</a></li>
 <li><a href="#7-cilium-설치">Cilium 설치</a></li>
 <li><a href="#8-worker-노드-조인">worker 노드 조인</a></li>
 <li><a href="#9-최종-검증">최종 검증</a></li>
 <li><a href="#10-자주-나는-에러-트러블슈팅">자주 나는 에러 &amp; 트러블슈팅</a></li>
+<li><a href="#11-로컬-pc에서-kubectl-연결-kubeconfig-병합">로컬 PC에서 kubectl 연결 (kubeconfig 병합)</a></li>
+<li><a href="#12-kubectl-자동완성-설정">kubectl 자동완성 설정</a></li>
 </ol>
 <hr />
 <h2 id="1">1. 사전 준비<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
@@ -2745,15 +2870,15 @@ RAM이 부족하면 worker를 1대만 만들어도 실습은 됩니다.</p>
 </div>
 <hr />
 <h2 id="2-ubuntu">2. Ubuntu 이미지 다운로드 &amp; 저장 위치<a class="headerlink" href="#2-ubuntu" title="Permanent link">&para;</a></h2>
-<h3 id="_3">어떤 이미지를 받나<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_5">어떤 이미지를 받나<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Ubuntu Server 22.04 LTS</strong> (Desktop 아님, Server!)</li>
-<li>파일명 예: <code>ubuntu-22.04.5-live-server-amd64.iso</code></li>
-<li>다운로드: <a href="https://releases.ubuntu.com/22.04/">https://releases.ubuntu.com/22.04/</a></li>
+<li><strong>Ubuntu Server 24.04 LTS</strong> (Desktop 아님, Server!)</li>
+<li>파일명 예: <code>ubuntu-24.04.2-live-server-amd64.iso</code></li>
+<li>다운로드: <a href="https://releases.ubuntu.com/24.04/">https://releases.ubuntu.com/24.04/</a></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Desktop 버전은 GUI 때문에 무겁습니다. 반드시 Server 버전.
+<p>Desktop 버전은 GUI 때문에 무겁습니다. 반드시 Server 버전으로 받으세요.
 Apple Silicon 맥이면 arm64 버전을 받으세요.</p>
 </div>
 <h3 id="iso">ISO 파일을 어디에 저장하나<a class="headerlink" href="#iso" title="Permanent link">&para;</a></h3>
@@ -2761,13 +2886,13 @@ Apple Silicon 맥이면 arm64 버전을 받으세요.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">macOS</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>C:\Users\&lt;사용자명&gt;\VirtualBox VMs\iso\
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  └── ubuntu-22.04.5-live-server-amd64.iso
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>C:\Users\&lt;사용자명&gt;\VirtualBox VMs\iso\
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  └── ubuntu-24.04.2-live-server-amd64.iso
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>~/VirtualBox VMs/iso/
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  └── ubuntu-22.04.5-live-server-amd64.iso
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>~/VirtualBox VMs/iso/
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  └── ubuntu-24.04.2-live-server-amd64.iso
 </span></code></pre></div>
 </div>
 </div>
@@ -2782,11 +2907,11 @@ ISO는 3대 VM이 공유해서 쓰므로 한 곳에 두고 3번 마운트하면 
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows</label><label for="__tabbed_2_2">macOS</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>C:\Users\&lt;사용자명&gt;\VirtualBox VMs\&lt;VM이름&gt;\
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>C:\Users\&lt;사용자명&gt;\VirtualBox VMs\&lt;VM이름&gt;\
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>~/VirtualBox VMs/&lt;VM이름&gt;/
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>~/VirtualBox VMs/&lt;VM이름&gt;/
 </span></code></pre></div>
 </div>
 </div>
@@ -2800,7 +2925,7 @@ ISO는 3대 VM이 공유해서 쓰므로 한 곳에 두고 3번 마운트하면 
 <div class="admonition warning">
 <p class="admonition-title">중요</p>
 <p>이 섹션의 모든 설정은 <strong>복제 전에 완료</strong>해야 합니다.
-control-plane을 복제해서 worker-1, worker-2를 만들기 때문에, 여기서 설정한 내용이 세 대에 그대로 복사됩니다.</p>
+4번 공통 설정까지 마친 뒤 복제하면, worker도 동일 환경으로 시작합니다.</p>
 </div>
 <h3 id="3-1-vm">3-1. VM 생성<a class="headerlink" href="#3-1-vm" title="Permanent link">&para;</a></h3>
 <ol>
@@ -2814,21 +2939,21 @@ control-plane을 복제해서 worker-1, worker-2를 만들기 때문에, 여기�
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>2560MB 이상을 권장합니다. 그 이하(특히 2GB 미만)로 설정하면 control-plane에서 etcd, API Server, Scheduler, Controller Manager가 동시에 기동될 때 메모리 부족(OOM)이 발생하여 클러스터가 정상적으로 동작하지 않을 수 있습니다.</p>
+<p>2560MB 이상을 권장합니다. 그 이하(특히 2GB 미만)로 설정하면 control-plane에서 etcd, API Server, Scheduler, Controller Manager가 동시에 기동될 때 메모리 부족(OOM)이 발생할 수 있습니다.</p>
 </div>
 <h3 id="3-2-openssh-server">3-2. 부팅 확인 &amp; OpenSSH Server 설치<a class="headerlink" href="#3-2-openssh-server" title="Permanent link">&para;</a></h3>
-<p>이 실습에서는 사전 구성된 ISO를 사용하므로 별도 설치 과정 없이 부팅하면 바로 로그인 화면이 나타납니다.</p>
-<p>부팅 후 아래 항목을 확인하세요.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>hostname
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>whoami
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>ip<span class="w"> </span>a
+<p>Ubuntu 24.04 Server 설치 중 "OpenSSH Server 설치" 옵션을 체크하면 별도 설치 없이 사용 가능합니다.
+설치 후 부팅되면 아래 항목을 확인하세요.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>hostname
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>whoami
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>ip<span class="w"> </span>a
 </span></code></pre></div>
-<p>OpenSSH Server 설치 (SSH 접속용):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>openssh-server
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>ssh
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>ssh
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>ssh<span class="w"> </span>--no-pager
+<p>OpenSSH Server가 없는 경우 설치:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>openssh-server
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>ssh
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>ssh
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>ssh<span class="w"> </span>--no-pager
 </span></code></pre></div>
 <h3 id="3-3-virtualbox">3-3. VirtualBox 호스트 전용 네트워크 &amp; 어댑터 설정<a class="headerlink" href="#3-3-virtualbox" title="Permanent link">&para;</a></h3>
 <p>노드끼리 통신하려면 고정 IP가 필요합니다. 어댑터를 2개 붙입니다: <strong>NAT(인터넷용) + 호스트 전용(노드 간 통신용)</strong>.</p>
@@ -2882,16 +3007,128 @@ control-plane을 복제해서 worker-1, worker-2를 만들기 때문에, 여기�
 <p class="admonition-title">Info</p>
 <p>인터페이스 이름은 <code>ip a</code>로 실제 확인하세요. 환경마다 다를 수 있습니다.</p>
 </div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>apply
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>apply
 </span></code></pre></div>
 <h3 id="3-5">3-5. 호스트명 등록<a class="headerlink" href="#3-5" title="Permanent link">&para;</a></h3>
 <p>hosts 파일에 세 노드의 IP와 호스트명을 등록합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/hosts<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="s">192.168.56.10 control-plane</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="s">192.168.56.11 worker-1</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="s">192.168.56.12 worker-2</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="s">EOF</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>복제 시 이 파일도 그대로 복사되므로 worker에서 따로 설정할 필요가 없습니다.</p>
 </div>
-<h3 id="3-6-vm">3-6. VM 종료<a class="headerlink" href="#3-6-vm" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>poweroff
+<hr />
+<h2 id="4-3">4. 공통 설정 (3대 모두 — 복제 전에 완료)<a class="headerlink" href="#4-3" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">순서 중요</p>
+<p>control-plane에서 4번을 <strong>완료한 뒤</strong> 복제하세요.
+그러면 worker도 동일 환경으로 시작합니다 — worker에서 4번을 반복할 필요가 없습니다.</p>
+</div>
+<h3 id="4-1-swap">4-1. swap 비활성화<a class="headerlink" href="#4-1-swap" title="Permanent link">&para;</a></h3>
+<p>쿠버네티스는 메모리 관리를 직접 하기 때문에 swap이 켜져 있으면 kubelet이 오작동합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>swapoff<span class="w"> </span>-a
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i.bak<span class="w"> </span>-r<span class="w"> </span><span class="s1">'s/(.+ swap .+)/#\1/'</span><span class="w"> </span>/etc/fstab
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>free<span class="w"> </span>-h
+</span></code></pre></div>
+<p>Swap 항목이 모두 <code>0</code>이면 성공입니다.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>swap이 살아있으면 <code>kubeadm init</code>이 실패합니다.</p>
+</div>
+<h3 id="4-2-sysctl">4-2. 커널 모듈 &amp; sysctl<a class="headerlink" href="#4-2-sysctl" title="Permanent link">&para;</a></h3>
+<p><strong>왜 필요한가?</strong></p>
+<ul>
+<li><code>overlay</code>: containerd가 레이어 파일시스템을 쓰기 위한 모듈</li>
+<li><code>br_netfilter</code>: 브리지 네트워크 트래픽도 iptables로 처리 → Pod 간 통신에 필수</li>
+<li><code>ip_forward</code>: 호스트가 패킷을 라우팅할 수 있게 (컨테이너 → 외부)</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/modules-load.d/k8s.conf<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="s">overlay</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="s">br_netfilter</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="s">EOF</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>sudo<span class="w"> </span>modprobe<span class="w"> </span>overlay
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>sudo<span class="w"> </span>modprobe<span class="w"> </span>br_netfilter
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/sysctl.d/kubernetes.conf<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="s">net.bridge.bridge-nf-call-ip6tables = 1</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="s">net.bridge.bridge-nf-call-iptables = 1</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="s">net.ipv4.ip_forward = 1</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="s">EOF</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>sudo<span class="w"> </span>sysctl<span class="w"> </span>--system
+</span></code></pre></div>
+<h3 id="4-3-containerd">4-3. containerd 설치<a class="headerlink" href="#4-3-containerd" title="Permanent link">&para;</a></h3>
+<p><strong>containerd</strong>는 쿠버네티스의 컨테이너 런타임입니다. kubelet이 containerd를 통해 컨테이너를 생성·삭제합니다.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>containerd
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/containerd
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>containerd<span class="w"> </span>config<span class="w"> </span>default<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/containerd/config.toml<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/SystemdCgroup = false/SystemdCgroup = true/g'</span><span class="w"> </span>/etc/containerd/config.toml
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>containerd
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>containerd
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>containerd<span class="w"> </span>--no-pager
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title"><code>SystemdCgroup = true</code> 왜 필요한가?</p>
+<p>쿠버네티스와 containerd가 각자 cgroup을 관리하면 충돌이 생깁니다.
+<code>SystemdCgroup = true</code>로 맞춰야 kubelet이 안정적으로 동작합니다.</p>
+</div>
+<h3 id="4-4-kubeadm-kubelet-kubectl-v132">4-4. kubeadm / kubelet / kubectl 설치 (v1.32)<a class="headerlink" href="#4-4-kubeadm-kubelet-kubectl-v132" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>도구</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>kubeadm</strong></td>
+<td>클러스터 초기화(init) · 노드 조인(join) 도구</td>
+</tr>
+<tr>
+<td><strong>kubelet</strong></td>
+<td>각 노드에서 실행되는 에이전트 — Pod 생성·삭제 담당</td>
+</tr>
+<tr>
+<td><strong>kubectl</strong></td>
+<td>클러스터에 명령을 보내는 CLI</td>
+</tr>
+</tbody>
+</table>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>apt-transport-https<span class="w"> </span>ca-certificates<span class="w"> </span>curl<span class="w"> </span>gpg
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>-m<span class="w"> </span><span class="m">755</span><span class="w"> </span>/etc/apt/keyrings
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">  </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/etc/apt/keyrings/kubernetes-apt-keyring.gpg
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="s2">https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">  </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/kubernetes.list
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>kubelet<span class="w"> </span>kubeadm<span class="w"> </span>kubectl
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>sudo<span class="w"> </span>apt-mark<span class="w"> </span>hold<span class="w"> </span>kubelet<span class="w"> </span>kubeadm<span class="w"> </span>kubectl
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>kubeadm<span class="w"> </span>version
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">체크포인트</p>
+<p>여기까지가 복제 전 공통 설정입니다.
+<strong>이 상태에서 VM을 종료하고 복제</strong>합니다 → 5번으로 이동하세요.</p>
+</div>
+<h3 id="4-5-vm">4-5. VM 종료<a class="headerlink" href="#4-5-vm" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>poweroff
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">복제 전 필수 확인</p>
@@ -2899,8 +3136,8 @@ control-plane을 복제해서 worker-1, worker-2를 만들기 때문에, 여기�
 저장된 상태(Saved)나 일시 중단(Paused) 상태에서는 복제가 정상적으로 되지 않습니다.</p>
 </div>
 <hr />
-<h2 id="4-worker-vm">4. worker VM 복제 및 설정<a class="headerlink" href="#4-worker-vm" title="Permanent link">&para;</a></h2>
-<h3 id="4-1-clone">4-1. 복제 (clone)<a class="headerlink" href="#4-1-clone" title="Permanent link">&para;</a></h3>
+<h2 id="5-worker-vm">5. worker VM 복제 및 설정<a class="headerlink" href="#5-worker-vm" title="Permanent link">&para;</a></h2>
+<h3 id="5-1-clone">5-1. 복제 (clone)<a class="headerlink" href="#5-1-clone" title="Permanent link">&para;</a></h3>
 <p>control-plane VM이 Powered Off 상태인지 확인 후:</p>
 <ol>
 <li>control-plane VM 우클릭 &gt; 복제(Clone)</li>
@@ -2911,171 +3148,60 @@ control-plane을 복제해서 worker-1, worker-2를 만들기 때문에, 여기�
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>어댑터 설정, netplan 구조, hosts 설정이 모두 복사됩니다.
+<p>어댑터 설정, netplan 구조, hosts 설정, containerd, kubeadm이 모두 복사됩니다.
 worker에서 바꿔야 하는 건 <strong>IP 주소와 hostname 두 가지뿐</strong>입니다.</p>
 </div>
-<h3 id="4-2-worker-ip-hostname">4-2. worker별 IP 변경 및 hostname 설정<a class="headerlink" href="#4-2-worker-ip-hostname" title="Permanent link">&para;</a></h3>
+<h3 id="5-2-worker-ip-hostname">5-2. worker별 IP 변경 및 hostname 설정<a class="headerlink" href="#5-2-worker-ip-hostname" title="Permanent link">&para;</a></h3>
 <p>worker-1, worker-2 각각 부팅 후 아래를 실행합니다.</p>
 <p>netplan 설정 파일에서 IP 한 줄만 수정:</p>
 <ul>
 <li>worker-1: <code>192.168.56.11/24</code></li>
 <li>worker-2: <code>192.168.56.12/24</code></li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>apply
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ip<span class="w"> </span>a<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">192</span>.168.56
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>netplan<span class="w"> </span>apply
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>ip<span class="w"> </span>a<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">192</span>.168.56
 </span></code></pre></div>
 <p>hostname 변경 (worker-1):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>hostnamectl<span class="w"> </span>set-hostname<span class="w"> </span>worker-1
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">exec</span><span class="w"> </span>bash
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sudo<span class="w"> </span>hostnamectl<span class="w"> </span>set-hostname<span class="w"> </span>worker-1
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nb">exec</span><span class="w"> </span>bash
 </span></code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>worker-2에서는 <code>worker-2</code>로 설정합니다.</p>
 </div>
-<h3 id="4-3">4-3. 통신 확인 (필수 체크포인트)<a class="headerlink" href="#4-3" title="Permanent link">&para;</a></h3>
+<h3 id="5-3">5-3. 통신 확인 (필수 체크포인트)<a class="headerlink" href="#5-3" title="Permanent link">&para;</a></h3>
 <p>3대 모두 부팅된 상태에서 <strong>control-plane에서</strong> 실행:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">2</span><span class="w"> </span>worker-1
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">2</span><span class="w"> </span>worker-2
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">2</span><span class="w"> </span>worker-1
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">2</span><span class="w"> </span>worker-2
 </span></code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">체크포인트</p>
 <p>ping이 가야 다음으로 진행하세요. 안 가면 netplan IP 설정을 다시 점검하세요.</p>
 </div>
 <hr />
-<h2 id="5-3">5. 공통 설정 (3대 모두)<a class="headerlink" href="#5-3" title="Permanent link">&para;</a></h2>
-<p>control-plane, worker-1, worker-2 <strong>세 대 모두</strong>에서 동일하게 실행합니다.</p>
-<h3 id="5-1-swap">5-1. swap 비활성화<a class="headerlink" href="#5-1-swap" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>swapoff<span class="w"> </span>-a
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i.bak<span class="w"> </span>-r<span class="w"> </span><span class="s1">'s/(.+ swap .+)/#\1/'</span><span class="w"> </span>/etc/fstab
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>free<span class="w"> </span>-h
-</span></code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>swap이 살아있으면 <code>kubeadm init</code>이 실패합니다. Swap 항목이 <code>0</code>이어야 합니다.</p>
-</div>
-<h3 id="5-2-sysctl">5-2. 커널 모듈 &amp; sysctl<a class="headerlink" href="#5-2-sysctl" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/modules-load.d/k8s.conf<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="s">overlay</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="s">br_netfilter</span>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="s">EOF</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>sudo<span class="w"> </span>modprobe<span class="w"> </span>overlay
-</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>sudo<span class="w"> </span>modprobe<span class="w"> </span>br_netfilter
-</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
-</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/sysctl.d/kubernetes.conf<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
-</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="s">net.bridge.bridge-nf-call-ip6tables = 1</span>
-</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="s">net.bridge.bridge-nf-call-iptables = 1</span>
-</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="s">net.ipv4.ip_forward = 1</span>
-</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="s">EOF</span>
-</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>
-</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>sudo<span class="w"> </span>sysctl<span class="w"> </span>--system
-</span></code></pre></div>
-<h3 id="5-3-containerd">5-3. containerd 설치<a class="headerlink" href="#5-3-containerd" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>containerd
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/containerd
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>containerd<span class="w"> </span>config<span class="w"> </span>default<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/containerd/config.toml<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/SystemdCgroup = false/SystemdCgroup = true/g'</span><span class="w"> </span>/etc/containerd/config.toml
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>containerd
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>containerd
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>containerd<span class="w"> </span>--no-pager
-</span></code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><code>SystemdCgroup = true</code> 안 바꾸면 나중에 kubelet이 불안정합니다.</p>
-</div>
-<h3 id="5-4-kubeadm-kubelet-kubectl-v132">5-4. kubeadm / kubelet / kubectl 설치 (v1.32)<a class="headerlink" href="#5-4-kubeadm-kubelet-kubectl-v132" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>apt-transport-https<span class="w"> </span>ca-certificates<span class="w"> </span>curl<span class="w"> </span>gpg
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>-m<span class="w"> </span><span class="m">755</span><span class="w"> </span>/etc/apt/keyrings
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">  </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/etc/apt/keyrings/kubernetes-apt-keyring.gpg
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \</span>
-</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="s2">https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">  </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/kubernetes.list
-</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
-</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>kubelet<span class="w"> </span>kubeadm<span class="w"> </span>kubectl
-</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>sudo<span class="w"> </span>apt-mark<span class="w"> </span>hold<span class="w"> </span>kubelet<span class="w"> </span>kubeadm<span class="w"> </span>kubectl
-</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>
-</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>kubeadm<span class="w"> </span>version
-</span></code></pre></div>
-<div class="admonition success">
-<p class="admonition-title">체크포인트</p>
-<p>여기까지가 3대 공통입니다. 세 대 모두 5-1 ~ 5-4 완료 후 6번으로 넘어가세요.</p>
-</div>
-<h3 id="worker">worker용 한번에 설치 블록<a class="headerlink" href="#worker" title="Permanent link">&para;</a></h3>
-<p>control-plane에서는 위 5-1 ~ 5-4를 하나씩 따라가세요.
-worker-1, worker-2는 아래 블록을 통째로 복사해서 붙여넣기 하면 한 번에 설치됩니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sudo<span class="w"> </span>swapoff<span class="w"> </span>-a
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i.bak<span class="w"> </span>-r<span class="w"> </span><span class="s1">'s/(.+ swap .+)/#\1/'</span><span class="w"> </span>/etc/fstab
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/modules-load.d/k8s.conf<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="s">overlay</span>
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="s">br_netfilter</span>
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="s">EOF</span>
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>sudo<span class="w"> </span>modprobe<span class="w"> </span>overlay
-</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>sudo<span class="w"> </span>modprobe<span class="w"> </span>br_netfilter
-</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>
-</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/sysctl.d/kubernetes.conf<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
-</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="s">net.bridge.bridge-nf-call-ip6tables = 1</span>
-</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="s">net.bridge.bridge-nf-call-iptables = 1</span>
-</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="s">net.ipv4.ip_forward = 1</span>
-</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="s">EOF</span>
-</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>sudo<span class="w"> </span>sysctl<span class="w"> </span>--system
-</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>
-</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>containerd
-</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/containerd
-</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>containerd<span class="w"> </span>config<span class="w"> </span>default<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/containerd/config.toml<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
-</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">'s/SystemdCgroup = false/SystemdCgroup = true/g'</span><span class="w"> </span>/etc/containerd/config.toml
-</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>containerd
-</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>containerd
-</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>
-</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>apt-transport-https<span class="w"> </span>ca-certificates<span class="w"> </span>curl<span class="w"> </span>gpg
-</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>-m<span class="w"> </span><span class="m">755</span><span class="w"> </span>/etc/apt/keyrings
-</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a><span class="w">  </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/etc/apt/keyrings/kubernetes-apt-keyring.gpg
-</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \</span>
-</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a><span class="s2">https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a><span class="w">  </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/kubernetes.list
-</span><span id="__span-15-33"><a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-</span><span id="__span-15-34"><a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>kubelet<span class="w"> </span>kubeadm<span class="w"> </span>kubectl
-</span><span id="__span-15-35"><a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a>sudo<span class="w"> </span>apt-mark<span class="w"> </span>hold<span class="w"> </span>kubelet<span class="w"> </span>kubeadm<span class="w"> </span>kubectl
-</span><span id="__span-15-36"><a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a>
-</span><span id="__span-15-37"><a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"완료! kubeadm version으로 확인하세요."</span>
-</span><span id="__span-15-38"><a id="__codelineno-15-38" name="__codelineno-15-38" href="#__codelineno-15-38"></a>kubeadm<span class="w"> </span>version
-</span></code></pre></div>
-<hr />
 <h2 id="6-control-plane">6. control-plane 초기화<a class="headerlink" href="#6-control-plane" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><strong>control-plane VM에서만</strong> 실행합니다.</p>
 </div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>kubeadm<span class="w"> </span>init<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span>--apiserver-advertise-address<span class="o">=</span><span class="m">192</span>.168.56.10<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span>--pod-network-cidr<span class="o">=</span><span class="m">10</span>.244.0.0/16
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>kubeadm<span class="w"> </span>init<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span>--apiserver-advertise-address<span class="o">=</span><span class="m">192</span>.168.56.10<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span>--pod-network-cidr<span class="o">=</span><span class="m">10</span>.244.0.0/16
 </span></code></pre></div>
 <p>성공하면 마지막에 join 명령어가 출력됩니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubeadm<span class="w"> </span>join<span class="w"> </span><span class="m">192</span>.168.56.10:6443<span class="w"> </span>--token<span class="w"> </span>xxxx<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span>--discovery-token-ca-cert-hash<span class="w"> </span>sha256:yyyy
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubeadm join 192.168.56.10:6443 --token xxxx \
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>  --discovery-token-ca-cert-hash sha256:yyyy
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">중요</p>
 <p>이 join 명령어를 메모장에 꼭 복사하세요! 8번에서 씁니다.</p>
 </div>
 <p>kubeconfig 설정 (control-plane):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/.kube
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>sudo<span class="w"> </span>cp<span class="w"> </span>-i<span class="w"> </span>/etc/kubernetes/admin.conf<span class="w"> </span><span class="nv">$HOME</span>/.kube/config
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>sudo<span class="w"> </span>chown<span class="w"> </span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span>:<span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="w"> </span><span class="nv">$HOME</span>/.kube/config
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/.kube
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>sudo<span class="w"> </span>cp<span class="w"> </span>-i<span class="w"> </span>/etc/kubernetes/admin.conf<span class="w"> </span><span class="nv">$HOME</span>/.kube/config
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>sudo<span class="w"> </span>chown<span class="w"> </span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span>:<span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="w"> </span><span class="nv">$HOME</span>/.kube/config
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 </span></code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -3084,19 +3210,43 @@ worker-1, worker-2는 아래 블록을 통째로 복사해서 붙여넣기 하�
 <hr />
 <h2 id="7-cilium">7. Cilium 설치<a class="headerlink" href="#7-cilium" title="Permanent link">&para;</a></h2>
 <p>control-plane에서만 실행합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">CILIUM_CLI_VERSION</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://raw.githubusercontent.com/cilium/cilium-cli/main/stable.txt<span class="k">)</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nv">CLI_ARCH</span><span class="o">=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>curl<span class="w"> </span>-L<span class="w"> </span>--fail<span class="w"> </span>--remote-name-all<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span>https://github.com/cilium/cilium-cli/releases/download/<span class="si">${</span><span class="nv">CILIUM_CLI_VERSION</span><span class="si">}</span>/cilium-linux-<span class="si">${</span><span class="nv">CLI_ARCH</span><span class="si">}</span>.tar.gz
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>sudo<span class="w"> </span>tar<span class="w"> </span>xzvfC<span class="w"> </span>cilium-linux-<span class="si">${</span><span class="nv">CLI_ARCH</span><span class="si">}</span>.tar.gz<span class="w"> </span>/usr/local/bin
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>rm<span class="w"> </span>cilium-linux-<span class="si">${</span><span class="nv">CLI_ARCH</span><span class="si">}</span>.tar.gz
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>cilium<span class="w"> </span>install
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>cilium<span class="w"> </span>status<span class="w"> </span>--wait
+<p><strong>왜 CNI가 필요한가?</strong>
+쿠버네티스 자체는 Pod 네트워크를 구현하지 않습니다. CNI(Container Network Interface) 플러그인이 Pod IP 할당과 Pod 간 통신을 담당합니다.</p>
+<table>
+<thead>
+<tr>
+<th>CNI</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cilium</strong></td>
+<td>eBPF 기반, 고성능, L7 정책 지원</td>
+</tr>
+<tr>
+<td>Flannel</td>
+<td>가볍고 단순, 소규모 클러스터에 적합</td>
+</tr>
+<tr>
+<td>Calico</td>
+<td>BGP 기반, 대규모 클러스터에 많이 사용</td>
+</tr>
+</tbody>
+</table>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nv">CILIUM_CLI_VERSION</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://raw.githubusercontent.com/cilium/cilium-cli/main/stable.txt<span class="k">)</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nv">CLI_ARCH</span><span class="o">=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>curl<span class="w"> </span>-L<span class="w"> </span>--fail<span class="w"> </span>--remote-name-all<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">  </span>https://github.com/cilium/cilium-cli/releases/download/<span class="si">${</span><span class="nv">CILIUM_CLI_VERSION</span><span class="si">}</span>/cilium-linux-<span class="si">${</span><span class="nv">CLI_ARCH</span><span class="si">}</span>.tar.gz
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>sudo<span class="w"> </span>tar<span class="w"> </span>xzvfC<span class="w"> </span>cilium-linux-<span class="si">${</span><span class="nv">CLI_ARCH</span><span class="si">}</span>.tar.gz<span class="w"> </span>/usr/local/bin
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>rm<span class="w"> </span>cilium-linux-<span class="si">${</span><span class="nv">CLI_ARCH</span><span class="si">}</span>.tar.gz
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>cilium<span class="w"> </span>install
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>cilium<span class="w"> </span>status<span class="w"> </span>--wait
 </span></code></pre></div>
 <p>확인:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>cilium
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>cilium
 </span></code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">체크포인트</p>
@@ -3109,31 +3259,31 @@ worker-1, worker-2는 아래 블록을 통째로 복사해서 붙여넣기 하�
 <p><strong>worker-1, worker-2 각각</strong>에서 실행합니다.</p>
 </div>
 <p>6번에서 복사해둔 join 명령어를 <code>sudo</code> 붙여서 실행:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo<span class="w"> </span>kubeadm<span class="w"> </span>join<span class="w"> </span><span class="m">192</span>.168.56.10:6443<span class="w"> </span>--token<span class="w"> </span>xxxx<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span>--discovery-token-ca-cert-hash<span class="w"> </span>sha256:yyyy
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>sudo<span class="w"> </span>kubeadm<span class="w"> </span>join<span class="w"> </span><span class="m">192</span>.168.56.10:6443<span class="w"> </span>--token<span class="w"> </span>xxxx<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span>--discovery-token-ca-cert-hash<span class="w"> </span>sha256:yyyy
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">토큰을 잃어버렸거나 24시간이 지났다면</p>
 <p>control-plane에서 재발급:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>kubeadm<span class="w"> </span>token<span class="w"> </span>create<span class="w"> </span>--print-join-command
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>kubeadm<span class="w"> </span>token<span class="w"> </span>create<span class="w"> </span>--print-join-command
 </span></code></pre></div></p>
 </div>
 <hr />
 <h2 id="9">9. 최종 검증<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
 <p>control-plane에서 실행합니다.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
 </span></code></pre></div>
 <p>기대 결과:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>NAME            STATUS   ROLES           AGE   VERSION
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>control-plane   Ready    control-plane   10m   v1.32.x
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>worker-1        Ready    &lt;none&gt;          3m    v1.32.x
-</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>worker-2        Ready    &lt;none&gt;          2m    v1.32.x
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>NAME            STATUS   ROLES           AGE   VERSION
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>control-plane   Ready    control-plane   10m   v1.32.x
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>worker-1        Ready    &lt;none&gt;          3m    v1.32.x
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>worker-2        Ready    &lt;none&gt;          2m    v1.32.x
 </span></code></pre></div>
 <p>테스트 Pod 배포 (선택):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--image<span class="o">=</span>nginx
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
-</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span><span class="nb">test</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--image<span class="o">=</span>nginx
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span><span class="nb">test</span>
 </span></code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">구축 완료</p>
@@ -3168,24 +3318,33 @@ worker-1, worker-2는 아래 블록을 통째로 복사해서 붙여넣기 하�
 </tr>
 </tbody>
 </table>
-<h3 id="kubeadm-init">kubeadm init이 실패해요<a class="headerlink" href="#kubeadm-init" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>free<span class="w"> </span>-h
-</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>containerd
-</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>sudo<span class="w"> </span>kubeadm<span class="w"> </span>reset<span class="w"> </span>-f
-</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$HOME</span>/.kube
+<details class="question">
+<summary>kubeadm init이 실패해요</summary>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>free<span class="w"> </span>-h
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>containerd
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>sudo<span class="w"> </span>kubeadm<span class="w"> </span>reset<span class="w"> </span>-f
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$HOME</span>/.kube
 </span></code></pre></div>
-<h3 id="worker-join">worker join이 안 돼요<a class="headerlink" href="#worker-join" title="Permanent link">&para;</a></h3>
+reset 후 6번부터 다시 시도하세요.</p>
+</details>
+<details class="question">
+<summary>worker join이 안 돼요</summary>
 <ul>
-<li>control-plane으로 ping이 가는가? (4-3 확인)</li>
-<li>토큰 만료 아닌가? (24시간) → 재발급</li>
+<li>control-plane으로 ping이 가는가? (5-3 확인)</li>
+<li>토큰 만료 아닌가? (24시간) → control-plane에서 <code>kubeadm token create --print-join-command</code> 재발급</li>
 <li>join에 <code>sudo</code> 붙였는가?</li>
 <li>양쪽 방화벽/swap 확인</li>
 </ul>
-<h3 id="notready">노드가 계속 NotReady예요<a class="headerlink" href="#notready" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>cilium
-</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>kubelet<span class="w"> </span>-f
+</details>
+<details class="question">
+<summary>노드가 계속 NotReady예요</summary>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>cilium
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>kubelet<span class="w"> </span>-f
 </span></code></pre></div>
-<h3 id="_4">노드 간 통신이 안 돼요 (가장 흔함)<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+Cilium pod가 <code>Running</code>이 아니면 cilium 재설치를 시도합니다.</p>
+</details>
+<details class="question">
+<summary>노드 간 통신이 안 돼요 (가장 흔함)</summary>
 <p>원인: 호스트 전용 네트워크 설정 문제</p>
 <ul>
 <li>각 VM 어댑터2가 호스트전용인지 확인</li>
@@ -3193,12 +3352,144 @@ worker-1, worker-2는 아래 블록을 통째로 복사해서 붙여넣기 하�
 <li><code>ping 192.168.56.10</code> 테스트</li>
 <li>hosts 파일 등록 확인</li>
 </ul>
-<h3 id="_5">처음부터 다시 하고 싶어요<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>sudo<span class="w"> </span>kubeadm<span class="w"> </span>reset<span class="w"> </span>-f
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$HOME</span>/.kube
-</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-F<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-F
+</details>
+<details class="question">
+<summary>처음부터 다시 하고 싶어요</summary>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>sudo<span class="w"> </span>kubeadm<span class="w"> </span>reset<span class="w"> </span>-f
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$HOME</span>/.kube
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-F<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-F
 </span></code></pre></div>
-<p>그 후 6번부터 다시 시작합니다.</p>
+그 후 6번부터 다시 시작합니다.</p>
+</details>
+<hr />
+<h2 id="11-pc-kubectl-kubeconfig">11. 로컬 PC에서 kubectl 연결 (kubeconfig 병합)<a class="headerlink" href="#11-pc-kubectl-kubeconfig" title="Permanent link">&para;</a></h2>
+<p>VM 안에서만 <code>kubectl</code>을 쓰는 것은 불편합니다.
+로컬 PC의 kubeconfig에 vbox 클러스터를 추가하면 PC 터미널에서 직접 제어할 수 있습니다.</p>
+<h3 id="11-1-adminconf">11-1. admin.conf 가져오기<a class="headerlink" href="#11-1-adminconf" title="Permanent link">&para;</a></h3>
+<p>control-plane에서 kubeconfig를 로컬로 복사합니다.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">macOS/Linux</label><label for="__tabbed_3_2">Windows PowerShell</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>scp<span class="w"> </span>&lt;사용자명&gt;@192.168.56.10:~/.kube/config<span class="w"> </span>~/vbox-k8s.yaml
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">scp</span> <span class="p">&lt;</span><span class="n">사용자명</span><span class="p">&gt;</span><span class="nv">@192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">56</span><span class="p">.</span><span class="n">10</span><span class="p">:~/.</span><span class="n">kube</span><span class="p">/</span><span class="n">config</span> <span class="nv">$HOME</span><span class="p">\</span><span class="n">vbox-k8s</span><span class="p">.</span><span class="n">yaml</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="11-2-server">11-2. server 주소 변경<a class="headerlink" href="#11-2-server" title="Permanent link">&para;</a></h3>
+<p>admin.conf의 <code>server:</code> 가 <code>https://192.168.56.10:6443</code>인지 확인합니다.
+<code>127.0.0.1</code>로 되어 있으면 <code>192.168.56.10</code>으로 바꿔줍니다.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">macOS/Linux</label><label for="__tabbed_4_2">Windows PowerShell</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">''</span><span class="w"> </span><span class="s1">'s/127.0.0.1/192.168.56.10/'</span><span class="w"> </span>~/vbox-k8s.yaml
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="p">(</span><span class="nb">Get-Content</span> <span class="nv">$HOME</span><span class="p">\</span><span class="n">vbox-k8s</span><span class="p">.</span><span class="n">yaml</span><span class="p">)</span> <span class="o">-replace</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span><span class="s1">'192.168.56.10'</span> <span class="p">|</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>  <span class="nb">Set-Content</span> <span class="nv">$HOME</span><span class="p">\</span><span class="n">vbox-k8s</span><span class="p">.</span><span class="n">yaml</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="11-3-kubeconfig">11-3. 기존 kubeconfig와 병합<a class="headerlink" href="#11-3-kubeconfig" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">macOS/Linux</label><label for="__tabbed_5_2">Windows PowerShell</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="c1"># 기존 config 백업</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>cp<span class="w"> </span>~/.kube/config<span class="w"> </span>~/.kube/config.bak
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="c1"># 병합</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="nv">KUBECONFIG</span><span class="o">=</span>~/.kube/config:~/vbox-k8s.yaml<span class="w"> </span>kubectl<span class="w"> </span>config<span class="w"> </span>view<span class="w"> </span>--merge<span class="w"> </span>--flatten<span class="w"> </span>&gt;<span class="w"> </span>/tmp/merged.yaml
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>mv<span class="w"> </span>/tmp/merged.yaml<span class="w"> </span>~/.kube/config
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.kube/config
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="c"># 기존 config 백업</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="nb">Copy-Item</span> <span class="nv">$HOME</span><span class="p">\.</span><span class="n">kube</span><span class="p">\</span><span class="n">config</span> <span class="nv">$HOME</span><span class="p">\.</span><span class="n">kube</span><span class="p">\</span><span class="n">config</span><span class="p">.</span><span class="n">bak</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="c"># 병합</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="nv">$env:KUBECONFIG</span> <span class="p">=</span> <span class="s2">"$HOME\.kube\config;$HOME\vbox-k8s.yaml"</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="n">kubectl</span> <span class="n">config</span> <span class="n">view</span> <span class="p">-</span><span class="n">-merge</span> <span class="p">-</span><span class="n">-flatten</span> <span class="p">|</span> <span class="nb">Set-Content</span> <span class="nv">$HOME</span><span class="p">\.</span><span class="n">kube</span><span class="p">\</span><span class="n">config_merged</span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="nb">Move-Item</span> <span class="nv">$HOME</span><span class="p">\.</span><span class="n">kube</span><span class="p">\</span><span class="n">config_merged</span> <span class="nv">$HOME</span><span class="p">\.</span><span class="n">kube</span><span class="p">\</span><span class="n">config</span> <span class="n">-Force</span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="nv">$env:KUBECONFIG</span> <span class="p">=</span> <span class="s2">""</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="11-4-context">11-4. context 전환<a class="headerlink" href="#11-4-context" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>kubectl<span class="w"> </span>config<span class="w"> </span>get-contexts
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>kubectl<span class="w"> </span>config<span class="w"> </span>use-context<span class="w"> </span>kubernetes-admin@kubernetes
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>로컬 터미널에서 <code>kubectl get nodes</code>가 성공하면 연결 완료입니다.</p>
+</div>
+<hr />
+<h2 id="12-kubectl">12. kubectl 자동완성 설정<a class="headerlink" href="#12-kubectl" title="Permanent link">&para;</a></h2>
+<p>매번 명령어 전체를 타이핑하는 건 번거롭습니다.
+자동완성을 설정하면 <code>Tab</code> 키로 명령어와 리소스 이름을 완성할 수 있습니다.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">bash (Linux / macOS Intel)</label><label for="__tabbed_6_2">zsh (macOS)</label><label for="__tabbed_6_3">Windows PowerShell</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'source &lt;(kubectl completion bash)'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'alias k=kubectl'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'complete -o default -F __start_kubectl k'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'source &lt;(kubectl completion zsh)'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'alias k=kubectl'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'complete -o default -F __start_kubectl k'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="nb">source</span><span class="w"> </span>~/.zshrc
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="c"># 프로필 파일이 없으면 생성</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="k">if</span> <span class="p">(!(</span><span class="nb">Test-Path</span> <span class="nv">$PROFILE</span><span class="p">))</span> <span class="p">{</span> <span class="nb">New-Item</span> <span class="nv">$PROFILE</span> <span class="n">-Force</span> <span class="p">}</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="c"># 자동완성 등록</span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="nb">Add-Content</span> <span class="nv">$PROFILE</span> <span class="s2">"</span><span class="se">`n</span><span class="s2">kubectl completion powershell | Out-String | Invoke-Expression"</span>
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="p">.</span> <span class="nv">$PROFILE</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>확인:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>k<span class="w"> </span>get<span class="w"> </span>no<span class="w">   </span><span class="c1"># Tab을 누르면 nodes로 완성됩니다</span>
+</span></code></pre></div>
+<hr />
+<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>worker를 1대만 만들면 안 되나요?</summary>
+<p>됩니다. worker 1대로도 대부분의 실습은 가능합니다.
+단, 노드 스케줄링(affinity, taint) 실습은 2대가 있어야 의미 있습니다.</p>
+</details>
+<details class="question">
+<summary>VM을 껐다 켜면 클러스터가 살아 있나요?</summary>
+<p>네. kubeadm으로 구성한 클러스터는 VM 재시작 후에도 자동으로 복구됩니다.
+control-plane 먼저 켜고, worker를 켜면 됩니다.</p>
+</details>
+<details class="question">
+<summary>IP가 192.168.56.x가 아니어도 되나요?</summary>
+<p>됩니다. 단, 세 VM의 IP 대역이 일치해야 하고, <code>kubeadm init --apiserver-advertise-address</code>와 hosts 파일을 모두 맞춰서 변경해야 합니다.</p>
+</details>
+<details class="question">
+<summary>kubeadm join 토큰이 24시간 지나서 만료됐어요</summary>
+<p>control-plane에서 재발급하세요:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>kubeadm<span class="w"> </span>token<span class="w"> </span>create<span class="w"> </span>--print-join-command
+</span></code></pre></div></p>
+</details>
+<details class="question">
+<summary>containerd 대신 Docker를 써도 되나요?</summary>
+<p>권장하지 않습니다. Kubernetes 1.24부터 dockershim이 제거되어 Docker는 직접 런타임으로 쓸 수 없습니다. containerd를 사용하세요.</p>
+</details>
 
 
 
