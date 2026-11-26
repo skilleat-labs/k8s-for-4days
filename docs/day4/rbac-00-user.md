@@ -30,23 +30,43 @@ kubectl config use-context 로 해당 유저로 전환
 
 ---
 
-## 사전 조건
+## 사전 조건 — Git for Windows 설치 (Windows)
 
-`openssl`이 설치되어 있어야 합니다.
+이 실습은 `openssl` 명령이 필요합니다. Git for Windows를 설치하면 openssl이 함께 제공됩니다.
 
 === "Windows PowerShell"
-    Git for Windows를 설치하면 openssl이 함께 제공됩니다.
 
-    설치 확인:
+    **1) Git for Windows 설치**
+
+    ```powershell
+    winget install --id Git.Git -e --source winget
+    ```
+
+    설치 후 **PowerShell을 재시작**하세요.
+
+    **2) openssl 확인**
+
     ```powershell
     & "C:\Program Files\Git\usr\bin\openssl.exe" version
     ```
 
-    매번 경로 입력이 번거로우면 PowerShell에서 alias 등록:
+    ```
+    OpenSSL 3.x.x ...  ← 버전이 출력되면 OK
+    ```
+
+    **3) alias 등록 (매번 경로 입력 생략용)**
+
     ```powershell
     Set-Alias openssl "C:\Program Files\Git\usr\bin\openssl.exe"
     ```
+
+    !!! warning "alias는 현재 세션에만 적용됩니다"
+        PowerShell을 새로 열 때마다 다시 등록해야 합니다.
+        실습 중 `openssl : 명령을 찾을 수 없습니다` 에러가 나오면 위 alias 명령을 다시 실행하세요.
+
 === "macOS/Linux"
+    openssl이 기본 설치되어 있습니다.
+
     ```bash
     openssl version
     ```
