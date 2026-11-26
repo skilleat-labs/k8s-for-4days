@@ -159,7 +159,7 @@ spec:
       ports:
         - containerPort: 8080
   imagePullSecrets:
-    - name: acr-secret
+    - name: ________   # 앞서 생성한 Secret 이름은?
   restartPolicy: Never
 ```
 
