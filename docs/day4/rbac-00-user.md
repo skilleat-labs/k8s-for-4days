@@ -54,15 +54,24 @@ kubectl config use-context 로 해당 유저로 전환
     OpenSSL 3.x.x ...  ← 버전이 출력되면 OK
     ```
 
-    **3) alias 등록 (매번 경로 입력 생략용)**
+    **3) alias 영구 등록**
+
+    PowerShell 프로필에 등록하면 새 창을 열 때마다 자동으로 적용됩니다.
 
     ```powershell
-    Set-Alias openssl "C:\Program Files\Git\usr\bin\openssl.exe"
+    # 프로필 파일이 없으면 먼저 생성
+    if (!(Test-Path $PROFILE)) { New-Item $PROFILE -Force }
+
+    # alias 추가
+    Add-Content $PROFILE "`nSet-Alias openssl 'C:\Program Files\Git\usr\bin\openssl.exe'"
     ```
 
-    !!! warning "alias는 현재 세션에만 적용됩니다"
-        PowerShell을 새로 열 때마다 다시 등록해야 합니다.
-        실습 중 `openssl : 명령을 찾을 수 없습니다` 에러가 나오면 위 alias 명령을 다시 실행하세요.
+    적용 확인 (현재 세션에 즉시 반영):
+
+    ```powershell
+    . $PROFILE
+    openssl version
+    ```
 
 === "macOS/Linux"
     openssl이 기본 설치되어 있습니다.
