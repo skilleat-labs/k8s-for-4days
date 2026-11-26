@@ -90,7 +90,7 @@ Readiness Probe는 아직 넣지 않습니다.
 !!! tip "Deployment와 Service를 한 파일에 쓸 때"
     두 리소스 사이에 `---` (문서 구분자)를 넣으면 됩니다.
 
-??? success "작성 완료 후 정답 확인"
+!!! success "정답 확인"
     ```yaml title="deploy-readiness.yaml"
     apiVersion: apps/v1
     kind: Deployment
@@ -149,7 +149,7 @@ Probe 없이 배포하면 Pod가 `Running`이 되는 즉시 Endpoint에 추가�
 | `periodSeconds` | `5` |
 | `failureThreshold` | `3` |
 
-??? success "작성 완료 후 정답 확인"
+!!! success "정답 확인"
     ```yaml title="deploy-readiness.yaml (readinessProbe 추가)"
     apiVersion: apps/v1
     kind: Deployment
